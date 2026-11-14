@@ -15,7 +15,7 @@ export type Status = 'AVAILABLE' | 'MISSING' | 'OUTSIDE_DATASET_RANGE' | 'INSUFF
 export type Origin = 'DIRECT_OBSERVATION' | 'SCALED_OBSERVATION' | 'MODEL_REDISTRIBUTED' | 'MIXED'
 export type Source = 'TERRA' | 'AQUA' | 'SNPP' | 'NOAA20'
 export type Value = { value: number | null; valueStatus: Status; partial?: boolean; origin?: Origin | null }
-export type Meta = { dataVersion: string; modelVersion: string; dataThrough: string; warnings: string[] }
+export type Meta = { dataVersion: string; modelVersion: string; dataThrough: string; metric: string; unit: string; warnings: string[] }
 export type Metadata = {
   meta: Meta
   dateRange: { start: string; end: string }
@@ -38,7 +38,7 @@ export type Days = {
 }
 export type MapCell = Value & { cellId: string; center: NonNullable<Area['center']>; bounds: Bounds }
 type TemporalSelector = { startDate: string; endDate: string; coverage: Coverage }
-export type Grid = { selection: Selection; temporalSelector: TemporalSelector; summary: Summary & { maxCellValue: number | null; origin: Origin | null }; cells: MapCell[]; meta: Meta }
+export type Grid = { selection: Selection; temporalSelector: TemporalSelector; summary: Summary & { minCellValue: number | null; maxCellValue: number | null; origin: Origin | null }; cells: MapCell[]; meta: Meta }
 export type Daily = Value & { sourceComposition: SourceContribution[]; meta: Meta }
 export type Details = Daily & { cell: Area; temporalSelector: TemporalSelector }
 export type Trends = { points: (Value & { year: number; coverage: Coverage })[] }
