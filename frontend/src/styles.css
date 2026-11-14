@@ -47,7 +47,6 @@
 
   /* Z-index */
   --z-map-overlay: 800;
-  --z-sticky: 900;
   --z-header: 1000;
   --z-backdrop: 1100;
   --z-drawer: 1200;
@@ -221,40 +220,31 @@ input[aria-invalid='true'] { border-color: var(--color-error); }
 }
 .table-details > summary:hover, .chart-table > summary:hover, .warnings > summary:hover { color: var(--color-text); }
 
-/* ---------- Filter bar ---------- */
+/* ---------- Filter bar ----------
+ * One compact row in the page flow (never sticky, so it never slides over the map), then a
+ * selection line that states what is counted. */
 .filter-bar {
-  position: sticky; top: 64px; z-index: var(--z-sticky);
-  background: rgba(17, 28, 48, 0.96); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-4); box-shadow: var(--elevation-2);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
 }
-/* Only the compact bar is sticky; with the coordinate form open it scrolls with the page so it
- * never covers the map. */
-.filter-bar.is-expanded { position: static; }
-.area-detail { display: flex; align-items: center; min-height: 36px; min-width: 0; }
-.bbox-summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); min-width: 0; }
-.bbox-summary-text { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9rem; overflow-wrap: anywhere; }
-.bbox-summary-text .icon { color: var(--color-focus); }
-.bbox-summary-actions { display: inline-flex; flex-wrap: wrap; gap: var(--space-1); }
-.button-small { padding: 4px 10px; min-height: 30px; font-size: 0.85rem; }
-.filter-panel {
-  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-3) var(--space-6); align-items: start;
-}
+.filter-panel { display: flex; flex-direction: column; gap: var(--space-3); }
 .filter-panel[hidden] { display: none; }
-.filter-group { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
-.filter-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); padding: 0; }
-.filter-group > .segmented { align-self: flex-start; }
-.filter-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
-.filter-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--space-2); }
-/* Wide screens: fixed columns, so a longer area summary never reflows the bar (no layout jump). */
-@media (min-width: 1280px) {
-  .filter-panel { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; }
-  .filter-actions { grid-column: auto; flex-direction: column; align-items: stretch; margin-top: 26px; }
+.filter-row { display: flex; flex-wrap: wrap; gap: var(--space-2) 10px; align-items: flex-end; }
+.filter-row .field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.filter-row .field > select { max-width: 200px; }
+.field-label { font-size: 0.78rem; font-weight: 600; color: var(--color-muted); }
+.filter-divider { align-self: stretch; width: 1px; background: var(--color-border); margin: 0 var(--space-1); }
+.button-small { padding: 4px 10px; min-height: 30px; font-size: 0.85rem; }
+.button-outline { border-color: rgba(103, 232, 249, 0.5); color: var(--color-focus); background: rgba(103, 232, 249, 0.08); }
+.button-outline:hover, .button-outline.is-active { border-color: var(--color-focus); background: rgba(103, 232, 249, 0.18); }
+.button-quiet { background: transparent; }
+.selection-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3);
+  border-top: 1px solid var(--color-border); padding-top: var(--space-2); font-size: 0.85rem; color: var(--color-muted);
 }
-/* The sticky bar is only used where it stays compact. */
-@media (max-width: 1023px) {
-  .filter-bar { position: static; }
-  .filter-panel { grid-template-columns: minmax(0, 1fr); }
-}
+.selection-name { color: var(--color-focus); background: rgba(103, 232, 249, 0.1); padding: 2px 8px; border-radius: var(--radius-sm); }
+.selection-actions { display: inline-flex; flex-wrap: wrap; gap: var(--space-1); margin-left: auto; }
+.icon-back { transform: rotate(90deg); }
 .inline-field { display: inline-flex; }
 .field-inline { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-muted); }
 .filter-toggle {
@@ -345,17 +335,19 @@ input[aria-invalid='true'] { border-color: var(--color-error); }
 .leaflet-container.is-drawing, .leaflet-container.is-drawing .leaflet-interactive { cursor: crosshair; }
 .leaflet-container.is-drawing { touch-action: none; }
 .leaflet-container.is-drawing .leaflet-tooltip-pane { display: none; }
+/* Legend sits under the map (not over it), as one wrapping strip. */
 .map-legend {
-  position: absolute; right: var(--space-3); bottom: 26px; z-index: var(--z-map-overlay); width: 220px;
-  background: rgba(17, 28, 48, 0.94); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
-  padding: var(--space-2) var(--space-3); font-size: 0.78rem; box-shadow: var(--elevation-2);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-2); padding: var(--space-2) var(--space-3); font-size: 0.8rem;
+  background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md);
 }
-.map-legend-title { font-weight: 700; margin-bottom: 6px; }
+.map-legend-title { font-weight: 700; }
+.legend-scale { display: flex; flex-direction: column; gap: 2px; width: min(240px, 100%); }
 .legend-ramp { display: flex; height: 10px; border-radius: var(--radius-full); overflow: hidden; }
 .legend-ramp span { flex: 1; }
-.legend-ramp-labels { display: flex; justify-content: space-between; color: var(--color-muted); margin: 3px 0 6px; }
-.legend-row { display: flex; align-items: center; gap: 6px; color: #cbd5e1; margin-top: 3px; }
-.legend-note { margin: 6px 0 0; color: var(--color-muted); font-size: 0.75rem; line-height: 1.35; }
+.legend-ramp-labels { display: flex; justify-content: space-between; color: var(--color-muted); }
+.legend-row { display: inline-flex; align-items: center; gap: 6px; color: #cbd5e1; }
+.legend-note { flex-basis: 100%; margin: 0; color: var(--color-muted); font-size: 0.78rem; line-height: 1.4; }
 .swatch { width: 16px; height: 11px; border-radius: 3px; border: 1px solid rgba(148, 163, 184, 0.45); display: inline-block; flex: none; }
 .swatch-outside { background: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(148, 163, 184, 0.55) 3px, rgba(148, 163, 184, 0.55) 4px); border-style: dashed; }
 .map-reading { margin-top: var(--space-3); }
@@ -429,7 +421,6 @@ input[aria-invalid='true'] { border-color: var(--color-error); }
 
 /* ---------- Compare ---------- */
 .compare, .notes { display: flex; flex-direction: column; gap: var(--space-4); }
-.compare .filter-bar { position: static; }
 .compare-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
 .compare-side-summary, .compare-delta { background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3); min-width: 0; }
 .compare-side-head { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
@@ -468,12 +459,12 @@ input[aria-invalid='true'] { border-color: var(--color-error); }
 @media (max-width: 767px) {
   .app-header { position: static; padding: var(--space-3) var(--space-4); }
   main { padding: var(--space-3) var(--space-4) 48px; }
-  .filter-bar { position: static; padding: var(--space-2) var(--space-3); }
-  .filter-panel { gap: var(--space-4); padding: var(--space-2) 0; }
-  .filter-actions { margin-left: 0; }
+  .filter-bar { padding: var(--space-2) var(--space-3); }
+  .filter-panel { padding: var(--space-2) 0; }
+  .filter-divider { display: none; }
+  .filter-row .field > select { max-width: 100%; }
   .bbox-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .map, .compare-maps .map { height: 52vh; min-height: 300px; }
-  .map-legend { width: 180px; right: var(--space-2); bottom: 22px; }
   .big-number > span:first-child { font-size: 2.1rem; }
   .stat-row { grid-template-columns: minmax(0, 1fr); }
   .calendar-day { min-height: 46px; padding: 3px 4px; }

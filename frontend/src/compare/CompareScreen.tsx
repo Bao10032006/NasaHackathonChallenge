@@ -172,12 +172,11 @@ export default function CompareScreen() {
               fit={fit}
               basemap={basemap}
               onReady={attach}
-            >
-              {side === 'B' && view.data && <MapLegend max={sharedMax} middle={scale.breaks[2]} shared />}
-            </GridMap>
+            />
           </section>
         ))}
       </div>
+      {(viewA.data || viewB.data) && <MapLegend max={sharedMax} middle={scale.breaks[2]} shared />}
 
       {selectedRow && (
         <section className="card compare-selected" aria-live="polite" aria-labelledby="compare-selected-title">

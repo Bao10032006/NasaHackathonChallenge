@@ -1,3 +1,4 @@
+import type L from 'leaflet'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Bounds, MapCellsResponse } from '../api/types'
 import { Icon } from '../components/Icon'
@@ -7,7 +8,7 @@ import { PROBLEM_COPY } from '../lib/format'
 import { boundsLabel, selectorLabel } from '../lib/labels'
 import { activityScale } from '../lib/scale'
 import { currentOrPrevious, useApi } from '../lib/useApi'
-import { BASEMAP_OPTIONS, type BasemapId } from '../map/basemaps'
+import { BASEMAP_OPTIONS, VIETNAM_BOUNDS, type BasemapId } from '../map/basemaps'
 import { CellTable } from '../map/CellTable'
 import { GridMap, type MapFit } from '../map/GridMap'
 import { MapLegend } from '../map/MapLegend'
@@ -37,7 +38,7 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
   const [basemap, setBasemap] = useState<BasemapId>('night')
   const [preview, setPreview] = useState<Bounds | null>(null)
   const sectionRef = useRef<HTMLElement | null>(null)
-  const drawButtonRef = useRef<HTMLButtonElement | null>(null)
+  const leafletRef = useRef<L.Map | null>(null)
   const confirmRef = useRef<HTMLButtonElement | null>(null)
   // A box confirmed from a drawing is already in view: keep the user's pan/zoom instead of refitting.
   const keepViewFor = useRef<string | null>(null)
@@ -52,6 +53,8 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
   const error = map.status === 'error' ? map.error : null
   const noCells = error?.code === 'NO_CELLS_IN_BOUNDS'
   const selectCell = (cellId: string) => dispatch({ type: 'selectCell', cellId })
+  // The drawing toggle lives in the filter row; focus goes back there after a drawing ends.
+  const focusDrawToggle = () => document.getElementById('draw-toggle')?.focus({ preventScroll: true })
 
   // Starting a new drawing drops any unconfirmed preview; bring the map into view if it is off-screen.
   useEffect(() => {
@@ -85,7 +88,7 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
   function cancel() {
     setPreview(null)
     onDrawingChange(false)
-    drawButtonRef.current?.focus({ preventScroll: true })
+    focusDrawToggle()
   }
 
   function confirm() {
@@ -95,7 +98,7 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
     keepViewFor.current = boundsKey(preview)
     dispatch({ type: 'setSpatial', spatial: { mode: 'bbox', ...preview } })
     setPreview(null)
-    drawButtonRef.current?.focus({ preventScroll: true })
+    focusDrawToggle()
   }
 
   function errorActions() {
@@ -172,7 +175,7 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
   }
 
   return (
-    <section ref={sectionRef} className="card map-card" aria-labelledby="map-title">
+    <section ref={sectionRef} id="explore-map" className="card map-card" aria-labelledby="map-title">
       <div className="card-head">
         <div>
           <h2 id="map-title">Bản đồ hoạt động cháy</h2>
@@ -184,14 +187,12 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
         <div className="toolbar">
           <SegmentedControl label="Ảnh nền" size="small" options={BASEMAP_OPTIONS} value={basemap} onChange={setBasemap} />
           <button
-            ref={drawButtonRef}
             type="button"
-            className={drawing ? 'button primary' : 'button'}
-            aria-pressed={drawing}
-            onClick={() => (drawing ? cancel() : onDrawingChange(true))}
+            className="button button-small"
+            disabled={drawing}
+            onClick={() => leafletRef.current?.fitBounds([[VIETNAM_BOUNDS.south, VIETNAM_BOUNDS.west], [VIETNAM_BOUNDS.north, VIETNAM_BOUNDS.east]])}
           >
-            <Icon name="select" size={16} />
-            {drawing ? 'Hủy vẽ' : 'Khoanh bằng chuột'}
+            Thu về toàn quốc
           </button>
           {map.status === 'success' && <ServedByBadge servedBy={map.servedBy} />}
         </div>
@@ -216,10 +217,11 @@ export function ExploreMap({ drawing, onDrawingChange }: { drawing: boolean; onD
           setPreview(bounds)
         }}
         onDrawCancel={cancel}
+        onReady={(leaflet) => { leafletRef.current = leaflet }}
       >
         {edge && <div className="map-edge">{edge}</div>}
-        {data && <MapLegend max={data.summary.maxCellValue} middle={scale.breaks[2]} />}
       </GridMap>
+      {data && <MapLegend max={data.summary.maxCellValue} middle={scale.breaks[2]} />}
 
       {data && (
         <p className="map-reading muted small">
