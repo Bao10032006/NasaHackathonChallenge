@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import type { Origin } from '../api/types'
+import { DataTable } from '../components/DataTable'
 import { ORIGIN_MARKER, axisTicks, compactValue } from '../lib/scale'
 
 export interface ChartPoint {
@@ -24,7 +25,7 @@ export interface ChartSeries {
   area?: boolean
 }
 
-const HEIGHT = 250
+const HEIGHT = 260
 const MARGIN = { top: 28, right: 18, bottom: 32, left: 48 }
 
 function Marker(props: { x: number; y: number; point: ChartPoint; color: string; highlight: boolean }) {
@@ -97,6 +98,11 @@ export function LineChart({
     observer.observe(element)
     return () => observer.disconnect()
   }, [])
+  const [activeX, setActiveX] = useState<number | null>(null)
+  const hitRefs = useRef<Array<SVGRectElement | null>>([])
+  const pointSummary = (x: number) => [xLabel(x), ...series
+    .map((item) => item.points.find((point) => point.x === x)?.title)
+    .filter(Boolean)].join('; ')
   const plotWidth = WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = HEIGHT - MARGIN.top - MARGIN.bottom
   const values = series.flatMap((item) => item.points.map((point) => point.y).filter((y): y is number => y !== null))
@@ -137,28 +143,34 @@ export function LineChart({
     }).join(' ')
   }
 
+  const activeIndex = activeX === null ? -1 : xValues.indexOf(activeX)
+  const tabX = activeX ?? (selectedX !== undefined && selectedX !== null && xValues.includes(selectedX) ? selectedX : xValues[0])
+  const tooltipLeft = activeX === null ? 0 : Math.min(Math.max(xPos(activeX), 90), WIDTH - 90)
+
+  function moveFocus(index: number) {
+    const next = Math.max(0, Math.min(xValues.length - 1, index))
+    setActiveX(xValues[next])
+    hitRefs.current[next]?.focus()
+  }
+
   return (
     <figure className="chart" ref={figureRef}>
-      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width={WIDTH} height={HEIGHT} role="img" aria-label={ariaLabel}>
+      <svg className="chart-plot" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width={WIDTH} height={HEIGHT} role="group" aria-label={ariaLabel}>
         <defs>
-          <filter id={`${chartId}-glow`} x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
           {series.filter((item) => item.area).map((item) => (
             <linearGradient key={item.id} id={`${chartId}-${item.id}-fill`} x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor={item.color} stopOpacity="0.45" />
+              <stop offset="0%" stopColor={item.color} stopOpacity="0.28" />
               <stop offset="100%" stopColor={item.color} stopOpacity="0" />
             </linearGradient>
           ))}
         </defs>
         {ticks.map((tick) => (
-          <g key={tick}>
+          <g key={tick} aria-hidden="true">
             <line x1={MARGIN.left} x2={WIDTH - MARGIN.right} y1={yPos(tick)} y2={yPos(tick)} className="grid-line" />
-            <text x={MARGIN.left - 8} y={yPos(tick) + 4} textAnchor="end" className="axis-text">{compactValue(tick)}</text>
+            <text x={MARGIN.left - 8} y={yPos(tick) + 4} textAnchor="end" className="axis-text num">{compactValue(tick)}</text>
           </g>
         ))}
-        <text x={MARGIN.left} y={12} className="axis-text axis-title">{yTitle}</text>
+        <text x={MARGIN.left} y={13} className="axis-text axis-title" aria-hidden="true">{yTitle}</text>
         {selectedX !== undefined && selectedX !== null && xValues.includes(selectedX) && (
           <rect
             x={xPos(selectedX) - Math.max(step / 2, 6)}
@@ -166,15 +178,16 @@ export function LineChart({
             width={Math.max(step, 12)}
             height={plotHeight}
             className="selected-band"
+            aria-hidden="true"
           />
         )}
         {xValues.map((x, index) => (index % xTickEvery === 0 || x === selectedX) && (
-          <text key={x} x={xPos(x)} y={HEIGHT - 12} textAnchor="middle" className={x === selectedX ? 'axis-text strong' : 'axis-text'}>
+          <text key={x} x={xPos(x)} y={HEIGHT - 10} textAnchor="middle" className={x === selectedX ? 'axis-text strong' : 'axis-text'} aria-hidden="true">
             {xLabel(x)}
           </text>
         ))}
         {series.filter((item) => item.area).map((item) => (
-          <path key={`${item.id}-area`} d={areaPath(item.points)} fill={`url(#${chartId}-${item.id}-fill)`} stroke="none" />
+          <path key={`${item.id}-area`} d={areaPath(item.points)} fill={`url(#${chartId}-${item.id}-fill)`} stroke="none" aria-hidden="true" />
         ))}
         {series.map((item) => (
           <path
@@ -186,42 +199,80 @@ export function LineChart({
             strokeDasharray={item.dash}
             strokeLinejoin="round"
             strokeLinecap="round"
-            filter={item.area ? `url(#${chartId}-glow)` : undefined}
+            aria-hidden="true"
           />
         ))}
+        {activeX !== null && (
+          <line x1={xPos(activeX)} x2={xPos(activeX)} y1={MARGIN.top} y2={MARGIN.top + plotHeight} className="hover-line" aria-hidden="true" />
+        )}
         {series.filter((item) => item.markers).map((item) => item.points.map((point) => point.y !== null && (
-          <g key={`${item.id}-${point.x}`}>
-            <Marker x={xPos(point.x)} y={yPos(point.y)} point={point} color={item.color} highlight={point.x === selectedX} />
-            <title>{point.title}</title>
+          <g key={`${item.id}-${point.x}`} aria-hidden="true">
+            <Marker x={xPos(point.x)} y={yPos(point.y)} point={point} color={item.color} highlight={point.x === selectedX || point.x === activeX} />
           </g>
         )))}
-        {onSelect && xValues.map((x) => (
+        {xValues.map((x, index) => (
           <rect
             key={`hit-${x}`}
+            ref={(element) => { hitRefs.current[index] = element }}
             x={xPos(x) - Math.max(step / 2, 6)}
             y={MARGIN.top}
             width={Math.max(step, 12)}
             height={plotHeight}
-            className="hit-area"
-            tabIndex={0}
-            role="button"
-            aria-label={`Chọn ${xLabel(x)}`}
-            onClick={() => onSelect(x)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                onSelect(x)
+            className={onSelect ? 'hit-area selectable' : 'hit-area'}
+            tabIndex={x === tabX ? 0 : -1}
+            role={onSelect ? 'button' : 'img'}
+            aria-label={`${pointSummary(x)}${onSelect ? '. Nhấn Enter để chọn.' : ''}`}
+            aria-describedby={activeX === x ? `${chartId}-tooltip` : undefined}
+            onMouseEnter={() => setActiveX(x)}
+            onMouseLeave={() => setActiveX((current) => (current === x ? null : current))}
+            onFocus={() => setActiveX(x)}
+            onBlur={() => setActiveX((current) => (current === x ? null : current))}
+            onPointerDown={(event) => {
+              if (event.pointerType === 'touch') {
+                setActiveX(x)
               }
             }}
-          >
-            <title>{series.map((item) => item.points.find((point) => point.x === x)?.title).filter(Boolean).join('\n')}</title>
-          </rect>
+            onClick={() => onSelect?.(x)}
+            onKeyDown={(event) => {
+              if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                event.preventDefault()
+                moveFocus(index + 1)
+              } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                event.preventDefault()
+                moveFocus(index - 1)
+              } else if (event.key === 'Home') {
+                event.preventDefault()
+                moveFocus(0)
+              } else if (event.key === 'End') {
+                event.preventDefault()
+                moveFocus(xValues.length - 1)
+              } else if (onSelect && (event.key === 'Enter' || event.key === ' ')) {
+                event.preventDefault()
+                onSelect(x)
+              } else if (event.key === 'Escape') {
+                setActiveX(null)
+              }
+            }}
+          />
         ))}
       </svg>
+      {activeX !== null && activeIndex >= 0 && (
+        <div id={`${chartId}-tooltip`} role="tooltip" className="chart-tooltip" style={{ left: tooltipLeft }}>
+          <strong>{xLabel(activeX)}</strong>
+          {series.map((item) => {
+            const point = item.points.find((candidate) => candidate.x === activeX)
+            return point ? (
+              <span key={item.id} className="tooltip-row">
+                <span className="tooltip-swatch" style={{ background: item.color }} aria-hidden="true" />{point.title}
+              </span>
+            ) : null
+          })}
+        </div>
+      )}
       <figcaption className="chart-legend">
         {series.map((item) => (
           <span key={item.id} className="legend-item">
-            <svg width="26" height="10" aria-hidden="true">
+            <svg className="legend-line" width="26" height="10" aria-hidden="true">
               <line x1="1" x2="25" y1="5" y2="5" stroke={item.color} strokeWidth="2" strokeDasharray={item.dash} />
             </svg>
             {item.label}
@@ -230,9 +281,9 @@ export function LineChart({
       </figcaption>
       <details className="chart-table">
         <summary>Xem bảng số liệu</summary>
-        <table>
+        <DataTable label={`Bảng số liệu: ${ariaLabel}`}>
           <thead>
-            <tr><th>Kỳ</th>{series.map((item) => <th key={item.id}>{item.label}</th>)}</tr>
+            <tr><th scope="col">Kỳ</th>{series.map((item) => <th scope="col" key={item.id}>{item.label}</th>)}</tr>
           </thead>
           <tbody>
             {xValues.map((x) => (
@@ -242,7 +293,7 @@ export function LineChart({
               </tr>
             ))}
           </tbody>
-        </table>
+        </DataTable>
       </details>
     </figure>
   )

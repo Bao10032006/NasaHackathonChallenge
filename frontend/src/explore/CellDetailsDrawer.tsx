@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { Drawer } from '../components/Drawer'
+import { CoverageChip, ErrorNote, OriginBadge, ServedByBadge, WarningNotes } from '../components/ui'
 import { SOURCE_LABEL, formatValue } from '../lib/format'
 import { boundsLabel, selectorLabel } from '../lib/labels'
 import { ORIGIN_BADGE, readableValue } from '../lib/scale'
 import { useApi } from '../lib/useApi'
 import { useAppState, useDispatch } from '../state/AppState'
 import { cellDetailsRequest } from './requests'
-import { CoverageChip, ErrorNote, OriginBadge, ServedByBadge, WarningNotes } from './ui'
 
 const ORIGIN_EXPLANATION = {
   DIRECT_OBSERVATION: 'Đếm trực tiếp số phát hiện ban ngày của VIIRS S‑NPP trong ô (đã lọc nguồn nhiệt cố định).',
@@ -20,43 +20,35 @@ export function CellDetailsDrawer() {
   const dispatch = useDispatch()
   const cellId = state.filters.selectedCellId
   const details = useApi(cellDetailsRequest(state))
-  const closeRef = useRef<HTMLButtonElement | null>(null)
-
-  useEffect(() => {
-    if (cellId) {
-      closeRef.current?.focus()
-    }
-  }, [cellId])
-
-  if (!cellId) {
-    return null
-  }
   const close = () => dispatch({ type: 'selectCell', cellId: null })
+  const viewingCell = state.filters.spatial.mode === 'named' && state.filters.spatial.areaType === 'cell'
+    && state.filters.spatial.areaId === cellId
 
   return (
-    <aside className="drawer" role="dialog" aria-modal="false" aria-labelledby="cell-title" onKeyDown={(event) => event.key === 'Escape' && close()}>
-      <div className="drawer-head">
-        <h2 id="cell-title">Ô lưới {cellId}</h2>
-        <button ref={closeRef} type="button" className="button" onClick={close} aria-label="Đóng chi tiết ô">✕</button>
-      </div>
-      {details.status === 'loading' && <p className="muted" role="status">Đang tải chi tiết nguồn của ô…</p>}
+    <Drawer
+      open={cellId !== null}
+      title={cellId ? `Ô lưới ${cellId}` : 'Ô lưới'}
+      onClose={close}
+      returnFocusTo={() => document.querySelector<HTMLElement>('.map-card .leaflet-container')}
+    >
+      {details.status === 'loading' && <p className="muted" role="status"><span className="spinner" aria-hidden="true" />Đang tải chi tiết nguồn của ô…</p>}
       {details.status === 'error' && <ErrorNote error={details.error} onRetry={details.retry} context="chi tiết ô" />}
       {details.status === 'success' && (() => {
         const data = details.data
         const isDate = data.temporalSelector.type === 'DATE'
         return (
-          <div className="drawer-body">
+          <>
             <ServedByBadge servedBy={details.servedBy} />
             <p className="eyebrow">{selectorLabel(data.temporalSelector)}</p>
             <p className="muted small">
               {data.cell.diagnosticRegion && <>Vùng phân tích {data.cell.diagnosticRegion} · </>}
-              Tâm ô {data.cell.center?.lat}°B, {data.cell.center?.lon}°Đ
-              {data.cell.bounds && <> · biên {boundsLabel(data.cell.bounds)}</>}
+              Tâm ô <span className="num">{data.cell.center?.lat}°B, {data.cell.center?.lon}°Đ</span>
+              {data.cell.bounds && <> · biên <span className="num">{boundsLabel(data.cell.bounds)}</span></>}
             </p>
             <div className="big-number">
               {data.valueStatus === 'AVAILABLE' && data.value !== null ? (
                 <>
-                  <span title={`Giá trị chính xác: ${formatValue(data.value)}`}>{readableValue(data.value)}</span>
+                  <span className="num" title={`Giá trị chính xác: ${formatValue(data.value)}`}>{readableValue(data.value)}</span>
                   <span className="unit">snpp_eq</span>
                 </>
               ) : (
@@ -83,19 +75,19 @@ export function CellDetailsDrawer() {
                 <li key={source.sourceCode}>
                   <div className="source-bar-label">
                     <strong>{SOURCE_LABEL[source.source]}</strong>
-                    <span>{readableValue(source.harmonizedValue)} snpp_eq</span>
+                    <span className="num">{readableValue(source.harmonizedValue)} snpp_eq</span>
                   </div>
                   <div className="muted small">
-                    {ORIGIN_BADGE[source.origin].label} · {source.contributingCellDayCount} ngày dùng nguồn này ·
-                    {' '}{source.inputObservationCount} phát hiện đầu vào của vệ tinh (không phải snpp_eq) ·
-                    {' '}{source.sourceInputValidCellCount} ngày có đầu vào hợp lệ
+                    {ORIGIN_BADGE[source.origin].label} · <span className="num">{source.contributingCellDayCount}</span> ngày dùng nguồn này ·
+                    {' '}<span className="num">{source.inputObservationCount}</span> phát hiện đầu vào của vệ tinh (không phải snpp_eq) ·
+                    {' '}<span className="num">{source.sourceInputValidCellCount}</span> ngày có đầu vào hợp lệ
                   </div>
                 </li>
               ))}
             </ul>
             <p className="muted small">Hỏa Lịch không cung cấp tọa độ hay thời điểm của từng điểm cháy; mọi giá trị là tổng theo ô.</p>
             <WarningNotes codes={data.meta.warnings} />
-            {!(state.filters.spatial.mode === 'named' && state.filters.spatial.areaType === 'cell' && state.filters.spatial.areaId === cellId) && (
+            {!viewingCell && cellId && (
               <button
                 type="button"
                 className="button"
@@ -104,9 +96,9 @@ export function CellDetailsDrawer() {
                 Xem riêng ô này (biểu đồ, lịch, lịch sử)
               </button>
             )}
-          </div>
+          </>
         )
       })()}
-    </aside>
+    </Drawer>
   )
 }

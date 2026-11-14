@@ -6,7 +6,7 @@ import { currentOrPrevious, useApi } from '../lib/useApi'
 import { useAppState, useDispatch } from '../state/AppState'
 import { LineChart, OriginShapeLegend, type ChartPoint } from './LineChart'
 import { calendarRequest } from './requests'
-import { Card, CoverageChip, ErrorNote, ServedByBadge, UpdatingNote } from './ui'
+import { Card, CoverageChip, ErrorNote, PeakLabel, ServedByBadge, UpdatingNote } from '../components/ui'
 
 function valueTitle(label: string, value: CalendarValue): string {
   if (value.valueStatus !== 'AVAILABLE' || value.value === null) {
@@ -49,7 +49,7 @@ export function PeriodChart() {
           <div className="chips">
             <CoverageChip coverage={data.summary.coverage} />
             {data.summary.peakPeriod && (
-              <span className="badge">★ Cao nhất: {longLabel(data.summary.peakPeriod.period)} ({readableValue(data.summary.peakPeriod.value)})</span>
+              <span className="badge num"><PeakLabel>Cao nhất: {longLabel(data.summary.peakPeriod.period)} ({readableValue(data.summary.peakPeriod.value)})</PeakLabel></span>
             )}
           </div>
           <LineChart
@@ -68,7 +68,7 @@ export function PeriodChart() {
               {
                 id: 'year',
                 label: `Năm ${data.year}`,
-                color: '#ff7a3d',
+                color: '#ff8a4c',
                 markers: true,
                 area: true,
                 points: data.values.map((value): ChartPoint => ({

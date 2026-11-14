@@ -9,9 +9,11 @@ import type { Origin, ValueStatus } from '../api/types'
  */
 
 export const ACTIVITY_COLORS = ['#6d0a1f', '#a50f15', '#d7301f', '#f16913', '#fd9a44', '#fdd06a', '#fff6b0'] as const
-export const ZERO_COLOR = 'rgba(148, 163, 184, 0.16)'
-/** Classes from this index up are bright enough to use dark text and a glow. */
+export const ZERO_COLOR = 'rgba(148, 163, 184, 0.18)'
+/** Classes from this index up get a soft glow on the map. */
 export const HOT_CLASS = 4
+/** From this class up, dark text (#1A0B05) has >= 6:1 contrast while white falls below 4.5:1. */
+export const DARK_TEXT_CLASS = 3
 
 export interface ActivityScale {
   max: number

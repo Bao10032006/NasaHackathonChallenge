@@ -1,3 +1,4 @@
+import { Drawer } from '../components/Drawer'
 import { ORIGIN_COPY, SOURCE_LABEL, formatDate } from '../lib/format'
 import { useDispatch } from '../state/AppState'
 import { useMetadata, useSnapshot } from '../state/Metadata'
@@ -10,16 +11,9 @@ export function DataGuideDrawer({ open, onClose }: { open: boolean; onClose: () 
   const nationalCells = areas.status === 'success'
     ? areas.data.items.find((item) => item.type === 'national')?.cellCount
     : undefined
-  if (!open) {
-    return null
-  }
   return (
-    <aside className="drawer drawer-wide" role="dialog" aria-modal="false" aria-labelledby="guide-title" onKeyDown={(event) => event.key === 'Escape' && onClose()}>
-      <div className="drawer-head">
-        <h2 id="guide-title">Nguồn và cách đọc dữ liệu</h2>
-        <button type="button" className="button" onClick={onClose} aria-label="Đóng hướng dẫn" autoFocus>✕</button>
-      </div>
-      <div className="drawer-body guide">
+    <Drawer open={open} title="Nguồn và cách đọc dữ liệu" onClose={onClose} wide>
+      <div className="guide">
         <h3>Dữ liệu đến từ đâu</h3>
         <p>
           Điểm cháy được lấy từ NASA FIRMS (Fire Information for Resource Management System): cảm biến MODIS trên vệ tinh
@@ -67,6 +61,6 @@ export function DataGuideDrawer({ open, onClose }: { open: boolean; onClose: () 
           Xem đầy đủ ở màn Nguồn dữ liệu
         </button>
       </div>
-    </aside>
+    </Drawer>
   )
 }

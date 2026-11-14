@@ -1,10 +1,14 @@
+import { MotionConfig, motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
+import { mockGeneratedFromCommit } from './api/mock'
 import CompareScreen from './compare/CompareScreen'
+import { Icon } from './components/Icon'
+import { SegmentedControl } from './components/SegmentedControl'
 import DataNotesScreen from './datanotes/DataNotesScreen'
 import ExploreScreen from './explore/ExploreScreen'
-import { mockGeneratedFromCommit } from './api/mock'
-import { METRIC_NOTICE } from './lib/format'
+import { METRIC_NOTICE, formatDate } from './lib/format'
 import { AppStateProvider, useAppState, useDispatch, type Screen } from './state/AppState'
-import { SnapshotProvider } from './state/Metadata'
+import { SnapshotProvider, useMetadata, useSnapshot } from './state/Metadata'
 
 const SCREENS: Array<[Screen, string]> = [
   ['explore', 'Khám phá'],
@@ -12,16 +16,48 @@ const SCREENS: Array<[Screen, string]> = [
   ['notes', 'Nguồn dữ liệu'],
 ]
 
+const SOURCE_OPTIONS = [
+  { value: 'mock', label: 'Dữ liệu mẫu' },
+  { value: 'api', label: 'API thật' },
+] as const
+
+function DataStatus() {
+  const { dataSource } = useAppState()
+  const dispatch = useDispatch()
+  const metadata = useMetadata()
+  const { metadata: metadataState } = useSnapshot()
+  return (
+    <div className="data-status">
+      <SegmentedControl
+        label="Nguồn dữ liệu"
+        size="small"
+        options={SOURCE_OPTIONS}
+        value={dataSource}
+        onChange={(value) => dispatch({ type: 'setDataSource', dataSource: value })}
+      />
+      <p className="data-status-text" role="status" aria-live="polite">
+        {metadataState.status === 'loading' && <><span className="spinner" aria-hidden="true" />Đang kết nối…</>}
+        {metadataState.status === 'error' && <span className="text-error">Không tải được metadata ({metadataState.error.code ?? metadataState.error.kind})</span>}
+        {metadata && (
+          <span title={dataSource === 'mock' ? `Fixture tạo từ backend ${mockGeneratedFromCommit}` : 'Backend Spring Boot qua proxy /api'}>
+            Dữ liệu đến <strong className="num">{formatDate(metadata.meta.dataThrough)}</strong>
+            <span className="muted"> · {metadata.meta.dataVersion}</span>
+          </span>
+        )}
+      </p>
+    </div>
+  )
+}
+
 function Header() {
-  const { screen, dataSource } = useAppState()
+  const { screen } = useAppState()
   const dispatch = useDispatch()
   return (
     <header className="app-header">
       <div className="brand">
-        <span className="brand-mark" aria-hidden="true">🔥</span>
-        <h1>HỎA <span>LỊCH</span></h1>
+        <span className="brand-mark" aria-hidden="true"><Icon name="flame" size={18} /></span>
+        <span className="brand-name">Hỏa Lịch</span>
       </div>
-      <p role="note" className="metric-note">{METRIC_NOTICE}</p>
       <nav aria-label="Màn hình" className="app-nav">
         {SCREENS.map(([id, label]) => (
           <button
@@ -30,31 +66,14 @@ function Header() {
             aria-current={screen === id ? 'page' : undefined}
             onClick={() => dispatch({ type: 'setScreen', screen: id })}
           >
-            {label}
+            {screen === id && (
+              <motion.span layoutId="nav-indicator" className="nav-indicator" transition={{ duration: 0.18, ease: 'easeOut' }} />
+            )}
+            <span className="nav-label">{label}</span>
           </button>
         ))}
       </nav>
-      <fieldset className="source-toggle">
-        <legend>Nguồn dữ liệu:</legend>
-        <label>
-          <input
-            type="radio"
-            name="data-source"
-            checked={dataSource === 'mock'}
-            onChange={() => dispatch({ type: 'setDataSource', dataSource: 'mock' })}
-          />
-          <span title={`Fixture từ backend ${mockGeneratedFromCommit}`}>Dữ liệu mẫu</span>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="data-source"
-            checked={dataSource === 'api'}
-            onChange={() => dispatch({ type: 'setDataSource', dataSource: 'api' })}
-          />
-          <span title="Backend Spring Boot ở cổng 8080 qua proxy /api">API thật</span>
-        </label>
-      </fieldset>
+      <DataStatus />
     </header>
   )
 }
@@ -71,15 +90,36 @@ function CurrentScreen() {
   }
 }
 
+/** Moves focus to the main region when the screen changes (not on first load). */
+function Main() {
+  const { screen } = useAppState()
+  const mainRef = useRef<HTMLElement | null>(null)
+  const firstRef = useRef(true)
+  useEffect(() => {
+    if (firstRef.current) {
+      firstRef.current = false
+      return
+    }
+    mainRef.current?.focus()
+  }, [screen])
+  return (
+    <main id="main" ref={mainRef} tabIndex={-1}>
+      <p className="metric-banner" role="note"><Icon name="info" size={16} />{METRIC_NOTICE}</p>
+      <CurrentScreen />
+    </main>
+  )
+}
+
 export default function App() {
   return (
-    <AppStateProvider>
-      <SnapshotProvider>
-        <Header />
-        <main>
-          <CurrentScreen />
-        </main>
-      </SnapshotProvider>
-    </AppStateProvider>
+    <MotionConfig reducedMotion="user">
+      <AppStateProvider>
+        <SnapshotProvider>
+          <a className="skip-link" href="#main">Bỏ qua đến nội dung chính</a>
+          <Header />
+          <Main />
+        </SnapshotProvider>
+      </AppStateProvider>
+    </MotionConfig>
   )
 }

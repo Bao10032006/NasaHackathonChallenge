@@ -7,7 +7,7 @@ import { calendarGranularity, trendParameters, useAppState, useDispatch } from '
 import { useMetadata } from '../state/Metadata'
 import { LineChart, OriginShapeLegend, type ChartPoint } from './LineChart'
 import { calendarRequest, seasonalityRequest, trendsRequest } from './requests'
-import { Card, ErrorNote, ServedByBadge, UpdatingNote } from './ui'
+import { Card, ErrorNote, ServedByBadge, UpdatingNote } from '../components/ui'
 
 /**
  * Quantitative comparison of the selected month / five-day period with its historical median
@@ -111,7 +111,7 @@ export function HistoryPanel() {
             series={[{
               id: 'trend',
               label: `${periodName} từng năm`,
-              color: '#fbbf24',
+              color: '#fcd34d',
               markers: true,
               area: true,
               points: trendsView.data.points.map((point): ChartPoint => ({
@@ -176,7 +176,7 @@ export function HistoryPanel() {
               ...(calendar.status === 'success' ? [{
                 id: 'current',
                 label: `Năm ${calendar.data.year}`,
-                color: '#ff7a3d',
+                color: '#ff8a4c',
                 markers: true,
                 points: calendar.data.values.map((value): ChartPoint => ({
                   x: value.period,

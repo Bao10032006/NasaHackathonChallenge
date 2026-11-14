@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer, type Dispatch, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useReducer, useRef, type Dispatch, type ReactNode } from 'react'
 import type { DataSource, SpatialQuery, TemporalQuery } from '../api/client'
 import type { AreaType, CalendarGranularity, TrendGranularity } from '../api/types'
 import { monthOf, monthOfPentad, moveDateToYear, yearOf } from '../lib/time'
@@ -72,6 +72,7 @@ export type Action =
   | { type: 'selectCell'; cellId: string | null }
   | { type: 'resetFilters' }
   | { type: 'setCompare'; compare: Partial<CompareFilters> }
+  | { type: 'hydrate'; state: AppState }
 
 function reducer(state: AppState, action: Action): AppState {
   const filters = state.filters
@@ -107,19 +108,123 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, filters: DEFAULT_FILTERS, compare: DEFAULT_COMPARE }
     case 'setCompare':
       return { ...state, compare: { ...state.compare, ...action.compare } }
+    case 'hydrate':
+      return action.state
   }
+}
+
+/* ---------- URL synchronisation (shareable links, Back/Forward) ----------
+ * ?s=explore|compare|notes &src=mock|api
+ * &area=national | region:<id> | cell:<id> | bbox:<w>,<s>,<e>,<n>
+ * &t=year:<y> | month:<y>-<m> | pentad:<y>-<p> | date:<yyyy-mm-dd>
+ * &cell=<cellId> &cmp=<month>,<yearA>,<yearB>
+ */
+
+export function serializeState(state: AppState): string {
+  const { filters, compare } = state
+  const params = new URLSearchParams()
+  params.set('s', state.screen)
+  params.set('src', state.dataSource)
+  const spatial = filters.spatial
+  params.set('area', spatial.mode === 'bbox'
+    ? `bbox:${spatial.west},${spatial.south},${spatial.east},${spatial.north}`
+    : spatial.areaType === 'national' ? 'national'
+      : `${spatial.areaType === 'diagnostic_region' ? 'region' : 'cell'}:${spatial.areaId}`)
+  params.set('t', {
+    year: `year:${filters.year}`,
+    month: `month:${filters.year}-${filters.month}`,
+    pentad: `pentad:${filters.year}-${filters.pentad}`,
+    date: `date:${filters.date}`,
+  }[filters.timeMode])
+  if (filters.selectedCellId) {
+    params.set('cell', filters.selectedCellId)
+  }
+  params.set('cmp', `${compare.month},${compare.yearA},${compare.yearB}`)
+  return `?${params.toString()}`
+}
+
+function intIn(value: string | undefined, min: number, max: number): number | null {
+  const number = Number(value)
+  return Number.isInteger(number) && number >= min && number <= max ? number : null
+}
+
+/** Parses a URL query; anything missing or invalid falls back to the defaults. */
+export function parseState(search: string, fallbackSource: DataSource): AppState {
+  const params = new URLSearchParams(search)
+  const screen: Screen = (['explore', 'compare', 'notes'] as const).find((value) => value === params.get('s')) ?? 'explore'
+  const dataSource: DataSource = params.get('src') === 'api' ? 'api' : params.get('src') === 'mock' ? 'mock' : fallbackSource
+  const filters: Filters = { ...DEFAULT_FILTERS }
+
+  const area = params.get('area') ?? ''
+  const [areaKind, areaValue] = area.split(':')
+  if (areaKind === 'bbox' && areaValue) {
+    const [west, south, east, north] = areaValue.split(',').map(Number)
+    if ([west, south, east, north].every(Number.isFinite) && west < east && south < north) {
+      filters.spatial = { mode: 'bbox', west, south, east, north }
+    }
+  } else if (areaKind === 'region' && areaValue) {
+    filters.spatial = { mode: 'named', areaType: 'diagnostic_region', areaId: areaValue }
+  } else if (areaKind === 'cell' && /^\d+_\d+$/.test(areaValue ?? '')) {
+    filters.spatial = { mode: 'named', areaType: 'cell', areaId: areaValue }
+  }
+
+  const [timeKind, timeValue = ''] = (params.get('t') ?? '').split(':')
+  const [first, second] = timeValue.split('-')
+  const year = intIn(first, 1990, 2100)
+  if (timeKind === 'year' && year !== null) {
+    Object.assign(filters, { timeMode: 'year', year, date: moveDateToYear(filters.date, year) })
+  } else if (timeKind === 'month' && year !== null && intIn(second, 1, 12) !== null) {
+    Object.assign(filters, { timeMode: 'month', year, month: Number(second), date: moveDateToYear(filters.date, year) })
+  } else if (timeKind === 'pentad' && year !== null && intIn(second, 1, 73) !== null) {
+    Object.assign(filters, { timeMode: 'pentad', year, pentad: Number(second), date: moveDateToYear(filters.date, year) })
+  } else if (timeKind === 'date' && /^\d{4}-\d{2}-\d{2}$/.test(timeValue)) {
+    Object.assign(filters, { timeMode: 'date', date: timeValue, year: yearOf(timeValue), month: monthOf(timeValue) })
+  }
+  const cell = params.get('cell')
+  filters.selectedCellId = cell && /^\d+_\d+$/.test(cell) ? cell : null
+
+  const [month, yearA, yearB] = (params.get('cmp') ?? '').split(',')
+  const compare: CompareFilters = intIn(month, 1, 12) !== null && intIn(yearA, 1990, 2100) !== null && intIn(yearB, 1990, 2100) !== null
+    ? { month: Number(month), yearA: Number(yearA), yearB: Number(yearB) }
+    : DEFAULT_COMPARE
+  return { dataSource, screen, filters, compare }
 }
 
 const StateContext = createContext<AppState | null>(null)
 const DispatchContext = createContext<Dispatch<Action> | null>(null)
 
 export function AppStateProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, undefined, () => ({
-    dataSource: initialDataSource(),
-    screen: 'explore' as Screen,
-    filters: DEFAULT_FILTERS,
-    compare: DEFAULT_COMPARE,
-  }))
+  const [state, dispatch] = useReducer(reducer, undefined, () => parseState(window.location.search, initialDataSource()))
+  const restoringRef = useRef(false)
+  const firstRef = useRef(true)
+
+  // State → URL: every user change becomes a history entry; the first render only normalises the URL.
+  useEffect(() => {
+    const query = serializeState(state)
+    if (query === window.location.search) {
+      restoringRef.current = false
+      firstRef.current = false
+      return
+    }
+    if (firstRef.current || restoringRef.current) {
+      window.history.replaceState(null, '', query)
+    } else {
+      window.history.pushState(null, '', query)
+    }
+    firstRef.current = false
+    restoringRef.current = false
+  }, [state])
+
+  // URL → state on Back/Forward.
+  useEffect(() => {
+    const onPop = () => {
+      restoringRef.current = true
+      dispatch({ type: 'hydrate', state: parseState(window.location.search, initialDataSource()) })
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>

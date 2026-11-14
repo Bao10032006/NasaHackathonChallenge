@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react'
 import type { ApiError, ServedBy } from '../api/client'
-import type { Coverage, Origin } from '../api/types'
+import type { Coverage, Origin, ValueStatus } from '../api/types'
 import { PROBLEM_COPY, formatDate, partialCopy } from '../lib/format'
-import { ORIGIN_BADGE } from '../lib/scale'
+import { ORIGIN_BADGE, STATUS_BADGE, readableValue } from '../lib/scale'
 import { useWarningMessage } from '../state/Metadata'
+import { Icon } from './Icon'
 
 /** Labels data that does not come from the live backend. */
 export function ServedByBadge({ servedBy }: { servedBy: ServedBy }) {
@@ -25,8 +26,8 @@ export function OriginBadge({ origin, long = false }: { origin: Origin | null; l
   const badge = ORIGIN_BADGE[origin]
   return (
     <span className={`badge badge-origin origin-${origin}`} title={badge.label}>
-      <span aria-hidden="true">{badge.short}</span>
-      <span className={long ? '' : 'visually-hidden'}>{long ? ` ${badge.label}` : badge.label}</span>
+      <span aria-hidden="true" className="badge-code">{badge.short}</span>
+      <span className={long ? '' : 'visually-hidden'}>{badge.label}</span>
     </span>
   )
 }
@@ -45,8 +46,21 @@ export function CoverageChip({ coverage }: { coverage: Coverage }) {
   )
 }
 
+/** Number with its status; AVAILABLE shows the number (zero included), other statuses show a symbol + text. */
+export function ValueWithStatus({ value, status }: { value: number | null; status: ValueStatus }) {
+  if (status === 'AVAILABLE' && value !== null) {
+    return <span className="num" data-status={status}>{readableValue(value)}</span>
+  }
+  const badge = STATUS_BADGE[status]
+  return <span className="status-text" data-status={status}><span aria-hidden="true">{badge.symbol} </span>{badge.label}</span>
+}
+
 export function UpdatingNote({ show, what }: { show: boolean; what: string }) {
-  return show ? <span className="badge badge-updating" role="status" aria-live="polite">Đang cập nhật {what}…</span> : null
+  return show ? (
+    <span className="badge badge-updating" role="status" aria-live="polite">
+      <span className="spinner" aria-hidden="true" />Đang cập nhật {what}…
+    </span>
+  ) : null
 }
 
 export function WarningNotes({ codes, title = 'Lưu ý dữ liệu' }: { codes: string[]; title?: string }) {
@@ -73,11 +87,21 @@ export function ErrorNote({ error, onRetry, context }: { error: ApiError; onRetr
   const retryable = error.kind === 'network' || (error.status ?? 0) >= 500
   return (
     <div className="note note-error" role="alert">
-      <strong>! Không tải được {context}.</strong> {text}
-      {error.code && <span className="muted"> (mã {error.code})</span>}
-      {retryable && onRetry && <button type="button" className="button" onClick={onRetry}>Thử lại</button>}
+      <Icon name="alert" />
+      <div>
+        <strong>Không tải được {context}.</strong> {text}
+        {error.code && <span className="muted"> (mã {error.code})</span>}
+      </div>
+      {retryable && onRetry && (
+        <button type="button" className="button" onClick={onRetry}><Icon name="refresh" size={16} />Thử lại</button>
+      )}
     </div>
   )
+}
+
+/** Peak marker with a consistent SVG star (replaces the ★ glyph). */
+export function PeakLabel({ children }: { children: ReactNode }) {
+  return <span className="peak-label"><Icon name="star" size={14} />{children}</span>
 }
 
 export function Card({ id, title, aside, children, className = '' }: {

@@ -6,7 +6,7 @@ import { currentOrPrevious, useApi } from '../lib/useApi'
 import { useAppState } from '../state/AppState'
 import { useSnapshot } from '../state/Metadata'
 import { calendarRequest, dailyRequest, dayCalendarRequest, mapRequest } from './requests'
-import { Card, CoverageChip, ErrorNote, OriginBadge, ServedByBadge, UpdatingNote, WarningNotes } from './ui'
+import { Card, CoverageChip, ErrorNote, OriginBadge, PeakLabel, ServedByBadge, UpdatingNote, WarningNotes } from '../components/ui'
 
 function SourceBars({ sources, total }: { sources: SourceComposition[]; total: number }) {
   return (
@@ -86,14 +86,14 @@ export function SummaryCard() {
 
           {filters.timeMode === 'year' && calendar.status === 'success' && calendar.data.summary.peakPeriod && (
             <p className="peak">
-              ★ Tháng nổi bật: <strong>{MONTH_NAMES[calendar.data.summary.peakPeriod.period - 1]}</strong>
+              <PeakLabel>Tháng nổi bật:</PeakLabel> <strong>{MONTH_NAMES[calendar.data.summary.peakPeriod.period - 1]}</strong>
               {' '}({readableValue(calendar.data.summary.peakPeriod.value)} snpp_eq)
               {calendar.data.summary.coverage.partial && ' — trong khoảng đã có dữ liệu'}
             </p>
           )}
           {filters.timeMode === 'month' && days.status === 'success' && days.data.summary.peakDate && (
             <p className="peak">
-              ★ Ngày nổi bật: <strong>{formatDate(days.data.summary.peakDate.date)}</strong>
+              <PeakLabel>Ngày nổi bật:</PeakLabel> <strong>{formatDate(days.data.summary.peakDate.date)}</strong>
               {' '}({readableValue(days.data.summary.peakDate.value)} snpp_eq)
               {days.data.summary.coverage.partial && ' — trong khoảng đã có dữ liệu'}
             </p>
