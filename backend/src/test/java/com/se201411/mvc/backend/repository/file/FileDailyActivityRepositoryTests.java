@@ -139,6 +139,40 @@ class FileDailyActivityRepositoryTests {
 	}
 
 	@Test
+	void rejectsAnUnknownSourceOrigin() throws IOException {
+		rewriteManifest("\"origin\":\"SCALED_OBSERVATION\"", "\"origin\":\"SCALED\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("sourceCodes.origin");
+	}
+
+	@Test
+	void rejectsManifestCellDaysThatDisagreeWithTheSourceArtifact() throws IOException {
+		rewriteManifest("\"cellDays\":6", "\"cellDays\":7");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("code 4");
+	}
+
+	@Test
+	void rejectsManifestSourceDatesThatDisagreeWithTheSourceArtifact() throws IOException {
+		rewriteManifest("\"lastDate\":\"2026-11-12\"", "\"lastDate\":\"2026-11-13\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("do not match daily-source.u8");
+	}
+
+	private void rewriteManifest(String target, String replacement) throws IOException {
+		Path manifest = miniDataset.root().resolve("derived/dataset-manifest.json");
+		String json = Files.readString(manifest);
+		assertThat(json).contains(target);
+		Files.writeString(manifest, json.replace(target, replacement));
+	}
+
+	@Test
 	void rejectsArtifactPathsThatEscapeTheDerivedDirectory() throws IOException {
 		Path manifest = miniDataset.root().resolve("derived/dataset-manifest.json");
 		String json = Files.readString(manifest).replace(
@@ -272,10 +306,11 @@ class FileDailyActivityRepositoryTests {
 
 		private static List<Map<String, Object>> sourceCodeDefinitions() {
 			List<Map<String, Object>> definitions = new ArrayList<>();
-			definitions.add(sourceCode(1, "TERRA", "MODEL_REDISTRIBUTED", "Terra"));
-			definitions.add(sourceCode(2, "AQUA", "MODEL_REDISTRIBUTED", "Aqua"));
-			definitions.add(sourceCode(3, "SNPP", "DIRECT_OBSERVATION", "SNPP"));
-			definitions.add(sourceCode(4, "NOAA20", "SCALED_OBSERVATION", "N20"));
+			// Provenance must match the source bytes above; the repository cross-checks it at startup.
+			definitions.add(sourceCode(1, "TERRA", "MODEL_REDISTRIBUTED", "Terra", "2026-11-13", "2026-11-13", 2));
+			definitions.add(sourceCode(2, "AQUA", "MODEL_REDISTRIBUTED", "Aqua", "2026-11-12", "2026-11-13", 3));
+			definitions.add(sourceCode(3, "SNPP", "DIRECT_OBSERVATION", "SNPP", "2026-11-10", "2026-11-13", 5));
+			definitions.add(sourceCode(4, "NOAA20", "SCALED_OBSERVATION", "N20", "2026-11-11", "2026-11-12", 6));
 			return definitions;
 		}
 
@@ -283,15 +318,18 @@ class FileDailyActivityRepositoryTests {
 				int code,
 				String source,
 				String origin,
-				String satellite) {
+				String satellite,
+				String firstDate,
+				String lastDate,
+				int cellDays) {
 			return linkedMap(
 					"code", code,
 					"source", source,
 					"origin", origin,
 					"inputSatellite", satellite,
-					"firstDate", "2026-11-10",
-					"lastDate", "2026-11-13",
-					"cellDays", 4);
+					"firstDate", firstDate,
+					"lastDate", lastDate,
+					"cellDays", cellDays);
 		}
 
 		private static byte[] floats(float[] values) {

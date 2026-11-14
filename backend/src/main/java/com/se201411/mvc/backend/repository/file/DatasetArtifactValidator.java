@@ -34,6 +34,11 @@ final class DatasetArtifactValidator {
 			"daily-input-count.i16", new ExpectedArtifact("int16", 2),
 			"daily-source-input-valid.u8", new ExpectedArtifact("uint8", 1));
 
+	/** Source and origin vocabularies of Artifact Spec 1.0.0 section 5.2; services map these to API enums. */
+	private static final Set<String> SOURCE_NAMES = Set.of("TERRA", "AQUA", "SNPP", "NOAA20");
+	private static final Set<String> SOURCE_ORIGINS =
+			Set.of("DIRECT_OBSERVATION", "SCALED_OBSERVATION", "MODEL_REDISTRIBUTED");
+
 	private DatasetArtifactValidator() {
 	}
 
@@ -291,16 +296,46 @@ final class DatasetArtifactValidator {
 
 	private static void validateSourceCodes(List<DatasetManifest.SourceCodeDefinition> sourceCodes) {
 		Set<Integer> codes = new HashSet<>();
+		Set<String> sourceNames = new HashSet<>();
 		for (DatasetManifest.SourceCodeDefinition definition : sourceCodes) {
 			if (definition.code() < 1 || definition.code() > 4 || !codes.add(definition.code())) {
 				throw unavailable("Manifest sourceCodes must contain unique codes 1 through 4");
 			}
-			requireText(definition.source(), "sourceCodes.source");
-			requireText(definition.origin(), "sourceCodes.origin");
+			String source = requireText(definition.source(), "sourceCodes.source");
+			String origin = requireText(definition.origin(), "sourceCodes.origin");
 			requireText(definition.inputSatellite(), "sourceCodes.inputSatellite");
+			if (!SOURCE_NAMES.contains(source) || !sourceNames.add(source)) {
+				throw unavailable("Manifest sourceCodes.source must be a unique value of " + SOURCE_NAMES);
+			}
+			if (!SOURCE_ORIGINS.contains(origin)) {
+				throw unavailable("Manifest sourceCodes.origin must be one of " + SOURCE_ORIGINS);
+			}
+			validateSourceCodeDates(definition);
 		}
 		if (!codes.equals(Set.of(1, 2, 3, 4))) {
 			throw unavailable("Manifest sourceCodes must define codes 1 through 4");
+		}
+	}
+
+	private static void validateSourceCodeDates(DatasetManifest.SourceCodeDefinition definition) {
+		if (definition.cellDays() < 0) {
+			throw unavailable("Manifest sourceCodes.cellDays must not be negative");
+		}
+		if (definition.cellDays() == 0) {
+			if (definition.firstDate() != null || definition.lastDate() != null) {
+				throw unavailable("Manifest sourceCodes without cell-days must not declare firstDate or lastDate");
+			}
+			return;
+		}
+		try {
+			LocalDate first = LocalDate.parse(requireText(definition.firstDate(), "sourceCodes.firstDate"));
+			LocalDate last = LocalDate.parse(requireText(definition.lastDate(), "sourceCodes.lastDate"));
+			if (last.isBefore(first)) {
+				throw unavailable("Manifest sourceCodes.lastDate must not be before firstDate");
+			}
+		}
+		catch (DateTimeParseException exception) {
+			throw unavailable("Manifest sourceCodes dates must be ISO local dates");
 		}
 	}
 
