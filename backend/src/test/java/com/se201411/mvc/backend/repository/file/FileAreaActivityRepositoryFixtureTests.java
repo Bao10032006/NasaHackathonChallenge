@@ -12,6 +12,7 @@ import tools.jackson.databind.json.JsonMapper;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,13 +47,14 @@ class FileAreaActivityRepositoryFixtureTests {
 		assertThat(summary.cellCount()).isEqualTo(4);
 		assertThat(summary.dayCount()).isEqualTo(4);
 		assertThat(summary.sources())
-				.extracting(SourceComposition::sourceCode, SourceComposition::cellDays, SourceComposition::value,
+				.extracting(SourceComposition::sourceCode, SourceComposition::cellCount,
+						SourceComposition::cellDays, SourceComposition::value,
 						SourceComposition::inputObservationCount, SourceComposition::sourceInputValidCellDays)
 				.containsExactly(
-						tuple(1, 2L, 4.0, 0L, 0L),
-						tuple(2, 3L, 2.0, 1L, 3L),
-						tuple(3, 5L, 162.0, 162L, 5L),
-						tuple(4, 6L, 260.5, 264L, 6L));
+						tuple(1, 2L, 2L, 4.0, 0L, 0L),
+						tuple(2, 3L, 3L, 2.0, 1L, 3L),
+						tuple(3, 4L, 5L, 162.0, 162L, 5L),
+						tuple(4, 4L, 6L, 260.5, 264L, 6L));
 	}
 
 	@Test
@@ -103,6 +105,20 @@ class FileAreaActivityRepositoryFixtureTests {
 
 		AreaDailySeries series = activity.dailySeries(area(AreaType.CELL, "45_429"), LocalDate.of(2026, 11, 11), LAST);
 		assertThat(series.values()).containsExactly(255.25, 3.0, 5.0);
+	}
+
+	@Test
+	void cacheKeyIncludesTheExactOrderedCellSet() {
+		AreaDefinition sameNameAndCountButDifferentCells = new AreaDefinition(
+				AreaType.DIAGNOSTIC_REGION,
+				"TayNguyen",
+				List.of("34_419", "34_420"));
+
+		AreaActivitySummary summary = activity.summarize(
+				sameNameAndCountButDifferentCells, FIRST, LAST);
+
+		assertThat(summary.value()).isEqualTo(7.75);
+		assertThat(summary.value()).isNotEqualTo(420.75);
 	}
 
 	@Test

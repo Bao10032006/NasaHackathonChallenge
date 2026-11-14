@@ -25,12 +25,12 @@ public final class FileAreaActivityRepository implements AreaActivityRepository 
 	private static final int SOURCE_SLOTS = 5; // index 1..4 used, 0 unused
 
 	private final FileDailyActivityRepository daily;
-	private final Map<String, DailyAggregate> precomputed;
+	private final Map<AreaKey, DailyAggregate> precomputed;
 
 	public FileAreaActivityRepository(FileDailyActivityRepository daily, FileAreaRepository areas) {
 		this.daily = Objects.requireNonNull(daily, "daily repository must not be null");
 		Objects.requireNonNull(areas, "area repository must not be null");
-		Map<String, DailyAggregate> built = new HashMap<>();
+		Map<AreaKey, DailyAggregate> built = new HashMap<>();
 		for (AreaDefinition area : areas.precomputedAreas()) {
 			built.put(key(area), aggregate(area, 0, daily.dayCount() - 1));
 		}
@@ -46,6 +46,7 @@ public final class FileAreaActivityRepository implements AreaActivityRepository 
 
 		double value = 0.0;
 		long[] cellDays = new long[SOURCE_SLOTS];
+		int[] distinctCells = distinctSourceCellCounts(area, range);
 		double[] sourceValue = new double[SOURCE_SLOTS];
 		long[] input = new long[SOURCE_SLOTS];
 		long[] valid = new long[SOURCE_SLOTS];
@@ -61,7 +62,13 @@ public final class FileAreaActivityRepository implements AreaActivityRepository 
 		List<SourceComposition> composition = new ArrayList<>();
 		for (int code = 1; code < SOURCE_SLOTS; code++) {
 			if (cellDays[code] > 0) {
-				composition.add(new SourceComposition(code, cellDays[code], sourceValue[code], input[code], valid[code]));
+				composition.add(new SourceComposition(
+						code,
+						distinctCells[code],
+						cellDays[code],
+						sourceValue[code],
+						input[code],
+						valid[code]));
 			}
 		}
 		return new AreaActivitySummary(
@@ -98,15 +105,34 @@ public final class FileAreaActivityRepository implements AreaActivityRepository 
 
 	private DailyAggregate aggregateFor(AreaDefinition area, Range range) {
 		DailyAggregate cached = precomputed.get(key(area));
-		if (cached != null && cached.cellCount == area.cellIds().size()) {
+		if (cached != null) {
 			return cached;
 		}
 		return aggregate(area, range.start(), range.end());
 	}
 
+	private int[] distinctSourceCellCounts(AreaDefinition area, Range range) {
+		int[] cellIndexes = area.cellIds().stream().mapToInt(daily::cellIndexOf).toArray();
+		boolean[][] seen = new boolean[SOURCE_SLOTS][cellIndexes.length];
+		for (int day = range.start(); day <= range.end(); day++) {
+			for (int cell = 0; cell < cellIndexes.length; cell++) {
+				seen[daily.sourceCodeAt(day, cellIndexes[cell])][cell] = true;
+			}
+		}
+		int[] counts = new int[SOURCE_SLOTS];
+		for (int code = 1; code < SOURCE_SLOTS; code++) {
+			for (boolean present : seen[code]) {
+				if (present) {
+					counts[code]++;
+				}
+			}
+		}
+		return counts;
+	}
+
 	private DailyAggregate aggregate(AreaDefinition area, int fromDay, int toDay) {
 		int[] cellIndexes = area.cellIds().stream().mapToInt(daily::cellIndexOf).toArray();
-		DailyAggregate result = new DailyAggregate(fromDay, toDay - fromDay + 1, cellIndexes.length);
+		DailyAggregate result = new DailyAggregate(fromDay, toDay - fromDay + 1);
 		for (int day = fromDay; day <= toDay; day++) {
 			int slot = day - fromDay;
 			double total = 0.0;
@@ -126,27 +152,32 @@ public final class FileAreaActivityRepository implements AreaActivityRepository 
 		return result;
 	}
 
-	private static String key(AreaDefinition area) {
-		return area.type().name() + ":" + area.id();
+	private static AreaKey key(AreaDefinition area) {
+		return new AreaKey(area.type().name(), area.id(), area.cellIds());
 	}
 
 	private record Range(int start, int end) {
+	}
+
+	private record AreaKey(String type, String id, List<String> cellIds) {
+
+		private AreaKey {
+			cellIds = List.copyOf(cellIds);
+		}
 	}
 
 	/** Per-day totals and per-source composition for consecutive days starting at {@code firstDay}. */
 	private static final class DailyAggregate {
 
 		final int firstDay;
-		final int cellCount;
 		final double[] total;
 		final int[][] cellDays;
 		final double[][] sourceValue;
 		final int[][] input;
 		final int[][] valid;
 
-		DailyAggregate(int firstDay, int days, int cellCount) {
+		DailyAggregate(int firstDay, int days) {
 			this.firstDay = firstDay;
-			this.cellCount = cellCount;
 			this.total = new double[days];
 			this.cellDays = new int[SOURCE_SLOTS][days];
 			this.sourceValue = new double[SOURCE_SLOTS][days];

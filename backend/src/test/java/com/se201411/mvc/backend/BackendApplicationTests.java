@@ -10,6 +10,9 @@ import com.se201411.mvc.backend.repository.AreaRepository;
 import com.se201411.mvc.backend.repository.DailyActivityRepository;
 import com.se201411.mvc.backend.repository.DatasetMetadataRepository;
 import com.se201411.mvc.backend.repository.HarmonizationComparisonRepository;
+import com.se201411.mvc.backend.service.AreaService;
+import com.se201411.mvc.backend.service.MetadataService;
+import com.se201411.mvc.backend.service.SpatialSelectionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,6 +51,9 @@ class BackendApplicationTests {
 		assertThat(applicationContext.getBean(AreaRepository.class)).isNotNull();
 		assertThat(applicationContext.getBean(AreaActivityRepository.class)).isNotNull();
 		assertThat(applicationContext.getBean(HarmonizationComparisonRepository.class).isAvailable()).isTrue();
+		assertThat(applicationContext.getBean(MetadataService.class)).isNotNull();
+		assertThat(applicationContext.getBean(AreaService.class)).isNotNull();
+		assertThat(applicationContext.getBean(SpatialSelectionService.class)).isNotNull();
 	}
 
 }
