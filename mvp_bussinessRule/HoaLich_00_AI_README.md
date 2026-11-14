@@ -24,6 +24,15 @@ status: MVP specification; implementation in progress
 5. [05 — UI/UX & User Flow v0.2](HoaLich_05_UIUX_User_Flow_Wireframe_v0.2.md): IA, wireframe, state, copywriting và demo scenario.
 6. [06 — Technical Design & Implementation Plan v0.2](HoaLich_06_Technical_Design_Implementation_Plan_v0.2.md): kiến trúc file-backed, modules, increments, verification và readiness gates.
 
+## Đề xuất v0.3 từ TASK 02B — chờ phê duyệt
+
+- [API & Data Contract v0.3 proposed](HoaLich_04_API_Data_Contract_v0.3.md): thêm seasonality, daily view có provenance và error contract.
+- [OpenAPI v0.3 proposed](HoaLich_OpenAPI_v0.3.yaml): schema để backend/frontend review và sinh client sau khi approve.
+- [Technical Design v0.3 proposed](HoaLich_06_Technical_Design_Implementation_Plan_v0.3.md): n-layer controller/service interface/impl/repository file-backed.
+- [Challenge Alignment & Decision Log v0.3 proposed](HoaLich_07_Challenge_Alignment_and_Decision_Log_v0.3.md): các quyết định/gate của TASK 02B.
+
+Các file v0.3 chưa tự động thay thế v0.2 cho đến khi Product/Data/Backend/Frontend duyệt các open questions trong TASK 02B.
+
 # 2. Tài liệu lịch sử v0.1
 
 - [Vision & Scope v0.1](HoaLich_01_Product_Vision_and_Scope_v0.1.md)

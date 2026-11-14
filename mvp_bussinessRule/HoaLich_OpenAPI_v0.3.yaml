@@ -1,0 +1,801 @@
+openapi: 3.1.0
+info:
+  title: Hoa Lich Read-only API
+  version: 0.3.0-proposed
+  description: >-
+    Proposed API contract produced by TASK 02B. Values use the harmonized
+    snpp_eq metric and are not fire-event counts, burned area, forecasts, or
+    real-time alerts. Daily values must be interpreted with their origin.
+servers:
+  - url: /api/v1
+tags:
+  - name: Metadata
+  - name: Areas
+  - name: Activity
+  - name: Methodology
+paths:
+  /metadata:
+    get:
+      tags: [Metadata]
+      operationId: getMetadata
+      summary: Get dataset, model, range, source-code, and limitation metadata
+      responses:
+        '200':
+          description: Metadata for the active immutable dataset snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataResponse'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /areas:
+    get:
+      tags: [Areas]
+      operationId: listAreas
+      summary: List supported national, diagnostic-region, and grid-cell areas
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/AreaType'
+      responses:
+        '200':
+          description: Supported areas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /calendar:
+    get:
+      tags: [Activity]
+      operationId: getCalendar
+      summary: Get a month or pentad activity calendar for one year
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+        - name: granularity
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CalendarGranularity'
+        - name: includeBaseline
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: baselineStartYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+            default: 2003
+        - name: baselineEndYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+            default: 2025
+      responses:
+        '200':
+          description: Calendar values; zero and missing are distinct
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '404':
+          $ref: '#/components/responses/AreaNotFound'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /map/cells:
+    get:
+      tags: [Activity]
+      operationId: getMapCells
+      summary: Get grid-cell values for exactly one date, month, or pentad
+      description: >-
+        Supply exactly one temporal selector: date; year and month; or year and
+        pentad. Daily results include per-cell source and origin fields.
+      parameters:
+        - name: areaType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/AreaType'
+        - name: areaId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 12
+        - name: pentad
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 73
+      responses:
+        '200':
+          description: Cell slice for the selected period
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapCellsResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '404':
+          $ref: '#/components/responses/AreaNotFound'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /trends:
+    get:
+      tags: [Activity]
+      operationId: getTrends
+      summary: Get comparable yearly or same-period historical values
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - name: startYear
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+        - name: endYear
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+        - name: granularity
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [year, month, pentad]
+        - name: period
+          in: query
+          required: false
+          description: Forbidden for year; required as 1..12 for month or 1..73 for pentad.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 73
+      responses:
+        '200':
+          description: Historical trend points
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendsResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '404':
+          $ref: '#/components/responses/AreaNotFound'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /seasonality:
+    get:
+      tags: [Activity]
+      operationId: getSeasonality
+      summary: Get historical month or pentad seasonal statistics
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - name: granularity
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CalendarGranularity'
+        - name: startYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+            default: 2003
+        - name: endYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+            default: 2025
+      responses:
+        '200':
+          description: Seasonal statistics by comparable period
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonalityResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '404':
+          $ref: '#/components/responses/AreaNotFound'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /daily:
+    get:
+      tags: [Activity]
+      operationId: getDailyActivity
+      summary: Explore harmonized activity for one exact calendar date
+      description: >-
+        The value may be a direct S-NPP observation, a scaled NOAA-20
+        observation, or a model-redistributed estimate. It is never a count of
+        real fire events.
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - name: includeCells
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Qualified daily activity response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyResponse'
+              examples:
+                modelRedistributedTayNguyen:
+                  summary: Verified snapshot example for TayNguyen on 2005-03-25
+                  value:
+                    area:
+                      type: diagnostic_region
+                      id: TayNguyen
+                    date: '2005-03-25'
+                    metric: snpp_eq
+                    value: 171.635599
+                    valueStatus: AVAILABLE
+                    origin: MODEL_REDISTRIBUTED
+                    partial: false
+                    sourceComposition:
+                      - sourceCode: 2
+                        source: AQUA
+                        origin: MODEL_REDISTRIBUTED
+                        cellCount: 122
+                        harmonizedValue: 171.635599
+                        inputObservationCount: 21
+                        sourceValidCellCount: 122
+                    meta:
+                      dataVersion: hoalich-data-v1-2026-11-13
+                      modelVersion: lai-clim-s2-k60-kappa3
+                      dataThrough: '2026-11-13'
+                      metric: snpp_eq
+                      unit: S-NPP-equivalent daytime detections
+                      timeZone: UTC
+                      warnings:
+                        - MODEL_REDISTRIBUTED_DAILY_VALUE
+                        - NO_DAILY_UNCERTAINTY_INTERVAL
+                        - DIAGNOSTIC_REGION_NOT_ADMIN_BOUNDARY
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '404':
+          $ref: '#/components/responses/AreaNotFound'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /harmonization/comparison:
+    get:
+      tags: [Methodology]
+      operationId: getHarmonizationComparison
+      summary: Get verified raw-versus-harmonized national comparison series
+      parameters:
+        - name: startYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+        - name: endYear
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 2000
+            maximum: 2026
+      responses:
+        '200':
+          description: Series with separate metric and unit metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HarmonizationComparisonResponse'
+        '400':
+          $ref: '#/components/responses/InvalidParameter'
+        '422':
+          $ref: '#/components/responses/UnsupportedQuery'
+        '503':
+          $ref: '#/components/responses/DatasetUnavailable'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  parameters:
+    AreaType:
+      name: areaType
+      in: query
+      required: true
+      schema:
+        $ref: '#/components/schemas/AreaType'
+    AreaId:
+      name: areaId
+      in: query
+      required: true
+      schema:
+        type: string
+        minLength: 1
+  responses:
+    InvalidParameter:
+      description: Invalid parameter format, range, or selector combination
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    AreaNotFound:
+      description: The requested area is not present in the active snapshot
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    UnsupportedQuery:
+      description: Syntactically valid query unsupported by the dataset or endpoint
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    DatasetUnavailable:
+      description: Required dataset files are not available or failed validation
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    InternalError:
+      description: Unexpected server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  schemas:
+    AreaType:
+      type: string
+      enum: [national, diagnostic_region, cell]
+    CalendarGranularity:
+      type: string
+      enum: [month, pentad]
+    ValueStatus:
+      type: string
+      enum: [AVAILABLE, MISSING, INSUFFICIENT_BASELINE]
+    DailyOrigin:
+      type: string
+      enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED, MIXED]
+    DailySource:
+      type: string
+      enum: [TERRA, AQUA, SNPP, NOAA20]
+    AreaRef:
+      type: object
+      additionalProperties: false
+      required: [type, id]
+      properties:
+        type:
+          $ref: '#/components/schemas/AreaType'
+        id:
+          type: string
+    Coordinates:
+      type: object
+      additionalProperties: false
+      required: [lat, lon]
+      properties:
+        lat: {type: number, format: double}
+        lon: {type: number, format: double}
+    Bounds:
+      type: object
+      additionalProperties: false
+      required: [south, west, north, east]
+      properties:
+        south: {type: number, format: double}
+        west: {type: number, format: double}
+        north: {type: number, format: double}
+        east: {type: number, format: double}
+    ResponseMeta:
+      type: object
+      additionalProperties: false
+      required: [dataVersion, modelVersion, dataThrough, metric, unit, timeZone, warnings]
+      properties:
+        dataVersion:
+          type: string
+          example: hoalich-data-v1-2026-11-13
+        modelVersion:
+          type: string
+          example: lai-clim-s2-k60-kappa3
+        dataThrough:
+          type: string
+          format: date
+        metric:
+          type: string
+          const: snpp_eq
+        unit:
+          type: string
+        timeZone:
+          type: string
+          const: UTC
+        warnings:
+          type: array
+          items:
+            type: string
+    SourceCodeDefinition:
+      type: object
+      additionalProperties: false
+      required: [code, source, origin, description]
+      properties:
+        code: {type: integer, minimum: 1, maximum: 4}
+        source: {$ref: '#/components/schemas/DailySource'}
+        origin:
+          type: string
+          enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
+        description: {type: string}
+    MetadataResponse:
+      type: object
+      additionalProperties: false
+      required: [meta, dateRange, yearRange, gridDegrees, supportedGranularities, sourceCodes, limitations, daily]
+      properties:
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+        dateRange:
+          type: object
+          required: [start, end]
+          properties:
+            start: {type: string, format: date}
+            end: {type: string, format: date}
+        yearRange:
+          type: object
+          required: [start, end]
+          properties:
+            start: {type: integer}
+            end: {type: integer}
+        gridDegrees: {type: number, const: 0.25}
+        supportedGranularities:
+          type: object
+          additionalProperties:
+            type: array
+            items: {type: string}
+        sourceCodes:
+          type: array
+          items: {$ref: '#/components/schemas/SourceCodeDefinition'}
+        limitations:
+          type: array
+          items: {type: string}
+        daily:
+          type: object
+          required: [available, uncertaintyIntervalAvailable, qualification]
+          properties:
+            available: {type: boolean, const: true}
+            uncertaintyIntervalAvailable: {type: boolean, const: false}
+            qualification: {type: string}
+    Area:
+      type: object
+      additionalProperties: false
+      required: [type, id]
+      properties:
+        type: {$ref: '#/components/schemas/AreaType'}
+        id: {type: string}
+        name: {type: string}
+        diagnosticRegion: {type: string}
+        cellCount: {type: integer, minimum: 1}
+        center: {$ref: '#/components/schemas/Coordinates'}
+        bounds: {$ref: '#/components/schemas/Bounds'}
+    AreaListResponse:
+      type: object
+      additionalProperties: false
+      required: [items, meta]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Area'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    BaselineValue:
+      type: object
+      additionalProperties: false
+      required: [period, sampleSize, valueStatus]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        value:
+          type: [number, 'null']
+        sampleSize: {type: integer, minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+    CalendarValue:
+      type: object
+      additionalProperties: false
+      required: [period, value, valueStatus, partial]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        startDate: {type: string, format: date}
+        endDate: {type: string, format: date}
+        value:
+          type: [number, 'null']
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+    Baseline:
+      type: object
+      additionalProperties: false
+      required: [method, referenceStartYear, referenceEndYear, excludesTargetYear, values]
+      properties:
+        method: {type: string, const: median}
+        referenceStartYear: {type: integer}
+        referenceEndYear: {type: integer}
+        excludesTargetYear: {type: boolean}
+        values:
+          type: array
+          items: {$ref: '#/components/schemas/BaselineValue'}
+    CalendarResponse:
+      type: object
+      additionalProperties: false
+      required: [area, year, granularity, metric, values, meta]
+      properties:
+        area: {$ref: '#/components/schemas/AreaRef'}
+        year: {type: integer}
+        granularity: {$ref: '#/components/schemas/CalendarGranularity'}
+        metric: {type: string, const: snpp_eq}
+        values:
+          type: array
+          items: {$ref: '#/components/schemas/CalendarValue'}
+        baseline: {$ref: '#/components/schemas/Baseline'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    MapCellValue:
+      type: object
+      additionalProperties: false
+      required: [cellId, bounds, value, valueStatus, partial]
+      properties:
+        cellId: {type: string}
+        bounds: {$ref: '#/components/schemas/Bounds'}
+        value:
+          type: [number, 'null']
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        sourceCode: {type: integer, minimum: 1, maximum: 4}
+        source: {$ref: '#/components/schemas/DailySource'}
+        origin:
+          type: string
+          enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
+        inputObservationCount: {type: integer, minimum: 0}
+        sourceInputValid: {type: boolean}
+    MapCellsResponse:
+      type: object
+      additionalProperties: false
+      required: [temporalSelector, cells, meta]
+      properties:
+        temporalSelector:
+          type: object
+          additionalProperties: true
+        cells:
+          type: array
+          items: {$ref: '#/components/schemas/MapCellValue'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    TrendPoint:
+      type: object
+      additionalProperties: false
+      required: [year, value, valueStatus, partial]
+      properties:
+        year: {type: integer}
+        period: {type: integer, minimum: 1, maximum: 73}
+        value:
+          type: [number, 'null']
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        coverage: {type: number, minimum: 0, maximum: 1}
+    TrendsResponse:
+      type: object
+      additionalProperties: false
+      required: [area, granularity, metric, points, meta]
+      properties:
+        area: {$ref: '#/components/schemas/AreaRef'}
+        granularity:
+          type: string
+          enum: [year, month, pentad]
+        period: {type: integer, minimum: 1, maximum: 73}
+        metric: {type: string, const: snpp_eq}
+        points:
+          type: array
+          items: {$ref: '#/components/schemas/TrendPoint'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    SeasonalityPeriod:
+      type: object
+      additionalProperties: false
+      required: [period, sampleSize, mean, median, valueStatus]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        sampleSize: {type: integer, minimum: 0}
+        mean:
+          type: [number, 'null']
+        median:
+          type: [number, 'null']
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+    SeasonalityResponse:
+      type: object
+      additionalProperties: false
+      required: [area, granularity, referenceStartYear, referenceEndYear, minimumSampleSize, periods, meta]
+      properties:
+        area: {$ref: '#/components/schemas/AreaRef'}
+        granularity: {$ref: '#/components/schemas/CalendarGranularity'}
+        referenceStartYear: {type: integer}
+        referenceEndYear: {type: integer}
+        minimumSampleSize: {type: integer, const: 5}
+        periods:
+          type: array
+          items: {$ref: '#/components/schemas/SeasonalityPeriod'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    SourceComposition:
+      type: object
+      additionalProperties: false
+      required: [sourceCode, source, origin, cellCount, harmonizedValue, inputObservationCount, sourceValidCellCount]
+      properties:
+        sourceCode: {type: integer, minimum: 1, maximum: 4}
+        source: {$ref: '#/components/schemas/DailySource'}
+        origin:
+          type: string
+          enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
+        cellCount: {type: integer, minimum: 1}
+        harmonizedValue: {type: number, minimum: 0}
+        inputObservationCount: {type: integer, minimum: 0}
+        sourceValidCellCount: {type: integer, minimum: 0}
+    DailyCellValue:
+      allOf:
+        - $ref: '#/components/schemas/MapCellValue'
+    DailyResponse:
+      type: object
+      additionalProperties: false
+      required: [area, date, metric, value, valueStatus, origin, partial, sourceComposition, meta]
+      properties:
+        area: {$ref: '#/components/schemas/AreaRef'}
+        date: {type: string, format: date}
+        metric: {type: string, const: snpp_eq}
+        value:
+          type: [number, 'null']
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        origin: {$ref: '#/components/schemas/DailyOrigin'}
+        partial: {type: boolean}
+        sourceComposition:
+          type: array
+          minItems: 1
+          items: {$ref: '#/components/schemas/SourceComposition'}
+        cells:
+          type: array
+          items: {$ref: '#/components/schemas/DailyCellValue'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    ComparisonPoint:
+      type: object
+      additionalProperties: false
+      required: [year, value]
+      properties:
+        year: {type: integer}
+        value:
+          type: [number, 'null']
+    ComparisonSeries:
+      type: object
+      additionalProperties: false
+      required: [seriesType, label, metric, unit, points]
+      properties:
+        seriesType:
+          type: string
+          enum: [RAW_MODIS, RAW_VIIRS_SNPP, RAW_MERGED_REFERENCE, HARMONIZED]
+        label: {type: string}
+        metric: {type: string}
+        unit: {type: string}
+        points:
+          type: array
+          items: {$ref: '#/components/schemas/ComparisonPoint'}
+    HarmonizationComparisonResponse:
+      type: object
+      additionalProperties: false
+      required: [series, explanationKeys, meta]
+      properties:
+        series:
+          type: array
+          items: {$ref: '#/components/schemas/ComparisonSeries'}
+        explanationKeys:
+          type: array
+          items: {type: string}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    FieldError:
+      type: object
+      additionalProperties: false
+      required: [field, message]
+      properties:
+        field: {type: string}
+        rejectedValue: {}
+        message: {type: string}
+    Problem:
+      type: object
+      additionalProperties: true
+      required: [type, title, status, code, detail, instance, timestamp]
+      properties:
+        type: {type: string, format: uri}
+        title: {type: string}
+        status: {type: integer, minimum: 400, maximum: 599}
+        code:
+          type: string
+          enum:
+            - INVALID_PARAMETER
+            - AREA_NOT_FOUND
+            - UNSUPPORTED_QUERY
+            - DATE_OUTSIDE_DATASET_RANGE
+            - DATASET_UNAVAILABLE
+            - INTERNAL_ERROR
+        detail: {type: string}
+        instance: {type: string}
+        errors:
+          type: array
+          items: {$ref: '#/components/schemas/FieldError'}
+        timestamp: {type: string, format: date-time}
