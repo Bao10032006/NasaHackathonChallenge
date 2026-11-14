@@ -1,0 +1,1513 @@
+{
+ "pipeline_version": "1.0",
+ "grid_deg": 0.25,
+ "mask_res_deg": 0.01,
+ "unit": "so phat hien ban ngay, da loc nguon tinh, tuong duong mot VIIRS quy dao 13:30 (S-NPP)",
+ "inputs": [
+  {
+   "file": "fire_archive_J1V-C2_845273.json",
+   "from": "DL_FIRE_J1V-C2_845273.zip",
+   "rows": 484432,
+   "sats": [
+    "N20"
+   ]
+  },
+  {
+   "file": "fire_nrt_J1V-C2_845273.json",
+   "from": "DL_FIRE_J1V-C2_845273.zip",
+   "rows": 7200,
+   "sats": [
+    "N20"
+   ]
+  },
+  {
+   "file": "fire_archive_J2V-C2_845274.json",
+   "from": "DL_FIRE_J2V-C2_845274.zip",
+   "rows": 189324,
+   "sats": [
+    "N21"
+   ]
+  },
+  {
+   "file": "fire_nrt_J2V-C2_845274.json",
+   "from": "DL_FIRE_J2V-C2_845274.zip",
+   "rows": 6878,
+   "sats": [
+    "N21"
+   ]
+  },
+  {
+   "file": "fire_archive_M-C61_845272.json",
+   "from": "DL_FIRE_M-C61_845272.zip",
+   "rows": 441545,
+   "sats": [
+    "Aqua",
+    "Terra"
+   ]
+  },
+  {
+   "file": "fire_nrt_M-C61_845272.json",
+   "from": "DL_FIRE_M-C61_845272.zip",
+   "rows": 1792,
+   "sats": [
+    "Aqua",
+    "Terra"
+   ]
+  },
+  {
+   "file": "fire_archive_SV-C2_845275.json",
+   "from": "DL_FIRE_SV-C2_845275.zip",
+   "rows": 1012704,
+   "sats": [
+    "SNPP"
+   ]
+  },
+  {
+   "file": "fire_nrt_SV-C2_845275.json",
+   "from": "DL_FIRE_SV-C2_845275.zip",
+   "rows": 6287,
+   "sats": [
+    "SNPP"
+   ]
+  }
+ ],
+ "counts": {
+  "total": 2150162,
+  "duplicates_removed": 0,
+  "by_sat": {
+   "Terra": 140824,
+   "Aqua": 302513,
+   "SNPP": 1018991,
+   "N20": 491632,
+   "N21": 196202
+  },
+  "by_src": {
+   "archive": 2128005,
+   "nrt": 22157
+  },
+  "date_min": "2000-11-01 03:23:00",
+  "date_max": "2026-11-13 08:39:00",
+  "bbox": [
+   8.61301,
+   23.36492,
+   102.12177,
+   109.4593
+  ]
+ },
+ "static_mask": {
+  "cells_001deg": 3344,
+  "share_static_day_pct": {
+   "Terra": 9.47,
+   "Aqua": 2.72,
+   "SNPP": 1.87,
+   "N20": 2.3,
+   "N21": 2.15
+  },
+  "share_static_all_pct": {
+   "Terra": 8.55,
+   "Aqua": 2.82,
+   "SNPP": 4.54,
+   "N20": 5.87,
+   "N21": 5.57
+  }
+ },
+ "low_confidence_share_day_veg_pct": {
+  "Terra": 5.06,
+  "Aqua": 4.41,
+  "SNPP": 9.16,
+  "N20": 8.72,
+  "N21": 9.28
+ },
+ "tables": {
+  "grid_025_month.csv": {
+   "rows": 230684,
+   "sum_n": 2043505,
+   "sum_n_static": 106657
+  },
+  "grid_025_pentad.csv": {
+   "rows": 502782,
+   "sum_n": 2043505,
+   "sum_n_static": 106657
+  }
+ },
+ "records": {
+  "Terra": {
+   "first": "2000-11-01",
+   "last": "2026-11-11"
+  },
+  "Aqua": {
+   "first": "2002-07-04",
+   "last": "2026-11-13"
+  },
+  "SNPP": {
+   "first": "2012-01-20",
+   "last": "2026-11-01"
+  },
+  "N20": {
+   "first": "2018-04-01",
+   "last": "2026-11-13"
+  },
+  "N21": {
+   "first": "2023-03-01",
+   "last": "2026-11-13"
+  }
+ },
+ "gaps_national": [
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2001-05-27",
+   "end": "2001-06-01",
+   "days": 6,
+   "log10_p": -5.1
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2001-06-14",
+   "end": "2001-07-04",
+   "days": 21,
+   "log10_p": -12.3
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2001-10-18",
+   "end": "2001-10-30",
+   "days": 13,
+   "log10_p": -4.6
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2002-03-20",
+   "end": "2002-03-28",
+   "days": 9,
+   "log10_p": -16.9
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2003-12-16",
+   "end": "2003-12-24",
+   "days": 9,
+   "log10_p": -10.3
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2016-02-19",
+   "end": "2016-02-27",
+   "days": 9,
+   "log10_p": -9.7
+  },
+  {
+   "sat": "Terra",
+   "pham_vi": "toan_quoc",
+   "start": "2022-10-10",
+   "end": "2022-10-23",
+   "days": 14,
+   "log10_p": -9.2
+  },
+  {
+   "sat": "Aqua",
+   "pham_vi": "toan_quoc",
+   "start": "2020-08-18",
+   "end": "2020-09-02",
+   "days": 16,
+   "log10_p": -11.3
+  },
+  {
+   "sat": "Aqua",
+   "pham_vi": "toan_quoc",
+   "start": "2022-04-01",
+   "end": "2022-04-16",
+   "days": 16,
+   "log10_p": -20.2
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2022-07-27",
+   "end": "2022-08-10",
+   "days": 15,
+   "log10_p": -27.2
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2024-05-30",
+   "end": "2024-06-03",
+   "days": 5,
+   "log10_p": -9.3
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2024-07-10",
+   "end": "2024-07-15",
+   "days": 6,
+   "log10_p": -10.9
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2024-07-24",
+   "end": "2024-07-29",
+   "days": 6,
+   "log10_p": -11.3
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2024-11-03",
+   "end": "2024-11-05",
+   "days": 3,
+   "log10_p": -6.2
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2026-03-10",
+   "end": "2026-03-12",
+   "days": 3,
+   "log10_p": -6.3
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2026-04-28",
+   "end": "2026-04-30",
+   "days": 3,
+   "log10_p": -6.3
+  },
+  {
+   "sat": "SNPP",
+   "pham_vi": "toan_quoc",
+   "start": "2026-07-11",
+   "end": "2026-07-16",
+   "days": 6,
+   "log10_p": -12.2
+  },
+  {
+   "sat": "N20",
+   "pham_vi": "toan_quoc",
+   "start": "2023-07-19",
+   "end": "2023-07-22",
+   "days": 4,
+   "log10_p": -11.2
+  }
+ ],
+ "gaps_band_days_by_sat_year": {
+  "SNPP": {
+   "2012": 17,
+   "2017": 2,
+   "2018": 2,
+   "2019": 1,
+   "2020": 1,
+   "2021": 5,
+   "2022": 7,
+   "2023": 8,
+   "2024": 6,
+   "2025": 2,
+   "2026": 13
+  },
+  "N20": {
+   "2018": 1,
+   "2019": 2,
+   "2020": 3,
+   "2021": 3,
+   "2022": 3,
+   "2023": 5,
+   "2024": 9,
+   "2025": 2,
+   "2026": 5
+  },
+  "N21": {
+   "2023": 1,
+   "2024": 5,
+   "2025": 1,
+   "2026": 1
+  }
+ },
+ "season_share_snpp_pct": {
+  "Khac": {
+   "1": 8.8,
+   "2": 10.2,
+   "3": 14.7,
+   "4": 16.8,
+   "5": 13.4,
+   "6": 7.7,
+   "7": 3.4,
+   "8": 5.3,
+   "9": 5.4,
+   "10": 4.6,
+   "11": 4.1,
+   "12": 5.7
+  },
+  "TayBac": {
+   "1": 4.5,
+   "2": 16.2,
+   "3": 37.3,
+   "4": 28.3,
+   "5": 5.4,
+   "6": 0.3,
+   "7": 0.1,
+   "8": 0.1,
+   "9": 0.3,
+   "10": 1.4,
+   "11": 3.0,
+   "12": 3.1
+  },
+  "DBSH": {
+   "1": 14.4,
+   "2": 10.6,
+   "3": 9.2,
+   "4": 13.2,
+   "5": 10.5,
+   "6": 6.1,
+   "7": 4.2,
+   "8": 3.2,
+   "9": 4.4,
+   "10": 5.4,
+   "11": 7.7,
+   "12": 11.1
+  },
+  "TayNguyen": {
+   "1": 9.5,
+   "2": 20.7,
+   "3": 32.0,
+   "4": 19.1,
+   "5": 6.5,
+   "6": 2.9,
+   "7": 1.6,
+   "8": 2.2,
+   "9": 1.8,
+   "10": 1.4,
+   "11": 0.7,
+   "12": 1.7
+  },
+  "DBSCL": {
+   "1": 5.3,
+   "2": 11.5,
+   "3": 40.4,
+   "4": 24.8,
+   "5": 4.4,
+   "6": 2.1,
+   "7": 1.9,
+   "8": 3.2,
+   "9": 1.4,
+   "10": 0.2,
+   "11": 1.6,
+   "12": 3.2
+  }
+ },
+ "options": {
+  "raw": "/home/claude/raw",
+  "out": ".",
+  "save_points": false,
+  "drop_lowconf": false,
+  "model": "blend",
+  "floor": "clim",
+  "seasons": 2,
+  "radius": 2,
+  "tau": null,
+  "kappa": 3.0
+ },
+ "viirs_consistency_day_veg": {
+  "N20_per_SNPP": 1.0106,
+  "N21_per_SNPP": 0.9633,
+  "N21_per_N20": 0.9635,
+  "common_days_N20": 3083,
+  "common_days_N21": 1309
+ },
+ "calibration_units": {
+  "cell_months": 65557,
+  "months_any": 114,
+  "months_all_cells": 107
+ },
+ "ratio_snpp_aqua_cal_units": {
+  "Khac": 4.92,
+  "TayBac": 4.49,
+  "DBSH": 3.97,
+  "TayNguyen": 6.89,
+  "DBSCL": 7.51,
+  "ToanQuoc": 5.75
+ },
+ "validation_month": {
+  "ti_so_toan_cuc": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 2.835,
+    "sai_so_nam_tb_pct": 4.666,
+    "kge": 0.97,
+    "rmse_o": 18.761,
+    "mae_o": 6.063,
+    "r_o": 0.883,
+    "lech_Khac_pct": 18.416,
+    "lech_TayBac_pct": 29.378,
+    "lech_DBSH_pct": 49.482,
+    "lech_TayNguyen_pct": -11.294,
+    "lech_DBSCL_pct": -24.551,
+    "lech_vung_xau_nhat_pct": 49.482
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": -2.757,
+    "sai_so_nam_tb_pct": 2.857,
+    "kge": 0.929,
+    "rmse_o": 13.783,
+    "mae_o": 4.708,
+    "r_o": 0.857,
+    "lech_Khac_pct": 16.184,
+    "lech_TayBac_pct": 27.702,
+    "lech_DBSH_pct": 41.165,
+    "lech_TayNguyen_pct": -22.809,
+    "lech_DBSCL_pct": -21.251,
+    "lech_vung_xau_nhat_pct": 41.165
+   }
+  },
+  "ti_so_theo_thang": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 3.06,
+    "sai_so_nam_tb_pct": 4.289,
+    "kge": 0.938,
+    "rmse_o": 19.066,
+    "mae_o": 6.018,
+    "r_o": 0.885,
+    "lech_Khac_pct": 13.842,
+    "lech_TayBac_pct": 31.53,
+    "lech_DBSH_pct": 44.045,
+    "lech_TayNguyen_pct": -9.97,
+    "lech_DBSCL_pct": -23.663,
+    "lech_vung_xau_nhat_pct": 44.045
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": -2.639,
+    "sai_so_nam_tb_pct": 2.789,
+    "kge": 0.964,
+    "rmse_o": 13.832,
+    "mae_o": 4.665,
+    "r_o": 0.861,
+    "lech_Khac_pct": 13.24,
+    "lech_TayBac_pct": 29.355,
+    "lech_DBSH_pct": 35.569,
+    "lech_TayNguyen_pct": -22.16,
+    "lech_DBSCL_pct": -20.072,
+    "lech_vung_xau_nhat_pct": 35.569
+   }
+  },
+  "ti_so_theo_o": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 3.074,
+    "sai_so_nam_tb_pct": 2.951,
+    "kge": 0.963,
+    "rmse_o": 14.404,
+    "mae_o": 5.074,
+    "r_o": 0.933,
+    "lech_Khac_pct": -0.607,
+    "lech_TayBac_pct": 1.778,
+    "lech_DBSH_pct": 2.759,
+    "lech_TayNguyen_pct": 8.908,
+    "lech_DBSCL_pct": -6.757,
+    "lech_vung_xau_nhat_pct": 8.908
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": -2.562,
+    "sai_so_nam_tb_pct": 2.812,
+    "kge": 0.936,
+    "rmse_o": 10.557,
+    "mae_o": 4.065,
+    "r_o": 0.918,
+    "lech_Khac_pct": 4.243,
+    "lech_TayBac_pct": -3.095,
+    "lech_DBSH_pct": -3.58,
+    "lech_TayNguyen_pct": -8.376,
+    "lech_DBSCL_pct": 4.558,
+    "lech_vung_xau_nhat_pct": 8.376
+   }
+  },
+  "ti_so_theo_o_tau4": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 3.058,
+    "sai_so_nam_tb_pct": 2.975,
+    "kge": 0.965,
+    "rmse_o": 14.396,
+    "mae_o": 5.078,
+    "r_o": 0.933,
+    "lech_Khac_pct": -0.666,
+    "lech_TayBac_pct": 2.356,
+    "lech_DBSH_pct": 1.297,
+    "lech_TayNguyen_pct": 8.359,
+    "lech_DBSCL_pct": -6.053,
+    "lech_vung_xau_nhat_pct": 8.359
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": -2.515,
+    "sai_so_nam_tb_pct": 2.777,
+    "kge": 0.938,
+    "rmse_o": 10.548,
+    "mae_o": 4.06,
+    "r_o": 0.919,
+    "lech_Khac_pct": 3.912,
+    "lech_TayBac_pct": -2.391,
+    "lech_DBSH_pct": -4.766,
+    "lech_TayNguyen_pct": -7.926,
+    "lech_DBSCL_pct": 3.182,
+    "lech_vung_xau_nhat_pct": 7.926
+   }
+  },
+  "hurdle_v0_sang_nay": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 0.205,
+    "sai_so_nam_tb_pct": 3.27,
+    "kge": 0.98,
+    "rmse_o": 13.358,
+    "mae_o": 4.65,
+    "r_o": 0.934,
+    "lech_Khac_pct": 2.118,
+    "lech_TayBac_pct": 0.806,
+    "lech_DBSH_pct": 42.003,
+    "lech_TayNguyen_pct": 2.215,
+    "lech_DBSCL_pct": -11.672,
+    "lech_vung_xau_nhat_pct": 42.003
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 2.696,
+    "sai_so_nam_tb_pct": 3.52,
+    "kge": 0.947,
+    "rmse_o": 10.067,
+    "mae_o": 3.873,
+    "r_o": 0.922,
+    "lech_Khac_pct": 14.648,
+    "lech_TayBac_pct": 3.617,
+    "lech_DBSH_pct": 21.059,
+    "lech_TayNguyen_pct": -5.706,
+    "lech_DBSCL_pct": 6.209,
+    "lech_vung_xau_nhat_pct": 21.059
+   }
+  },
+  "hurdle_clim_s1": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": -0.481,
+    "sai_so_nam_tb_pct": 3.391,
+    "kge": 0.932,
+    "rmse_o": 13.099,
+    "mae_o": 4.618,
+    "r_o": 0.936,
+    "lech_Khac_pct": -4.34,
+    "lech_TayBac_pct": -2.121,
+    "lech_DBSH_pct": 14.289,
+    "lech_TayNguyen_pct": 4.426,
+    "lech_DBSCL_pct": -7.52,
+    "lech_vung_xau_nhat_pct": 14.289
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 1.714,
+    "sai_so_nam_tb_pct": 2.499,
+    "kge": 0.9,
+    "rmse_o": 9.954,
+    "mae_o": 3.79,
+    "r_o": 0.923,
+    "lech_Khac_pct": 9.751,
+    "lech_TayBac_pct": 0.337,
+    "lech_DBSH_pct": -2.295,
+    "lech_TayNguyen_pct": -4.327,
+    "lech_DBSCL_pct": 9.125,
+    "lech_vung_xau_nhat_pct": 9.751
+   }
+  },
+  "hurdle_clim_s2": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": -0.28,
+    "sai_so_nam_tb_pct": 3.543,
+    "kge": 0.99,
+    "rmse_o": 13.534,
+    "mae_o": 4.571,
+    "r_o": 0.935,
+    "lech_Khac_pct": -7.276,
+    "lech_TayBac_pct": -1.75,
+    "lech_DBSH_pct": 12.061,
+    "lech_TayNguyen_pct": 6.253,
+    "lech_DBSCL_pct": -7.817,
+    "lech_vung_xau_nhat_pct": 12.061
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 2.518,
+    "sai_so_nam_tb_pct": 3.482,
+    "kge": 0.957,
+    "rmse_o": 10.046,
+    "mae_o": 3.747,
+    "r_o": 0.923,
+    "lech_Khac_pct": 9.029,
+    "lech_TayBac_pct": 1.743,
+    "lech_DBSH_pct": -5.629,
+    "lech_TayNguyen_pct": -3.113,
+    "lech_DBSCL_pct": 10.388,
+    "lech_vung_xau_nhat_pct": 10.388
+   }
+  },
+  "hurdle_clim_s4": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": -0.977,
+    "sai_so_nam_tb_pct": 3.799,
+    "kge": 0.975,
+    "rmse_o": 13.152,
+    "mae_o": 4.531,
+    "r_o": 0.937,
+    "lech_Khac_pct": -6.689,
+    "lech_TayBac_pct": -2.499,
+    "lech_DBSH_pct": 13.516,
+    "lech_TayNguyen_pct": 4.559,
+    "lech_DBSCL_pct": -7.419,
+    "lech_vung_xau_nhat_pct": 13.516
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 2.433,
+    "sai_so_nam_tb_pct": 3.467,
+    "kge": 0.952,
+    "rmse_o": 10.049,
+    "mae_o": 3.769,
+    "r_o": 0.924,
+    "lech_Khac_pct": 9.407,
+    "lech_TayBac_pct": 1.466,
+    "lech_DBSH_pct": -3.319,
+    "lech_TayNguyen_pct": -3.372,
+    "lech_DBSCL_pct": 10.236,
+    "lech_vung_xau_nhat_pct": 10.236
+   }
+  },
+  "hurdle_nb_s2": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 2.842,
+    "sai_so_nam_tb_pct": 3.522,
+    "kge": 0.967,
+    "rmse_o": 13.671,
+    "mae_o": 4.663,
+    "r_o": 0.934,
+    "lech_Khac_pct": -0.799,
+    "lech_TayBac_pct": -0.097,
+    "lech_DBSH_pct": 6.417,
+    "lech_TayNguyen_pct": 9.305,
+    "lech_DBSCL_pct": -6.349,
+    "lech_vung_xau_nhat_pct": 9.305
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 1.993,
+    "sai_so_nam_tb_pct": 2.612,
+    "kge": 0.968,
+    "rmse_o": 10.225,
+    "mae_o": 3.738,
+    "r_o": 0.921,
+    "lech_Khac_pct": 7.404,
+    "lech_TayBac_pct": 3.112,
+    "lech_DBSH_pct": 5.136,
+    "lech_TayNguyen_pct": -4.495,
+    "lech_DBSCL_pct": 10.271,
+    "lech_vung_xau_nhat_pct": 10.271
+   }
+  },
+  "hurdle_clim_s2_tau4": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": -0.399,
+    "sai_so_nam_tb_pct": 3.595,
+    "kge": 0.99,
+    "rmse_o": 13.463,
+    "mae_o": 4.566,
+    "r_o": 0.936,
+    "lech_Khac_pct": -8.039,
+    "lech_TayBac_pct": -0.687,
+    "lech_DBSH_pct": 9.425,
+    "lech_TayNguyen_pct": 5.575,
+    "lech_DBSCL_pct": -7.211,
+    "lech_vung_xau_nhat_pct": 9.425
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 2.702,
+    "sai_so_nam_tb_pct": 3.596,
+    "kge": 0.961,
+    "rmse_o": 10.041,
+    "mae_o": 3.751,
+    "r_o": 0.924,
+    "lech_Khac_pct": 9.106,
+    "lech_TayBac_pct": 2.215,
+    "lech_DBSH_pct": -3.602,
+    "lech_TayNguyen_pct": -2.788,
+    "lech_DBSCL_pct": 9.796,
+    "lech_vung_xau_nhat_pct": 9.796
+   }
+  },
+  "hurdle_clim_s2_tau8": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": -0.34,
+    "sai_so_nam_tb_pct": 3.573,
+    "kge": 0.99,
+    "rmse_o": 13.484,
+    "mae_o": 4.564,
+    "r_o": 0.935,
+    "lech_Khac_pct": -7.682,
+    "lech_TayBac_pct": -1.203,
+    "lech_DBSH_pct": 10.657,
+    "lech_TayNguyen_pct": 5.913,
+    "lech_DBSCL_pct": -7.496,
+    "lech_vung_xau_nhat_pct": 10.657
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": 2.599,
+    "sai_so_nam_tb_pct": 3.533,
+    "kge": 0.959,
+    "rmse_o": 10.035,
+    "mae_o": 3.747,
+    "r_o": 0.924,
+    "lech_Khac_pct": 9.09,
+    "lech_TayBac_pct": 1.971,
+    "lech_DBSH_pct": -4.638,
+    "lech_TayNguyen_pct": -2.963,
+    "lech_DBSCL_pct": 10.036,
+    "lech_vung_xau_nhat_pct": 10.036
+   }
+  },
+  "lai_clim_s2": {
+   "doan_nguoc": {
+    "huan_luyen": "2017-2021",
+    "kiem": "2012-2016",
+    "lech_toan_quoc_pct": 1.397,
+    "sai_so_nam_tb_pct": 2.898,
+    "kge": 0.983,
+    "rmse_o": 13.794,
+    "mae_o": 4.699,
+    "r_o": 0.935,
+    "lech_Khac_pct": -3.941,
+    "lech_TayBac_pct": 0.014,
+    "lech_DBSH_pct": 7.41,
+    "lech_TayNguyen_pct": 7.581,
+    "lech_DBSCL_pct": -7.287,
+    "lech_vung_xau_nhat_pct": 7.581
+   },
+   "doan_xuoi": {
+    "huan_luyen": "2012-2016",
+    "kiem": "2017-2021",
+    "lech_toan_quoc_pct": -0.022,
+    "sai_so_nam_tb_pct": 1.85,
+    "kge": 0.952,
+    "rmse_o": 10.172,
+    "mae_o": 3.767,
+    "r_o": 0.923,
+    "lech_Khac_pct": 6.636,
+    "lech_TayBac_pct": -0.676,
+    "lech_DBSH_pct": -4.604,
+    "lech_TayNguyen_pct": -5.745,
+    "lech_DBSCL_pct": 7.473,
+    "lech_vung_xau_nhat_pct": 7.473
+   }
+  }
+ },
+ "chosen_model": "lai_clim_s2",
+ "leave_one_year_out_national_pct": {
+  "by_year": {
+   "2012": -0.93,
+   "2013": 1.73,
+   "2014": 6.03,
+   "2015": -5.12,
+   "2016": -2.46,
+   "2017": 0.79,
+   "2018": -2.44,
+   "2019": -3.64,
+   "2020": 2.66,
+   "2021": 0.63
+  },
+  "mean": -0.28,
+  "rms": 3.16,
+  "max_abs": 6.03
+ },
+ "validation_pentad": [
+  {
+   "chieu": "doan_nguoc",
+   "kappa": 0.0,
+   "rmse_o_pentad": 5.147,
+   "r_o_pentad": 0.823,
+   "rmse_khoi3x3_pentad": 16.319,
+   "kge_toan_quoc_pentad": 0.966,
+   "kge_Khac_pentad": 0.929,
+   "kge_TayBac_pentad": 0.969,
+   "kge_DBSH_pentad": 0.841,
+   "kge_TayNguyen_pentad": 0.87,
+   "kge_DBSCL_pentad": 0.893,
+   "cua_so_50pct_jaccard": 0.82,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_nguoc",
+   "kappa": 1.0,
+   "rmse_o_pentad": 4.921,
+   "r_o_pentad": 0.831,
+   "rmse_khoi3x3_pentad": 15.666,
+   "kge_toan_quoc_pentad": 0.973,
+   "kge_Khac_pentad": 0.884,
+   "kge_TayBac_pentad": 0.965,
+   "kge_DBSH_pentad": 0.792,
+   "kge_TayNguyen_pentad": 0.882,
+   "kge_DBSCL_pentad": 0.895,
+   "cua_so_50pct_jaccard": 0.806,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_nguoc",
+   "kappa": 3.0,
+   "rmse_o_pentad": 4.673,
+   "r_o_pentad": 0.839,
+   "rmse_khoi3x3_pentad": 15.077,
+   "kge_toan_quoc_pentad": 0.968,
+   "kge_Khac_pentad": 0.816,
+   "kge_TayBac_pentad": 0.939,
+   "kge_DBSH_pentad": 0.702,
+   "kge_TayNguyen_pentad": 0.894,
+   "kge_DBSCL_pentad": 0.891,
+   "cua_so_50pct_jaccard": 0.8,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_nguoc",
+   "kappa": 10.0,
+   "rmse_o_pentad": 4.319,
+   "r_o_pentad": 0.847,
+   "rmse_khoi3x3_pentad": 14.741,
+   "kge_toan_quoc_pentad": 0.944,
+   "kge_Khac_pentad": 0.721,
+   "kge_TayBac_pentad": 0.876,
+   "kge_DBSH_pentad": 0.566,
+   "kge_TayNguyen_pentad": 0.91,
+   "kge_DBSCL_pentad": 0.873,
+   "cua_so_50pct_jaccard": 0.829,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_nguoc",
+   "kappa": 30.0,
+   "rmse_o_pentad": 4.16,
+   "r_o_pentad": 0.845,
+   "rmse_khoi3x3_pentad": 15.826,
+   "kge_toan_quoc_pentad": 0.916,
+   "kge_Khac_pentad": 0.644,
+   "kge_TayBac_pentad": 0.8,
+   "kge_DBSH_pentad": 0.454,
+   "kge_TayNguyen_pentad": 0.914,
+   "kge_DBSCL_pentad": 0.846,
+   "cua_so_50pct_jaccard": 0.749,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_nguoc",
+   "kappa": null,
+   "rmse_o_pentad": 5.144,
+   "r_o_pentad": 0.745,
+   "rmse_khoi3x3_pentad": 22.551,
+   "kge_toan_quoc_pentad": 0.868,
+   "kge_Khac_pentad": 0.546,
+   "kge_TayBac_pentad": 0.637,
+   "kge_DBSH_pentad": 0.324,
+   "kge_TayNguyen_pentad": 0.894,
+   "kge_DBSCL_pentad": 0.798,
+   "cua_so_50pct_jaccard": 0.727,
+   "lech_dinh_pentad_trung_vi": 1.5
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": 0.0,
+   "rmse_o_pentad": 4.023,
+   "r_o_pentad": 0.801,
+   "rmse_khoi3x3_pentad": 12.66,
+   "kge_toan_quoc_pentad": 0.957,
+   "kge_Khac_pentad": 0.872,
+   "kge_TayBac_pentad": 0.962,
+   "kge_DBSH_pentad": 0.577,
+   "kge_TayNguyen_pentad": 0.889,
+   "kge_DBSCL_pentad": 0.903,
+   "cua_so_50pct_jaccard": 0.814,
+   "lech_dinh_pentad_trung_vi": 1.0
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": 1.0,
+   "rmse_o_pentad": 3.77,
+   "r_o_pentad": 0.814,
+   "rmse_khoi3x3_pentad": 11.943,
+   "kge_toan_quoc_pentad": 0.942,
+   "kge_Khac_pentad": 0.879,
+   "kge_TayBac_pentad": 0.954,
+   "kge_DBSH_pentad": 0.488,
+   "kge_TayNguyen_pentad": 0.878,
+   "kge_DBSCL_pentad": 0.91,
+   "cua_so_50pct_jaccard": 0.814,
+   "lech_dinh_pentad_trung_vi": 1.0
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": 3.0,
+   "rmse_o_pentad": 3.525,
+   "r_o_pentad": 0.826,
+   "rmse_khoi3x3_pentad": 11.386,
+   "kge_toan_quoc_pentad": 0.922,
+   "kge_Khac_pentad": 0.824,
+   "kge_TayBac_pentad": 0.915,
+   "kge_DBSH_pentad": 0.371,
+   "kge_TayNguyen_pentad": 0.861,
+   "kge_DBSCL_pentad": 0.914,
+   "cua_so_50pct_jaccard": 0.814,
+   "lech_dinh_pentad_trung_vi": 0.0
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": 10.0,
+   "rmse_o_pentad": 3.233,
+   "r_o_pentad": 0.838,
+   "rmse_khoi3x3_pentad": 11.165,
+   "kge_toan_quoc_pentad": 0.892,
+   "kge_Khac_pentad": 0.73,
+   "kge_TayBac_pentad": 0.84,
+   "kge_DBSH_pentad": 0.219,
+   "kge_TayNguyen_pentad": 0.832,
+   "kge_DBSCL_pentad": 0.906,
+   "cua_so_50pct_jaccard": 0.837,
+   "lech_dinh_pentad_trung_vi": 1.0
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": 30.0,
+   "rmse_o_pentad": 3.175,
+   "r_o_pentad": 0.834,
+   "rmse_khoi3x3_pentad": 12.077,
+   "kge_toan_quoc_pentad": 0.869,
+   "kge_Khac_pentad": 0.654,
+   "kge_TayBac_pentad": 0.762,
+   "kge_DBSH_pentad": 0.117,
+   "kge_TayNguyen_pentad": 0.807,
+   "kge_DBSCL_pentad": 0.887,
+   "cua_so_50pct_jaccard": 0.763,
+   "lech_dinh_pentad_trung_vi": 1.0
+  },
+  {
+   "chieu": "doan_xuoi",
+   "kappa": null,
+   "rmse_o_pentad": 3.931,
+   "r_o_pentad": 0.731,
+   "rmse_khoi3x3_pentad": 16.116,
+   "kge_toan_quoc_pentad": 0.838,
+   "kge_Khac_pentad": 0.562,
+   "kge_TayBac_pentad": 0.618,
+   "kge_DBSH_pentad": 0.038,
+   "kge_TayNguyen_pentad": 0.777,
+   "kge_DBSCL_pentad": 0.844,
+   "cua_so_50pct_jaccard": 0.734,
+   "lech_dinh_pentad_trung_vi": 2.0
+  }
+ ],
+ "coverage_90": [
+  {
+   "don_vi": "thang",
+   "cap": "o",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 89.7,
+   "phu_90_khi_co_chay_pct": 90.2,
+   "n": 33459
+  },
+  {
+   "don_vi": "thang",
+   "cap": "o",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 89.8,
+   "phu_90_khi_co_chay_pct": 87.0,
+   "n": 33459
+  },
+  {
+   "don_vi": "thang",
+   "cap": "khoi3x3",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 89.5,
+   "phu_90_khi_co_chay_pct": 89.7,
+   "n": 5301
+  },
+  {
+   "don_vi": "thang",
+   "cap": "khoi3x3",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 88.7,
+   "phu_90_khi_co_chay_pct": 88.5,
+   "n": 5301
+  },
+  {
+   "don_vi": "thang",
+   "cap": "vung",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 83.6,
+   "phu_90_khi_co_chay_pct": 83.3,
+   "n": 342
+  },
+  {
+   "don_vi": "thang",
+   "cap": "vung",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 89.2,
+   "phu_90_khi_co_chay_pct": 89.4,
+   "n": 342
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "o",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 89.6,
+   "phu_90_khi_co_chay_pct": 79.3,
+   "n": 185492
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "o",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 90.1,
+   "phu_90_khi_co_chay_pct": 75.3,
+   "n": 200754
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "khoi3x3",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 90.7,
+   "phu_90_khi_co_chay_pct": 89.2,
+   "n": 29388
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "khoi3x3",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 89.0,
+   "phu_90_khi_co_chay_pct": 85.2,
+   "n": 31806
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "vung",
+   "bang_tu": "doan_nguoc",
+   "kiem_tren": "doan_xuoi",
+   "phu_90_pct": 87.7,
+   "phu_90_khi_co_chay_pct": 90.0,
+   "n": 1896
+  },
+  {
+   "don_vi": "pentad",
+   "cap": "vung",
+   "bang_tu": "doan_xuoi",
+   "kiem_tren": "doan_nguoc",
+   "phu_90_pct": 91.0,
+   "phu_90_khi_co_chay_pct": 91.6,
+   "n": 2052
+  }
+ ],
+ "model": {
+  "name": "lai_clim_s2",
+  "floor": "clim",
+  "seasons": 2,
+  "season_of_month": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "tau_years": null,
+  "r_global": 5.1482,
+  "r_season": [
+   5.4533,
+   3.7585
+  ],
+  "fallback_r_global": 5.7515,
+  "kappa": 3.0,
+  "shrinkage": {
+   "k_cell": 60,
+   "k_season": 60,
+   "k_neighbourhood": 20,
+   "k_floor": 2,
+   "prior_window": "5x5 o"
+  }
+ },
+ "validation_terra_to_aqua_month": {
+  "doan_nguoc": {
+   "lech_toan_quoc_pct": 4.94,
+   "sai_so_nam_tb_pct": 10.042,
+   "kge": 0.893,
+   "rmse_o": 6.13,
+   "mae_o": 1.681,
+   "r_o": 0.769,
+   "lech_Khac_pct": -10.274,
+   "lech_TayBac_pct": 13.876,
+   "lech_DBSH_pct": 10.772,
+   "lech_TayNguyen_pct": 2.204,
+   "lech_DBSCL_pct": 13.198,
+   "lech_vung_xau_nhat_pct": 13.876
+  },
+  "doan_xuoi": {
+   "lech_toan_quoc_pct": 1.893,
+   "sai_so_nam_tb_pct": 7.048,
+   "kge": 0.879,
+   "rmse_o": 4.836,
+   "mae_o": 1.517,
+   "r_o": 0.762,
+   "lech_Khac_pct": 12.409,
+   "lech_TayBac_pct": 0.667,
+   "lech_DBSH_pct": 15.764,
+   "lech_TayNguyen_pct": -3.227,
+   "lech_DBSCL_pct": 2.528,
+   "lech_vung_xau_nhat_pct": 15.764
+  }
+ },
+ "source_months": {
+  "terra_noi_chuoi": 21,
+  "aqua_hieu_chuan": 114,
+  "snpp": 177,
+  "noaa20_quy_doi": 1
+ },
+ "step_2012": {
+  "ghep_tho_moi_ve_tinh_2012_14_tren_2009_11": 5.533,
+  "snpp_2013_15_tren_aqua_2009_11_ban_ngay": 6.014,
+  "sau_hai_hoa_2013_15_tren_2009_11": 1.041,
+  "aqua_tho_2013_15_tren_2009_11": 1.055
+ },
+ "regime_sensitivity_2003_2011_pct": {
+  "mo_ta": "chenh lech giua mo hinh chinh va kich ban chi hoc tren 2012-2016",
+  "by_region": {
+   "Khac": -2.1,
+   "TayBac": 0.4,
+   "DBSH": 3.4,
+   "TayNguyen": 2.5,
+   "DBSCL": -3.7,
+   "ToanQuoc": 0.6
+  }
+ },
+ "calendar_example": {
+  "DBSCL": {
+   "years": "2003-2025",
+   "w50_pentad": [
+    11,
+    18
+   ],
+   "w80_pentad": [
+    5,
+    24
+   ],
+   "peak_pentad": 15,
+   "clim_mean": [
+    29.9,
+    47.5,
+    52.4,
+    65.0,
+    73.4,
+    70.9,
+    58.7,
+    64.2,
+    87.0,
+    162.1,
+    201.0,
+    311.8,
+    444.3,
+    575.0,
+    612.2,
+    609.0,
+    539.4,
+    536.5,
+    333.7,
+    391.2,
+    278.5,
+    224.0,
+    191.5,
+    119.8,
+    89.6,
+    66.6,
+    49.8,
+    42.5,
+    27.8,
+    35.4,
+    32.8,
+    32.4,
+    30.9,
+    16.9,
+    20.9,
+    25.4,
+    23.7,
+    18.3,
+    32.7,
+    21.4,
+    17.7,
+    21.8,
+    23.1,
+    29.6,
+    33.5,
+    41.1,
+    33.2,
+    29.1,
+    27.1,
+    38.4,
+    18.6,
+    5.5,
+    7.6,
+    8.7,
+    5.0,
+    2.4,
+    3.1,
+    2.7,
+    2.3,
+    4.1,
+    4.4,
+    3.8,
+    5.8,
+    13.5,
+    25.3,
+    31.0,
+    34.4,
+    38.5,
+    47.8,
+    39.6,
+    37.9,
+    33.7,
+    37.9
+   ]
+  },
+  "TayNguyen": {
+   "years": "2003-2025",
+   "w50_pentad": [
+    8,
+    18
+   ],
+   "w80_pentad": [
+    3,
+    23
+   ],
+   "peak_pentad": 16,
+   "clim_mean": [
+    243.3,
+    331.7,
+    470.0,
+    451.8,
+    588.9,
+    723.5,
+    924.4,
+    1112.3,
+    1046.4,
+    1151.2,
+    1119.2,
+    1319.9,
+    1389.5,
+    1465.1,
+    1672.6,
+    1691.4,
+    1221.5,
+    1346.4,
+    1275.0,
+    1169.7,
+    1148.4,
+    823.1,
+    736.6,
+    405.9,
+    370.3,
+    266.1,
+    244.0,
+    240.2,
+    237.1,
+    177.5,
+    175.6,
+    150.9,
+    134.7,
+    100.0,
+    88.6,
+    100.2,
+    77.1,
+    67.1,
+    68.5,
+    64.2,
+    51.0,
+    45.6,
+    42.6,
+    62.8,
+    85.0,
+    93.5,
+    99.8,
+    66.9,
+    74.7,
+    60.1,
+    60.4,
+    47.2,
+    62.6,
+    53.9,
+    57.8,
+    41.0,
+    37.3,
+    22.6,
+    34.4,
+    30.5,
+    24.9,
+    30.3,
+    18.0,
+    27.4,
+    28.5,
+    22.1,
+    35.7,
+    49.7,
+    54.6,
+    68.6,
+    99.8,
+    153.4,
+    153.2
+   ]
+  },
+  "ToanQuoc": {
+   "years": "2003-2025",
+   "w50_pentad": [
+    10,
+    20
+   ],
+   "w80_pentad": [
+    1,
+    26
+   ],
+   "peak_pentad": 13,
+   "clim_mean": [
+    549.4,
+    635.0,
+    855.6,
+    899.7,
+    1094.1,
+    1286.8,
+    1513.0,
+    1939.3,
+    2094.1,
+    2062.9,
+    2424.2,
+    3154.5,
+    3803.0,
+    3460.0,
+    3638.5,
+    3651.6,
+    2998.4,
+    2956.4,
+    3110.4,
+    2994.7,
+    2710.1,
+    2189.6,
+    1955.2,
+    1111.4,
+    1115.0,
+    1029.4,
+    732.6,
+    788.8,
+    583.6,
+    520.4,
+    554.1,
+    429.9,
+    439.5,
+    307.8,
+    353.8,
+    256.0,
+    237.7,
+    202.9,
+    197.1,
+    164.9,
+    135.2,
+    136.9,
+    132.6,
+    183.3,
+    237.8,
+    263.0,
+    260.0,
+    195.4,
+    219.4,
+    219.1,
+    178.7,
+    139.0,
+    182.0,
+    178.3,
+    195.0,
+    160.5,
+    157.9,
+    121.8,
+    162.5,
+    154.7,
+    145.0,
+    258.4,
+    183.8,
+    227.9,
+    239.4,
+    264.1,
+    308.1,
+    301.2,
+    298.7,
+    329.1,
+    431.5,
+    494.9,
+    404.0
+   ]
+  }
+ },
+ "gate2": {
+  "lech_toan_quoc_trong_5pct": "PASS",
+  "lech_DBSCL_trong_10pct": "PASS",
+  "kge_thang_tu_0.90": "PASS",
+  "buoc_nhay_2012_trong_0.9_1.1": "PASS"
+ }
+}

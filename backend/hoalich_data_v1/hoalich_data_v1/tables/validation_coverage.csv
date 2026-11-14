@@ -1,0 +1,13 @@
+don_vi,cap,bang_tu,kiem_tren,phu_90_pct,phu_90_khi_co_chay_pct,n
+thang,o,doan_nguoc,doan_xuoi,89.7,90.2,33459
+thang,o,doan_xuoi,doan_nguoc,89.8,87.0,33459
+thang,khoi3x3,doan_nguoc,doan_xuoi,89.5,89.7,5301
+thang,khoi3x3,doan_xuoi,doan_nguoc,88.7,88.5,5301
+thang,vung,doan_nguoc,doan_xuoi,83.6,83.3,342
+thang,vung,doan_xuoi,doan_nguoc,89.2,89.4,342
+pentad,o,doan_nguoc,doan_xuoi,89.6,79.3,185492
+pentad,o,doan_xuoi,doan_nguoc,90.1,75.3,200754
+pentad,khoi3x3,doan_nguoc,doan_xuoi,90.7,89.2,29388
+pentad,khoi3x3,doan_xuoi,doan_nguoc,89.0,85.2,31806
+pentad,vung,doan_nguoc,doan_xuoi,87.7,90.0,1896
+pentad,vung,doan_xuoi,doan_nguoc,91.0,91.6,2052
