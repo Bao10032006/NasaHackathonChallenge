@@ -266,7 +266,91 @@ Expected covered aggregate:
 
 Peak này chỉ có nghĩa “cao nhất trong khoảng đã có dữ liệu 01–13/11”, không đại diện cả tháng. Request exact date `2026-11-14` trả 422, không trả zero.
 
-# 8. Missing contract fixture
+# 8. All-zero peak-null UI fixture
+
+Fixture này là dữ liệu tổng hợp chỉ dùng để kiểm tra UI, không phải regression khoa học của snapshot. Nó đồng thời kiểm tra tháng nhuận, zero hợp lệ và quy tắc ẩn dòng thời điểm nổi bật khi `peakDate=null`.
+
+Mock request: `GET /api/v1/calendar/days?year=2024&month=2&west=107&south=12&east=108&north=13`
+
+Full synthetic response:
+
+```json
+{
+  "selection": {
+    "type": "BOUNDING_BOX",
+    "selectionRule": "CENTER_INCLUSIVE",
+    "requestedBounds": {"west":107.0,"south":12.0,"east":108.0,"north":13.0},
+    "selectedBounds": {"west":107.0,"south":12.0,"east":108.0,"north":13.0},
+    "cellCount": 13,
+    "cellIds": [
+      "48_428","48_429","48_430","48_431",
+      "49_428","49_429","49_430","49_431",
+      "50_430","50_431","51_429","51_430","51_431"
+    ]
+  },
+  "year": 2024,
+  "month": 2,
+  "values": [
+    {"date":"2024-02-01","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-02","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-03","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-04","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-05","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-06","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-07","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-08","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-09","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-10","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-11","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-12","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-13","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-14","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-15","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-16","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-17","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-18","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-19","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-20","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-21","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-22","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-23","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-24","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-25","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-26","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-27","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-28","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"},
+    {"date":"2024-02-29","value":0.0,"valueStatus":"AVAILABLE","partial":false,"origin":"DIRECT_OBSERVATION"}
+  ],
+  "summary": {
+    "totalValue": 0.0,
+    "valueStatus": "AVAILABLE",
+    "coverage": {
+      "requestedStartDate":"2024-02-01",
+      "requestedEndDate":"2024-02-29",
+      "coveredStartDate":"2024-02-01",
+      "coveredEndDate":"2024-02-29",
+      "expectedDayCount":29,
+      "coveredDayCount":29,
+      "uncoveredDayCount":0,
+      "partial":false
+    },
+    "peakDate": null
+  },
+  "meta": {
+    "dataVersion":"synthetic-all-zero-ui-fixture-v1",
+    "modelVersion":"synthetic",
+    "dataThrough":"2024-02-29",
+    "metric":"snpp_eq",
+    "unit":"S-NPP-equivalent daytime detections",
+    "timeZone":"UTC",
+    "warnings":[]
+  }
+}
+```
+
+Frontend phải hiển thị total `0`, giữ các ngày clickable và ẩn dòng “thời điểm nổi bật”.
+
+# 9. Missing contract fixture
 
 Snapshot thật không có missing daily value bên trong date range, nên không được bịa một ca missing và gắn nhãn “dữ liệu thật”. Để test UI `MISSING`, dùng fixture tổng hợp riêng:
 
@@ -276,7 +360,7 @@ Snapshot thật không có missing daily value bên trong date range, nên khôn
 
 Fixture này chỉ kiểm state rendering, không phải regression khoa học. Golden integration với snapshot dùng `OUTSIDE_DATASET_RANGE` ở §7.
 
-# 9. Golden-test rules
+# 10. Golden-test rules
 
 - Selection cell IDs so sánh exact order.
 - Numeric aggregate tolerance `0.01`.
@@ -284,9 +368,9 @@ Fixture này chỉ kiểm state rendering, không phải regression khoa học. 
 - Status/null/partial/origin so sánh exact.
 - Frontend không hardcode values này cho production; chỉ dùng fixture/test/demo verification.
 
-# 10. OpenAPI mock và local integration
+# 11. OpenAPI mock và local integration
 
-- Golden calendar, daily calendar và exact-date map examples của tài liệu này được nhúng vào `HoaLich_OpenAPI_v0.4.yaml` sau khi schema được chốt.
+- Golden calendar, daily calendar, exact-date map và synthetic peak-null UI fixture của tài liệu này được nhúng vào `HoaLich_OpenAPI_v0.4.yaml`; fixture synthetic không được dùng làm regression khoa học.
 - FE có thể dùng Prism hoặc mock tool tương thích OpenAPI để dựng UI trước khi controller hoàn thành; generated type phải lấy từ OpenAPI, không suy từ prose.
 - Local development mặc định cấu hình Vite proxy `/api` đến `http://localhost:8080`. Nếu deployment cần gọi khác origin không qua proxy, backend cấu hình allow-list CORS bằng environment/application properties.
 - `/areas` trả `name` tiếng Việt cho `ToanQuoc`, `DBSCL`, `DBSH`, `TayBac`, `TayNguyen`, `Khac`; cell vẫn dùng stable ID làm định danh.

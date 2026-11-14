@@ -62,12 +62,14 @@ Explore là một luồng liên tục từ phạm vi không gian → tổng quan
 
 ```text
 ┌───────────────────────────────────────────────────────────────────────┐
-│ Same bbox · Month 3 · [Year A] [Year B] · compatibility status       │
+│ Same bbox · Month 3 · [Year A] [Year B] · compatibility status        │
+├───────────────────────────────────────────────────────────────────────┤
+│ Period total A | Period total B | area delta (only when compatible)   │
 ├──────────────────────────────────┬────────────────────────────────────┤
 │ MAP A                            │ MAP B                              │
 │ shared pan/zoom/color scale      │ shared pan/zoom/color scale        │
 ├──────────────────────────────────┴────────────────────────────────────┤
-│ Selected cell: A value | B value | delta (only when compatible)      │
+│ Selected cell: A value | B value | delta (only when compatible)       │
 └───────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -77,6 +79,7 @@ Metric notice → spatial filter → time filter → selection/coverage → summ
 
 Compare có thể chuyển A/B bằng tabs nhưng phải giữ shared scale và compatibility label.
 Shared color domain lấy từ `minCellValue`/`maxCellValue` của hai map summary; frontend không cộng lại cell để suy total.
+Tổng kỳ A/B đọc trực tiếp từ `summary.totalValue` của từng map. Hai tổng vẫn hiển thị kèm coverage khi partial; chênh lệch toàn vùng chỉ hiển thị khi compatibility pass và cả hai total khác null.
 
 # 7. Component Specification
 
@@ -147,4 +150,5 @@ Warning copy lấy từ `/metadata.warningCatalog`; UI dùng stable warning code
 - Zero/outside/missing/partial khác nhau bằng cả màu và text.
 - Selected cells có outline, không gọi marker là raw hotspot.
 - Compare không tính delta khi coverage/version/cell set lệch.
+- Compare hiển thị tổng kỳ A/B từ map summary và chỉ hiển thị chênh lệch toàn vùng khi hai kỳ tương thích.
 - Nguồn/metric/limitations tiếp cận trong tối đa một thao tác.

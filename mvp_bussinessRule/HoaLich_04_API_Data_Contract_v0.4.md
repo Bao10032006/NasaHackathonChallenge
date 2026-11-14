@@ -200,7 +200,7 @@ Response luôn có đúng số ngày dân lịch của tháng. Ví dụ dưới 
   "year":2026,
   "month":11,
   "values":[
-    {"date":"2026-11-13","value":3.0,"valueStatus":"AVAILABLE","origin":"MIXED"},
+    {"date":"2026-11-13","value":0.0,"valueStatus":"AVAILABLE","origin":"SCALED_OBSERVATION"},
     {"date":"2026-11-14","value":null,"valueStatus":"OUTSIDE_DATASET_RANGE","origin":null}
   ],
   "summary": {
