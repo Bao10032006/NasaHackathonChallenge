@@ -77,21 +77,27 @@ Mốc Git quan trọng:
 - `af231a3`: bộ tài liệu/API v0.4 đã cập nhật theo frontend review.
 - `d5c9537`: TASK 03B1 — spatial selection và metadata foundation.
 - `92b5f96`: kế hoạch chia việc và thực thi TASK 03B2.
+- `bf86831` → `13a7fe6`: repository query engine, provenance validation và regression tests của TASK 03B2A.
 
-Kết quả backend gần nhất đã xác minh tại TASK 03B1:
+Kết quả backend gần nhất đã xác minh trên nhánh `task03b2b/activity-api`:
 
 - JDK `21.0.12 LTS`;
 - Maven Wrapper / Maven `3.10.0`;
 - Spring Boot `4.1.2`;
 - compiler `release 21`;
-- 47 test, 0 failure, 0 error, 0 skipped;
+- 96 test, 0 failure, 0 error, 0 skipped;
 - packaged JAR và application context hoạt động;
+- packaged JAR đã smoke-test bốn API TASK 03B2 với dataset thật;
 - không có WebFlux, JDBC Session hoặc database dependency.
 
 ### API đã có trong code
 
 - `GET /api/v1/metadata`
 - `GET /api/v1/areas`
+- `GET /api/v1/map/cells`
+- `GET /api/v1/calendar`
+- `GET /api/v1/calendar/days`
+- `GET /api/v1/daily`
 
 ### Repository/data capability đã có
 
@@ -104,10 +110,6 @@ Kết quả backend gần nhất đã xác minh tại TASK 03B1:
 
 ### Chưa có trong code
 
-- `/api/v1/map/cells`
-- `/api/v1/calendar`
-- `/api/v1/calendar/days`
-- `/api/v1/daily`
 - `/api/v1/trends`
 - `/api/v1/seasonality`
 - cell-period details controller
@@ -115,7 +117,7 @@ Kết quả backend gần nhất đã xác minh tại TASK 03B1:
 
 Không được nhầm “đã có trong OpenAPI” với “đã được controller triển khai”.
 
-## 4. Task đang thực hiện: TASK 03B2
+## 4. Task đang thực hiện: TASK 03B2 — chờ review/merge
 
 Mục tiêu TASK 03B2 là triển khai:
 
@@ -137,6 +139,8 @@ Phụ trách TASK 03B2A:
 
 Người A phải merge A0 vào `main` trước để hai nhánh dùng cùng interface.
 
+Trạng thái: A0–A3 đã có trên `origin/main` tới commit `13a7fe6`.
+
 ### Người B — API/Integration (chủ repository cùng Codex)
 
 Phụ trách TASK 03B2B:
@@ -148,6 +152,13 @@ Phụ trách TASK 03B2B:
 - MockMvc/contract/integration tests cho bốn API.
 
 Người B bắt đầu code sau khi A0 của Người A đã vào `main`. Hai bên tích hợp theo phần TASK 03B2C trong work-split plan.
+
+Trạng thái: source, test, report và smoke test dataset thật đã hoàn tất trên nhánh `task03b2b/activity-api`; chưa commit/push/merge thay đổi API nếu chưa có yêu cầu rõ từ người dùng.
+
+Báo cáo:
+
+- [TASK 03B2B — Activity Service & REST API Report](docs/backend/TASK_03B2_ACTIVITY_API_REPORT.md)
+- [TASK 03B2 — Map, Calendar & Daily Integration Report](docs/backend/TASK_03B2_MAP_CALENDAR_DAILY_REPORT.md)
 
 ### Task kế tiếp sau TASK 03B2
 
@@ -171,7 +182,7 @@ Chỉ lập kế hoạch sau khi bốn API trên đã được tích hợp và k
 │   │   └── domain/                  Domain/data models
 │   └── src/test/                    Unit, fixture, regression, MockMvc tests
 ├── docs/backend/                    Task plan, report và artifact spec
-├── frontend/                        Chưa có source frontend trong snapshot hiện tại
+├── frontend/                        React/Vite scaffold của frontend
 ├── mvp_bussinessRule/               Product/API/UX/technical documents
 └── tools/data/                      Offline artifact exporter và Python requirements
 ```

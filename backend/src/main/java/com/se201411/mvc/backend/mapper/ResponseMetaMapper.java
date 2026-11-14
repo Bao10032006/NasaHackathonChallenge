@@ -11,6 +11,10 @@ import java.util.List;
 public final class ResponseMetaMapper {
 
 	public ResponseMetaDto toDto(DatasetManifest manifest) {
+		return toDto(manifest, List.of());
+	}
+
+	public ResponseMetaDto toDto(DatasetManifest manifest, List<String> warnings) {
 		return new ResponseMetaDto(
 				manifest.dataVersion(),
 				manifest.modelVersion(),
@@ -18,6 +22,6 @@ public final class ResponseMetaMapper {
 				manifest.metric(),
 				manifest.unit(),
 				manifest.timeZone(),
-				List.of());
+				warnings);
 	}
 }

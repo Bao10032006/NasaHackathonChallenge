@@ -11,6 +11,7 @@ import com.se201411.mvc.backend.repository.DailyActivityRepository;
 import com.se201411.mvc.backend.repository.DatasetMetadataRepository;
 import com.se201411.mvc.backend.repository.HarmonizationComparisonRepository;
 import com.se201411.mvc.backend.service.AreaService;
+import com.se201411.mvc.backend.service.ActivityService;
 import com.se201411.mvc.backend.service.MetadataService;
 import com.se201411.mvc.backend.service.SpatialSelectionService;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,7 @@ class BackendApplicationTests {
 		assertThat(applicationContext.getBean(MetadataService.class)).isNotNull();
 		assertThat(applicationContext.getBean(AreaService.class)).isNotNull();
 		assertThat(applicationContext.getBean(SpatialSelectionService.class)).isNotNull();
+		assertThat(applicationContext.getBean(ActivityService.class)).isNotNull();
 	}
 
 }
