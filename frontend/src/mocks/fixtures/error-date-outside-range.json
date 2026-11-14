@@ -1,0 +1,9 @@
+{
+ "type": "https://hoalich.local/problems/date-outside-dataset-range",
+ "title": "Date outside dataset range",
+ "status": 422,
+ "code": "DATE_OUTSIDE_DATASET_RANGE",
+ "detail": "date must be between 2000-11-01 and 2026-11-13",
+ "instance": "/api/v1/daily",
+ "timestamp": "2026-11-14T15:52:04.5106622Z"
+}

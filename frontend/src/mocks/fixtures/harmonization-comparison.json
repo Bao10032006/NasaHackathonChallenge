@@ -1,0 +1,484 @@
+{
+ "series": [
+  {
+   "seriesType": "HARMONIZED",
+   "label": "Chuỗi đã hài hòa (toàn quốc, theo năm)",
+   "metric": "snpp_eq",
+   "unit": "S-NPP-equivalent daytime detections",
+   "points": [
+    {
+     "year": 2000,
+     "value": 3046.1
+    },
+    {
+     "year": 2001,
+     "value": 66034.6
+    },
+    {
+     "year": 2002,
+     "value": 86330.5
+    },
+    {
+     "year": 2003,
+     "value": 85687.3
+    },
+    {
+     "year": 2004,
+     "value": 93354.1
+    },
+    {
+     "year": 2005,
+     "value": 94823.6
+    },
+    {
+     "year": 2006,
+     "value": 68478.3
+    },
+    {
+     "year": 2007,
+     "value": 90167.9
+    },
+    {
+     "year": 2008,
+     "value": 67996.3
+    },
+    {
+     "year": 2009,
+     "value": 71793.3
+    },
+    {
+     "year": 2010,
+     "value": 102122.8
+    },
+    {
+     "year": 2011,
+     "value": 66128.4
+    },
+    {
+     "year": 2012,
+     "value": 75240.9
+    },
+    {
+     "year": 2013,
+     "value": 71482.0
+    },
+    {
+     "year": 2014,
+     "value": 89569.0
+    },
+    {
+     "year": 2015,
+     "value": 88898.0
+    },
+    {
+     "year": 2016,
+     "value": 76199.0
+    },
+    {
+     "year": 2017,
+     "value": 41814.4
+    },
+    {
+     "year": 2018,
+     "value": 49751.7
+    },
+    {
+     "year": 2019,
+     "value": 60948.5
+    },
+    {
+     "year": 2020,
+     "value": 58838.9
+    },
+    {
+     "year": 2021,
+     "value": 48428.8
+    },
+    {
+     "year": 2022,
+     "value": 34142.5
+    },
+    {
+     "year": 2023,
+     "value": 50231.0
+    },
+    {
+     "year": 2024,
+     "value": 51758.9
+    },
+    {
+     "year": 2025,
+     "value": 37659.7
+    },
+    {
+     "year": 2026,
+     "value": 43794.9
+    }
+   ]
+  },
+  {
+   "seriesType": "RAW_MODIS",
+   "label": "MODIS Aqua thô, ban ngày, đã lọc nguồn tĩnh",
+   "metric": "raw_detections_aqua_day",
+   "unit": "Aqua daytime detections",
+   "points": [
+    {
+     "year": 2000,
+     "value": 0
+    },
+    {
+     "year": 2001,
+     "value": 0
+    },
+    {
+     "year": 2002,
+     "value": 747
+    },
+    {
+     "year": 2003,
+     "value": 14995
+    },
+    {
+     "year": 2004,
+     "value": 15708
+    },
+    {
+     "year": 2005,
+     "value": 16131
+    },
+    {
+     "year": 2006,
+     "value": 12227
+    },
+    {
+     "year": 2007,
+     "value": 16657
+    },
+    {
+     "year": 2008,
+     "value": 11605
+    },
+    {
+     "year": 2009,
+     "value": 13074
+    },
+    {
+     "year": 2010,
+     "value": 17832
+    },
+    {
+     "year": 2011,
+     "value": 10655
+    },
+    {
+     "year": 2012,
+     "value": 13988
+    },
+    {
+     "year": 2013,
+     "value": 12599
+    },
+    {
+     "year": 2014,
+     "value": 16537
+    },
+    {
+     "year": 2015,
+     "value": 14703
+    },
+    {
+     "year": 2016,
+     "value": 13330
+    },
+    {
+     "year": 2017,
+     "value": 7275
+    },
+    {
+     "year": 2018,
+     "value": 7970
+    },
+    {
+     "year": 2019,
+     "value": 10651
+    },
+    {
+     "year": 2020,
+     "value": 10036
+    },
+    {
+     "year": 2021,
+     "value": 8359
+    },
+    {
+     "year": 2022,
+     "value": 5240
+    },
+    {
+     "year": 2023,
+     "value": 9406
+    },
+    {
+     "year": 2024,
+     "value": 9577
+    },
+    {
+     "year": 2025,
+     "value": 8526
+    },
+    {
+     "year": 2026,
+     "value": 9224
+    }
+   ]
+  },
+  {
+   "seriesType": "RAW_VIIRS_SNPP",
+   "label": "VIIRS S-NPP thô, ban ngày, đã lọc nguồn tĩnh",
+   "metric": "raw_detections_snpp_day",
+   "unit": "S-NPP daytime detections",
+   "points": [
+    {
+     "year": 2000,
+     "value": 0
+    },
+    {
+     "year": 2001,
+     "value": 0
+    },
+    {
+     "year": 2002,
+     "value": 0
+    },
+    {
+     "year": 2003,
+     "value": 0
+    },
+    {
+     "year": 2004,
+     "value": 0
+    },
+    {
+     "year": 2005,
+     "value": 0
+    },
+    {
+     "year": 2006,
+     "value": 0
+    },
+    {
+     "year": 2007,
+     "value": 0
+    },
+    {
+     "year": 2008,
+     "value": 0
+    },
+    {
+     "year": 2009,
+     "value": 0
+    },
+    {
+     "year": 2010,
+     "value": 0
+    },
+    {
+     "year": 2011,
+     "value": 0
+    },
+    {
+     "year": 2012,
+     "value": 69051
+    },
+    {
+     "year": 2013,
+     "value": 71482
+    },
+    {
+     "year": 2014,
+     "value": 89569
+    },
+    {
+     "year": 2015,
+     "value": 88898
+    },
+    {
+     "year": 2016,
+     "value": 76199
+    },
+    {
+     "year": 2017,
+     "value": 41758
+    },
+    {
+     "year": 2018,
+     "value": 49727
+    },
+    {
+     "year": 2019,
+     "value": 60905
+    },
+    {
+     "year": 2020,
+     "value": 58827
+    },
+    {
+     "year": 2021,
+     "value": 48320
+    },
+    {
+     "year": 2022,
+     "value": 33528
+    },
+    {
+     "year": 2023,
+     "value": 50040
+    },
+    {
+     "year": 2024,
+     "value": 50991
+    },
+    {
+     "year": 2025,
+     "value": 37633
+    },
+    {
+     "year": 2026,
+     "value": 42169
+    }
+   ]
+  },
+  {
+   "seriesType": "RAW_MERGED_REFERENCE",
+   "label": "Cộng thô mọi vệ tinh (chỉ để tham khảo, không so sánh được)",
+   "metric": "raw_detections_all_satellites",
+   "unit": "detections (not comparable)",
+   "points": [
+    {
+     "year": 2000,
+     "value": 181
+    },
+    {
+     "year": 2001,
+     "value": 2992
+    },
+    {
+     "year": 2002,
+     "value": 4977
+    },
+    {
+     "year": 2003,
+     "value": 19516
+    },
+    {
+     "year": 2004,
+     "value": 21695
+    },
+    {
+     "year": 2005,
+     "value": 22949
+    },
+    {
+     "year": 2006,
+     "value": 16026
+    },
+    {
+     "year": 2007,
+     "value": 23801
+    },
+    {
+     "year": 2008,
+     "value": 15154
+    },
+    {
+     "year": 2009,
+     "value": 17457
+    },
+    {
+     "year": 2010,
+     "value": 25867
+    },
+    {
+     "year": 2011,
+     "value": 16411
+    },
+    {
+     "year": 2012,
+     "value": 102409
+    },
+    {
+     "year": 2013,
+     "value": 100034
+    },
+    {
+     "year": 2014,
+     "value": 128064
+    },
+    {
+     "year": 2015,
+     "value": 124575
+    },
+    {
+     "year": 2016,
+     "value": 113520
+    },
+    {
+     "year": 2017,
+     "value": 58833
+    },
+    {
+     "year": 2018,
+     "value": 103152
+    },
+    {
+     "year": 2019,
+     "value": 166761
+    },
+    {
+     "year": 2020,
+     "value": 162087
+    },
+    {
+     "year": 2021,
+     "value": 127410
+    },
+    {
+     "year": 2022,
+     "value": 88299
+    },
+    {
+     "year": 2023,
+     "value": 179247
+    },
+    {
+     "year": 2024,
+     "value": 197992
+    },
+    {
+     "year": 2025,
+     "value": 145850
+    },
+    {
+     "year": 2026,
+     "value": 164903
+    }
+   ]
+  }
+ ],
+ "explanationKeys": [
+  "RAW_SERIES_NOT_COMPARABLE",
+  "HARMONIZED_SNPP_EQ_NOT_FIRE_COUNT",
+  "PARTIAL_YEARS_2000_2026"
+ ],
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": [
+   "PARTIAL_PERIOD"
+  ]
+ }
+}

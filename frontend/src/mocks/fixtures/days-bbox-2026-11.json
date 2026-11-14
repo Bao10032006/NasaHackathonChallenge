@@ -1,0 +1,311 @@
+{
+ "selection": {
+  "type": "BOUNDING_BOX",
+  "selectionRule": "CENTER_INCLUSIVE",
+  "requestedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "selectedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "cellCount": 13,
+  "cellIds": [
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "50_430",
+   "50_431",
+   "51_429",
+   "51_430",
+   "51_431"
+  ]
+ },
+ "year": 2026,
+ "month": 11,
+ "values": [
+  {
+   "date": "2026-11-01",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-02",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-03",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-04",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-05",
+   "value": 0.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-06",
+   "value": 0.21642158292524982,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MODEL_REDISTRIBUTED",
+   "warnings": [
+    "MODEL_REDISTRIBUTED_DAILY_VALUE",
+    "AQUA_FALLBACK_AFTER_ORBIT_DRIFT"
+   ]
+  },
+  {
+   "date": "2026-11-07",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-08",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-09",
+   "value": 1.979062557220459,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-10",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-11",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-12",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-13",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2026-11-14",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-15",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-16",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-17",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-18",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-19",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-20",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-21",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-22",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-23",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-24",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-25",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-26",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-27",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-28",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-29",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  },
+  {
+   "date": "2026-11-30",
+   "value": null,
+   "valueStatus": "OUTSIDE_DATASET_RANGE",
+   "partial": false,
+   "origin": null,
+   "warnings": []
+  }
+ ],
+ "summary": {
+  "totalValue": 3.1850154187559383,
+  "valueStatus": "AVAILABLE",
+  "coverage": {
+   "requestedStartDate": "2026-11-01",
+   "requestedEndDate": "2026-11-30",
+   "coveredStartDate": "2026-11-01",
+   "coveredEndDate": "2026-11-13",
+   "expectedDayCount": 30,
+   "coveredDayCount": 13,
+   "uncoveredDayCount": 17,
+   "partial": true
+  },
+  "peakDate": {
+   "date": "2026-11-09",
+   "value": 1.979062557220459
+  }
+ },
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": [
+   "PARTIAL_PERIOD",
+   "AQUA_FALLBACK_AFTER_ORBIT_DRIFT"
+  ]
+ }
+}

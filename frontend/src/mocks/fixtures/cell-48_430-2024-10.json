@@ -1,0 +1,58 @@
+{
+ "cell": {
+  "type": "cell",
+  "id": "48_430",
+  "diagnosticRegion": "TayNguyen",
+  "center": {
+   "lat": 12.125,
+   "lon": 107.625
+  },
+  "bounds": {
+   "west": 107.5,
+   "south": 12.0,
+   "east": 107.75,
+   "north": 12.25
+  }
+ },
+ "temporalSelector": {
+  "type": "MONTH",
+  "year": 2024,
+  "month": 10,
+  "startDate": "2024-10-01",
+  "endDate": "2024-10-31",
+  "coverage": {
+   "requestedStartDate": "2024-10-01",
+   "requestedEndDate": "2024-10-31",
+   "coveredStartDate": "2024-10-01",
+   "coveredEndDate": "2024-10-31",
+   "expectedDayCount": 31,
+   "coveredDayCount": 31,
+   "uncoveredDayCount": 0,
+   "partial": false
+  }
+ },
+ "value": 0.0,
+ "valueStatus": "AVAILABLE",
+ "origin": "DIRECT_OBSERVATION",
+ "sourceComposition": [
+  {
+   "sourceCode": 3,
+   "source": "SNPP",
+   "origin": "DIRECT_OBSERVATION",
+   "cellCount": 1,
+   "contributingCellDayCount": 31,
+   "harmonizedValue": 0.0,
+   "inputObservationCount": 0,
+   "sourceInputValidCellCount": 31
+  }
+ ],
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}

@@ -1,0 +1,373 @@
+{
+ "selection": {
+  "type": "BOUNDING_BOX",
+  "selectionRule": "CENTER_INCLUSIVE",
+  "requestedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "selectedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "cellCount": 13,
+  "cellIds": [
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "50_430",
+   "50_431",
+   "51_429",
+   "51_430",
+   "51_431"
+  ]
+ },
+ "year": 2024,
+ "granularity": "month",
+ "values": [
+  {
+   "period": 1,
+   "startDate": "2024-01-01",
+   "endDate": "2024-01-31",
+   "value": 494.79062485694885,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED",
+   "coverage": {
+    "requestedStartDate": "2024-01-01",
+    "requestedEndDate": "2024-01-31",
+    "coveredStartDate": "2024-01-01",
+    "coveredEndDate": "2024-01-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 2,
+   "startDate": "2024-02-01",
+   "endDate": "2024-02-29",
+   "value": 893.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-02-01",
+    "requestedEndDate": "2024-02-29",
+    "coveredStartDate": "2024-02-01",
+    "coveredEndDate": "2024-02-29",
+    "expectedDayCount": 29,
+    "coveredDayCount": 29,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 3,
+   "startDate": "2024-03-01",
+   "endDate": "2024-03-31",
+   "value": 450.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-03-01",
+    "requestedEndDate": "2024-03-31",
+    "coveredStartDate": "2024-03-01",
+    "coveredEndDate": "2024-03-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 4,
+   "startDate": "2024-04-01",
+   "endDate": "2024-04-30",
+   "value": 266.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-04-01",
+    "requestedEndDate": "2024-04-30",
+    "coveredStartDate": "2024-04-01",
+    "coveredEndDate": "2024-04-30",
+    "expectedDayCount": 30,
+    "coveredDayCount": 30,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 5,
+   "startDate": "2024-05-01",
+   "endDate": "2024-05-31",
+   "value": 31.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-05-01",
+    "requestedEndDate": "2024-05-31",
+    "coveredStartDate": "2024-05-01",
+    "coveredEndDate": "2024-05-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 6,
+   "startDate": "2024-06-01",
+   "endDate": "2024-06-30",
+   "value": 19.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-06-01",
+    "requestedEndDate": "2024-06-30",
+    "coveredStartDate": "2024-06-01",
+    "coveredEndDate": "2024-06-30",
+    "expectedDayCount": 30,
+    "coveredDayCount": 30,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 7,
+   "startDate": "2024-07-01",
+   "endDate": "2024-07-31",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-07-01",
+    "requestedEndDate": "2024-07-31",
+    "coveredStartDate": "2024-07-01",
+    "coveredEndDate": "2024-07-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 8,
+   "startDate": "2024-08-01",
+   "endDate": "2024-08-31",
+   "value": 14.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-08-01",
+    "requestedEndDate": "2024-08-31",
+    "coveredStartDate": "2024-08-01",
+    "coveredEndDate": "2024-08-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 9,
+   "startDate": "2024-09-01",
+   "endDate": "2024-09-30",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-09-01",
+    "requestedEndDate": "2024-09-30",
+    "coveredStartDate": "2024-09-01",
+    "coveredEndDate": "2024-09-30",
+    "expectedDayCount": 30,
+    "coveredDayCount": 30,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 10,
+   "startDate": "2024-10-01",
+   "endDate": "2024-10-31",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-10-01",
+    "requestedEndDate": "2024-10-31",
+    "coveredStartDate": "2024-10-01",
+    "coveredEndDate": "2024-10-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 11,
+   "startDate": "2024-11-01",
+   "endDate": "2024-11-30",
+   "value": 6.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED",
+   "coverage": {
+    "requestedStartDate": "2024-11-01",
+    "requestedEndDate": "2024-11-30",
+    "coveredStartDate": "2024-11-01",
+    "coveredEndDate": "2024-11-30",
+    "expectedDayCount": 30,
+    "coveredDayCount": 30,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  },
+  {
+   "period": 12,
+   "startDate": "2024-12-01",
+   "endDate": "2024-12-31",
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "coverage": {
+    "requestedStartDate": "2024-12-01",
+    "requestedEndDate": "2024-12-31",
+    "coveredStartDate": "2024-12-01",
+    "coveredEndDate": "2024-12-31",
+    "expectedDayCount": 31,
+    "coveredDayCount": 31,
+    "uncoveredDayCount": 0,
+    "partial": false
+   }
+  }
+ ],
+ "summary": {
+  "totalValue": 2182.780156135559,
+  "valueStatus": "AVAILABLE",
+  "coverage": {
+   "requestedStartDate": "2024-01-01",
+   "requestedEndDate": "2024-12-31",
+   "coveredStartDate": "2024-01-01",
+   "coveredEndDate": "2024-12-31",
+   "expectedDayCount": 366,
+   "coveredDayCount": 366,
+   "uncoveredDayCount": 0,
+   "partial": false
+  },
+  "peakPeriod": {
+   "period": 2,
+   "value": 893.0
+  }
+ },
+ "baseline": {
+  "method": "median",
+  "referenceStartYear": 2003,
+  "referenceEndYear": 2025,
+  "excludesTargetYear": true,
+  "values": [
+   {
+    "period": 1,
+    "value": 713.0,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 2,
+    "value": 1492.7898745766142,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 3,
+    "value": 1206.0780388439307,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 4,
+    "value": 374.0,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 5,
+    "value": 55.477302144048735,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 6,
+    "value": 6.403898992102768,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 7,
+    "value": 1.7525172385685437,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 8,
+    "value": 1.176551618555095,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 9,
+    "value": 1.0616106877132552,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 10,
+    "value": 2.6749146376168937,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 11,
+    "value": 5.5,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   },
+   {
+    "period": 12,
+    "value": 40.06370539800628,
+    "sampleSize": 22,
+    "valueStatus": "AVAILABLE"
+   }
+  ]
+ },
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}

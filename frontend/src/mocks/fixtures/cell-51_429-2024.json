@@ -1,0 +1,67 @@
+{
+ "cell": {
+  "type": "cell",
+  "id": "51_429",
+  "diagnosticRegion": "TayNguyen",
+  "center": {
+   "lat": 12.875,
+   "lon": 107.375
+  },
+  "bounds": {
+   "west": 107.25,
+   "south": 12.75,
+   "east": 107.5,
+   "north": 13.0
+  }
+ },
+ "temporalSelector": {
+  "type": "YEAR",
+  "year": 2024,
+  "startDate": "2024-01-01",
+  "endDate": "2024-12-31",
+  "coverage": {
+   "requestedStartDate": "2024-01-01",
+   "requestedEndDate": "2024-12-31",
+   "coveredStartDate": "2024-01-01",
+   "coveredEndDate": "2024-12-31",
+   "expectedDayCount": 366,
+   "coveredDayCount": 366,
+   "uncoveredDayCount": 0,
+   "partial": false
+  }
+ },
+ "value": 54.989531,
+ "valueStatus": "AVAILABLE",
+ "origin": "MIXED",
+ "sourceComposition": [
+  {
+   "sourceCode": 3,
+   "source": "SNPP",
+   "origin": "DIRECT_OBSERVATION",
+   "cellCount": 1,
+   "contributingCellDayCount": 345,
+   "harmonizedValue": 54.0,
+   "inputObservationCount": 54,
+   "sourceInputValidCellCount": 345
+  },
+  {
+   "sourceCode": 4,
+   "source": "NOAA20",
+   "origin": "SCALED_OBSERVATION",
+   "cellCount": 1,
+   "contributingCellDayCount": 21,
+   "harmonizedValue": 0.989531,
+   "inputObservationCount": 1,
+   "sourceInputValidCellCount": 21
+  }
+ ],
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}

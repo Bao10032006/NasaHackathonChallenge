@@ -1,0 +1,10629 @@
+{
+ "selection": {
+  "type": "NAMED_AREA",
+  "selectionRule": "NAMED_AREA_MEMBERSHIP",
+  "area": {
+   "type": "national",
+   "id": "ToanQuoc"
+  },
+  "selectedBounds": {
+   "west": 102.0,
+   "south": 8.5,
+   "east": 109.5,
+   "north": 23.5
+  },
+  "cellCount": 587,
+  "cellIds": [
+   "34_419",
+   "34_420",
+   "34_426",
+   "35_419",
+   "35_420",
+   "35_421",
+   "36_419",
+   "36_420",
+   "36_421",
+   "36_422",
+   "36_423",
+   "37_419",
+   "37_420",
+   "37_421",
+   "37_422",
+   "37_423",
+   "37_424",
+   "38_419",
+   "38_420",
+   "38_421",
+   "38_422",
+   "38_423",
+   "38_424",
+   "38_425",
+   "38_426",
+   "39_419",
+   "39_420",
+   "39_421",
+   "39_422",
+   "39_423",
+   "39_424",
+   "39_425",
+   "39_426",
+   "40_415",
+   "40_416",
+   "40_418",
+   "40_419",
+   "40_420",
+   "40_421",
+   "40_422",
+   "40_423",
+   "40_424",
+   "40_425",
+   "40_426",
+   "40_427",
+   "41_415",
+   "41_416",
+   "41_417",
+   "41_418",
+   "41_419",
+   "41_420",
+   "41_421",
+   "41_422",
+   "41_423",
+   "41_424",
+   "41_425",
+   "41_426",
+   "41_427",
+   "41_428",
+   "41_429",
+   "42_418",
+   "42_419",
+   "42_420",
+   "42_421",
+   "42_422",
+   "42_423",
+   "42_424",
+   "42_425",
+   "42_426",
+   "42_427",
+   "42_428",
+   "42_429",
+   "42_430",
+   "42_431",
+   "42_432",
+   "42_435",
+   "43_420",
+   "43_421",
+   "43_422",
+   "43_423",
+   "43_424",
+   "43_425",
+   "43_426",
+   "43_427",
+   "43_428",
+   "43_429",
+   "43_430",
+   "43_431",
+   "43_432",
+   "43_433",
+   "44_422",
+   "44_423",
+   "44_424",
+   "44_425",
+   "44_426",
+   "44_427",
+   "44_428",
+   "44_429",
+   "44_430",
+   "44_431",
+   "44_432",
+   "44_433",
+   "44_434",
+   "45_423",
+   "45_424",
+   "45_425",
+   "45_426",
+   "45_427",
+   "45_428",
+   "45_429",
+   "45_430",
+   "45_431",
+   "45_432",
+   "45_433",
+   "45_434",
+   "45_435",
+   "46_423",
+   "46_424",
+   "46_425",
+   "46_426",
+   "46_427",
+   "46_428",
+   "46_429",
+   "46_430",
+   "46_431",
+   "46_432",
+   "46_433",
+   "46_434",
+   "46_435",
+   "46_436",
+   "47_424",
+   "47_425",
+   "47_426",
+   "47_427",
+   "47_428",
+   "47_429",
+   "47_430",
+   "47_431",
+   "47_432",
+   "47_433",
+   "47_434",
+   "47_435",
+   "47_436",
+   "47_437",
+   "48_426",
+   "48_427",
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "48_432",
+   "48_433",
+   "48_434",
+   "48_435",
+   "48_436",
+   "48_437",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "49_432",
+   "49_433",
+   "49_434",
+   "49_435",
+   "49_436",
+   "49_437",
+   "50_430",
+   "50_431",
+   "50_432",
+   "50_433",
+   "50_434",
+   "50_435",
+   "50_436",
+   "50_437",
+   "51_429",
+   "51_430",
+   "51_431",
+   "51_432",
+   "51_433",
+   "51_434",
+   "51_435",
+   "51_436",
+   "51_437",
+   "52_429",
+   "52_430",
+   "52_431",
+   "52_432",
+   "52_433",
+   "52_434",
+   "52_435",
+   "52_436",
+   "52_437",
+   "53_430",
+   "53_431",
+   "53_432",
+   "53_433",
+   "53_434",
+   "53_435",
+   "53_436",
+   "53_437",
+   "54_429",
+   "54_430",
+   "54_431",
+   "54_432",
+   "54_433",
+   "54_434",
+   "54_435",
+   "54_436",
+   "54_437",
+   "55_429",
+   "55_430",
+   "55_431",
+   "55_432",
+   "55_433",
+   "55_434",
+   "55_435",
+   "55_436",
+   "55_437",
+   "56_429",
+   "56_430",
+   "56_431",
+   "56_432",
+   "56_433",
+   "56_434",
+   "56_435",
+   "56_436",
+   "57_429",
+   "57_430",
+   "57_431",
+   "57_432",
+   "57_433",
+   "57_434",
+   "57_435",
+   "57_436",
+   "58_429",
+   "58_430",
+   "58_431",
+   "58_432",
+   "58_433",
+   "58_434",
+   "58_435",
+   "58_436",
+   "59_429",
+   "59_430",
+   "59_431",
+   "59_432",
+   "59_433",
+   "59_434",
+   "59_435",
+   "59_436",
+   "60_429",
+   "60_430",
+   "60_431",
+   "60_432",
+   "60_433",
+   "60_434",
+   "60_435",
+   "61_429",
+   "61_430",
+   "61_431",
+   "61_432",
+   "61_433",
+   "61_434",
+   "61_435",
+   "62_428",
+   "62_429",
+   "62_430",
+   "62_431",
+   "62_432",
+   "62_433",
+   "62_434",
+   "63_428",
+   "63_429",
+   "63_430",
+   "63_431",
+   "63_432",
+   "63_433",
+   "64_428",
+   "64_429",
+   "64_430",
+   "64_431",
+   "64_432",
+   "64_433",
+   "65_426",
+   "65_427",
+   "65_428",
+   "65_429",
+   "65_430",
+   "65_431",
+   "65_432",
+   "66_426",
+   "66_427",
+   "66_428",
+   "66_429",
+   "66_430",
+   "67_425",
+   "67_426",
+   "67_427",
+   "67_428",
+   "67_429",
+   "68_424",
+   "68_425",
+   "68_426",
+   "68_427",
+   "68_428",
+   "69_424",
+   "69_425",
+   "69_426",
+   "69_427",
+   "70_422",
+   "70_423",
+   "70_424",
+   "70_425",
+   "70_426",
+   "71_422",
+   "71_423",
+   "71_424",
+   "71_425",
+   "71_426",
+   "72_422",
+   "72_423",
+   "72_424",
+   "72_425",
+   "73_420",
+   "73_421",
+   "73_422",
+   "73_423",
+   "73_424",
+   "74_419",
+   "74_420",
+   "74_421",
+   "74_422",
+   "74_423",
+   "75_418",
+   "75_419",
+   "75_420",
+   "75_421",
+   "75_422",
+   "76_415",
+   "76_416",
+   "76_417",
+   "76_418",
+   "76_419",
+   "76_420",
+   "76_421",
+   "76_422",
+   "76_423",
+   "77_415",
+   "77_416",
+   "77_417",
+   "77_418",
+   "77_419",
+   "77_420",
+   "77_421",
+   "77_422",
+   "77_423",
+   "78_415",
+   "78_416",
+   "78_417",
+   "78_418",
+   "78_419",
+   "78_420",
+   "78_421",
+   "78_422",
+   "78_423",
+   "79_418",
+   "79_419",
+   "79_420",
+   "79_421",
+   "79_422",
+   "79_423",
+   "79_424",
+   "80_418",
+   "80_419",
+   "80_420",
+   "80_421",
+   "80_422",
+   "80_423",
+   "80_424",
+   "80_425",
+   "81_417",
+   "81_418",
+   "81_419",
+   "81_420",
+   "81_421",
+   "81_422",
+   "81_423",
+   "81_424",
+   "81_425",
+   "81_426",
+   "82_413",
+   "82_414",
+   "82_415",
+   "82_417",
+   "82_418",
+   "82_419",
+   "82_420",
+   "82_421",
+   "82_422",
+   "82_423",
+   "82_424",
+   "82_425",
+   "82_426",
+   "82_427",
+   "82_428",
+   "83_412",
+   "83_413",
+   "83_414",
+   "83_415",
+   "83_416",
+   "83_417",
+   "83_418",
+   "83_419",
+   "83_420",
+   "83_421",
+   "83_422",
+   "83_423",
+   "83_424",
+   "83_425",
+   "83_426",
+   "83_427",
+   "83_428",
+   "83_429",
+   "83_430",
+   "84_411",
+   "84_412",
+   "84_413",
+   "84_414",
+   "84_415",
+   "84_416",
+   "84_417",
+   "84_418",
+   "84_419",
+   "84_420",
+   "84_421",
+   "84_422",
+   "84_423",
+   "84_424",
+   "84_425",
+   "84_426",
+   "84_427",
+   "84_428",
+   "84_429",
+   "84_430",
+   "84_431",
+   "85_411",
+   "85_412",
+   "85_413",
+   "85_414",
+   "85_415",
+   "85_416",
+   "85_417",
+   "85_418",
+   "85_419",
+   "85_420",
+   "85_421",
+   "85_422",
+   "85_423",
+   "85_424",
+   "85_425",
+   "85_426",
+   "85_427",
+   "85_428",
+   "85_429",
+   "85_430",
+   "85_431",
+   "86_410",
+   "86_411",
+   "86_412",
+   "86_413",
+   "86_414",
+   "86_415",
+   "86_416",
+   "86_417",
+   "86_418",
+   "86_419",
+   "86_420",
+   "86_421",
+   "86_422",
+   "86_423",
+   "86_424",
+   "86_425",
+   "86_426",
+   "86_427",
+   "86_428",
+   "86_429",
+   "86_430",
+   "86_431",
+   "87_409",
+   "87_410",
+   "87_411",
+   "87_412",
+   "87_413",
+   "87_414",
+   "87_415",
+   "87_416",
+   "87_417",
+   "87_418",
+   "87_419",
+   "87_420",
+   "87_421",
+   "87_422",
+   "87_423",
+   "87_424",
+   "87_425",
+   "87_426",
+   "87_427",
+   "87_428",
+   "88_408",
+   "88_409",
+   "88_410",
+   "88_411",
+   "88_412",
+   "88_413",
+   "88_414",
+   "88_415",
+   "88_416",
+   "88_417",
+   "88_418",
+   "88_419",
+   "88_420",
+   "88_421",
+   "88_422",
+   "88_423",
+   "88_424",
+   "88_425",
+   "88_426",
+   "89_408",
+   "89_409",
+   "89_410",
+   "89_411",
+   "89_412",
+   "89_413",
+   "89_414",
+   "89_415",
+   "89_416",
+   "89_417",
+   "89_418",
+   "89_419",
+   "89_420",
+   "89_421",
+   "89_422",
+   "89_423",
+   "89_424",
+   "89_425",
+   "89_426",
+   "90_409",
+   "90_410",
+   "90_411",
+   "90_412",
+   "90_413",
+   "90_414",
+   "90_415",
+   "90_416",
+   "90_417",
+   "90_418",
+   "90_419",
+   "90_420",
+   "90_421",
+   "90_422",
+   "90_423",
+   "90_424",
+   "90_425",
+   "90_426",
+   "91_409",
+   "91_410",
+   "91_413",
+   "91_414",
+   "91_416",
+   "91_417",
+   "91_418",
+   "91_419",
+   "91_420",
+   "91_421",
+   "91_422",
+   "91_423",
+   "91_424",
+   "91_425",
+   "91_426",
+   "91_427",
+   "92_419",
+   "92_420",
+   "92_421",
+   "92_422",
+   "92_423",
+   "93_420",
+   "93_421"
+  ]
+ },
+ "temporalSelector": {
+  "type": "YEAR",
+  "year": 2024,
+  "startDate": "2024-01-01",
+  "endDate": "2024-12-31",
+  "coverage": {
+   "requestedStartDate": "2024-01-01",
+   "requestedEndDate": "2024-12-31",
+   "coveredStartDate": "2024-01-01",
+   "coveredEndDate": "2024-12-31",
+   "expectedDayCount": 366,
+   "coveredDayCount": 366,
+   "uncoveredDayCount": 0,
+   "partial": false
+  }
+ },
+ "summary": {
+  "totalValue": 51758.876274347305,
+  "valueStatus": "AVAILABLE",
+  "origin": "MIXED",
+  "coverage": {
+   "requestedStartDate": "2024-01-01",
+   "requestedEndDate": "2024-12-31",
+   "coveredStartDate": "2024-01-01",
+   "coveredEndDate": "2024-12-31",
+   "expectedDayCount": 366,
+   "coveredDayCount": 366,
+   "uncoveredDayCount": 0,
+   "partial": false
+  },
+  "minCellValue": 0.0,
+  "maxCellValue": 770.8220310211182
+ },
+ "cells": [
+  {
+   "cellId": "34_419",
+   "center": {
+    "lat": 8.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 8.5,
+    "east": 105.0,
+    "north": 8.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "34_420",
+   "center": {
+    "lat": 8.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 8.5,
+    "east": 105.25,
+    "north": 8.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "34_426",
+   "center": {
+    "lat": 8.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 8.5,
+    "east": 106.75,
+    "north": 8.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "35_419",
+   "center": {
+    "lat": 8.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 8.75,
+    "east": 105.0,
+    "north": 9.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "35_420",
+   "center": {
+    "lat": 8.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 8.75,
+    "east": 105.25,
+    "north": 9.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "35_421",
+   "center": {
+    "lat": 8.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 8.75,
+    "east": 105.5,
+    "north": 9.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "36_419",
+   "center": {
+    "lat": 9.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 9.0,
+    "east": 105.0,
+    "north": 9.25
+   },
+   "value": 77.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "36_420",
+   "center": {
+    "lat": 9.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 9.0,
+    "east": 105.25,
+    "north": 9.25
+   },
+   "value": 32.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "36_421",
+   "center": {
+    "lat": 9.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 9.0,
+    "east": 105.5,
+    "north": 9.25
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "36_422",
+   "center": {
+    "lat": 9.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 9.0,
+    "east": 105.75,
+    "north": 9.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "36_423",
+   "center": {
+    "lat": 9.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 9.0,
+    "east": 106.0,
+    "north": 9.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "37_419",
+   "center": {
+    "lat": 9.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 9.25,
+    "east": 105.0,
+    "north": 9.5
+   },
+   "value": 19.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "37_420",
+   "center": {
+    "lat": 9.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 9.25,
+    "east": 105.25,
+    "north": 9.5
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "37_421",
+   "center": {
+    "lat": 9.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 9.25,
+    "east": 105.5,
+    "north": 9.5
+   },
+   "value": 96.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "37_422",
+   "center": {
+    "lat": 9.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 9.25,
+    "east": 105.75,
+    "north": 9.5
+   },
+   "value": 316.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "37_423",
+   "center": {
+    "lat": 9.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 9.25,
+    "east": 106.0,
+    "north": 9.5
+   },
+   "value": 81.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "37_424",
+   "center": {
+    "lat": 9.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 9.25,
+    "east": 106.25,
+    "north": 9.5
+   },
+   "value": 18.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_419",
+   "center": {
+    "lat": 9.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 9.5,
+    "east": 105.0,
+    "north": 9.75
+   },
+   "value": 4.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_420",
+   "center": {
+    "lat": 9.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 9.5,
+    "east": 105.25,
+    "north": 9.75
+   },
+   "value": 50.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "38_421",
+   "center": {
+    "lat": 9.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 9.5,
+    "east": 105.5,
+    "north": 9.75
+   },
+   "value": 149.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_422",
+   "center": {
+    "lat": 9.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 9.5,
+    "east": 105.75,
+    "north": 9.75
+   },
+   "value": 415.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_423",
+   "center": {
+    "lat": 9.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 9.5,
+    "east": 106.0,
+    "north": 9.75
+   },
+   "value": 149.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_424",
+   "center": {
+    "lat": 9.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 9.5,
+    "east": 106.25,
+    "north": 9.75
+   },
+   "value": 73.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_425",
+   "center": {
+    "lat": 9.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 9.5,
+    "east": 106.5,
+    "north": 9.75
+   },
+   "value": 19.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "38_426",
+   "center": {
+    "lat": 9.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 9.5,
+    "east": 106.75,
+    "north": 9.75
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_419",
+   "center": {
+    "lat": 9.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 9.75,
+    "east": 105.0,
+    "north": 10.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_420",
+   "center": {
+    "lat": 9.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 9.75,
+    "east": 105.25,
+    "north": 10.0
+   },
+   "value": 109.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "39_421",
+   "center": {
+    "lat": 9.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 9.75,
+    "east": 105.5,
+    "north": 10.0
+   },
+   "value": 485.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_422",
+   "center": {
+    "lat": 9.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 9.75,
+    "east": 105.75,
+    "north": 10.0
+   },
+   "value": 249.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_423",
+   "center": {
+    "lat": 9.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 9.75,
+    "east": 106.0,
+    "north": 10.0
+   },
+   "value": 53.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_424",
+   "center": {
+    "lat": 9.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 9.75,
+    "east": 106.25,
+    "north": 10.0
+   },
+   "value": 21.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_425",
+   "center": {
+    "lat": 9.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 9.75,
+    "east": 106.5,
+    "north": 10.0
+   },
+   "value": 16.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "39_426",
+   "center": {
+    "lat": 9.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 9.75,
+    "east": 106.75,
+    "north": 10.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_415",
+   "center": {
+    "lat": 10.125,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 10.0,
+    "east": 104.0,
+    "north": 10.25
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_416",
+   "center": {
+    "lat": 10.125,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 10.0,
+    "east": 104.25,
+    "north": 10.25
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_418",
+   "center": {
+    "lat": 10.125,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 10.0,
+    "east": 104.75,
+    "north": 10.25
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_419",
+   "center": {
+    "lat": 10.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 10.0,
+    "east": 105.0,
+    "north": 10.25
+   },
+   "value": 285.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_420",
+   "center": {
+    "lat": 10.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 10.0,
+    "east": 105.25,
+    "north": 10.25
+   },
+   "value": 630.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "40_421",
+   "center": {
+    "lat": 10.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 10.0,
+    "east": 105.5,
+    "north": 10.25
+   },
+   "value": 548.884843826294,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "40_422",
+   "center": {
+    "lat": 10.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 10.0,
+    "east": 105.75,
+    "north": 10.25
+   },
+   "value": 106.94765663146973,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "40_423",
+   "center": {
+    "lat": 10.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 10.0,
+    "east": 106.0,
+    "north": 10.25
+   },
+   "value": 93.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_424",
+   "center": {
+    "lat": 10.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 10.0,
+    "east": 106.25,
+    "north": 10.25
+   },
+   "value": 14.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_425",
+   "center": {
+    "lat": 10.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 10.0,
+    "east": 106.5,
+    "north": 10.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_426",
+   "center": {
+    "lat": 10.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 10.0,
+    "east": 106.75,
+    "north": 10.25
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "40_427",
+   "center": {
+    "lat": 10.125,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 10.0,
+    "east": 107.0,
+    "north": 10.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_415",
+   "center": {
+    "lat": 10.375,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 10.25,
+    "east": 104.0,
+    "north": 10.5
+   },
+   "value": 37.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_416",
+   "center": {
+    "lat": 10.375,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 10.25,
+    "east": 104.25,
+    "north": 10.5
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_417",
+   "center": {
+    "lat": 10.375,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 10.25,
+    "east": 104.5,
+    "north": 10.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_418",
+   "center": {
+    "lat": 10.375,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 10.25,
+    "east": 104.75,
+    "north": 10.5
+   },
+   "value": 352.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "41_419",
+   "center": {
+    "lat": 10.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 10.25,
+    "east": 105.0,
+    "north": 10.5
+   },
+   "value": 544.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "41_420",
+   "center": {
+    "lat": 10.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 10.25,
+    "east": 105.25,
+    "north": 10.5
+   },
+   "value": 594.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_421",
+   "center": {
+    "lat": 10.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 10.25,
+    "east": 105.5,
+    "north": 10.5
+   },
+   "value": 424.9581251144409,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "41_422",
+   "center": {
+    "lat": 10.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 10.25,
+    "east": 105.75,
+    "north": 10.5
+   },
+   "value": 113.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "41_423",
+   "center": {
+    "lat": 10.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 10.25,
+    "east": 106.0,
+    "north": 10.5
+   },
+   "value": 116.87437510490417,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "41_424",
+   "center": {
+    "lat": 10.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 10.25,
+    "east": 106.25,
+    "north": 10.5
+   },
+   "value": 66.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_425",
+   "center": {
+    "lat": 10.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 10.25,
+    "east": 106.5,
+    "north": 10.5
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_426",
+   "center": {
+    "lat": 10.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 10.25,
+    "east": 106.75,
+    "north": 10.5
+   },
+   "value": 19.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_427",
+   "center": {
+    "lat": 10.375,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 10.25,
+    "east": 107.0,
+    "north": 10.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_428",
+   "center": {
+    "lat": 10.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 10.25,
+    "east": 107.25,
+    "north": 10.5
+   },
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "41_429",
+   "center": {
+    "lat": 10.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 10.25,
+    "east": 107.5,
+    "north": 10.5
+   },
+   "value": 13.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_418",
+   "center": {
+    "lat": 10.625,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 10.5,
+    "east": 104.75,
+    "north": 10.75
+   },
+   "value": 35.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "42_419",
+   "center": {
+    "lat": 10.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 10.5,
+    "east": 105.0,
+    "north": 10.75
+   },
+   "value": 67.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "42_420",
+   "center": {
+    "lat": 10.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 10.5,
+    "east": 105.25,
+    "north": 10.75
+   },
+   "value": 475.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_421",
+   "center": {
+    "lat": 10.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 10.5,
+    "east": 105.5,
+    "north": 10.75
+   },
+   "value": 433.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_422",
+   "center": {
+    "lat": 10.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 10.5,
+    "east": 105.75,
+    "north": 10.75
+   },
+   "value": 665.9371876716614,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_423",
+   "center": {
+    "lat": 10.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 10.5,
+    "east": 106.0,
+    "north": 10.75
+   },
+   "value": 490.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_424",
+   "center": {
+    "lat": 10.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 10.5,
+    "east": 106.25,
+    "north": 10.75
+   },
+   "value": 294.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_425",
+   "center": {
+    "lat": 10.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 10.5,
+    "east": 106.5,
+    "north": 10.75
+   },
+   "value": 146.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_426",
+   "center": {
+    "lat": 10.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 10.5,
+    "east": 106.75,
+    "north": 10.75
+   },
+   "value": 65.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "42_427",
+   "center": {
+    "lat": 10.625,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 10.5,
+    "east": 107.0,
+    "north": 10.75
+   },
+   "value": 61.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_428",
+   "center": {
+    "lat": 10.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 10.5,
+    "east": 107.25,
+    "north": 10.75
+   },
+   "value": 68.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "42_429",
+   "center": {
+    "lat": 10.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 10.5,
+    "east": 107.5,
+    "north": 10.75
+   },
+   "value": 83.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_430",
+   "center": {
+    "lat": 10.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 10.5,
+    "east": 107.75,
+    "north": 10.75
+   },
+   "value": 190.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_431",
+   "center": {
+    "lat": 10.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 10.5,
+    "east": 108.0,
+    "north": 10.75
+   },
+   "value": 26.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "42_432",
+   "center": {
+    "lat": 10.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 10.5,
+    "east": 108.25,
+    "north": 10.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "42_435",
+   "center": {
+    "lat": 10.625,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 10.5,
+    "east": 109.0,
+    "north": 10.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_420",
+   "center": {
+    "lat": 10.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 10.75,
+    "east": 105.25,
+    "north": 11.0
+   },
+   "value": 261.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_421",
+   "center": {
+    "lat": 10.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 10.75,
+    "east": 105.5,
+    "north": 11.0
+   },
+   "value": 233.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_422",
+   "center": {
+    "lat": 10.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 10.75,
+    "east": 105.75,
+    "north": 11.0
+   },
+   "value": 565.9895312786102,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_423",
+   "center": {
+    "lat": 10.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 10.75,
+    "east": 106.0,
+    "north": 11.0
+   },
+   "value": 327.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_424",
+   "center": {
+    "lat": 10.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 10.75,
+    "east": 106.25,
+    "north": 11.0
+   },
+   "value": 134.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_425",
+   "center": {
+    "lat": 10.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 10.75,
+    "east": 106.5,
+    "north": 11.0
+   },
+   "value": 134.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_426",
+   "center": {
+    "lat": 10.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 10.75,
+    "east": 106.75,
+    "north": 11.0
+   },
+   "value": 34.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_427",
+   "center": {
+    "lat": 10.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 10.75,
+    "east": 107.0,
+    "north": 11.0
+   },
+   "value": 44.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_428",
+   "center": {
+    "lat": 10.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 10.75,
+    "east": 107.25,
+    "north": 11.0
+   },
+   "value": 47.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "43_429",
+   "center": {
+    "lat": 10.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 10.75,
+    "east": 107.5,
+    "north": 11.0
+   },
+   "value": 88.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_430",
+   "center": {
+    "lat": 10.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 10.75,
+    "east": 107.75,
+    "north": 11.0
+   },
+   "value": 225.90578174591064,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_431",
+   "center": {
+    "lat": 10.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 10.75,
+    "east": 108.0,
+    "north": 11.0
+   },
+   "value": 280.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_432",
+   "center": {
+    "lat": 10.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 10.75,
+    "east": 108.25,
+    "north": 11.0
+   },
+   "value": 54.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "43_433",
+   "center": {
+    "lat": 10.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 10.75,
+    "east": 108.5,
+    "north": 11.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_422",
+   "center": {
+    "lat": 11.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 11.0,
+    "east": 105.75,
+    "north": 11.25
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_423",
+   "center": {
+    "lat": 11.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 11.0,
+    "east": 106.0,
+    "north": 11.25
+   },
+   "value": 24.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_424",
+   "center": {
+    "lat": 11.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 11.0,
+    "east": 106.25,
+    "north": 11.25
+   },
+   "value": 152.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_425",
+   "center": {
+    "lat": 11.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 11.0,
+    "east": 106.5,
+    "north": 11.25
+   },
+   "value": 63.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_426",
+   "center": {
+    "lat": 11.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 11.0,
+    "east": 106.75,
+    "north": 11.25
+   },
+   "value": 50.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "44_427",
+   "center": {
+    "lat": 11.125,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 11.0,
+    "east": 107.0,
+    "north": 11.25
+   },
+   "value": 37.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "44_428",
+   "center": {
+    "lat": 11.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 11.0,
+    "east": 107.25,
+    "north": 11.25
+   },
+   "value": 14.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "44_429",
+   "center": {
+    "lat": 11.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 11.0,
+    "east": 107.5,
+    "north": 11.25
+   },
+   "value": 73.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "44_430",
+   "center": {
+    "lat": 11.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 11.0,
+    "east": 107.75,
+    "north": 11.25
+   },
+   "value": 58.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_431",
+   "center": {
+    "lat": 11.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 11.0,
+    "east": 108.0,
+    "north": 11.25
+   },
+   "value": 59.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_432",
+   "center": {
+    "lat": 11.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 11.0,
+    "east": 108.25,
+    "north": 11.25
+   },
+   "value": 168.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_433",
+   "center": {
+    "lat": 11.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 11.0,
+    "east": 108.5,
+    "north": 11.25
+   },
+   "value": 81.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "44_434",
+   "center": {
+    "lat": 11.125,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 11.0,
+    "east": 108.75,
+    "north": 11.25
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_423",
+   "center": {
+    "lat": 11.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 11.25,
+    "east": 106.0,
+    "north": 11.5
+   },
+   "value": 89.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_424",
+   "center": {
+    "lat": 11.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 11.25,
+    "east": 106.25,
+    "north": 11.5
+   },
+   "value": 64.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_425",
+   "center": {
+    "lat": 11.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 11.25,
+    "east": 106.5,
+    "north": 11.5
+   },
+   "value": 38.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_426",
+   "center": {
+    "lat": 11.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 11.25,
+    "east": 106.75,
+    "north": 11.5
+   },
+   "value": 68.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "45_427",
+   "center": {
+    "lat": 11.375,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 11.25,
+    "east": 107.0,
+    "north": 11.5
+   },
+   "value": 56.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_428",
+   "center": {
+    "lat": 11.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 11.25,
+    "east": 107.25,
+    "north": 11.5
+   },
+   "value": 18.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_429",
+   "center": {
+    "lat": 11.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 11.25,
+    "east": 107.5,
+    "north": 11.5
+   },
+   "value": 52.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_430",
+   "center": {
+    "lat": 11.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 11.25,
+    "east": 107.75,
+    "north": 11.5
+   },
+   "value": 15.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "45_431",
+   "center": {
+    "lat": 11.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 11.25,
+    "east": 108.0,
+    "north": 11.5
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_432",
+   "center": {
+    "lat": 11.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 11.25,
+    "east": 108.25,
+    "north": 11.5
+   },
+   "value": 77.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_433",
+   "center": {
+    "lat": 11.375,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 11.25,
+    "east": 108.5,
+    "north": 11.5
+   },
+   "value": 252.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "45_434",
+   "center": {
+    "lat": 11.375,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 11.25,
+    "east": 108.75,
+    "north": 11.5
+   },
+   "value": 175.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "45_435",
+   "center": {
+    "lat": 11.375,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 11.25,
+    "east": 109.0,
+    "north": 11.5
+   },
+   "value": 67.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_423",
+   "center": {
+    "lat": 11.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 11.5,
+    "east": 106.0,
+    "north": 11.75
+   },
+   "value": 21.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_424",
+   "center": {
+    "lat": 11.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 11.5,
+    "east": 106.25,
+    "north": 11.75
+   },
+   "value": 72.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "46_425",
+   "center": {
+    "lat": 11.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 11.5,
+    "east": 106.5,
+    "north": 11.75
+   },
+   "value": 54.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_426",
+   "center": {
+    "lat": 11.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 11.5,
+    "east": 106.75,
+    "north": 11.75
+   },
+   "value": 52.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "46_427",
+   "center": {
+    "lat": 11.625,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 11.5,
+    "east": 107.0,
+    "north": 11.75
+   },
+   "value": 42.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_428",
+   "center": {
+    "lat": 11.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 11.5,
+    "east": 107.25,
+    "north": 11.75
+   },
+   "value": 49.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_429",
+   "center": {
+    "lat": 11.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 11.5,
+    "east": 107.5,
+    "north": 11.75
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_430",
+   "center": {
+    "lat": 11.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 11.5,
+    "east": 107.75,
+    "north": 11.75
+   },
+   "value": 33.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_431",
+   "center": {
+    "lat": 11.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 11.5,
+    "east": 108.0,
+    "north": 11.75
+   },
+   "value": 42.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_432",
+   "center": {
+    "lat": 11.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 11.5,
+    "east": 108.25,
+    "north": 11.75
+   },
+   "value": 45.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_433",
+   "center": {
+    "lat": 11.625,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 11.5,
+    "east": 108.5,
+    "north": 11.75
+   },
+   "value": 79.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_434",
+   "center": {
+    "lat": 11.625,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 11.5,
+    "east": 108.75,
+    "north": 11.75
+   },
+   "value": 199.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_435",
+   "center": {
+    "lat": 11.625,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 11.5,
+    "east": 109.0,
+    "north": 11.75
+   },
+   "value": 89.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "46_436",
+   "center": {
+    "lat": 11.625,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 11.5,
+    "east": 109.25,
+    "north": 11.75
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_424",
+   "center": {
+    "lat": 11.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 11.75,
+    "east": 106.25,
+    "north": 12.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_425",
+   "center": {
+    "lat": 11.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 11.75,
+    "east": 106.5,
+    "north": 12.0
+   },
+   "value": 48.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "47_426",
+   "center": {
+    "lat": 11.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 11.75,
+    "east": 106.75,
+    "north": 12.0
+   },
+   "value": 39.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_427",
+   "center": {
+    "lat": 11.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 11.75,
+    "east": 107.0,
+    "north": 12.0
+   },
+   "value": 48.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_428",
+   "center": {
+    "lat": 11.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 11.75,
+    "east": 107.25,
+    "north": 12.0
+   },
+   "value": 47.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_429",
+   "center": {
+    "lat": 11.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 11.75,
+    "east": 107.5,
+    "north": 12.0
+   },
+   "value": 21.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "47_430",
+   "center": {
+    "lat": 11.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 11.75,
+    "east": 107.75,
+    "north": 12.0
+   },
+   "value": 26.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_431",
+   "center": {
+    "lat": 11.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 11.75,
+    "east": 108.0,
+    "north": 12.0
+   },
+   "value": 110.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "47_432",
+   "center": {
+    "lat": 11.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 11.75,
+    "east": 108.25,
+    "north": 12.0
+   },
+   "value": 108.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_433",
+   "center": {
+    "lat": 11.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 11.75,
+    "east": 108.5,
+    "north": 12.0
+   },
+   "value": 79.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "47_434",
+   "center": {
+    "lat": 11.875,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 11.75,
+    "east": 108.75,
+    "north": 12.0
+   },
+   "value": 119.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_435",
+   "center": {
+    "lat": 11.875,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 11.75,
+    "east": 109.0,
+    "north": 12.0
+   },
+   "value": 203.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "47_436",
+   "center": {
+    "lat": 11.875,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 11.75,
+    "east": 109.25,
+    "north": 12.0
+   },
+   "value": 46.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "47_437",
+   "center": {
+    "lat": 11.875,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 11.75,
+    "east": 109.5,
+    "north": 12.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_426",
+   "center": {
+    "lat": 12.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 12.0,
+    "east": 106.75,
+    "north": 12.25
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_427",
+   "center": {
+    "lat": 12.125,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 12.0,
+    "east": 107.0,
+    "north": 12.25
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_428",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 12.0,
+    "east": 107.25,
+    "north": 12.25
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_429",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.0,
+    "east": 107.5,
+    "north": 12.25
+   },
+   "value": 69.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_430",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.0,
+    "east": 107.75,
+    "north": 12.25
+   },
+   "value": 89.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_431",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.0,
+    "east": 108.0,
+    "north": 12.25
+   },
+   "value": 188.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "48_432",
+   "center": {
+    "lat": 12.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 12.0,
+    "east": 108.25,
+    "north": 12.25
+   },
+   "value": 213.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "48_433",
+   "center": {
+    "lat": 12.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 12.0,
+    "east": 108.5,
+    "north": 12.25
+   },
+   "value": 122.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_434",
+   "center": {
+    "lat": 12.125,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 12.0,
+    "east": 108.75,
+    "north": 12.25
+   },
+   "value": 170.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "48_435",
+   "center": {
+    "lat": 12.125,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 12.0,
+    "east": 109.0,
+    "north": 12.25
+   },
+   "value": 72.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "48_436",
+   "center": {
+    "lat": 12.125,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 12.0,
+    "east": 109.25,
+    "north": 12.25
+   },
+   "value": 28.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "48_437",
+   "center": {
+    "lat": 12.125,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 12.0,
+    "east": 109.5,
+    "north": 12.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_428",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 12.25,
+    "east": 107.25,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_429",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.25,
+    "east": 107.5,
+    "north": 12.5
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_430",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.25,
+    "east": 107.75,
+    "north": 12.5
+   },
+   "value": 52.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_431",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.25,
+    "east": 108.0,
+    "north": 12.5
+   },
+   "value": 149.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_432",
+   "center": {
+    "lat": 12.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 12.25,
+    "east": 108.25,
+    "north": 12.5
+   },
+   "value": 96.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_433",
+   "center": {
+    "lat": 12.375,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 12.25,
+    "east": 108.5,
+    "north": 12.5
+   },
+   "value": 59.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "49_434",
+   "center": {
+    "lat": 12.375,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 12.25,
+    "east": 108.75,
+    "north": 12.5
+   },
+   "value": 92.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "49_435",
+   "center": {
+    "lat": 12.375,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 12.25,
+    "east": 109.0,
+    "north": 12.5
+   },
+   "value": 112.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "49_436",
+   "center": {
+    "lat": 12.375,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 12.25,
+    "east": 109.25,
+    "north": 12.5
+   },
+   "value": 33.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "49_437",
+   "center": {
+    "lat": 12.375,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 12.25,
+    "east": 109.5,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "50_430",
+   "center": {
+    "lat": 12.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.5,
+    "east": 107.75,
+    "north": 12.75
+   },
+   "value": 230.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "50_431",
+   "center": {
+    "lat": 12.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.5,
+    "east": 108.0,
+    "north": 12.75
+   },
+   "value": 56.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "50_432",
+   "center": {
+    "lat": 12.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 12.5,
+    "east": 108.25,
+    "north": 12.75
+   },
+   "value": 19.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "50_433",
+   "center": {
+    "lat": 12.625,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 12.5,
+    "east": 108.5,
+    "north": 12.75
+   },
+   "value": 57.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "50_434",
+   "center": {
+    "lat": 12.625,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 12.5,
+    "east": 108.75,
+    "north": 12.75
+   },
+   "value": 283.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "50_435",
+   "center": {
+    "lat": 12.625,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 12.5,
+    "east": 109.0,
+    "north": 12.75
+   },
+   "value": 164.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "50_436",
+   "center": {
+    "lat": 12.625,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 12.5,
+    "east": 109.25,
+    "north": 12.75
+   },
+   "value": 72.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "50_437",
+   "center": {
+    "lat": 12.625,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 12.5,
+    "east": 109.5,
+    "north": 12.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "51_429",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.75,
+    "east": 107.5,
+    "north": 13.0
+   },
+   "value": 54.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_430",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.75,
+    "east": 107.75,
+    "north": 13.0
+   },
+   "value": 770.8220310211182,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_431",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.75,
+    "east": 108.0,
+    "north": 13.0
+   },
+   "value": 499.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_432",
+   "center": {
+    "lat": 12.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 12.75,
+    "east": 108.25,
+    "north": 13.0
+   },
+   "value": 28.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_433",
+   "center": {
+    "lat": 12.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 12.75,
+    "east": 108.5,
+    "north": 13.0
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "51_434",
+   "center": {
+    "lat": 12.875,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 12.75,
+    "east": 108.75,
+    "north": 13.0
+   },
+   "value": 87.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_435",
+   "center": {
+    "lat": 12.875,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 12.75,
+    "east": 109.0,
+    "north": 13.0
+   },
+   "value": 77.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "51_436",
+   "center": {
+    "lat": 12.875,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 12.75,
+    "east": 109.25,
+    "north": 13.0
+   },
+   "value": 63.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "51_437",
+   "center": {
+    "lat": 12.875,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 12.75,
+    "east": 109.5,
+    "north": 13.0
+   },
+   "value": 40.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_429",
+   "center": {
+    "lat": 13.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 13.0,
+    "east": 107.5,
+    "north": 13.25
+   },
+   "value": 41.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "52_430",
+   "center": {
+    "lat": 13.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 13.0,
+    "east": 107.75,
+    "north": 13.25
+   },
+   "value": 616.8639068603516,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_431",
+   "center": {
+    "lat": 13.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 13.0,
+    "east": 108.0,
+    "north": 13.25
+   },
+   "value": 334.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_432",
+   "center": {
+    "lat": 13.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 13.0,
+    "east": 108.25,
+    "north": 13.25
+   },
+   "value": 124.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "52_433",
+   "center": {
+    "lat": 13.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 13.0,
+    "east": 108.5,
+    "north": 13.25
+   },
+   "value": 44.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_434",
+   "center": {
+    "lat": 13.125,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 13.0,
+    "east": 108.75,
+    "north": 13.25
+   },
+   "value": 121.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "52_435",
+   "center": {
+    "lat": 13.125,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 13.0,
+    "east": 109.0,
+    "north": 13.25
+   },
+   "value": 114.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_436",
+   "center": {
+    "lat": 13.125,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 13.0,
+    "east": 109.25,
+    "north": 13.25
+   },
+   "value": 166.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "52_437",
+   "center": {
+    "lat": 13.125,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 13.0,
+    "east": 109.5,
+    "north": 13.25
+   },
+   "value": 24.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "53_430",
+   "center": {
+    "lat": 13.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 13.25,
+    "east": 107.75,
+    "north": 13.5
+   },
+   "value": 278.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "53_431",
+   "center": {
+    "lat": 13.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 13.25,
+    "east": 108.0,
+    "north": 13.5
+   },
+   "value": 477.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_432",
+   "center": {
+    "lat": 13.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 13.25,
+    "east": 108.25,
+    "north": 13.5
+   },
+   "value": 414.9581251144409,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_433",
+   "center": {
+    "lat": 13.375,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 13.25,
+    "east": 108.5,
+    "north": 13.5
+   },
+   "value": 331.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_434",
+   "center": {
+    "lat": 13.375,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 13.25,
+    "east": 108.75,
+    "north": 13.5
+   },
+   "value": 216.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_435",
+   "center": {
+    "lat": 13.375,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 13.25,
+    "east": 109.0,
+    "north": 13.5
+   },
+   "value": 108.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_436",
+   "center": {
+    "lat": 13.375,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 13.25,
+    "east": 109.25,
+    "north": 13.5
+   },
+   "value": 118.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "53_437",
+   "center": {
+    "lat": 13.375,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 13.25,
+    "east": 109.5,
+    "north": 13.5
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "54_429",
+   "center": {
+    "lat": 13.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 13.5,
+    "east": 107.5,
+    "north": 13.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "54_430",
+   "center": {
+    "lat": 13.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 13.5,
+    "east": 107.75,
+    "north": 13.75
+   },
+   "value": 287.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "54_431",
+   "center": {
+    "lat": 13.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 13.5,
+    "east": 108.0,
+    "north": 13.75
+   },
+   "value": 368.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "54_432",
+   "center": {
+    "lat": 13.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 13.5,
+    "east": 108.25,
+    "north": 13.75
+   },
+   "value": 255.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "54_433",
+   "center": {
+    "lat": 13.625,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 13.5,
+    "east": 108.5,
+    "north": 13.75
+   },
+   "value": 303.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "54_434",
+   "center": {
+    "lat": 13.625,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 13.5,
+    "east": 108.75,
+    "north": 13.75
+   },
+   "value": 274.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "54_435",
+   "center": {
+    "lat": 13.625,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 13.5,
+    "east": 109.0,
+    "north": 13.75
+   },
+   "value": 171.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "54_436",
+   "center": {
+    "lat": 13.625,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 13.5,
+    "east": 109.25,
+    "north": 13.75
+   },
+   "value": 161.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "54_437",
+   "center": {
+    "lat": 13.625,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 13.5,
+    "east": 109.5,
+    "north": 13.75
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "55_429",
+   "center": {
+    "lat": 13.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 13.75,
+    "east": 107.5,
+    "north": 14.0
+   },
+   "value": 230.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "55_430",
+   "center": {
+    "lat": 13.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 13.75,
+    "east": 107.75,
+    "north": 14.0
+   },
+   "value": 121.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "55_431",
+   "center": {
+    "lat": 13.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 13.75,
+    "east": 108.0,
+    "north": 14.0
+   },
+   "value": 42.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "55_432",
+   "center": {
+    "lat": 13.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 13.75,
+    "east": 108.25,
+    "north": 14.0
+   },
+   "value": 114.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "55_433",
+   "center": {
+    "lat": 13.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 13.75,
+    "east": 108.5,
+    "north": 14.0
+   },
+   "value": 246.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "55_434",
+   "center": {
+    "lat": 13.875,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 13.75,
+    "east": 108.75,
+    "north": 14.0
+   },
+   "value": 211.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "55_435",
+   "center": {
+    "lat": 13.875,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 13.75,
+    "east": 109.0,
+    "north": 14.0
+   },
+   "value": 47.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "55_436",
+   "center": {
+    "lat": 13.875,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 13.75,
+    "east": 109.25,
+    "north": 14.0
+   },
+   "value": 39.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "55_437",
+   "center": {
+    "lat": 13.875,
+    "lon": 109.375
+   },
+   "bounds": {
+    "west": 109.25,
+    "south": 13.75,
+    "east": 109.5,
+    "north": 14.0
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "56_429",
+   "center": {
+    "lat": 14.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 14.0,
+    "east": 107.5,
+    "north": 14.25
+   },
+   "value": 42.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "56_430",
+   "center": {
+    "lat": 14.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 14.0,
+    "east": 107.75,
+    "north": 14.25
+   },
+   "value": 104.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "56_431",
+   "center": {
+    "lat": 14.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 14.0,
+    "east": 108.0,
+    "north": 14.25
+   },
+   "value": 111.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "56_432",
+   "center": {
+    "lat": 14.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 14.0,
+    "east": 108.25,
+    "north": 14.25
+   },
+   "value": 160.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "56_433",
+   "center": {
+    "lat": 14.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 14.0,
+    "east": 108.5,
+    "north": 14.25
+   },
+   "value": 169.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "56_434",
+   "center": {
+    "lat": 14.125,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 14.0,
+    "east": 108.75,
+    "north": 14.25
+   },
+   "value": 94.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "56_435",
+   "center": {
+    "lat": 14.125,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 14.0,
+    "east": 109.0,
+    "north": 14.25
+   },
+   "value": 69.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "56_436",
+   "center": {
+    "lat": 14.125,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 14.0,
+    "east": 109.25,
+    "north": 14.25
+   },
+   "value": 76.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "57_429",
+   "center": {
+    "lat": 14.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 14.25,
+    "east": 107.5,
+    "north": 14.5
+   },
+   "value": 42.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "57_430",
+   "center": {
+    "lat": 14.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 14.25,
+    "east": 107.75,
+    "north": 14.5
+   },
+   "value": 69.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "57_431",
+   "center": {
+    "lat": 14.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 14.25,
+    "east": 108.0,
+    "north": 14.5
+   },
+   "value": 133.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "57_432",
+   "center": {
+    "lat": 14.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 14.25,
+    "east": 108.25,
+    "north": 14.5
+   },
+   "value": 202.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "57_433",
+   "center": {
+    "lat": 14.375,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 14.25,
+    "east": 108.5,
+    "north": 14.5
+   },
+   "value": 102.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "57_434",
+   "center": {
+    "lat": 14.375,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 14.25,
+    "east": 108.75,
+    "north": 14.5
+   },
+   "value": 69.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "57_435",
+   "center": {
+    "lat": 14.375,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 14.25,
+    "east": 109.0,
+    "north": 14.5
+   },
+   "value": 152.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "57_436",
+   "center": {
+    "lat": 14.375,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 14.25,
+    "east": 109.25,
+    "north": 14.5
+   },
+   "value": 46.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "58_429",
+   "center": {
+    "lat": 14.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 14.5,
+    "east": 107.5,
+    "north": 14.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "58_430",
+   "center": {
+    "lat": 14.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 14.5,
+    "east": 107.75,
+    "north": 14.75
+   },
+   "value": 90.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "58_431",
+   "center": {
+    "lat": 14.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 14.5,
+    "east": 108.0,
+    "north": 14.75
+   },
+   "value": 216.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "58_432",
+   "center": {
+    "lat": 14.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 14.5,
+    "east": 108.25,
+    "north": 14.75
+   },
+   "value": 146.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "58_433",
+   "center": {
+    "lat": 14.625,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 14.5,
+    "east": 108.5,
+    "north": 14.75
+   },
+   "value": 49.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "58_434",
+   "center": {
+    "lat": 14.625,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 14.5,
+    "east": 108.75,
+    "north": 14.75
+   },
+   "value": 160.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "58_435",
+   "center": {
+    "lat": 14.625,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 14.5,
+    "east": 109.0,
+    "north": 14.75
+   },
+   "value": 145.87437534332275,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "58_436",
+   "center": {
+    "lat": 14.625,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 14.5,
+    "east": 109.25,
+    "north": 14.75
+   },
+   "value": 33.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "59_429",
+   "center": {
+    "lat": 14.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 14.75,
+    "east": 107.5,
+    "north": 15.0
+   },
+   "value": 11.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "59_430",
+   "center": {
+    "lat": 14.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 14.75,
+    "east": 107.75,
+    "north": 15.0
+   },
+   "value": 174.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "59_431",
+   "center": {
+    "lat": 14.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 14.75,
+    "east": 108.0,
+    "north": 15.0
+   },
+   "value": 298.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "59_432",
+   "center": {
+    "lat": 14.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 14.75,
+    "east": 108.25,
+    "north": 15.0
+   },
+   "value": 72.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "59_433",
+   "center": {
+    "lat": 14.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 14.75,
+    "east": 108.5,
+    "north": 15.0
+   },
+   "value": 184.8534379005432,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "59_434",
+   "center": {
+    "lat": 14.875,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 14.75,
+    "east": 108.75,
+    "north": 15.0
+   },
+   "value": 226.87437558174133,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "59_435",
+   "center": {
+    "lat": 14.875,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 14.75,
+    "east": 109.0,
+    "north": 15.0
+   },
+   "value": 168.9267189502716,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "59_436",
+   "center": {
+    "lat": 14.875,
+    "lon": 109.125
+   },
+   "bounds": {
+    "west": 109.0,
+    "south": 14.75,
+    "east": 109.25,
+    "north": 15.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "60_429",
+   "center": {
+    "lat": 15.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 15.0,
+    "east": 107.5,
+    "north": 15.25
+   },
+   "value": 4.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "60_430",
+   "center": {
+    "lat": 15.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 15.0,
+    "east": 107.75,
+    "north": 15.25
+   },
+   "value": 82.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "60_431",
+   "center": {
+    "lat": 15.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 15.0,
+    "east": 108.0,
+    "north": 15.25
+   },
+   "value": 38.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "60_432",
+   "center": {
+    "lat": 15.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 15.0,
+    "east": 108.25,
+    "north": 15.25
+   },
+   "value": 223.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "60_433",
+   "center": {
+    "lat": 15.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 15.0,
+    "east": 108.5,
+    "north": 15.25
+   },
+   "value": 198.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "60_434",
+   "center": {
+    "lat": 15.125,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 15.0,
+    "east": 108.75,
+    "north": 15.25
+   },
+   "value": 215.88484406471252,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "60_435",
+   "center": {
+    "lat": 15.125,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 15.0,
+    "east": 109.0,
+    "north": 15.25
+   },
+   "value": 22.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "61_429",
+   "center": {
+    "lat": 15.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 15.25,
+    "east": 107.5,
+    "north": 15.5
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "61_430",
+   "center": {
+    "lat": 15.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 15.25,
+    "east": 107.75,
+    "north": 15.5
+   },
+   "value": 25.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "61_431",
+   "center": {
+    "lat": 15.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 15.25,
+    "east": 108.0,
+    "north": 15.5
+   },
+   "value": 126.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "61_432",
+   "center": {
+    "lat": 15.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 15.25,
+    "east": 108.25,
+    "north": 15.5
+   },
+   "value": 271.83250069618225,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "61_433",
+   "center": {
+    "lat": 15.375,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 15.25,
+    "east": 108.5,
+    "north": 15.5
+   },
+   "value": 238.9267189502716,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "61_434",
+   "center": {
+    "lat": 15.375,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 15.25,
+    "east": 108.75,
+    "north": 15.5
+   },
+   "value": 154.88484406471252,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "61_435",
+   "center": {
+    "lat": 15.375,
+    "lon": 108.875
+   },
+   "bounds": {
+    "west": 108.75,
+    "south": 15.25,
+    "east": 109.0,
+    "north": 15.5
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "62_428",
+   "center": {
+    "lat": 15.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 15.5,
+    "east": 107.25,
+    "north": 15.75
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "62_429",
+   "center": {
+    "lat": 15.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 15.5,
+    "east": 107.5,
+    "north": 15.75
+   },
+   "value": 48.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "62_430",
+   "center": {
+    "lat": 15.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 15.5,
+    "east": 107.75,
+    "north": 15.75
+   },
+   "value": 90.90578174591064,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "62_431",
+   "center": {
+    "lat": 15.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 15.5,
+    "east": 108.0,
+    "north": 15.75
+   },
+   "value": 86.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "62_432",
+   "center": {
+    "lat": 15.625,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 15.5,
+    "east": 108.25,
+    "north": 15.75
+   },
+   "value": 273.6754696369171,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "62_433",
+   "center": {
+    "lat": 15.625,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 15.5,
+    "east": 108.5,
+    "north": 15.75
+   },
+   "value": 74.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "62_434",
+   "center": {
+    "lat": 15.625,
+    "lon": 108.625
+   },
+   "bounds": {
+    "west": 108.5,
+    "south": 15.5,
+    "east": 108.75,
+    "north": 15.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "63_428",
+   "center": {
+    "lat": 15.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 15.75,
+    "east": 107.25,
+    "north": 16.0
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "63_429",
+   "center": {
+    "lat": 15.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 15.75,
+    "east": 107.5,
+    "north": 16.0
+   },
+   "value": 28.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "63_430",
+   "center": {
+    "lat": 15.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 15.75,
+    "east": 107.75,
+    "north": 16.0
+   },
+   "value": 45.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "63_431",
+   "center": {
+    "lat": 15.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 15.75,
+    "east": 108.0,
+    "north": 16.0
+   },
+   "value": 146.80109453201294,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "63_432",
+   "center": {
+    "lat": 15.875,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 15.75,
+    "east": 108.25,
+    "north": 16.0
+   },
+   "value": 144.79062604904175,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "63_433",
+   "center": {
+    "lat": 15.875,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 15.75,
+    "east": 108.5,
+    "north": 16.0
+   },
+   "value": 25.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "64_428",
+   "center": {
+    "lat": 16.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 16.0,
+    "east": 107.25,
+    "north": 16.25
+   },
+   "value": 15.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "64_429",
+   "center": {
+    "lat": 16.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 16.0,
+    "east": 107.5,
+    "north": 16.25
+   },
+   "value": 35.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "64_430",
+   "center": {
+    "lat": 16.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 16.0,
+    "east": 107.75,
+    "north": 16.25
+   },
+   "value": 7.958125114440918,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "64_431",
+   "center": {
+    "lat": 16.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 16.0,
+    "east": 108.0,
+    "north": 16.25
+   },
+   "value": 16.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "64_432",
+   "center": {
+    "lat": 16.125,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 16.0,
+    "east": 108.25,
+    "north": 16.25
+   },
+   "value": 30.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "64_433",
+   "center": {
+    "lat": 16.125,
+    "lon": 108.375
+   },
+   "bounds": {
+    "west": 108.25,
+    "south": 16.0,
+    "east": 108.5,
+    "north": 16.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_426",
+   "center": {
+    "lat": 16.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 16.25,
+    "east": 106.75,
+    "north": 16.5
+   },
+   "value": 45.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_427",
+   "center": {
+    "lat": 16.375,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 16.25,
+    "east": 107.0,
+    "north": 16.5
+   },
+   "value": 107.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_428",
+   "center": {
+    "lat": 16.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 16.25,
+    "east": 107.25,
+    "north": 16.5
+   },
+   "value": 79.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_429",
+   "center": {
+    "lat": 16.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 16.25,
+    "east": 107.5,
+    "north": 16.5
+   },
+   "value": 39.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_430",
+   "center": {
+    "lat": 16.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 16.25,
+    "east": 107.75,
+    "north": 16.5
+   },
+   "value": 37.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "65_431",
+   "center": {
+    "lat": 16.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 16.25,
+    "east": 108.0,
+    "north": 16.5
+   },
+   "value": 28.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "65_432",
+   "center": {
+    "lat": 16.375,
+    "lon": 108.125
+   },
+   "bounds": {
+    "west": 108.0,
+    "south": 16.25,
+    "east": 108.25,
+    "north": 16.5
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "66_426",
+   "center": {
+    "lat": 16.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 16.5,
+    "east": 106.75,
+    "north": 16.75
+   },
+   "value": 160.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "66_427",
+   "center": {
+    "lat": 16.625,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 16.5,
+    "east": 107.0,
+    "north": 16.75
+   },
+   "value": 125.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "66_428",
+   "center": {
+    "lat": 16.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 16.5,
+    "east": 107.25,
+    "north": 16.75
+   },
+   "value": 104.91625046730042,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "66_429",
+   "center": {
+    "lat": 16.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 16.5,
+    "east": 107.5,
+    "north": 16.75
+   },
+   "value": 72.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "66_430",
+   "center": {
+    "lat": 16.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 16.5,
+    "east": 107.75,
+    "north": 16.75
+   },
+   "value": 12.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "67_425",
+   "center": {
+    "lat": 16.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 16.75,
+    "east": 106.5,
+    "north": 17.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "67_426",
+   "center": {
+    "lat": 16.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 16.75,
+    "east": 106.75,
+    "north": 17.0
+   },
+   "value": 27.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "67_427",
+   "center": {
+    "lat": 16.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 16.75,
+    "east": 107.0,
+    "north": 17.0
+   },
+   "value": 72.93718767166138,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "67_428",
+   "center": {
+    "lat": 16.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 16.75,
+    "east": 107.25,
+    "north": 17.0
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "67_429",
+   "center": {
+    "lat": 16.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 16.75,
+    "east": 107.5,
+    "north": 17.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "68_424",
+   "center": {
+    "lat": 17.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 17.0,
+    "east": 106.25,
+    "north": 17.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "68_425",
+   "center": {
+    "lat": 17.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 17.0,
+    "east": 106.5,
+    "north": 17.25
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "68_426",
+   "center": {
+    "lat": 17.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 17.0,
+    "east": 106.75,
+    "north": 17.25
+   },
+   "value": 73.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "68_427",
+   "center": {
+    "lat": 17.125,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 17.0,
+    "east": 107.0,
+    "north": 17.25
+   },
+   "value": 130.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "68_428",
+   "center": {
+    "lat": 17.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 17.0,
+    "east": 107.25,
+    "north": 17.25
+   },
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "69_424",
+   "center": {
+    "lat": 17.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 17.25,
+    "east": 106.25,
+    "north": 17.5
+   },
+   "value": 55.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "69_425",
+   "center": {
+    "lat": 17.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 17.25,
+    "east": 106.5,
+    "north": 17.5
+   },
+   "value": 16.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "69_426",
+   "center": {
+    "lat": 17.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 17.25,
+    "east": 106.75,
+    "north": 17.5
+   },
+   "value": 64.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "69_427",
+   "center": {
+    "lat": 17.375,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 17.25,
+    "east": 107.0,
+    "north": 17.5
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "70_422",
+   "center": {
+    "lat": 17.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 17.5,
+    "east": 105.75,
+    "north": 17.75
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "70_423",
+   "center": {
+    "lat": 17.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 17.5,
+    "east": 106.0,
+    "north": 17.75
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "70_424",
+   "center": {
+    "lat": 17.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 17.5,
+    "east": 106.25,
+    "north": 17.75
+   },
+   "value": 26.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "70_425",
+   "center": {
+    "lat": 17.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 17.5,
+    "east": 106.5,
+    "north": 17.75
+   },
+   "value": 97.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "70_426",
+   "center": {
+    "lat": 17.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 17.5,
+    "east": 106.75,
+    "north": 17.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "71_422",
+   "center": {
+    "lat": 17.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 17.75,
+    "east": 105.75,
+    "north": 18.0
+   },
+   "value": 21.884843826293945,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "71_423",
+   "center": {
+    "lat": 17.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 17.75,
+    "east": 106.0,
+    "north": 18.0
+   },
+   "value": 99.87437558174133,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "71_424",
+   "center": {
+    "lat": 17.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 17.75,
+    "east": 106.25,
+    "north": 18.0
+   },
+   "value": 87.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "71_425",
+   "center": {
+    "lat": 17.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 17.75,
+    "east": 106.5,
+    "north": 18.0
+   },
+   "value": 83.91625022888184,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "71_426",
+   "center": {
+    "lat": 17.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 17.75,
+    "east": 106.75,
+    "north": 18.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "72_422",
+   "center": {
+    "lat": 18.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 18.0,
+    "east": 105.75,
+    "north": 18.25
+   },
+   "value": 60.86390686035156,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "72_423",
+   "center": {
+    "lat": 18.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 18.0,
+    "east": 106.0,
+    "north": 18.25
+   },
+   "value": 24.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "72_424",
+   "center": {
+    "lat": 18.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 18.0,
+    "east": 106.25,
+    "north": 18.25
+   },
+   "value": 142.91625046730042,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "72_425",
+   "center": {
+    "lat": 18.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 18.0,
+    "east": 106.5,
+    "north": 18.25
+   },
+   "value": 11.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "73_420",
+   "center": {
+    "lat": 18.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 18.25,
+    "east": 105.25,
+    "north": 18.5
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "73_421",
+   "center": {
+    "lat": 18.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 18.25,
+    "east": 105.5,
+    "north": 18.5
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "73_422",
+   "center": {
+    "lat": 18.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 18.25,
+    "east": 105.75,
+    "north": 18.5
+   },
+   "value": 65.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "73_423",
+   "center": {
+    "lat": 18.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 18.25,
+    "east": 106.0,
+    "north": 18.5
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "73_424",
+   "center": {
+    "lat": 18.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 18.25,
+    "east": 106.25,
+    "north": 18.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "74_419",
+   "center": {
+    "lat": 18.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 18.5,
+    "east": 105.0,
+    "north": 18.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "74_420",
+   "center": {
+    "lat": 18.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 18.5,
+    "east": 105.25,
+    "north": 18.75
+   },
+   "value": 13.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "74_421",
+   "center": {
+    "lat": 18.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 18.5,
+    "east": 105.5,
+    "north": 18.75
+   },
+   "value": 66.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "74_422",
+   "center": {
+    "lat": 18.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 18.5,
+    "east": 105.75,
+    "north": 18.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "74_423",
+   "center": {
+    "lat": 18.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 18.5,
+    "east": 106.0,
+    "north": 18.75
+   },
+   "value": 1.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "75_418",
+   "center": {
+    "lat": 18.875,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 18.75,
+    "east": 104.75,
+    "north": 19.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "75_419",
+   "center": {
+    "lat": 18.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 18.75,
+    "east": 105.0,
+    "north": 19.0
+   },
+   "value": 11.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "75_420",
+   "center": {
+    "lat": 18.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 18.75,
+    "east": 105.25,
+    "north": 19.0
+   },
+   "value": 83.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "75_421",
+   "center": {
+    "lat": 18.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 18.75,
+    "east": 105.5,
+    "north": 19.0
+   },
+   "value": 41.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "75_422",
+   "center": {
+    "lat": 18.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 18.75,
+    "east": 105.75,
+    "north": 19.0
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_415",
+   "center": {
+    "lat": 19.125,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 19.0,
+    "east": 104.0,
+    "north": 19.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_416",
+   "center": {
+    "lat": 19.125,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 19.0,
+    "east": 104.25,
+    "north": 19.25
+   },
+   "value": 12.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_417",
+   "center": {
+    "lat": 19.125,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 19.0,
+    "east": 104.5,
+    "north": 19.25
+   },
+   "value": 21.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_418",
+   "center": {
+    "lat": 19.125,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 19.0,
+    "east": 104.75,
+    "north": 19.25
+   },
+   "value": 13.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_419",
+   "center": {
+    "lat": 19.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 19.0,
+    "east": 105.0,
+    "north": 19.25
+   },
+   "value": 112.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "76_420",
+   "center": {
+    "lat": 19.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 19.0,
+    "east": 105.25,
+    "north": 19.25
+   },
+   "value": 115.92671918869019,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "76_421",
+   "center": {
+    "lat": 19.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 19.0,
+    "east": 105.5,
+    "north": 19.25
+   },
+   "value": 142.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "76_422",
+   "center": {
+    "lat": 19.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 19.0,
+    "east": 105.75,
+    "north": 19.25
+   },
+   "value": 41.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "76_423",
+   "center": {
+    "lat": 19.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 19.0,
+    "east": 106.0,
+    "north": 19.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "77_415",
+   "center": {
+    "lat": 19.375,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 19.25,
+    "east": 104.0,
+    "north": 19.5
+   },
+   "value": 57.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "77_416",
+   "center": {
+    "lat": 19.375,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 19.25,
+    "east": 104.25,
+    "north": 19.5
+   },
+   "value": 86.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_417",
+   "center": {
+    "lat": 19.375,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 19.25,
+    "east": 104.5,
+    "north": 19.5
+   },
+   "value": 47.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_418",
+   "center": {
+    "lat": 19.375,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 19.25,
+    "east": 104.75,
+    "north": 19.5
+   },
+   "value": 22.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "77_419",
+   "center": {
+    "lat": 19.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 19.25,
+    "east": 105.0,
+    "north": 19.5
+   },
+   "value": 35.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_420",
+   "center": {
+    "lat": 19.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 19.25,
+    "east": 105.25,
+    "north": 19.5
+   },
+   "value": 109.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_421",
+   "center": {
+    "lat": 19.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 19.25,
+    "east": 105.5,
+    "north": 19.5
+   },
+   "value": 93.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_422",
+   "center": {
+    "lat": 19.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 19.25,
+    "east": 105.75,
+    "north": 19.5
+   },
+   "value": 148.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "77_423",
+   "center": {
+    "lat": 19.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 19.25,
+    "east": 106.0,
+    "north": 19.5
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "78_415",
+   "center": {
+    "lat": 19.625,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 19.5,
+    "east": 104.0,
+    "north": 19.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "78_416",
+   "center": {
+    "lat": 19.625,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 19.5,
+    "east": 104.25,
+    "north": 19.75
+   },
+   "value": 184.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_417",
+   "center": {
+    "lat": 19.625,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 19.5,
+    "east": 104.5,
+    "north": 19.75
+   },
+   "value": 66.83250045776367,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_418",
+   "center": {
+    "lat": 19.625,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 19.5,
+    "east": 104.75,
+    "north": 19.75
+   },
+   "value": 77.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_419",
+   "center": {
+    "lat": 19.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 19.5,
+    "east": 105.0,
+    "north": 19.75
+   },
+   "value": 77.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_420",
+   "center": {
+    "lat": 19.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 19.5,
+    "east": 105.25,
+    "north": 19.75
+   },
+   "value": 103.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_421",
+   "center": {
+    "lat": 19.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 19.5,
+    "east": 105.5,
+    "north": 19.75
+   },
+   "value": 85.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "78_422",
+   "center": {
+    "lat": 19.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 19.5,
+    "east": 105.75,
+    "north": 19.75
+   },
+   "value": 101.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "78_423",
+   "center": {
+    "lat": 19.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 19.5,
+    "east": 106.0,
+    "north": 19.75
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "79_418",
+   "center": {
+    "lat": 19.875,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 19.75,
+    "east": 104.75,
+    "north": 20.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "79_419",
+   "center": {
+    "lat": 19.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 19.75,
+    "east": 105.0,
+    "north": 20.0
+   },
+   "value": 64.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "79_420",
+   "center": {
+    "lat": 19.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 19.75,
+    "east": 105.25,
+    "north": 20.0
+   },
+   "value": 23.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "79_421",
+   "center": {
+    "lat": 19.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 19.75,
+    "east": 105.5,
+    "north": 20.0
+   },
+   "value": 64.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "79_422",
+   "center": {
+    "lat": 19.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 19.75,
+    "east": 105.75,
+    "north": 20.0
+   },
+   "value": 10.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "79_423",
+   "center": {
+    "lat": 19.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 19.75,
+    "east": 106.0,
+    "north": 20.0
+   },
+   "value": 4.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "79_424",
+   "center": {
+    "lat": 19.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 19.75,
+    "east": 106.25,
+    "north": 20.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "80_418",
+   "center": {
+    "lat": 20.125,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 20.0,
+    "east": 104.75,
+    "north": 20.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "80_419",
+   "center": {
+    "lat": 20.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 20.0,
+    "east": 105.0,
+    "north": 20.25
+   },
+   "value": 4.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "80_420",
+   "center": {
+    "lat": 20.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 20.0,
+    "east": 105.25,
+    "north": 20.25
+   },
+   "value": 66.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "80_421",
+   "center": {
+    "lat": 20.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 20.0,
+    "east": 105.5,
+    "north": 20.25
+   },
+   "value": 60.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "80_422",
+   "center": {
+    "lat": 20.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 20.0,
+    "east": 105.75,
+    "north": 20.25
+   },
+   "value": 58.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "80_423",
+   "center": {
+    "lat": 20.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 20.0,
+    "east": 106.0,
+    "north": 20.25
+   },
+   "value": 13.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "80_424",
+   "center": {
+    "lat": 20.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 20.0,
+    "east": 106.25,
+    "north": 20.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "80_425",
+   "center": {
+    "lat": 20.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 20.0,
+    "east": 106.5,
+    "north": 20.25
+   },
+   "value": 2.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "81_417",
+   "center": {
+    "lat": 20.375,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 20.25,
+    "east": 104.5,
+    "north": 20.5
+   },
+   "value": 14.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_418",
+   "center": {
+    "lat": 20.375,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 20.25,
+    "east": 104.75,
+    "north": 20.5
+   },
+   "value": 83.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_419",
+   "center": {
+    "lat": 20.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 20.25,
+    "east": 105.0,
+    "north": 20.5
+   },
+   "value": 12.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_420",
+   "center": {
+    "lat": 20.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 20.25,
+    "east": 105.25,
+    "north": 20.5
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_421",
+   "center": {
+    "lat": 20.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 20.25,
+    "east": 105.5,
+    "north": 20.5
+   },
+   "value": 17.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_422",
+   "center": {
+    "lat": 20.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 20.25,
+    "east": 105.75,
+    "north": 20.5
+   },
+   "value": 50.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_423",
+   "center": {
+    "lat": 20.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 20.25,
+    "east": 106.0,
+    "north": 20.5
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_424",
+   "center": {
+    "lat": 20.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 20.25,
+    "east": 106.25,
+    "north": 20.5
+   },
+   "value": 10.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "81_425",
+   "center": {
+    "lat": 20.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 20.25,
+    "east": 106.5,
+    "north": 20.5
+   },
+   "value": 3.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "81_426",
+   "center": {
+    "lat": 20.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 20.25,
+    "east": 106.75,
+    "north": 20.5
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_413",
+   "center": {
+    "lat": 20.625,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 20.5,
+    "east": 103.5,
+    "north": 20.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_414",
+   "center": {
+    "lat": 20.625,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 20.5,
+    "east": 103.75,
+    "north": 20.75
+   },
+   "value": 52.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_415",
+   "center": {
+    "lat": 20.625,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 20.5,
+    "east": 104.0,
+    "north": 20.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_417",
+   "center": {
+    "lat": 20.625,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 20.5,
+    "east": 104.5,
+    "north": 20.75
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_418",
+   "center": {
+    "lat": 20.625,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 20.5,
+    "east": 104.75,
+    "north": 20.75
+   },
+   "value": 201.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_419",
+   "center": {
+    "lat": 20.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 20.5,
+    "east": 105.0,
+    "north": 20.75
+   },
+   "value": 75.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_420",
+   "center": {
+    "lat": 20.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 20.5,
+    "east": 105.25,
+    "north": 20.75
+   },
+   "value": 12.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_421",
+   "center": {
+    "lat": 20.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 20.5,
+    "east": 105.5,
+    "north": 20.75
+   },
+   "value": 31.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_422",
+   "center": {
+    "lat": 20.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 20.5,
+    "east": 105.75,
+    "north": 20.75
+   },
+   "value": 43.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_423",
+   "center": {
+    "lat": 20.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 20.5,
+    "east": 106.0,
+    "north": 20.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_424",
+   "center": {
+    "lat": 20.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 20.5,
+    "east": 106.25,
+    "north": 20.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_425",
+   "center": {
+    "lat": 20.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 20.5,
+    "east": 106.5,
+    "north": 20.75
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_426",
+   "center": {
+    "lat": 20.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 20.5,
+    "east": 106.75,
+    "north": 20.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_427",
+   "center": {
+    "lat": 20.625,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 20.5,
+    "east": 107.0,
+    "north": 20.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "82_428",
+   "center": {
+    "lat": 20.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 20.5,
+    "east": 107.25,
+    "north": 20.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_412",
+   "center": {
+    "lat": 20.875,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 20.75,
+    "east": 103.25,
+    "north": 21.0
+   },
+   "value": 217.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "83_413",
+   "center": {
+    "lat": 20.875,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 20.75,
+    "east": 103.5,
+    "north": 21.0
+   },
+   "value": 333.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_414",
+   "center": {
+    "lat": 20.875,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 20.75,
+    "east": 103.75,
+    "north": 21.0
+   },
+   "value": 335.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_415",
+   "center": {
+    "lat": 20.875,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 20.75,
+    "east": 104.0,
+    "north": 21.0
+   },
+   "value": 107.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_416",
+   "center": {
+    "lat": 20.875,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 20.75,
+    "east": 104.25,
+    "north": 21.0
+   },
+   "value": 65.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_417",
+   "center": {
+    "lat": 20.875,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 20.75,
+    "east": 104.5,
+    "north": 21.0
+   },
+   "value": 184.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_418",
+   "center": {
+    "lat": 20.875,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 20.75,
+    "east": 104.75,
+    "north": 21.0
+   },
+   "value": 26.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_419",
+   "center": {
+    "lat": 20.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 20.75,
+    "east": 105.0,
+    "north": 21.0
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_420",
+   "center": {
+    "lat": 20.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 20.75,
+    "east": 105.25,
+    "north": 21.0
+   },
+   "value": 32.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_421",
+   "center": {
+    "lat": 20.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 20.75,
+    "east": 105.5,
+    "north": 21.0
+   },
+   "value": 58.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_422",
+   "center": {
+    "lat": 20.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 20.75,
+    "east": 105.75,
+    "north": 21.0
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_423",
+   "center": {
+    "lat": 20.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 20.75,
+    "east": 106.0,
+    "north": 21.0
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_424",
+   "center": {
+    "lat": 20.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 20.75,
+    "east": 106.25,
+    "north": 21.0
+   },
+   "value": 1.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "83_425",
+   "center": {
+    "lat": 20.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 20.75,
+    "east": 106.5,
+    "north": 21.0
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_426",
+   "center": {
+    "lat": 20.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 20.75,
+    "east": 106.75,
+    "north": 21.0
+   },
+   "value": 11.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_427",
+   "center": {
+    "lat": 20.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 20.75,
+    "east": 107.0,
+    "north": 21.0
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_428",
+   "center": {
+    "lat": 20.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 20.75,
+    "east": 107.25,
+    "north": 21.0
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_429",
+   "center": {
+    "lat": 20.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 20.75,
+    "east": 107.5,
+    "north": 21.0
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "83_430",
+   "center": {
+    "lat": 20.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 20.75,
+    "east": 107.75,
+    "north": 21.0
+   },
+   "value": 1.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_411",
+   "center": {
+    "lat": 21.125,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 21.0,
+    "east": 103.0,
+    "north": 21.25
+   },
+   "value": 258.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_412",
+   "center": {
+    "lat": 21.125,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 21.0,
+    "east": 103.25,
+    "north": 21.25
+   },
+   "value": 728.9790625572205,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_413",
+   "center": {
+    "lat": 21.125,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 21.0,
+    "east": 103.5,
+    "north": 21.25
+   },
+   "value": 583.9476566314697,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_414",
+   "center": {
+    "lat": 21.125,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 21.0,
+    "east": 103.75,
+    "north": 21.25
+   },
+   "value": 163.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_415",
+   "center": {
+    "lat": 21.125,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 21.0,
+    "east": 104.0,
+    "north": 21.25
+   },
+   "value": 160.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_416",
+   "center": {
+    "lat": 21.125,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 21.0,
+    "east": 104.25,
+    "north": 21.25
+   },
+   "value": 185.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_417",
+   "center": {
+    "lat": 21.125,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 21.0,
+    "east": 104.5,
+    "north": 21.25
+   },
+   "value": 149.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_418",
+   "center": {
+    "lat": 21.125,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 21.0,
+    "east": 104.75,
+    "north": 21.25
+   },
+   "value": 36.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_419",
+   "center": {
+    "lat": 21.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 21.0,
+    "east": 105.0,
+    "north": 21.25
+   },
+   "value": 16.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_420",
+   "center": {
+    "lat": 21.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 21.0,
+    "east": 105.25,
+    "north": 21.25
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_421",
+   "center": {
+    "lat": 21.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 21.0,
+    "east": 105.5,
+    "north": 21.25
+   },
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_422",
+   "center": {
+    "lat": 21.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 21.0,
+    "east": 105.75,
+    "north": 21.25
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_423",
+   "center": {
+    "lat": 21.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 21.0,
+    "east": 106.0,
+    "north": 21.25
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_424",
+   "center": {
+    "lat": 21.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 21.0,
+    "east": 106.25,
+    "north": 21.25
+   },
+   "value": 21.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_425",
+   "center": {
+    "lat": 21.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 21.0,
+    "east": 106.5,
+    "north": 21.25
+   },
+   "value": 16.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_426",
+   "center": {
+    "lat": 21.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 21.0,
+    "east": 106.75,
+    "north": 21.25
+   },
+   "value": 85.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_427",
+   "center": {
+    "lat": 21.125,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 21.0,
+    "east": 107.0,
+    "north": 21.25
+   },
+   "value": 170.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_428",
+   "center": {
+    "lat": 21.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 21.0,
+    "east": 107.25,
+    "north": 21.25
+   },
+   "value": 128.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_429",
+   "center": {
+    "lat": 21.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 21.0,
+    "east": 107.5,
+    "north": 21.25
+   },
+   "value": 172.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "84_430",
+   "center": {
+    "lat": 21.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 21.0,
+    "east": 107.75,
+    "north": 21.25
+   },
+   "value": 17.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "84_431",
+   "center": {
+    "lat": 21.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 21.0,
+    "east": 108.0,
+    "north": 21.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_411",
+   "center": {
+    "lat": 21.375,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 21.25,
+    "east": 103.0,
+    "north": 21.5
+   },
+   "value": 145.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_412",
+   "center": {
+    "lat": 21.375,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 21.25,
+    "east": 103.25,
+    "north": 21.5
+   },
+   "value": 329.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_413",
+   "center": {
+    "lat": 21.375,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 21.25,
+    "east": 103.5,
+    "north": 21.5
+   },
+   "value": 442.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_414",
+   "center": {
+    "lat": 21.375,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 21.25,
+    "east": 103.75,
+    "north": 21.5
+   },
+   "value": 202.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_415",
+   "center": {
+    "lat": 21.375,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 21.25,
+    "east": 104.0,
+    "north": 21.5
+   },
+   "value": 154.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_416",
+   "center": {
+    "lat": 21.375,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 21.25,
+    "east": 104.25,
+    "north": 21.5
+   },
+   "value": 276.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_417",
+   "center": {
+    "lat": 21.375,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 21.25,
+    "east": 104.5,
+    "north": 21.5
+   },
+   "value": 69.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_418",
+   "center": {
+    "lat": 21.375,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 21.25,
+    "east": 104.75,
+    "north": 21.5
+   },
+   "value": 38.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_419",
+   "center": {
+    "lat": 21.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 21.25,
+    "east": 105.0,
+    "north": 21.5
+   },
+   "value": 22.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_420",
+   "center": {
+    "lat": 21.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 21.25,
+    "east": 105.25,
+    "north": 21.5
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_421",
+   "center": {
+    "lat": 21.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 21.25,
+    "east": 105.5,
+    "north": 21.5
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_422",
+   "center": {
+    "lat": 21.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 21.25,
+    "east": 105.75,
+    "north": 21.5
+   },
+   "value": 16.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_423",
+   "center": {
+    "lat": 21.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 21.25,
+    "east": 106.0,
+    "north": 21.5
+   },
+   "value": 18.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_424",
+   "center": {
+    "lat": 21.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 21.25,
+    "east": 106.25,
+    "north": 21.5
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_425",
+   "center": {
+    "lat": 21.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 21.25,
+    "east": 106.5,
+    "north": 21.5
+   },
+   "value": 31.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_426",
+   "center": {
+    "lat": 21.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 21.25,
+    "east": 106.75,
+    "north": 21.5
+   },
+   "value": 35.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_427",
+   "center": {
+    "lat": 21.375,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 21.25,
+    "east": 107.0,
+    "north": 21.5
+   },
+   "value": 55.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_428",
+   "center": {
+    "lat": 21.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 21.25,
+    "east": 107.25,
+    "north": 21.5
+   },
+   "value": 239.90578150749207,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_429",
+   "center": {
+    "lat": 21.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 21.25,
+    "east": 107.5,
+    "north": 21.5
+   },
+   "value": 193.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "85_430",
+   "center": {
+    "lat": 21.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 21.25,
+    "east": 107.75,
+    "north": 21.5
+   },
+   "value": 85.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "85_431",
+   "center": {
+    "lat": 21.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 21.25,
+    "east": 108.0,
+    "north": 21.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_410",
+   "center": {
+    "lat": 21.625,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 21.5,
+    "east": 102.75,
+    "north": 21.75
+   },
+   "value": 78.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_411",
+   "center": {
+    "lat": 21.625,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 21.5,
+    "east": 103.0,
+    "north": 21.75
+   },
+   "value": 122.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_412",
+   "center": {
+    "lat": 21.625,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 21.5,
+    "east": 103.25,
+    "north": 21.75
+   },
+   "value": 327.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_413",
+   "center": {
+    "lat": 21.625,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 21.5,
+    "east": 103.5,
+    "north": 21.75
+   },
+   "value": 351.9685938358307,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_414",
+   "center": {
+    "lat": 21.625,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 21.5,
+    "east": 103.75,
+    "north": 21.75
+   },
+   "value": 98.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_415",
+   "center": {
+    "lat": 21.625,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 21.5,
+    "east": 104.0,
+    "north": 21.75
+   },
+   "value": 216.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_416",
+   "center": {
+    "lat": 21.625,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 21.5,
+    "east": 104.25,
+    "north": 21.75
+   },
+   "value": 79.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_417",
+   "center": {
+    "lat": 21.625,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 21.5,
+    "east": 104.5,
+    "north": 21.75
+   },
+   "value": 17.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_418",
+   "center": {
+    "lat": 21.625,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 21.5,
+    "east": 104.75,
+    "north": 21.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_419",
+   "center": {
+    "lat": 21.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 21.5,
+    "east": 105.0,
+    "north": 21.75
+   },
+   "value": 16.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_420",
+   "center": {
+    "lat": 21.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 21.5,
+    "east": 105.25,
+    "north": 21.75
+   },
+   "value": 10.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_421",
+   "center": {
+    "lat": 21.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 21.5,
+    "east": 105.5,
+    "north": 21.75
+   },
+   "value": 24.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_422",
+   "center": {
+    "lat": 21.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 21.5,
+    "east": 105.75,
+    "north": 21.75
+   },
+   "value": 30.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_423",
+   "center": {
+    "lat": 21.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 21.5,
+    "east": 106.0,
+    "north": 21.75
+   },
+   "value": 21.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_424",
+   "center": {
+    "lat": 21.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 21.5,
+    "east": 106.25,
+    "north": 21.75
+   },
+   "value": 74.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_425",
+   "center": {
+    "lat": 21.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 21.5,
+    "east": 106.5,
+    "north": 21.75
+   },
+   "value": 28.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_426",
+   "center": {
+    "lat": 21.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 21.5,
+    "east": 106.75,
+    "north": 21.75
+   },
+   "value": 49.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_427",
+   "center": {
+    "lat": 21.625,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 21.5,
+    "east": 107.0,
+    "north": 21.75
+   },
+   "value": 52.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_428",
+   "center": {
+    "lat": 21.625,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 21.5,
+    "east": 107.25,
+    "north": 21.75
+   },
+   "value": 48.93718767166138,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_429",
+   "center": {
+    "lat": 21.625,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 21.5,
+    "east": 107.5,
+    "north": 21.75
+   },
+   "value": 27.958125114440918,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "86_430",
+   "center": {
+    "lat": 21.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 21.5,
+    "east": 107.75,
+    "north": 21.75
+   },
+   "value": 24.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "86_431",
+   "center": {
+    "lat": 21.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 21.5,
+    "east": 108.0,
+    "north": 21.75
+   },
+   "value": 22.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_409",
+   "center": {
+    "lat": 21.875,
+    "lon": 102.375
+   },
+   "bounds": {
+    "west": 102.25,
+    "south": 21.75,
+    "east": 102.5,
+    "north": 22.0
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_410",
+   "center": {
+    "lat": 21.875,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 21.75,
+    "east": 102.75,
+    "north": 22.0
+   },
+   "value": 429.9581251144409,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_411",
+   "center": {
+    "lat": 21.875,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 21.75,
+    "east": 103.0,
+    "north": 22.0
+   },
+   "value": 404.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_412",
+   "center": {
+    "lat": 21.875,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 21.75,
+    "east": 103.25,
+    "north": 22.0
+   },
+   "value": 280.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_413",
+   "center": {
+    "lat": 21.875,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 21.75,
+    "east": 103.5,
+    "north": 22.0
+   },
+   "value": 167.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_414",
+   "center": {
+    "lat": 21.875,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 21.75,
+    "east": 103.75,
+    "north": 22.0
+   },
+   "value": 66.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_415",
+   "center": {
+    "lat": 21.875,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 21.75,
+    "east": 104.0,
+    "north": 22.0
+   },
+   "value": 38.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_416",
+   "center": {
+    "lat": 21.875,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 21.75,
+    "east": 104.25,
+    "north": 22.0
+   },
+   "value": 49.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_417",
+   "center": {
+    "lat": 21.875,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 21.75,
+    "east": 104.5,
+    "north": 22.0
+   },
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_418",
+   "center": {
+    "lat": 21.875,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 21.75,
+    "east": 104.75,
+    "north": 22.0
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_419",
+   "center": {
+    "lat": 21.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 21.75,
+    "east": 105.0,
+    "north": 22.0
+   },
+   "value": 22.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_420",
+   "center": {
+    "lat": 21.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 21.75,
+    "east": 105.25,
+    "north": 22.0
+   },
+   "value": 30.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_421",
+   "center": {
+    "lat": 21.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 21.75,
+    "east": 105.5,
+    "north": 22.0
+   },
+   "value": 59.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_422",
+   "center": {
+    "lat": 21.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 21.75,
+    "east": 105.75,
+    "north": 22.0
+   },
+   "value": 64.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_423",
+   "center": {
+    "lat": 21.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 21.75,
+    "east": 106.0,
+    "north": 22.0
+   },
+   "value": 79.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_424",
+   "center": {
+    "lat": 21.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 21.75,
+    "east": 106.25,
+    "north": 22.0
+   },
+   "value": 114.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "87_425",
+   "center": {
+    "lat": 21.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 21.75,
+    "east": 106.5,
+    "north": 22.0
+   },
+   "value": 46.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_426",
+   "center": {
+    "lat": 21.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 21.75,
+    "east": 106.75,
+    "north": 22.0
+   },
+   "value": 18.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_427",
+   "center": {
+    "lat": 21.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 21.75,
+    "east": 107.0,
+    "north": 22.0
+   },
+   "value": 13.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "87_428",
+   "center": {
+    "lat": 21.875,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 21.75,
+    "east": 107.25,
+    "north": 22.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_408",
+   "center": {
+    "lat": 22.125,
+    "lon": 102.125
+   },
+   "bounds": {
+    "west": 102.0,
+    "south": 22.0,
+    "east": 102.25,
+    "north": 22.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_409",
+   "center": {
+    "lat": 22.125,
+    "lon": 102.375
+   },
+   "bounds": {
+    "west": 102.25,
+    "south": 22.0,
+    "east": 102.5,
+    "north": 22.25
+   },
+   "value": 100.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_410",
+   "center": {
+    "lat": 22.125,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 22.0,
+    "east": 102.75,
+    "north": 22.25
+   },
+   "value": 426.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_411",
+   "center": {
+    "lat": 22.125,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 22.0,
+    "east": 103.0,
+    "north": 22.25
+   },
+   "value": 84.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_412",
+   "center": {
+    "lat": 22.125,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 22.0,
+    "east": 103.25,
+    "north": 22.25
+   },
+   "value": 124.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_413",
+   "center": {
+    "lat": 22.125,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 22.0,
+    "east": 103.5,
+    "north": 22.25
+   },
+   "value": 206.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_414",
+   "center": {
+    "lat": 22.125,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 22.0,
+    "east": 103.75,
+    "north": 22.25
+   },
+   "value": 66.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_415",
+   "center": {
+    "lat": 22.125,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 22.0,
+    "east": 104.0,
+    "north": 22.25
+   },
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_416",
+   "center": {
+    "lat": 22.125,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 22.0,
+    "east": 104.25,
+    "north": 22.25
+   },
+   "value": 21.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_417",
+   "center": {
+    "lat": 22.125,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 22.0,
+    "east": 104.5,
+    "north": 22.25
+   },
+   "value": 34.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_418",
+   "center": {
+    "lat": 22.125,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 22.0,
+    "east": 104.75,
+    "north": 22.25
+   },
+   "value": 31.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_419",
+   "center": {
+    "lat": 22.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 22.0,
+    "east": 105.0,
+    "north": 22.25
+   },
+   "value": 77.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_420",
+   "center": {
+    "lat": 22.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 22.0,
+    "east": 105.25,
+    "north": 22.25
+   },
+   "value": 43.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_421",
+   "center": {
+    "lat": 22.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 22.0,
+    "east": 105.5,
+    "north": 22.25
+   },
+   "value": 33.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_422",
+   "center": {
+    "lat": 22.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 22.0,
+    "east": 105.75,
+    "north": 22.25
+   },
+   "value": 32.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_423",
+   "center": {
+    "lat": 22.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 22.0,
+    "east": 106.0,
+    "north": 22.25
+   },
+   "value": 31.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "88_424",
+   "center": {
+    "lat": 22.125,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 22.0,
+    "east": 106.25,
+    "north": 22.25
+   },
+   "value": 73.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_425",
+   "center": {
+    "lat": 22.125,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 22.0,
+    "east": 106.5,
+    "north": 22.25
+   },
+   "value": 87.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "88_426",
+   "center": {
+    "lat": 22.125,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 22.0,
+    "east": 106.75,
+    "north": 22.25
+   },
+   "value": 24.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_408",
+   "center": {
+    "lat": 22.375,
+    "lon": 102.125
+   },
+   "bounds": {
+    "west": 102.0,
+    "south": 22.25,
+    "east": 102.25,
+    "north": 22.5
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_409",
+   "center": {
+    "lat": 22.375,
+    "lon": 102.375
+   },
+   "bounds": {
+    "west": 102.25,
+    "south": 22.25,
+    "east": 102.5,
+    "north": 22.5
+   },
+   "value": 244.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_410",
+   "center": {
+    "lat": 22.375,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 22.25,
+    "east": 102.75,
+    "north": 22.5
+   },
+   "value": 302.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_411",
+   "center": {
+    "lat": 22.375,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 22.25,
+    "east": 103.0,
+    "north": 22.5
+   },
+   "value": 61.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_412",
+   "center": {
+    "lat": 22.375,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 22.25,
+    "east": 103.25,
+    "north": 22.5
+   },
+   "value": 137.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_413",
+   "center": {
+    "lat": 22.375,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 22.25,
+    "east": 103.5,
+    "north": 22.5
+   },
+   "value": 144.95812511444092,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_414",
+   "center": {
+    "lat": 22.375,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 22.25,
+    "east": 103.75,
+    "north": 22.5
+   },
+   "value": 17.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_415",
+   "center": {
+    "lat": 22.375,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 22.25,
+    "east": 104.0,
+    "north": 22.5
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_416",
+   "center": {
+    "lat": 22.375,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 22.25,
+    "east": 104.25,
+    "north": 22.5
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_417",
+   "center": {
+    "lat": 22.375,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 22.25,
+    "east": 104.5,
+    "north": 22.5
+   },
+   "value": 37.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_418",
+   "center": {
+    "lat": 22.375,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 22.25,
+    "east": 104.75,
+    "north": 22.5
+   },
+   "value": 45.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_419",
+   "center": {
+    "lat": 22.375,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 22.25,
+    "east": 105.0,
+    "north": 22.5
+   },
+   "value": 35.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_420",
+   "center": {
+    "lat": 22.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 22.25,
+    "east": 105.25,
+    "north": 22.5
+   },
+   "value": 61.93718767166138,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_421",
+   "center": {
+    "lat": 22.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 22.25,
+    "east": 105.5,
+    "north": 22.5
+   },
+   "value": 7.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_422",
+   "center": {
+    "lat": 22.375,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 22.25,
+    "east": 105.75,
+    "north": 22.5
+   },
+   "value": 5.9895312786102295,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_423",
+   "center": {
+    "lat": 22.375,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 22.25,
+    "east": 106.0,
+    "north": 22.5
+   },
+   "value": 13.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_424",
+   "center": {
+    "lat": 22.375,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 22.25,
+    "east": 106.25,
+    "north": 22.5
+   },
+   "value": 92.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "89_425",
+   "center": {
+    "lat": 22.375,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 22.25,
+    "east": 106.5,
+    "north": 22.5
+   },
+   "value": 81.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "89_426",
+   "center": {
+    "lat": 22.375,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 22.25,
+    "east": 106.75,
+    "north": 22.5
+   },
+   "value": 22.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_409",
+   "center": {
+    "lat": 22.625,
+    "lon": 102.375
+   },
+   "bounds": {
+    "west": 102.25,
+    "south": 22.5,
+    "east": 102.5,
+    "north": 22.75
+   },
+   "value": 10.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_410",
+   "center": {
+    "lat": 22.625,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 22.5,
+    "east": 102.75,
+    "north": 22.75
+   },
+   "value": 154.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_411",
+   "center": {
+    "lat": 22.625,
+    "lon": 102.875
+   },
+   "bounds": {
+    "west": 102.75,
+    "south": 22.5,
+    "east": 103.0,
+    "north": 22.75
+   },
+   "value": 27.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_412",
+   "center": {
+    "lat": 22.625,
+    "lon": 103.125
+   },
+   "bounds": {
+    "west": 103.0,
+    "south": 22.5,
+    "east": 103.25,
+    "north": 22.75
+   },
+   "value": 79.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_413",
+   "center": {
+    "lat": 22.625,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 22.5,
+    "east": 103.5,
+    "north": 22.75
+   },
+   "value": 131.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_414",
+   "center": {
+    "lat": 22.625,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 22.5,
+    "east": 103.75,
+    "north": 22.75
+   },
+   "value": 24.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_415",
+   "center": {
+    "lat": 22.625,
+    "lon": 103.875
+   },
+   "bounds": {
+    "west": 103.75,
+    "south": 22.5,
+    "east": 104.0,
+    "north": 22.75
+   },
+   "value": 12.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_416",
+   "center": {
+    "lat": 22.625,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 22.5,
+    "east": 104.25,
+    "north": 22.75
+   },
+   "value": 48.96859383583069,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_417",
+   "center": {
+    "lat": 22.625,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 22.5,
+    "east": 104.5,
+    "north": 22.75
+   },
+   "value": 20.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_418",
+   "center": {
+    "lat": 22.625,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 22.5,
+    "east": 104.75,
+    "north": 22.75
+   },
+   "value": 13.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_419",
+   "center": {
+    "lat": 22.625,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 22.5,
+    "east": 105.0,
+    "north": 22.75
+   },
+   "value": 11.979062557220459,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_420",
+   "center": {
+    "lat": 22.625,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 22.5,
+    "east": 105.25,
+    "north": 22.75
+   },
+   "value": 39.94765639305115,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_421",
+   "center": {
+    "lat": 22.625,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 22.5,
+    "east": 105.5,
+    "north": 22.75
+   },
+   "value": 17.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_422",
+   "center": {
+    "lat": 22.625,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 22.5,
+    "east": 105.75,
+    "north": 22.75
+   },
+   "value": 38.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "90_423",
+   "center": {
+    "lat": 22.625,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 22.5,
+    "east": 106.0,
+    "north": 22.75
+   },
+   "value": 25.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_424",
+   "center": {
+    "lat": 22.625,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 22.5,
+    "east": 106.25,
+    "north": 22.75
+   },
+   "value": 25.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_425",
+   "center": {
+    "lat": 22.625,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 22.5,
+    "east": 106.5,
+    "north": 22.75
+   },
+   "value": 34.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "90_426",
+   "center": {
+    "lat": 22.625,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 22.5,
+    "east": 106.75,
+    "north": 22.75
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_409",
+   "center": {
+    "lat": 22.875,
+    "lon": 102.375
+   },
+   "bounds": {
+    "west": 102.25,
+    "south": 22.75,
+    "east": 102.5,
+    "north": 23.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_410",
+   "center": {
+    "lat": 22.875,
+    "lon": 102.625
+   },
+   "bounds": {
+    "west": 102.5,
+    "south": 22.75,
+    "east": 102.75,
+    "north": 23.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_413",
+   "center": {
+    "lat": 22.875,
+    "lon": 103.375
+   },
+   "bounds": {
+    "west": 103.25,
+    "south": 22.75,
+    "east": 103.5,
+    "north": 23.0
+   },
+   "value": 4.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_414",
+   "center": {
+    "lat": 22.875,
+    "lon": 103.625
+   },
+   "bounds": {
+    "west": 103.5,
+    "south": 22.75,
+    "east": 103.75,
+    "north": 23.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_416",
+   "center": {
+    "lat": 22.875,
+    "lon": 104.125
+   },
+   "bounds": {
+    "west": 104.0,
+    "south": 22.75,
+    "east": 104.25,
+    "north": 23.0
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_417",
+   "center": {
+    "lat": 22.875,
+    "lon": 104.375
+   },
+   "bounds": {
+    "west": 104.25,
+    "south": 22.75,
+    "east": 104.5,
+    "north": 23.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_418",
+   "center": {
+    "lat": 22.875,
+    "lon": 104.625
+   },
+   "bounds": {
+    "west": 104.5,
+    "south": 22.75,
+    "east": 104.75,
+    "north": 23.0
+   },
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_419",
+   "center": {
+    "lat": 22.875,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 22.75,
+    "east": 105.0,
+    "north": 23.0
+   },
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_420",
+   "center": {
+    "lat": 22.875,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 22.75,
+    "east": 105.25,
+    "north": 23.0
+   },
+   "value": 18.958125114440918,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "91_421",
+   "center": {
+    "lat": 22.875,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 22.75,
+    "east": 105.5,
+    "north": 23.0
+   },
+   "value": 92.97906255722046,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "91_422",
+   "center": {
+    "lat": 22.875,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 22.75,
+    "east": 105.75,
+    "north": 23.0
+   },
+   "value": 72.98953127861023,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "MIXED"
+  },
+  {
+   "cellId": "91_423",
+   "center": {
+    "lat": 22.875,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 22.75,
+    "east": 106.0,
+    "north": 23.0
+   },
+   "value": 20.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_424",
+   "center": {
+    "lat": 22.875,
+    "lon": 106.125
+   },
+   "bounds": {
+    "west": 106.0,
+    "south": 22.75,
+    "east": 106.25,
+    "north": 23.0
+   },
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_425",
+   "center": {
+    "lat": 22.875,
+    "lon": 106.375
+   },
+   "bounds": {
+    "west": 106.25,
+    "south": 22.75,
+    "east": 106.5,
+    "north": 23.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_426",
+   "center": {
+    "lat": 22.875,
+    "lon": 106.625
+   },
+   "bounds": {
+    "west": 106.5,
+    "south": 22.75,
+    "east": 106.75,
+    "north": 23.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "91_427",
+   "center": {
+    "lat": 22.875,
+    "lon": 106.875
+   },
+   "bounds": {
+    "west": 106.75,
+    "south": 22.75,
+    "east": 107.0,
+    "north": 23.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "92_419",
+   "center": {
+    "lat": 23.125,
+    "lon": 104.875
+   },
+   "bounds": {
+    "west": 104.75,
+    "south": 23.0,
+    "east": 105.0,
+    "north": 23.25
+   },
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "92_420",
+   "center": {
+    "lat": 23.125,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 23.0,
+    "east": 105.25,
+    "north": 23.25
+   },
+   "value": 17.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "92_421",
+   "center": {
+    "lat": 23.125,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 23.0,
+    "east": 105.5,
+    "north": 23.25
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "92_422",
+   "center": {
+    "lat": 23.125,
+    "lon": 105.625
+   },
+   "bounds": {
+    "west": 105.5,
+    "south": 23.0,
+    "east": 105.75,
+    "north": 23.25
+   },
+   "value": 7.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "92_423",
+   "center": {
+    "lat": 23.125,
+    "lon": 105.875
+   },
+   "bounds": {
+    "west": 105.75,
+    "south": 23.0,
+    "east": 106.0,
+    "north": 23.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "93_420",
+   "center": {
+    "lat": 23.375,
+    "lon": 105.125
+   },
+   "bounds": {
+    "west": 105.0,
+    "south": 23.25,
+    "east": 105.25,
+    "north": 23.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  },
+  {
+   "cellId": "93_421",
+   "center": {
+    "lat": 23.375,
+    "lon": 105.375
+   },
+   "bounds": {
+    "west": 105.25,
+    "south": 23.25,
+    "east": 105.5,
+    "north": 23.5
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION"
+  }
+ ],
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}

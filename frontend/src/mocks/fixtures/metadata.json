@@ -1,0 +1,167 @@
+{
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ },
+ "dateRange": {
+  "start": "2000-11-01",
+  "end": "2026-11-13"
+ },
+ "yearRange": {
+  "start": 2000,
+  "end": 2026
+ },
+ "gridDegrees": 0.25,
+ "supportedGranularities": {
+  "calendar": [
+   "month",
+   "pentad"
+  ],
+  "map": [
+   "day",
+   "year",
+   "month",
+   "pentad"
+  ],
+  "trends": [
+   "year",
+   "month",
+   "pentad"
+  ],
+  "seasonality": [
+   "month",
+   "pentad"
+  ]
+ },
+ "capabilities": {
+  "spatialSelectors": [
+   "NAMED_AREA",
+   "BOUNDING_BOX"
+  ],
+  "mapGranularities": [
+   "day",
+   "year",
+   "month",
+   "pentad"
+  ],
+  "calendarDaysAvailable": true,
+  "rawDetectionPointsAvailable": false,
+  "harmonizationComparisonAvailable": true,
+  "anomalyAvailable": false
+ },
+ "sourceCodes": [
+  {
+   "code": 1,
+   "source": "TERRA",
+   "origin": "MODEL_REDISTRIBUTED",
+   "description": "Terra monthly estimate redistributed to days"
+  },
+  {
+   "code": 2,
+   "source": "AQUA",
+   "origin": "MODEL_REDISTRIBUTED",
+   "description": "Calibrated Aqua monthly estimate redistributed to days"
+  },
+  {
+   "code": 3,
+   "source": "SNPP",
+   "origin": "DIRECT_OBSERVATION",
+   "description": "Direct S-NPP daytime detections"
+  },
+  {
+   "code": 4,
+   "source": "NOAA20",
+   "origin": "SCALED_OBSERVATION",
+   "description": "NOAA-20 detections scaled to S-NPP equivalent"
+  }
+ ],
+ "limitations": [
+  "snpp_eq là số phát hiện tương đương S-NPP, không phải số vụ cháy hay diện tích cháy.",
+  "Phân tích lịch sử, không phải cảnh báo thời gian thực hay dự báo.",
+  "Chỉ phát hiện ban ngày; đã lọc nguồn nhiệt tĩnh.",
+  "Không có khoảng bất định cấp ngày.",
+  "Kiểm định phát hành ở cấp tháng/pentad, chưa có kiểm định riêng cấp ngày.",
+  "11/2000-7/2002 dựng từ Terra, độ tin cậy thấp.",
+  "8/2002-1/2012 là ước lượng từ Aqua đã hiệu chuẩn.",
+  "Tây Nguyên trước 2012 có thể bị ước lượng cao khoảng 6-10%.",
+  "Baseline 2003-2025 gồm giai đoạn Aqua ước lượng và S-NPP/NOAA-20.",
+  "Vùng chẩn đoán không phải ranh giới hành chính.",
+  "Pentad 73 có 6 ngày ở năm nhuận."
+ ],
+ "warningCatalog": [
+  {
+   "code": "PARTIAL_PERIOD",
+   "message": "Kỳ được hỏi nằm trong periods.partial (chưa đủ ngày trong dataset).",
+   "appliesTo": [
+    "/calendar",
+    "/trends",
+    "/map/cells"
+   ]
+  },
+  {
+   "code": "DATASET_EDGE_DATE",
+   "message": "Ngày được hỏi là ngày dữ liệu cuối (dataThrough).",
+   "appliesTo": [
+    "/daily",
+    "/map/cells"
+   ]
+  },
+  {
+   "code": "TERRA_EARLY_PERIOD_HIGHER_UNCERTAINTY",
+   "message": "Có cell-day đóng góp dựng từ Terra (11/2000-7/2002), độ tin cậy thấp.",
+   "appliesTo": [
+    "/calendar",
+    "/trends",
+    "/map/cells",
+    "/daily"
+   ]
+  },
+  {
+   "code": "MODEL_REDISTRIBUTED_DAILY_VALUE",
+   "message": "Giá trị ngày là ước lượng mô hình cấp tháng được phân bổ xuống ngày.",
+   "appliesTo": [
+    "/daily",
+    "/map/cells"
+   ]
+  },
+  {
+   "code": "NO_DAILY_UNCERTAINTY_INTERVAL",
+   "message": "Không có khoảng bất định cấp ngày.",
+   "appliesTo": [
+    "/daily",
+    "/map/cells?date"
+   ]
+  },
+  {
+   "code": "DIAGNOSTIC_REGION_NOT_ADMIN_BOUNDARY",
+   "message": "Vùng chẩn đoán không phải ranh giới hành chính.",
+   "appliesTo": [
+    "/calendar",
+    "/trends",
+    "/map/cells",
+    "/daily",
+    "/seasonality"
+   ]
+  },
+  {
+   "code": "AQUA_FALLBACK_AFTER_ORBIT_DRIFT",
+   "message": "Có cell-day dùng Aqua dự phòng sau khi quỹ đạo Aqua đã trôi.",
+   "appliesTo": [
+    "/calendar",
+    "/trends",
+    "/map/cells",
+    "/daily"
+   ]
+  }
+ ],
+ "daily": {
+  "available": true,
+  "uncertaintyIntervalAvailable": false,
+  "qualification": "Daily values are verified for use with published scientific limitations."
+ }
+}

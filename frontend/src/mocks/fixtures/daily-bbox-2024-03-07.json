@@ -1,0 +1,337 @@
+{
+ "selection": {
+  "type": "BOUNDING_BOX",
+  "selectionRule": "CENTER_INCLUSIVE",
+  "requestedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "selectedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "cellCount": 13,
+  "cellIds": [
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "50_430",
+   "50_431",
+   "51_429",
+   "51_430",
+   "51_431"
+  ]
+ },
+ "date": "2024-03-07",
+ "value": 10.0,
+ "valueStatus": "AVAILABLE",
+ "origin": "DIRECT_OBSERVATION",
+ "partial": false,
+ "sourceComposition": [
+  {
+   "sourceCode": 3,
+   "source": "SNPP",
+   "origin": "DIRECT_OBSERVATION",
+   "cellCount": 13,
+   "contributingCellDayCount": 13,
+   "harmonizedValue": 10.0,
+   "inputObservationCount": 10,
+   "sourceInputValidCellCount": 13
+  }
+ ],
+ "cells": [
+  {
+   "cellId": "48_428",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 12.0,
+    "east": 107.25,
+    "north": 12.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "48_429",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.0,
+    "east": 107.5,
+    "north": 12.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "48_430",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.0,
+    "east": 107.75,
+    "north": 12.25
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "48_431",
+   "center": {
+    "lat": 12.125,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.0,
+    "east": 108.0,
+    "north": 12.25
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 3,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "49_428",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.125
+   },
+   "bounds": {
+    "west": 107.0,
+    "south": 12.25,
+    "east": 107.25,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "49_429",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.25,
+    "east": 107.5,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "49_430",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.25,
+    "east": 107.75,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "49_431",
+   "center": {
+    "lat": 12.375,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.25,
+    "east": 108.0,
+    "north": 12.5
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "50_430",
+   "center": {
+    "lat": 12.625,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.5,
+    "east": 107.75,
+    "north": 12.75
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 3,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "50_431",
+   "center": {
+    "lat": 12.625,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.5,
+    "east": 108.0,
+    "north": 12.75
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "51_429",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.375
+   },
+   "bounds": {
+    "west": 107.25,
+    "south": 12.75,
+    "east": 107.5,
+    "north": 13.0
+   },
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 0,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "51_430",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.625
+   },
+   "bounds": {
+    "west": 107.5,
+    "south": 12.75,
+    "east": 107.75,
+    "north": 13.0
+   },
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 1,
+   "sourceInputValid": true
+  },
+  {
+   "cellId": "51_431",
+   "center": {
+    "lat": 12.875,
+    "lon": 107.875
+   },
+   "bounds": {
+    "west": 107.75,
+    "south": 12.75,
+    "east": 108.0,
+    "north": 13.0
+   },
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "sourceCode": 3,
+   "source": "SNPP",
+   "inputObservationCount": 3,
+   "sourceInputValid": true
+  }
+ ],
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": [
+   "NO_DAILY_UNCERTAINTY_INTERVAL"
+  ]
+ }
+}

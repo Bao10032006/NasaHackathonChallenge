@@ -1,0 +1,4564 @@
+{
+ "generatedFromCommit": "5d00252",
+ "fixtures": [
+  {
+   "file": "metadata",
+   "path": "/metadata",
+   "query": {},
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "areas",
+   "path": "/areas",
+   "query": {},
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-p15",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2026"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-01",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-02",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-04",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-05",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-06",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-07",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-08",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-09",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-10",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-11",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-12",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-01",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-02",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-03",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-04",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-05",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-06",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-07",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-08",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-09",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-10",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-11",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2005-12",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2005",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-01",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-02",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-03",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-04",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-05",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-06",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-07",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-08",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-09",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-10",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-11",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2024-12",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-bbox-2026-11",
+   "path": "/calendar/days",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-01",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-01"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-01",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-01",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-02",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-02"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-02",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-02",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-03",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-03"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-03",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-03",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-04",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-04"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-04",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-04",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-05",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-05"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-05",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-05",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-06",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-06"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-06",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-06",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-07",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-07"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-07",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-07",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-08",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-08"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-08",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-08",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-09",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-09"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-09",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-09",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-10",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-10"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-10",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-10",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-11",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-11",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-11",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-12",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-12"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-12",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-12",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-13",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-13"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-13",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-13",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-14",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-14"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-14",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-14",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-15",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-15"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-15",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-15",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-16",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-16"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-16",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-16",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-17",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-17"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-17",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-17",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-18",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-18",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-18",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-19",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-19"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-19",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-19",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-20",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-20"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-20",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-20",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-21",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-21"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-21",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-21",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-22",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-22"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-22",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-22",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-23",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-23"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-23",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-23",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-24",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-24"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-24",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-24",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-25",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-25"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-25",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-25",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-26",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-26"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-26",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-26",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-27",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-27"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-27",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-27",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-28",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-28"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-28",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-28",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-29",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-29"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-29",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-29",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-30",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-30"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-30",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-30",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2024-03-31",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-31"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2024-03-31",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2024-03-31",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-01",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-01"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-01",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-01",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-02",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-02"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-02",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-02",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-03",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-03"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-03",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-03",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-04",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-04"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-04",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-04",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-05",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-05"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-05",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-05",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-06",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-06"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-06",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-06",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-07",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-07"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-07",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-07",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-08",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-08"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-08",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-08",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-09",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-09"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-09",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-09",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-10",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-10"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-10",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-10",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-11",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-11"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-11",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-11",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-12",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-12"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-12",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-12",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-bbox-2026-11-13",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-bbox-2026-11-13",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-13",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "calendar-bbox-2024-month",
+   "path": "/calendar",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "granularity": "month",
+    "includeBaseline": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "calendar-bbox-2024-pentad",
+   "path": "/calendar",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "granularity": "pentad",
+    "includeBaseline": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "calendar-bbox-2026-month",
+   "path": "/calendar",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2026",
+    "granularity": "month",
+    "includeBaseline": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-national-2024-03",
+   "path": "/map/cells",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "calendar-national-2024-month",
+   "path": "/calendar",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "year": "2024",
+    "granularity": "month",
+    "includeBaseline": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-national-2024-03",
+   "path": "/calendar/days",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "daily-national-2024-03-18",
+   "path": "/daily",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "date": "2024-03-18",
+    "includeCells": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-taynguyen-2024-03",
+   "path": "/map/cells",
+   "query": {
+    "areaType": "diagnostic_region",
+    "areaId": "TayNguyen",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "calendar-taynguyen-2024-month",
+   "path": "/calendar",
+   "query": {
+    "areaType": "diagnostic_region",
+    "areaId": "TayNguyen",
+    "year": "2024",
+    "granularity": "month",
+    "includeBaseline": "true"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "days-taynguyen-2024-03",
+   "path": "/calendar/days",
+   "query": {
+    "areaType": "diagnostic_region",
+    "areaId": "TayNguyen",
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "error-date-outside-range",
+   "path": "/daily",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "date": "2026-11-14",
+    "includeCells": "true"
+   },
+   "status": 422,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "error-no-cells-in-bounds",
+   "path": "/map/cells",
+   "query": {
+    "west": "100",
+    "south": "0",
+    "east": "101",
+    "north": "1",
+    "year": "2024"
+   },
+   "status": 422,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "error-invalid-temporal-selector",
+   "path": "/map/cells",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "year": "2024",
+    "month": "3",
+    "pentad": "2"
+   },
+   "status": 400,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "map-national-2024",
+   "path": "/map/cells",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "backend@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-1",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-2",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-3",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-4",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-5",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-6",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-7",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-8",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-9",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-10",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-11",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-month-12",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-national-month-3",
+   "path": "/trends",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "month",
+    "period": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-year",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "year"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "seasonality-bbox-month",
+   "path": "/seasonality",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "granularity": "month",
+    "startYear": "2003",
+    "endYear": "2025"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-national-year",
+   "path": "/trends",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "year"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "seasonality-national-month",
+   "path": "/seasonality",
+   "query": {
+    "areaType": "national",
+    "areaId": "ToanQuoc",
+    "granularity": "month",
+    "startYear": "2003",
+    "endYear": "2025"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "trends-bbox-pentad-15",
+   "path": "/trends",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "startYear": "2000",
+    "endYear": "2026",
+    "granularity": "pentad",
+    "period": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "seasonality-bbox-pentad",
+   "path": "/seasonality",
+   "query": {
+    "west": "107",
+    "south": "12",
+    "east": "108",
+    "north": "13",
+    "granularity": "pentad",
+    "startYear": "2003",
+    "endYear": "2025"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-p15",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-03-18",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2005-03",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2026-11",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2026-11-13",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-01",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-02",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-03",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-04",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-05",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-06",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-07",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-08",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-09",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-10",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-11",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_428-2024-12",
+   "path": "/cells/48_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-p15",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-03-18",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2005-03",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2026-11",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2026-11-13",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-01",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-02",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-03",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-04",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-05",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-06",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-07",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-08",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-09",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-10",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-11",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_429-2024-12",
+   "path": "/cells/48_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-p15",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-03-18",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2005-03",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2026-11",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2026-11-13",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-01",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-02",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-03",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-04",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-05",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-06",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-07",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-08",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-09",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-10",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-11",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_430-2024-12",
+   "path": "/cells/48_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-p15",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-03-18",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2005-03",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2026-11",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2026-11-13",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-01",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-02",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-03",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-04",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-05",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-06",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-07",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-08",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-09",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-10",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-11",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-48_431-2024-12",
+   "path": "/cells/48_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-p15",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-03-18",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2005-03",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2026-11",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2026-11-13",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-01",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-02",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-03",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-04",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-05",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-06",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-07",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-08",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-09",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-10",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-11",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_428-2024-12",
+   "path": "/cells/49_428/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-p15",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-03-18",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2005-03",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2026-11",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2026-11-13",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-01",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-02",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-03",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-04",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-05",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-06",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-07",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-08",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-09",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-10",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-11",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_429-2024-12",
+   "path": "/cells/49_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-p15",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-03-18",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2005-03",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2026-11",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2026-11-13",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-01",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-02",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-03",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-04",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-05",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-06",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-07",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-08",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-09",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-10",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-11",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_430-2024-12",
+   "path": "/cells/49_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-p15",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-03-18",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2005-03",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2026-11",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2026-11-13",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-01",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-02",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-03",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-04",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-05",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-06",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-07",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-08",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-09",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-10",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-11",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-49_431-2024-12",
+   "path": "/cells/49_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-p15",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-03-18",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2005-03",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2026-11",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2026-11-13",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-01",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-02",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-03",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-04",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-05",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-06",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-07",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-08",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-09",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-10",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-11",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_430-2024-12",
+   "path": "/cells/50_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-p15",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-03-18",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2005-03",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2026-11",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2026-11-13",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-01",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-02",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-03",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-04",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-05",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-06",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-07",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-08",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-09",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-10",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-11",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-50_431-2024-12",
+   "path": "/cells/50_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-p15",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-03-18",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2005-03",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2026-11",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2026-11-13",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-01",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-02",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-03",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-04",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-05",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-06",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-07",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-08",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-09",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-10",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-11",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_429-2024-12",
+   "path": "/cells/51_429/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-p15",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-03-18",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2005-03",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2026-11",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2026-11-13",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-01",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-02",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-03",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-04",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-05",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-06",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-07",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-08",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-09",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-10",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-11",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_430-2024-12",
+   "path": "/cells/51_430/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-p15",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "pentad": "15"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-03-18",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "date": "2024-03-18"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2005-03",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2005",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2026-11",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2026",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2026-11-13",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "date": "2026-11-13"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-01",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "1"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-02",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "2"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-03",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "3"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-04",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "4"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-05",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "5"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-06",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "6"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-07",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "7"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-08",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "8"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-09",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "9"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-10",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "10"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-11",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "11"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "cell-51_431-2024-12",
+   "path": "/cells/51_431/period-details",
+   "query": {
+    "year": "2024",
+    "month": "12"
+   },
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  },
+  {
+   "file": "harmonization-comparison",
+   "path": "/harmonization/comparison",
+   "query": {},
+   "status": 200,
+   "provenance": "generated:tools/frontend/build_mock_fixtures.py@5d00252"
+  }
+ ]
+}

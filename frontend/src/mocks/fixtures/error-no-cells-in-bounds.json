@@ -1,0 +1,9 @@
+{
+ "type": "https://hoalich.local/problems/no-cells-in-bounds",
+ "title": "No cells in bounds",
+ "status": 422,
+ "code": "NO_CELLS_IN_BOUNDS",
+ "detail": "The bounding box contains no dataset cell centers",
+ "instance": "/api/v1/map/cells",
+ "timestamp": "2026-11-14T15:52:04.5307657Z"
+}

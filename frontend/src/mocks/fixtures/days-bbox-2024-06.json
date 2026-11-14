@@ -1,0 +1,305 @@
+{
+ "selection": {
+  "type": "BOUNDING_BOX",
+  "selectionRule": "CENTER_INCLUSIVE",
+  "requestedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "selectedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "cellCount": 13,
+  "cellIds": [
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "50_430",
+   "50_431",
+   "51_429",
+   "51_430",
+   "51_431"
+  ]
+ },
+ "year": 2024,
+ "month": 6,
+ "values": [
+  {
+   "date": "2024-06-01",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-02",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-03",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-04",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-05",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-06",
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-07",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-08",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-09",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-10",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-11",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-12",
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-13",
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-14",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-15",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-16",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-17",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-18",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-19",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-20",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-21",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-22",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-23",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-24",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-25",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-26",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-27",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-28",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-29",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-06-30",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  }
+ ],
+ "summary": {
+  "totalValue": 19.0,
+  "valueStatus": "AVAILABLE",
+  "coverage": {
+   "requestedStartDate": "2024-06-01",
+   "requestedEndDate": "2024-06-30",
+   "coveredStartDate": "2024-06-01",
+   "coveredEndDate": "2024-06-30",
+   "expectedDayCount": 30,
+   "coveredDayCount": 30,
+   "uncoveredDayCount": 0,
+   "partial": false
+  },
+  "peakDate": {
+   "date": "2024-06-13",
+   "value": 6.0
+  }
+ },
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}

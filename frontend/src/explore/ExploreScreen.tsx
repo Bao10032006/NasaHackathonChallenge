@@ -1,30 +1,26 @@
-import { ActivityCalendars } from './ActivityCalendars'
-import { DataNotes, GridCellDetails } from './DataPanels'
+import { DayCalendar, PeriodCalendar } from './ActivityCalendars'
+import { CellPeriodDetails } from './CellPeriodDetails'
 import { ExploreFilters } from './ExploreFilters'
 import { FireGridMap } from './FireGridMap'
 import { HistoricalAnalysis } from './HistoricalAnalysis'
-import { PeriodSummary } from './PeriodSummary'
+import { PeriodSummary, SelectionStatus } from './PeriodSummary'
 
+/**
+ * Explore in the wireframe v0.4 mobile order: filters → selection/coverage → summary → map →
+ * 12-month/73-pentad calendar → day calendar → historical analysis → cell details.
+ * Data Notes is its own screen (one click away in the header).
+ */
 export default function ExploreScreen() {
   return (
-    <main>
-      <header>
-        <h1>Khám phá</h1>
-        <p>
-          <strong>Số phát hiện tương đương S-NPP</strong> là chỉ số hoạt động đốt
-          ban ngày được quy về thang đo của cảm biến VIIRS trên Suomi NPP.
-          Chỉ số này không phải số vụ cháy.
-        </p>
-      </header>
-
+    <div className="explore" data-screen="explore">
       <ExploreFilters />
-      <div role="status" />
+      <SelectionStatus />
       <PeriodSummary />
       <FireGridMap />
-      <ActivityCalendars />
+      <PeriodCalendar />
+      <DayCalendar />
       <HistoricalAnalysis />
-      <GridCellDetails />
-      <DataNotes />
-    </main>
+      <CellPeriodDetails />
+    </div>
   )
 }

@@ -1,0 +1,313 @@
+{
+ "selection": {
+  "type": "BOUNDING_BOX",
+  "selectionRule": "CENTER_INCLUSIVE",
+  "requestedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "selectedBounds": {
+   "west": 107.0,
+   "south": 12.0,
+   "east": 108.0,
+   "north": 13.0
+  },
+  "cellCount": 13,
+  "cellIds": [
+   "48_428",
+   "48_429",
+   "48_430",
+   "48_431",
+   "49_428",
+   "49_429",
+   "49_430",
+   "49_431",
+   "50_430",
+   "50_431",
+   "51_429",
+   "51_430",
+   "51_431"
+  ]
+ },
+ "year": 2024,
+ "month": 1,
+ "values": [
+  {
+   "date": "2024-01-01",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-02",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-03",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-04",
+   "value": 18.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-05",
+   "value": 5.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-06",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-07",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-08",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-09",
+   "value": 25.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-10",
+   "value": 0.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-11",
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-12",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-13",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-14",
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-15",
+   "value": 11.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-16",
+   "value": 2.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-17",
+   "value": 9.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-18",
+   "value": 8.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-19",
+   "value": 19.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-20",
+   "value": 39.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-21",
+   "value": 33.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-22",
+   "value": 15.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-23",
+   "value": 28.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-24",
+   "value": 3.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-25",
+   "value": 116.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-26",
+   "value": 22.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-27",
+   "value": 39.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-28",
+   "value": 6.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-29",
+   "value": 1.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-30",
+   "value": 53.0,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "DIRECT_OBSERVATION",
+   "warnings": []
+  },
+  {
+   "date": "2024-01-31",
+   "value": 19.790624856948853,
+   "valueStatus": "AVAILABLE",
+   "partial": false,
+   "origin": "SCALED_OBSERVATION",
+   "warnings": []
+  }
+ ],
+ "summary": {
+  "totalValue": 494.79062485694885,
+  "valueStatus": "AVAILABLE",
+  "coverage": {
+   "requestedStartDate": "2024-01-01",
+   "requestedEndDate": "2024-01-31",
+   "coveredStartDate": "2024-01-01",
+   "coveredEndDate": "2024-01-31",
+   "expectedDayCount": 31,
+   "coveredDayCount": 31,
+   "uncoveredDayCount": 0,
+   "partial": false
+  },
+  "peakDate": {
+   "date": "2024-01-25",
+   "value": 116.0
+  }
+ },
+ "meta": {
+  "dataVersion": "hoalich-data-v1-2026-11-13",
+  "modelVersion": "lai-clim-s2-k60-kappa3",
+  "dataThrough": "2026-11-13",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "warnings": []
+ }
+}
