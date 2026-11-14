@@ -80,6 +80,19 @@ Hai version string trên là canonical ID được đề xuất cho API; artifac
 
 `MIXED` chỉ dùng cho tổng area khi các cell sử dụng nhiều origin trong cùng ngày. Không suy source theo tháng từ nhãn `src` tổng hợp.
 
+## 3.5. Origin cho month/pentad (bổ sung sau review 14/11/2026)
+
+Vision v0.2 §6.1 (Must) yêu cầu phân biệt dữ liệu ước lượng với dữ liệu quan sát. Vì vậy mỗi giá trị tháng/pentad có `valueStatus=AVAILABLE` trong `/calendar`, `/trends` và `/map/cells` (selector month/pentad) phải kèm `origin`:
+
+- Tính từ daily cube: lấy các ngày thuộc period (giao với dataset range) và các cell thuộc area/cell, cộng `harmonized` theo từng `src_code`.
+- Nếu toàn bộ giá trị dương của period đến từ một origin → trả origin đó (`DIRECT_OBSERVATION`, `SCALED_OBSERVATION` hoặc `MODEL_REDISTRIBUTED`).
+- Nếu có nhiều origin → `MIXED`.
+- Nếu tổng period bằng `0` → lấy origin của số ô-ngày chiếm đa số (để giá trị 0 vẫn biết là 0 quan sát hay 0 ước lượng).
+- Không dùng nhãn `src` tổng hợp của bảng tháng/pentad (nhãn đó là nguồn đa số toàn quốc, không phải của area).
+- Period có ngày `src_code=1` còn phải mang warning `TERRA_EARLY_PERIOD_HIGHER_UNCERTAINTY`.
+
+`origin` là trường thêm mới, không phá client v0.2. Chi tiết nguồn theo từng ngày vẫn chỉ có ở `/daily`.
+
 # 4. Response metadata
 
 Mọi response dữ liệu chứa:
@@ -106,6 +119,7 @@ Mọi response dữ liệu chứa:
 - `NO_DAILY_UNCERTAINTY_INTERVAL`
 - `DIAGNOSTIC_REGION_NOT_ADMIN_BOUNDARY`
 - `DATASET_EDGE_DATE`
+- `AQUA_FALLBACK_AFTER_ORBIT_DRIFT` — có cell-day `src_code=2` từ năm 2022 trở đi (Aqua dự phòng khi cả S-NPP lẫn NOAA-20 không hợp lệ, trong giai đoạn quỹ đạo Aqua đã trôi). Snapshot v1: chỉ 1 ngày năm 2026 (328 cell-day).
 
 # 5. Error contract
 
@@ -179,7 +193,7 @@ Status/code chuẩn:
 - National/region pentad: `harmonized_regions_pentad.csv`.
 - Month: `harmonized_025_month.csv`, join `cells_025.csv`; ưu tiên aggregate đã xuất khi có.
 
-**Response:** 12 hoặc 73 `values`, mỗi item có `period`, `startDate`, `endDate`, `value`, `valueStatus`, `partial`. Khi `includeBaseline=true`, thêm baseline median cùng period với reference years/sample size theo quy tắc `/seasonality`.
+**Response:** 12 hoặc 73 `values`, mỗi item có `period`, `startDate`, `endDate`, `value`, `valueStatus`, `partial` và `origin` khi `valueStatus=AVAILABLE` (§3.5). Khi `includeBaseline=true`, thêm baseline median cùng period với reference years/sample size theo quy tắc `/seasonality`.
 
 **Validation:** year trong 2000–2026; không chấp nhận `day`; period ngoài snapshot trả `MISSING`, không tự tạo zero.
 
@@ -193,7 +207,7 @@ Status/code chuẩn:
 
 **Dependency:** daily cube cho `date`; month/pentad artifacts cho selector tương ứng; `cells_025.csv` cho bounds.
 
-**Response:** cell items `{cellId,bounds,value,valueStatus,partial}`. Với `date`, bổ sung `{sourceCode,source,origin,inputObservationCount,sourceInputValid}`.
+**Response:** cell items `{cellId,bounds,value,valueStatus,partial}`. Với `year`+`month` hoặc `year`+`pentad`, bổ sung `origin` theo §3.5. Với `date`, bổ sung `{sourceCode,source,origin,inputObservationCount,sourceInputValid}`.
 
 **Validation:** thiếu selector, nhiều selector đồng thời hoặc thiếu một phần pair → 400. Date ngoài range → 422. Area filter chỉ giảm tập cell; không thay đổi bounds.
 
@@ -205,7 +219,7 @@ Status/code chuẩn:
 - `month`: bắt buộc `period=1..12`.
 - `pentad`: bắt buộc `period=1..73`.
 
-**Response:** points `{year,period?,value,valueStatus,partial,coverage?}`. Không hỗ trợ daily trend trong v0.3.
+**Response:** points `{year,period?,value,valueStatus,partial,origin?,coverage?}`; `origin` bắt buộc khi `valueStatus=AVAILABLE` (§3.5). Không hỗ trợ daily trend trong v0.3.
 
 **Dependency:** yearly/national table khi đúng scope; các bảng month/pentad cho region/cell. Không cộng từ dữ liệu đã làm tròn nếu có aggregate chính thức tốt hơn.
 
@@ -213,17 +227,19 @@ Status/code chuẩn:
 
 **Query:** `areaType`, `areaId`, `granularity=month|pentad`, `startYear=2003`, `endYear=2025`.
 
-**Response:** một item cho mỗi period gồm:
+**Response:** một item cho mỗi period gồm (số thật của snapshot v1: `areaType=diagnostic_region`, `areaId=TayNguyen`, `granularity=pentad`, 2003–2025, đọc từ `harmonized_regions_pentad.csv`):
 
 ```json
 {
   "period": 15,
   "sampleSize": 23,
-  "mean": 1691.4,
-  "median": 1520.3,
+  "mean": 1672.6,
+  "median": 1373.0,
   "valueStatus": "AVAILABLE"
 }
 ```
+
+Lưu ý công bố cùng response hoặc `/metadata`: baseline 2003–2025 gồm 2003–2011 là ước lượng từ Aqua đã hiệu chuẩn và 2012–2025 là S-NPP/NOAA-20; pentad 73 có 6 ngày ở năm nhuận (BR07).
 
 `mean` và `median` dùng các năm đủ dữ liệu của đúng area/period. Missing/partial bị loại theo rule và `sampleSize` tính riêng từng period. `baselineMethod` mặc định cho comparison là `median`; response vẫn trả cả mean và median để frontend trình bày seasonality.
 
@@ -286,6 +302,10 @@ Khi `includeCells=true`, thêm tối đa các cell thuộc area với fields:
 - Không có `lo90`/`hi90` cấp ngày vì artifact không cung cấp và validation không phê duyệt daily uncertainty.
 - Giá trị model redistributed có thể dương dù input count của đúng ngày bằng 0.
 - `includeCells=true` không trả raw coordinates/detections.
+- Trong dataset range, daily cube không có giá trị thiếu: `valueStatus` luôn là `AVAILABLE`; giá trị `0` (khoảng 57% cell-day của snapshot v1) là giá trị thật. Ngày ngoài range trả `422 DATE_OUTSIDE_DATASET_RANGE`, không trả `MISSING`.
+- `partial` của một ngày luôn `false`; ngày cuối `dataThrough` mang warning `DATASET_EDGE_DATE`.
+- `inputObservationCount` và `sourceInputValid` lấy theo đúng vệ tinh của `src_code`: 1→Terra, 2→Aqua, 3→S-NPP, 4→NOAA-20.
+- Có cell-day `src_code=2` từ 2022 trở đi → thêm warning `AQUA_FALLBACK_AFTER_ORBIT_DRIFT`.
 
 ## 6.8. `GET /api/v1/harmonization/comparison`
 
@@ -329,6 +349,7 @@ Không có breaking change bắt buộc đối với client v0.2:
 - `/seasonality` và `/daily` là endpoint mới.
 - `date` trên `/map/cells` là selector mới; request month/pentad cũ vẫn hợp lệ.
 - `/calendar` vẫn chỉ `month|pentad`.
+- `origin` trên calendar/trends/map month-pentad (§3.5) là trường thêm mới.
 - Error payload được freeze trước khi controller tồn tại, nên chưa phá client implementation thực tế.
 
 Thay đổi hành vi cần frontend biết: `includeBaseline=true` phải theo cùng baseline rule của `/seasonality`; anomaly không nằm trong contract approved v0.3.

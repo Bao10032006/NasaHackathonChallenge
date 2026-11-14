@@ -326,7 +326,7 @@ paths:
                         cellCount: 122
                         harmonizedValue: 171.635599
                         inputObservationCount: 21
-                        sourceValidCellCount: 122
+                        sourceInputValidCellCount: 122
                     meta:
                       dataVersion: hoalich-data-v1-2026-11-13
                       modelVersion: lai-clim-s2-k60-kappa3
@@ -587,6 +587,10 @@ components:
           type: [number, 'null']
         valueStatus: {$ref: '#/components/schemas/ValueStatus'}
         partial: {type: boolean}
+        origin:
+          description: Required when valueStatus is AVAILABLE; derived from the daily source composition of the period (contract section 3.5).
+          allOf:
+            - $ref: '#/components/schemas/DailyOrigin'
     Baseline:
       type: object
       additionalProperties: false
@@ -627,8 +631,12 @@ components:
         sourceCode: {type: integer, minimum: 1, maximum: 4}
         source: {$ref: '#/components/schemas/DailySource'}
         origin:
-          type: string
-          enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
+          description: >-
+            Date selector: origin of the cell-day (never MIXED). Month/pentad
+            selector: origin derived from the period's daily source composition,
+            MIXED allowed (contract section 3.5).
+          allOf:
+            - $ref: '#/components/schemas/DailyOrigin'
         inputObservationCount: {type: integer, minimum: 0}
         sourceInputValid: {type: boolean}
     MapCellsResponse:
@@ -654,6 +662,10 @@ components:
           type: [number, 'null']
         valueStatus: {$ref: '#/components/schemas/ValueStatus'}
         partial: {type: boolean}
+        origin:
+          description: Required when valueStatus is AVAILABLE (contract section 3.5).
+          allOf:
+            - $ref: '#/components/schemas/DailyOrigin'
         coverage: {type: number, minimum: 0, maximum: 1}
     TrendsResponse:
       type: object
@@ -699,7 +711,7 @@ components:
     SourceComposition:
       type: object
       additionalProperties: false
-      required: [sourceCode, source, origin, cellCount, harmonizedValue, inputObservationCount, sourceValidCellCount]
+      required: [sourceCode, source, origin, cellCount, harmonizedValue, inputObservationCount, sourceInputValidCellCount]
       properties:
         sourceCode: {type: integer, minimum: 1, maximum: 4}
         source: {$ref: '#/components/schemas/DailySource'}
@@ -709,7 +721,7 @@ components:
         cellCount: {type: integer, minimum: 1}
         harmonizedValue: {type: number, minimum: 0}
         inputObservationCount: {type: integer, minimum: 0}
-        sourceValidCellCount: {type: integer, minimum: 0}
+        sourceInputValidCellCount: {type: integer, minimum: 0}
     DailyCellValue:
       allOf:
         - $ref: '#/components/schemas/MapCellValue'

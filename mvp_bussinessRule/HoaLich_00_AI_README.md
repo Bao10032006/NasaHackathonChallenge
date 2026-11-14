@@ -33,6 +33,8 @@ status: MVP specification; implementation in progress
 
 Các file v0.3 chưa tự động thay thế v0.2 cho đến khi Product/Data/Backend/Frontend duyệt các open questions trong TASK 02B.
 
+- [Review v0.3 + kiểm chứng dữ liệu 1.0](../docs/backend/REVIEW_v0.3_TASK03A.md): sửa B1–B3, quyết định D10–D13 và phạm vi chi tiết TASK 03A (Technical Design v0.3 §6A).
+
 # 2. Tài liệu lịch sử v0.1
 
 - [Vision & Scope v0.1](HoaLich_01_Product_Vision_and_Scope_v0.1.md)
