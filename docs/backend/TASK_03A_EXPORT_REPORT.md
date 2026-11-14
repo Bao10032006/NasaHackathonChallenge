@@ -2,7 +2,7 @@
 
 - Người thực hiện: HoangAnh250
 - Ngày: 14/11/2026
-- Spec: `docs/backend/TASK_03A_ARTIFACT_SPEC.md` (`1.0.0-draft.2`), manifest `schemaVersion = 1.0.0`
+- Spec: `docs/backend/TASK_03A_ARTIFACT_SPEC.md` (`1.0.0`, được backend chốt sau kiểm thử), manifest `schemaVersion = 1.0.0`
 - Exporter: `tools/data/export_daily_artifacts.py`; môi trường: `tools/data/requirements.txt`
 - Môi trường đã chạy: Windows, Python 3.15.0, numpy 2.5.4, pandas 3.1.1
 

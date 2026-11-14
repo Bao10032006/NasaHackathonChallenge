@@ -1,6 +1,6 @@
 # TASK 03A — Hợp đồng dữ liệu nội bộ Python ↔ Java (artifact spec)
 
-- Phiên bản spec: `1.0.0-draft.2` — binary layout **đã được backend duyệt**; chờ chốt các phần còn lại
+- Phiên bản spec: `1.0.0` — được Data/ML và backend chốt ngày 14/11/2026
 - Người soạn: HoangAnh250 (Người 1 — Data/ML và artifact)
 - Ngày: 14/11/2026
 - Snapshot nguồn: pipeline **1.0** trong `backend/hoalich_data_v1/hoalich_data_v1/`
@@ -361,8 +361,12 @@ python tools/data/export_daily_artifacts.py --fixture backend/src/test/resources
 
 `tools/data/requirements.txt`: Python 3.15, `numpy==2.5.4`, `pandas==3.1.1` (đã chạy thử). Backend Java không phụ thuộc Python.
 
-## 14. Còn chờ chốt
+## 14. Quyết định chốt spec
 
-1. Danh sách `warningCatalog` (§6.5) và `limitations` (§6.6) đủ cho `/metadata` và các endpoint chưa.
-2. Bảng fixture (§11) có đủ ca cho repository test chưa.
-3. Khi hai mục trên được đồng ý: đổi phiên bản spec thành `1.0.0`.
+Backend đã xác nhận ngày 14/11/2026:
+
+1. `warningCatalog` (§6.5) và `limitations` (§6.6) đủ cho lớp repository/metadata của TASK 03A; nội dung hiển thị cuối cùng vẫn do API Contract v0.3 chi phối.
+2. Fixture (§11) đủ để kiểm tra endian, thứ tự cell, bốn source code, zero hợp lệ, input count và cờ source-input không hợp lệ.
+3. Reader Java đã kiểm tra fixture chính thức, fail-fast validation và regression R1–R6 trên snapshot thật. R7 thuộc bảng pentad, dành cho repository seasonality ở bước sau.
+
+Spec được chốt thành `1.0.0`. Mọi thay đổi tiếp theo tuân theo quy tắc version tại §10.

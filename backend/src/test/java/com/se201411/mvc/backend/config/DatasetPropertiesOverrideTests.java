@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(properties = "HOALICH_DATASET_ROOT=external/hoalich-data")
+@SpringBootTest(properties = "HOALICH_DATASET_ROOT=src/test/resources/fixtures/daily-mini")
 class DatasetPropertiesOverrideTests {
 
 	@Autowired
@@ -17,6 +17,6 @@ class DatasetPropertiesOverrideTests {
 	@Test
 	void environmentVariableStylePropertyOverridesDefaultLocation() {
 		assertThat(datasetProperties.root())
-				.isEqualTo(Path.of("external", "hoalich-data"));
+				.isEqualTo(Path.of("src", "test", "resources", "fixtures", "daily-mini"));
 	}
 }
