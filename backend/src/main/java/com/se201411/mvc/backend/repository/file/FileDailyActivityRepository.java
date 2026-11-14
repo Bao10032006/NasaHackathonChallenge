@@ -205,6 +205,9 @@ public final class FileDailyActivityRepository
 
 	private void validateBinaryContent() {
 		int valueCount = sources.length;
+		long[] cellDaysByCode = new long[5];
+		int[] firstDayByCode = {-1, -1, -1, -1, -1};
+		int[] lastDayByCode = {-1, -1, -1, -1, -1};
 		for (int index = 0; index < valueCount; index++) {
 			float value = readFloat32LittleEndian(values, index * Float.BYTES);
 			if (!Float.isFinite(value) || value < 0) {
@@ -214,6 +217,12 @@ public final class FileDailyActivityRepository
 			if (sourceCode < 1 || sourceCode > 4) {
 				throw new DatasetUnavailableException("daily-source.u8 contains a code outside 1..4");
 			}
+			int day = index / cellCount;
+			cellDaysByCode[sourceCode]++;
+			if (firstDayByCode[sourceCode] < 0) {
+				firstDayByCode[sourceCode] = day;
+			}
+			lastDayByCode[sourceCode] = day;
 			if (readInt16LittleEndian(inputCounts, index * Short.BYTES) < 0) {
 				throw new DatasetUnavailableException("daily-input-count.i16 contains a negative value");
 			}
@@ -221,6 +230,27 @@ public final class FileDailyActivityRepository
 			if (valid != 0 && valid != 1) {
 				throw new DatasetUnavailableException(
 						"daily-source-input-valid.u8 contains a value outside 0..1");
+			}
+		}
+		validateSourceProvenance(cellDaysByCode, firstDayByCode, lastDayByCode);
+	}
+
+	/**
+	 * The manifest itself is not hash-protected, so its per-source provenance (cell-days, first and
+	 * last date) is cross-checked against daily-source.u8. Services read source/origin labels from the
+	 * manifest; this guarantees those labels describe the bytes that are actually served.
+	 */
+	private void validateSourceProvenance(long[] cellDaysByCode, int[] firstDayByCode, int[] lastDayByCode) {
+		for (DatasetManifest.SourceCodeDefinition definition : manifest.sourceCodes()) {
+			int code = definition.code();
+			String expectedFirst = firstDayByCode[code] < 0 ? null : startDate.plusDays(firstDayByCode[code]).toString();
+			String expectedLast = lastDayByCode[code] < 0 ? null : startDate.plusDays(lastDayByCode[code]).toString();
+			if (definition.cellDays() != cellDaysByCode[code]
+					|| !Objects.equals(definition.firstDate(), expectedFirst)
+					|| !Objects.equals(definition.lastDate(), expectedLast)) {
+				throw new DatasetUnavailableException(
+						"Manifest sourceCodes code " + code
+								+ " cellDays/firstDate/lastDate do not match daily-source.u8");
 			}
 		}
 	}
