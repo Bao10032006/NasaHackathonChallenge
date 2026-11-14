@@ -2,17 +2,22 @@ import type { Origin, ValueStatus } from '../api/types'
 
 /*
  * Visual encoding shared by the map, the day calendar and the legends.
- * Activity uses a sequential warm palette on a square-root scale (values are strongly skewed:
- * many small cells, few very active ones). Zero and out-of-range have their own neutral styles and
- * are always labelled in text, never by colour alone.
+ * Dark "fire" theme: activity goes from deep ember red (low) to bright flame yellow (high), so the most
+ * active cells glow on the NASA Black Marble basemap. Square-root scale because values are strongly
+ * skewed (many small cells, few very active ones). Zero and out-of-range have their own neutral styles
+ * and are always labelled in text, never by colour alone.
  */
 
-export const ACTIVITY_COLORS = ['#fff1c1', '#fed976', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', '#6b0019'] as const
-export const ZERO_COLOR = '#e8e4dc'
+export const ACTIVITY_COLORS = ['#6d0a1f', '#a50f15', '#d7301f', '#f16913', '#fd9a44', '#fdd06a', '#fff6b0'] as const
+export const ZERO_COLOR = 'rgba(148, 163, 184, 0.16)'
+/** Classes from this index up are bright enough to use dark text and a glow. */
+export const HOT_CLASS = 4
 
 export interface ActivityScale {
   max: number
   color: (value: number) => string
+  /** 0..6 colour class of a positive value, -1 for zero. */
+  classOf: (value: number) => number
   /** Upper bounds of each colour class, for the legend. */
   breaks: number[]
 }
@@ -21,15 +26,20 @@ export function activityScale(max: number | null | undefined): ActivityScale {
   const top = max !== null && max !== undefined && max > 0 ? max : 1
   const classes = ACTIVITY_COLORS.length
   const breaks = ACTIVITY_COLORS.map((_, index) => top * ((index + 1) / classes) ** 2)
+  const classOf = (value: number) => {
+    if (value <= 0) {
+      return -1
+    }
+    const position = Math.sqrt(Math.min(value, top) / top)
+    return Math.min(classes - 1, Math.floor(position * classes))
+  }
   return {
     max: top,
     breaks,
+    classOf,
     color: (value) => {
-      if (value <= 0) {
-        return ZERO_COLOR
-      }
-      const position = Math.sqrt(Math.min(value, top) / top)
-      return ACTIVITY_COLORS[Math.min(classes - 1, Math.floor(position * classes))]
+      const index = classOf(value)
+      return index < 0 ? ZERO_COLOR : ACTIVITY_COLORS[index]
     },
   }
 }

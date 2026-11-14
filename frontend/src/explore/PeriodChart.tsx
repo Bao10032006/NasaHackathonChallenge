@@ -68,8 +68,9 @@ export function PeriodChart() {
               {
                 id: 'year',
                 label: `Năm ${data.year}`,
-                color: '#c2410c',
+                color: '#ff7a3d',
                 markers: true,
+                area: true,
                 points: data.values.map((value): ChartPoint => ({
                   x: value.period,
                   y: value.valueStatus === 'AVAILABLE' ? value.value : null,
@@ -81,7 +82,7 @@ export function PeriodChart() {
               ...(data.baseline ? [{
                 id: 'baseline',
                 label: `Mức lịch sử (trung vị ${data.baseline.referenceStartYear}–${data.baseline.referenceEndYear}${data.baseline.excludesTargetYear ? `, trừ ${data.year}` : ''})`,
-                color: '#475569',
+                color: '#94a3b8',
                 dash: '6 4',
                 points: data.baseline.values.map((value): ChartPoint => ({
                   x: value.period,

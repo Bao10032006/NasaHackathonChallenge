@@ -4,20 +4,54 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Bounds, MapCellsResponse, MapCellValue } from '../api/types'
 import { ORIGIN_COPY, PROBLEM_COPY } from '../lib/format'
 import { boundsLabel, selectorLabel } from '../lib/labels'
-import { ACTIVITY_COLORS, ZERO_COLOR, activityScale, readableValue } from '../lib/scale'
+import { ACTIVITY_COLORS, HOT_CLASS, ZERO_COLOR, activityScale, readableValue } from '../lib/scale'
 import { currentOrPrevious, useApi } from '../lib/useApi'
 import { useAppState, useDispatch } from '../state/AppState'
 import { ServedByBadge } from './ui'
 import { mapRequest } from './requests'
 
 /*
- * Basemap: NASA GIBS (Global Imagery Browse Services) public WMTS tiles in Web Mercator. GIBS needs
- * no API key. FIRMS MAP_KEYs are for raw fire-detection downloads, which this product must not show
- * (capabilities.rawDetectionPointsAvailable = false).
+ * Basemaps: NASA GIBS (Global Imagery Browse Services) public WMTS tiles in Web Mercator, no API key.
+ * - Night: VIIRS Black Marble (city lights) — the default, fire cells glow on it.
+ * - Day: Blue Marble shaded relief + bathymetry.
+ * GIBS Reference_Labels_15m is NOT used: some of its tiles come back as opaque black palette PNGs,
+ * which covered the map with black squares. Place names are drawn locally instead.
+ * FIRMS MAP_KEYs are for raw fire-detection downloads, which this product must not show
+ * (capabilities.rawDetectionPointsAvailable = false), so none is used.
  */
 const GIBS = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best'
+const BASEMAPS = {
+  night: {
+    label: 'Đêm',
+    url: `${GIBS}/VIIRS_Black_Marble/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png`,
+    attribution: 'Ảnh nền © NASA EOSDIS GIBS · VIIRS Black Marble',
+  },
+  day: {
+    label: 'Ngày',
+    url: `${GIBS}/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg`,
+    attribution: 'Ảnh nền © NASA EOSDIS GIBS · Blue Marble',
+  },
+} as const
+type BasemapId = keyof typeof BASEMAPS
+
 const VIETNAM_VIEW: L.LatLngBoundsExpression = [[8.2, 102.1], [23.4, 109.5]]
 const GRID = 0.25
+
+/** Reference place names (centres of major cities), drawn as non-interactive labels. */
+const PLACES: Array<[string, number, number]> = [
+  ['Hà Nội', 21.028, 105.854],
+  ['Hải Phòng', 20.845, 106.688],
+  ['Điện Biên Phủ', 21.386, 103.023],
+  ['Vinh', 18.679, 105.681],
+  ['Huế', 16.463, 107.59],
+  ['Đà Nẵng', 16.054, 108.202],
+  ['Pleiku', 13.983, 108.0],
+  ['Buôn Ma Thuột', 12.667, 108.038],
+  ['Nha Trang', 12.238, 109.196],
+  ['Đà Lạt', 11.94, 108.458],
+  ['TP. Hồ Chí Minh', 10.776, 106.701],
+  ['Cần Thơ', 10.045, 105.747],
+]
 
 function snapToGrid(value: number): number {
   return Math.round(value / GRID) * GRID
@@ -48,11 +82,11 @@ function toLatLngBounds(bounds: Bounds): L.LatLngBoundsExpression {
 
 function cellTooltip(cell: MapCellValue): string {
   const value = cell.valueStatus === 'AVAILABLE' && cell.value !== null
-    ? `${readableValue(cell.value)} snpp_eq${cell.value === 0 ? ' (0: không có phát hiện)' : ''}`
+    ? `<span class="tip-value">${readableValue(cell.value)}</span> snpp_eq${cell.value === 0 ? ' · không có phát hiện' : ''}`
     : 'Ngoài phạm vi dữ liệu'
   const origin = cell.origin ? `<br>${ORIGIN_COPY[cell.origin]}` : ''
   const partial = cell.partial ? '<br>Kỳ chưa đầy đủ dữ liệu' : ''
-  return `<strong>Ô ${cell.cellId}</strong> · tâm ${cell.center.lat}°B, ${cell.center.lon}°Đ<br>${value}${origin}${partial}`
+  return `<strong>Ô ${cell.cellId}</strong><span class="tip-muted"> · ${cell.center.lat}°B, ${cell.center.lon}°Đ</span><br>${value}${origin}${partial}`
 }
 
 export function ExploreMap() {
@@ -62,10 +96,12 @@ export function ExploreMap() {
   const { data, stale } = currentOrPrevious(map)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<L.Map | null>(null)
+  const baseLayerRef = useRef<L.TileLayer | null>(null)
   const cellsLayerRef = useRef<L.FeatureGroup | null>(null)
   const outlineLayerRef = useRef<L.FeatureGroup | null>(null)
   const fittedSelectionRef = useRef<string | null>(null)
   const [drawing, setDrawing] = useState(false)
+  const [basemap, setBasemap] = useState<BasemapId>('night')
   const selectedCellId = state.filters.selectedCellId
   const requestedBbox = state.filters.spatial.mode === 'bbox' ? state.filters.spatial : null
 
@@ -77,37 +113,57 @@ export function ExploreMap() {
       return
     }
     const leaflet = L.map(containerRef.current, { zoomSnap: 0.25, minZoom: 4, maxZoom: 11, attributionControl: true })
-    leaflet.createPane('labels')
-    const labelsPane = leaflet.getPane('labels')
-    if (labelsPane) {
-      labelsPane.style.zIndex = '650'
-      labelsPane.style.pointerEvents = 'none'
+    for (const [name, zIndex] of [['coast', '350'], ['places', '640']] as const) {
+      leaflet.createPane(name)
+      const pane = leaflet.getPane(name)
+      if (pane) {
+        pane.style.zIndex = zIndex
+        pane.style.pointerEvents = 'none'
+      }
     }
-    L.tileLayer(`${GIBS}/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg`, {
-      maxNativeZoom: 8,
-      maxZoom: 11,
-      attribution: 'Ảnh nền © NASA EOSDIS GIBS (Blue Marble) · Ô lưới: Hỏa Lịch',
-    }).addTo(leaflet)
     L.tileLayer(`${GIBS}/Coastlines_15m/default/GoogleMapsCompatible_Level13/{z}/{y}/{x}.png`, {
       maxNativeZoom: 13,
       maxZoom: 11,
-      pane: 'labels',
-      opacity: 0.6,
+      pane: 'coast',
+      className: 'coast-tiles',
     }).addTo(leaflet)
-    L.tileLayer(`${GIBS}/Reference_Labels_15m/default/GoogleMapsCompatible_Level13/{z}/{y}/{x}.png`, {
-      maxNativeZoom: 13,
-      maxZoom: 11,
-      pane: 'labels',
-    }).addTo(leaflet)
+    for (const [name, lat, lon] of PLACES) {
+      L.marker([lat, lon], {
+        pane: 'places',
+        interactive: false,
+        keyboard: false,
+        icon: L.divIcon({ className: 'place-label', html: `<span class="place-dot"></span><span>${name}</span>`, iconSize: [0, 0] }),
+      }).addTo(leaflet)
+    }
     cellsLayerRef.current = L.featureGroup().addTo(leaflet)
     outlineLayerRef.current = L.featureGroup().addTo(leaflet)
     leaflet.fitBounds(VIETNAM_VIEW)
+    // Leaflet measures its container once; re-measure whenever the responsive layout resizes it.
+    const observer = new ResizeObserver(() => leaflet.invalidateSize())
+    observer.observe(containerRef.current)
     mapRef.current = leaflet
     return () => {
+      observer.disconnect()
       leaflet.remove()
       mapRef.current = null
     }
   }, [])
+
+  // Basemap switch (night / day).
+  useEffect(() => {
+    const leaflet = mapRef.current
+    if (!leaflet) {
+      return
+    }
+    baseLayerRef.current?.remove()
+    baseLayerRef.current = L.tileLayer(BASEMAPS[basemap].url, {
+      maxNativeZoom: 8,
+      maxZoom: 11,
+      attribution: `${BASEMAPS[basemap].attribution} · Ô lưới: Hỏa Lịch`,
+    }).addTo(leaflet)
+    baseLayerRef.current.bringToBack()
+    leaflet.getContainer().dataset.basemap = basemap
+  }, [basemap])
 
   // Draw the cells of the current (or previous, while updating) response.
   useEffect(() => {
@@ -122,14 +178,23 @@ export function ExploreMap() {
     for (const cell of data.cells) {
       const available = cell.valueStatus === 'AVAILABLE' && cell.value !== null
       const selected = cell.cellId === selectedCellId
+      const level = available ? scale.classOf(cell.value as number) : -1
+      const classes = ['grid-cell']
+      if (available && level >= HOT_CLASS) {
+        classes.push('grid-cell-hot')
+      }
+      if (selected) {
+        classes.push('grid-cell-selected')
+      }
       const rectangle = L.rectangle(toLatLngBounds(cell.bounds), {
-        color: selected ? '#111' : available ? 'rgba(60,40,20,0.45)' : '#777',
-        weight: selected ? 2.5 : 0.6,
+        className: classes.join(' '),
+        color: selected ? '#ffffff' : available ? (level < 0 ? 'rgba(148,163,184,0.35)' : 'rgba(255,214,170,0.35)') : 'rgba(148,163,184,0.6)',
+        weight: selected ? 2.5 : 0.5,
         dashArray: available ? undefined : '3 3',
-        fillColor: available ? scale.color(cell.value as number) : '#ffffff',
-        fillOpacity: available ? (stale ? 0.35 : 0.78) : 0.15,
+        fillColor: available ? scale.color(cell.value as number) : 'transparent',
+        fillOpacity: available ? (stale ? 0.35 : level < 0 ? 0.5 : 0.82) : 0,
       })
-      rectangle.bindTooltip(cellTooltip(cell), { sticky: true })
+      rectangle.bindTooltip(cellTooltip(cell), { sticky: true, className: 'cell-tooltip' })
       rectangle.on('click', () => dispatch({ type: 'selectCell', cellId: cell.cellId }))
       rectangle.addTo(layer)
     }
@@ -143,13 +208,15 @@ export function ExploreMap() {
     }
     layer.clearLayers()
     if (requestedBbox) {
-      L.rectangle(toLatLngBounds(requestedBbox), { color: '#1d4ed8', weight: 2, dashArray: '6 4', fill: false })
-        .bindTooltip('Khung bạn yêu cầu')
+      L.rectangle(toLatLngBounds(requestedBbox), { color: '#22d3ee', weight: 1.5, dashArray: '6 5', fill: false, className: 'bbox-requested' })
+        .bindTooltip('Khung bạn yêu cầu', { className: 'cell-tooltip' })
         .addTo(layer)
     }
-    if (data && data.selection.type === 'BOUNDING_BOX') {
-      L.rectangle(toLatLngBounds(data.selection.selectedBounds), { color: '#1d4ed8', weight: 1.5, fill: false })
-        .bindTooltip(`Phạm vi thực tế: ${data.selection.cellCount} ô`)
+    const sameAsRequested = requestedBbox !== null && data !== undefined
+      && (['west', 'south', 'east', 'north'] as const).every((side) => requestedBbox[side] === data.selection.selectedBounds[side])
+    if (data && data.selection.type === 'BOUNDING_BOX' && !sameAsRequested) {
+      L.rectangle(toLatLngBounds(data.selection.selectedBounds), { color: '#67e8f9', weight: 1, opacity: 0.8, fill: false })
+        .bindTooltip(`Phạm vi thực tế: ${data.selection.cellCount} ô`, { className: 'cell-tooltip' })
         .addTo(layer)
     }
   }, [requestedBbox, data])
@@ -168,7 +235,8 @@ export function ExploreMap() {
     if (data.selection.type === 'NAMED_AREA' && data.selection.area?.type === 'national') {
       leaflet.fitBounds(VIETNAM_VIEW)
     } else {
-      leaflet.fitBounds(toLatLngBounds(data.selection.selectedBounds), { padding: [40, 40], maxZoom: 9 })
+      // Zoom 8 is the native resolution of the GIBS basemaps; deeper zoom only blurs them.
+      leaflet.fitBounds(toLatLngBounds(data.selection.selectedBounds), { padding: [40, 40], maxZoom: 8 })
     }
   }, [data, stale])
 
@@ -184,8 +252,9 @@ export function ExploreMap() {
     let preview: L.Rectangle | null = null
     const onDown = (event: L.LeafletMouseEvent) => {
       start = event.latlng
-      preview = L.rectangle(L.latLngBounds(event.latlng, event.latlng), { color: '#1d4ed8', weight: 2, dashArray: '6 4', fillOpacity: 0.08 })
-        .addTo(leaflet)
+      preview = L.rectangle(L.latLngBounds(event.latlng, event.latlng), {
+        color: '#22d3ee', weight: 2, dashArray: '6 5', fillColor: '#22d3ee', fillOpacity: 0.08,
+      }).addTo(leaflet)
     }
     const onMove = (event: L.LeafletMouseEvent) => {
       if (start && preview) {
@@ -230,20 +299,34 @@ export function ExploreMap() {
     <section className="card map-card" aria-labelledby="map-title">
       <div className="card-head">
         <div>
-          <h2 id="map-title">Bản đồ hoạt động theo ô lưới</h2>
+          <h2 id="map-title">Bản đồ hoạt động cháy</h2>
           <p className="muted">
             {data ? selectorLabel(data.temporalSelector) : 'Đang tải…'}
-            {data && <> · {data.selection.cellCount} ô</>}
+            {data && <> · {data.selection.cellCount} ô lưới 0,25°</>}
           </p>
         </div>
         <div className="toolbar">
+          <div className="segmented segmented-small" role="radiogroup" aria-label="Ảnh nền">
+            {(Object.keys(BASEMAPS) as BasemapId[]).map((id) => (
+              <button
+                key={id}
+                type="button"
+                role="radio"
+                aria-checked={basemap === id}
+                className={basemap === id ? 'active' : ''}
+                onClick={() => setBasemap(id)}
+              >
+                {BASEMAPS[id].label}
+              </button>
+            ))}
+          </div>
           <button
             type="button"
             className={drawing ? 'button primary' : 'button'}
             aria-pressed={drawing}
             onClick={() => setDrawing((value) => !value)}
           >
-            {drawing ? 'Kéo để khoanh… (Esc để hủy)' : 'Khoanh vùng trên bản đồ'}
+            {drawing ? 'Kéo để khoanh… (Esc để hủy)' : '⬚ Khoanh vùng'}
           </button>
           {map.status === 'success' && <ServedByBadge servedBy={map.servedBy} />}
         </div>
@@ -253,6 +336,7 @@ export function ExploreMap() {
         <div ref={containerRef} className="map" role="application" aria-label="Bản đồ ô lưới 0,25° của Việt Nam" />
         {map.status === 'loading' && (
           <div className="map-overlay" role="status" aria-live="polite">
+            <span className="spinner" aria-hidden="true" />
             {stale ? 'Đang cập nhật bản đồ cho lựa chọn mới…' : 'Đang tải bản đồ…'}
           </div>
         )}
@@ -271,43 +355,45 @@ export function ExploreMap() {
             )}
           </div>
         )}
+        {data && <MapLegend data={data} scaleBreaks={scale.breaks} />}
       </div>
-
-      {data && <MapLegend data={data} scaleBreaks={scale.breaks} />}
+      {data && <MapReading data={data} />}
     </section>
   )
 }
 
+/** Floating colour legend over the map. */
 function MapLegend({ data, scaleBreaks }: { data: MapCellsResponse; scaleBreaks: number[] }) {
-  const { selection, summary } = data
   return (
-    <div className="legend" aria-label="Chú giải bản đồ">
-      <p className="legend-title">
-        Mỗi ô là một ô lưới 0,25° (~27 km). Màu thể hiện <strong>snpp_eq</strong> — số phát hiện cháy ban ngày
-        tương đương cảm biến VIIRS S‑NPP — cộng trong kỳ; không phải số vụ cháy hay vị trí điểm cháy.
-      </p>
-      <div className="legend-scale">
-        <span className="legend-item">
-          <span className="swatch" style={{ background: ZERO_COLOR }} />0 (không có phát hiện)
-        </span>
-        {ACTIVITY_COLORS.map((color, index) => (
-          <span key={color} className="legend-item">
-            <span className="swatch" style={{ background: color }} />
-            {index === 0 ? '>0' : readableValue(scaleBreaks[index - 1])}–{readableValue(scaleBreaks[index])}
-          </span>
-        ))}
-        <span className="legend-item">
-          <span className="swatch swatch-outside" />Ngoài phạm vi dữ liệu
-        </span>
+    <div className="map-legend" aria-label="Chú giải màu">
+      <div className="map-legend-title">snpp_eq mỗi ô</div>
+      <div className="legend-ramp" aria-hidden="true">
+        {ACTIVITY_COLORS.map((color) => <span key={color} style={{ background: color }} />)}
       </div>
-      <p className="muted">
-        Thang màu theo căn bậc hai, từ 0 đến ô cao nhất của kỳ ({readableValue(summary.maxCellValue)}).
-        {selection.type === 'BOUNDING_BOX' && (
-          <> Viền nét đứt: khung bạn yêu cầu; viền liền: phạm vi thực tế {boundsLabel(selection.selectedBounds)}
-            {' '}(ô được tính khi tâm nằm trong hoặc trên biên khung).</>
-        )}
-        {' '}Bấm một ô để xem nguồn vệ tinh.
-      </p>
+      <div className="legend-ramp-labels">
+        <span>&gt;0</span>
+        <span>{readableValue(scaleBreaks[2])}</span>
+        <span>{readableValue(data.summary.maxCellValue)}</span>
+      </div>
+      <div className="legend-row"><span className="swatch" style={{ background: ZERO_COLOR }} />0 · không có phát hiện</div>
+      <div className="legend-row"><span className="swatch swatch-outside" />Ngoài phạm vi dữ liệu</div>
     </div>
+  )
+}
+
+/** How to read the map, under it. */
+function MapReading({ data }: { data: MapCellsResponse }) {
+  const { selection } = data
+  return (
+    <p className="legend muted small">
+      Mỗi ô là một ô lưới 0,25° (~27 km). Màu từ đỏ sẫm đến vàng sáng thể hiện <strong>snpp_eq</strong> — số phát hiện cháy
+      ban ngày tương đương cảm biến VIIRS S‑NPP — cộng trong kỳ, theo thang căn bậc hai từ 0 đến ô cao nhất. Không phải số
+      vụ cháy hay vị trí điểm cháy.
+      {selection.type === 'BOUNDING_BOX' && (
+        <> Viền nét đứt: khung bạn yêu cầu; viền liền: phạm vi thực tế {boundsLabel(selection.selectedBounds)}
+          {' '}(ô được tính khi tâm nằm trong hoặc trên biên khung).</>
+      )}
+      {' '}Bấm một ô để xem nguồn vệ tinh.
+    </p>
   )
 }

@@ -17,7 +17,10 @@ function Header() {
   const dispatch = useDispatch()
   return (
     <header className="app-header">
-      <h1>HỎA <span>LỊCH</span></h1>
+      <div className="brand">
+        <span className="brand-mark" aria-hidden="true">🔥</span>
+        <h1>HỎA <span>LỊCH</span></h1>
+      </div>
       <p role="note" className="metric-note">{METRIC_NOTICE}</p>
       <nav aria-label="Màn hình" className="app-nav">
         {SCREENS.map(([id, label]) => (

@@ -1,7 +1,7 @@
 import type { DailyCalendarValue } from '../api/types'
 import { formatDate } from '../lib/format'
 import { MONTH_NAMES } from '../lib/labels'
-import { ORIGIN_BADGE, ZERO_COLOR, activityScale, compactValue, readableValue } from '../lib/scale'
+import { HOT_CLASS, ORIGIN_BADGE, ZERO_COLOR, activityScale, compactValue, readableValue } from '../lib/scale'
 import { currentOrPrevious, useApi } from '../lib/useApi'
 import { dayCalendarMonth, useAppState, useDispatch } from '../state/AppState'
 import { dayCalendarRequest } from './requests'
@@ -76,7 +76,7 @@ export function DayCalendarGrid() {
               const peak = value.date === peakDate
               const selected = value.date === selectedDate
               const background = inRange ? ((value.value as number) === 0 ? ZERO_COLOR : scale.color(value.value as number)) : undefined
-              const dark = inRange && (value.value as number) > scale.breaks[3]
+              const bright = inRange && scale.classOf(value.value as number) >= HOT_CLASS
               return (
                 <button
                   key={value.date}
@@ -86,7 +86,8 @@ export function DayCalendarGrid() {
                     'calendar-day',
                     inRange ? '' : 'is-outside',
                     selected ? 'is-selected' : '',
-                    dark ? 'is-dark' : '',
+                    bright ? 'is-bright' : '',
+                    inRange && value.value === 0 ? 'is-zero' : '',
                   ].join(' ')}
                   style={background ? { background } : undefined}
                   disabled={!inRange}

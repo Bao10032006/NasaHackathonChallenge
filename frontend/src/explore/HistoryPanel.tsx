@@ -91,6 +91,8 @@ export function HistoryPanel() {
         <p className="muted" role="status">Đang tải mức lịch sử…</p>
       )}
 
+      <div className="history-charts">
+      <div className="history-col">
       <div className="section-head">
         <h3>{granularity === 'year' ? 'Tổng năm qua các năm' : `Cùng ${periodName} qua các năm`}</h3>
         <UpdatingNote show={trendsView.stale} what="xu hướng" />
@@ -109,8 +111,9 @@ export function HistoryPanel() {
             series={[{
               id: 'trend',
               label: `${periodName} từng năm`,
-              color: '#b45309',
+              color: '#fbbf24',
               markers: true,
+              area: true,
               points: trendsView.data.points.map((point): ChartPoint => ({
                 x: point.year,
                 y: point.valueStatus === 'AVAILABLE' ? point.value : null,
@@ -129,6 +132,8 @@ export function HistoryPanel() {
         </div>
       )}
 
+      </div>
+      <div className="history-col">
       <div className="section-head">
         <h3>Mẫu hình mùa vụ {pentad ? '73 kỳ' : '12 tháng'}</h3>
         <UpdatingNote show={seasonalityView.stale} what="mẫu hình mùa vụ" />
@@ -147,7 +152,8 @@ export function HistoryPanel() {
               {
                 id: 'median',
                 label: `Trung vị ${seasonalityView.data.referenceStartYear}–${seasonalityView.data.referenceEndYear}`,
-                color: '#475569',
+                color: '#a78bfa',
+                area: true,
                 points: seasonalityView.data.periods.map((item): ChartPoint => ({
                   x: item.period,
                   y: item.valueStatus === 'AVAILABLE' ? item.median : null,
@@ -159,7 +165,7 @@ export function HistoryPanel() {
               {
                 id: 'mean',
                 label: 'Trung bình',
-                color: '#94a3b8',
+                color: '#64748b',
                 dash: '2 4',
                 points: seasonalityView.data.periods.map((item): ChartPoint => ({
                   x: item.period,
@@ -170,7 +176,7 @@ export function HistoryPanel() {
               ...(calendar.status === 'success' ? [{
                 id: 'current',
                 label: `Năm ${calendar.data.year}`,
-                color: '#c2410c',
+                color: '#ff7a3d',
                 markers: true,
                 points: calendar.data.values.map((value): ChartPoint => ({
                   x: value.period,
@@ -190,6 +196,8 @@ export function HistoryPanel() {
           </p>
         </div>
       )}
+      </div>
+      </div>
     </Card>
   )
 }

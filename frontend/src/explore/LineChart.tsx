@@ -1,3 +1,4 @@
+import { useEffect, useId, useRef, useState } from 'react'
 import type { Origin } from '../api/types'
 import { ORIGIN_MARKER, axisTicks, compactValue } from '../lib/scale'
 
@@ -19,11 +20,12 @@ export interface ChartSeries {
   points: ChartPoint[]
   /** Draw markers (shape = origin) for this series. */
   markers?: boolean
+  /** Fill the area under the line with a fading gradient and add a soft glow. */
+  area?: boolean
 }
 
-const WIDTH = 720
-const HEIGHT = 260
-const MARGIN = { top: 16, right: 16, bottom: 34, left: 52 }
+const HEIGHT = 250
+const MARGIN = { top: 28, right: 18, bottom: 32, left: 48 }
 
 function Marker(props: { x: number; y: number; point: ChartPoint; color: string; highlight: boolean }) {
   const { x, y, point, color, highlight } = props
@@ -44,11 +46,11 @@ function MarkerShape({ x, y, point, color, highlight }: { x: number; y: number; 
     case 'diamond':
       return <path d={`M${x},${y - r - 1} L${x + r + 1},${y} L${x},${y + r + 1} L${x - r - 1},${y} Z`} fill={fill} {...common} />
     case 'ring':
-      return <circle cx={x} cy={y} r={r} fill="#fff" {...common} />
+      return <circle cx={x} cy={y} r={r} fill="#0b1220" {...common} />
     case 'half':
       return (
         <g>
-          <circle cx={x} cy={y} r={r} fill="#fff" {...common} />
+          <circle cx={x} cy={y} r={r} fill="#0b1220" {...common} />
           <path d={`M${x},${y - r} A${r},${r} 0 0 1 ${x},${y + r} Z`} fill={color} />
         </g>
       )
@@ -80,6 +82,21 @@ export function LineChart({
   ariaLabel: string
   yTitle?: string
 }) {
+  const chartId = useId().replace(/:/g, '')
+  // Draw at the real container width so text and markers are never scaled up or squashed.
+  const figureRef = useRef<HTMLElement | null>(null)
+  const [WIDTH, setWidth] = useState(720)
+  useEffect(() => {
+    const element = figureRef.current
+    if (!element) {
+      return
+    }
+    const update = () => setWidth(Math.max(320, Math.round(element.getBoundingClientRect().width)))
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
   const plotWidth = WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = HEIGHT - MARGIN.top - MARGIN.bottom
   const values = series.flatMap((item) => item.points.map((point) => point.y).filter((y): y is number => y !== null))
@@ -103,16 +120,45 @@ export function LineChart({
     return d
   }
 
+  /** Closed polygons under each contiguous run of non-null points. */
+  function areaPath(points: ChartPoint[]): string {
+    const runs: ChartPoint[][] = [[]]
+    for (const point of points) {
+      if (point.y === null) {
+        runs.push([])
+      } else {
+        runs[runs.length - 1].push(point)
+      }
+    }
+    const base = yPos(0)
+    return runs.filter((run) => run.length > 1).map((run) => {
+      const line = run.map((point, index) => `${index ? 'L' : 'M'}${xPos(point.x).toFixed(1)},${yPos(point.y as number).toFixed(1)}`).join(' ')
+      return `${line} L${xPos(run[run.length - 1].x).toFixed(1)},${base} L${xPos(run[0].x).toFixed(1)},${base} Z`
+    }).join(' ')
+  }
+
   return (
-    <figure className="chart">
-      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label={ariaLabel}>
+    <figure className="chart" ref={figureRef}>
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width={WIDTH} height={HEIGHT} role="img" aria-label={ariaLabel}>
+        <defs>
+          <filter id={`${chartId}-glow`} x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          {series.filter((item) => item.area).map((item) => (
+            <linearGradient key={item.id} id={`${chartId}-${item.id}-fill`} x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor={item.color} stopOpacity="0.45" />
+              <stop offset="100%" stopColor={item.color} stopOpacity="0" />
+            </linearGradient>
+          ))}
+        </defs>
         {ticks.map((tick) => (
           <g key={tick}>
             <line x1={MARGIN.left} x2={WIDTH - MARGIN.right} y1={yPos(tick)} y2={yPos(tick)} className="grid-line" />
             <text x={MARGIN.left - 8} y={yPos(tick) + 4} textAnchor="end" className="axis-text">{compactValue(tick)}</text>
           </g>
         ))}
-        <text x={12} y={MARGIN.top + 4} className="axis-text">{yTitle}</text>
+        <text x={MARGIN.left} y={12} className="axis-text axis-title">{yTitle}</text>
         {selectedX !== undefined && selectedX !== null && xValues.includes(selectedX) && (
           <rect
             x={xPos(selectedX) - Math.max(step / 2, 6)}
@@ -127,8 +173,21 @@ export function LineChart({
             {xLabel(x)}
           </text>
         ))}
+        {series.filter((item) => item.area).map((item) => (
+          <path key={`${item.id}-area`} d={areaPath(item.points)} fill={`url(#${chartId}-${item.id}-fill)`} stroke="none" />
+        ))}
         {series.map((item) => (
-          <path key={item.id} d={path(item.points)} fill="none" stroke={item.color} strokeWidth={2} strokeDasharray={item.dash} />
+          <path
+            key={item.id}
+            d={path(item.points)}
+            fill="none"
+            stroke={item.color}
+            strokeWidth={item.area ? 2.5 : 2}
+            strokeDasharray={item.dash}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            filter={item.area ? `url(#${chartId}-glow)` : undefined}
+          />
         ))}
         {series.filter((item) => item.markers).map((item) => item.points.map((point) => point.y !== null && (
           <g key={`${item.id}-${point.x}`}>
