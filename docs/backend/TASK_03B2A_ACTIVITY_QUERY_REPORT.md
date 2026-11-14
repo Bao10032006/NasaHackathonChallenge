@@ -193,10 +193,12 @@ Review toàn backend sau TASK 03B2B không thấy lỗi mức cao/trung bình �
 
 Test mới: 8 test trong `FileDailyActivityRepositoryTests` (nhãn sai mã, thiếu `scaleDivisor`, `timeZone` khác UTC, thiếu `dataThrough`, thoát root qua `cellOrderSource` và `optionalArtifacts.path`, đường dẫn không hợp lệ, symlink) và 6 test trong `RepositoryHardeningTests`. Kết quả JDK 21.0.12: **110 tests, 0 failures, 0 errors, 1 skipped**. Test bị bỏ qua là test symlink: Windows chặn tạo symlink khi không có quyền ("A required privilege is not held by the client"); test chạy trên Linux/macOS/CI hoặc Windows bật Developer Mode.
 
-Hai lỗi mức trung bình do review tìm thấy nằm ở phạm vi Người B và **không** sửa trong nhánh này:
+Hai lỗi mức trung bình do review tìm thấy nằm ở phạm vi Người B; theo yêu cầu của người dùng, đã sửa trên nhánh riêng `task03b2/fix-origin-and-http-errors`:
 
-1. `ProvenanceServiceImpl.resolveOrigin`: kỳ có tổng `0` trả `MIXED` thay vì origin của đa số cell-day (Technical Design v0.4 §6, Contract §3.5). Ví dụ: cell `40_422` tháng 01/2012 (Aqua 19, S-NPP 12 cell-day, tổng 0) phải là `MODEL_REDISTRIBUTED`.
-2. `GlobalExceptionHandler`: URL không tồn tại và method không hỗ trợ trả `500 INTERNAL_ERROR` thay vì 404/405 (đã thử trên JAR: `GET /api/v1/does-not-exist`, `POST /api/v1/metadata`).
+1. `ProvenanceServiceImpl.resolveOrigin`: kỳ có tổng `0` từng trả `MIXED` thay vì origin của đa số cell-day (Technical Design v0.4 §6, Contract §3.5). Nay: đóng góp dương quyết định origin như cũ; khi tổng bằng `0`, origin có nhiều cell-day nhất thắng (Terra và Aqua cộng chung là `MODEL_REDISTRIBUTED`); hòa thì `MIXED` vì không có đa số. Ví dụ: cell `40_422` tháng 01/2012 (Aqua 19, S-NPP 12 cell-day, tổng 0) nay là `MODEL_REDISTRIBUTED`.
+2. `GlobalExceptionHandler`: URL không tồn tại và method không hỗ trợ từng trả `500 INTERNAL_ERROR` kèm log ERROR. Nay trả `404 NOT_FOUND` và `405 METHOD_NOT_ALLOWED` (có header `Allow`), dạng `application/problem+json`, không log ERROR. Hai code `NOT_FOUND`/`METHOD_NOT_ALLOWED` chỉ dùng cho route ngoài contract; nên bổ sung vào enum `Problem.code` của OpenAPI ở lần cập nhật contract tới.
+
+Kiểm chứng: JDK 21.0.12 `mvnw clean verify` **115 tests, 0 failures, 1 skipped** (symlink); JAR thật trả 404/405 và origin `MODEL_REDISTRIBUTED` cho ví dụ trên.
 
 ## 9. Việc tiếp theo
 

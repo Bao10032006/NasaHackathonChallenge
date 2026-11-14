@@ -8,6 +8,7 @@ import com.se201411.mvc.backend.service.model.ActivityOrigin;
 import com.se201411.mvc.backend.service.model.SourceContribution;
 import org.springframework.stereotype.Service;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,15 @@ public final class ProvenanceServiceImpl implements ProvenanceService {
 		this.definitions = Map.copyOf(indexed);
 	}
 
+	/**
+	 * Contract v0.3 section 3.5 (kept by Technical Design v0.4 section 6):
+	 * <ul>
+	 *   <li>only positive contributions decide the origin: one origin wins, several give MIXED;</li>
+	 *   <li>when the period total is zero, the origin with the most cell-days wins, so a zero still says
+	 *       whether it was observed or estimated. Terra and Aqua both count as MODEL_REDISTRIBUTED.
+	 *       A tie has no majority and gives MIXED.</li>
+	 * </ul>
+	 */
 	@Override
 	public ActivityOrigin resolveOrigin(List<SourceComposition> sources) {
 		if (sources == null || sources.isEmpty()) {
@@ -36,14 +46,41 @@ public final class ProvenanceServiceImpl implements ProvenanceService {
 		List<SourceComposition> positiveContributions = sources.stream()
 				.filter(source -> source.value() > 0)
 				.toList();
-		List<SourceComposition> considered = positiveContributions.isEmpty() ? sources : positiveContributions;
-		ActivityOrigin resolved = origin(definition(considered.getFirst().sourceCode()).origin());
-		for (int index = 1; index < considered.size(); index++) {
-			if (origin(definition(considered.get(index).sourceCode()).origin()) != resolved) {
-				return ActivityOrigin.MIXED;
+		if (!positiveContributions.isEmpty()) {
+			ActivityOrigin resolved = originOf(positiveContributions.getFirst());
+			for (int index = 1; index < positiveContributions.size(); index++) {
+				if (originOf(positiveContributions.get(index)) != resolved) {
+					return ActivityOrigin.MIXED;
+				}
+			}
+			return resolved;
+		}
+		return majorityOriginByCellDays(sources);
+	}
+
+	private ActivityOrigin majorityOriginByCellDays(List<SourceComposition> sources) {
+		Map<ActivityOrigin, Long> cellDaysByOrigin = new EnumMap<>(ActivityOrigin.class);
+		for (SourceComposition source : sources) {
+			cellDaysByOrigin.merge(originOf(source), source.cellDays(), Long::sum);
+		}
+		ActivityOrigin majority = null;
+		long majorityCellDays = -1;
+		boolean tied = false;
+		for (Map.Entry<ActivityOrigin, Long> entry : cellDaysByOrigin.entrySet()) {
+			if (entry.getValue() > majorityCellDays) {
+				majority = entry.getKey();
+				majorityCellDays = entry.getValue();
+				tied = false;
+			}
+			else if (entry.getValue() == majorityCellDays) {
+				tied = true;
 			}
 		}
-		return resolved;
+		return tied ? ActivityOrigin.MIXED : majority;
+	}
+
+	private ActivityOrigin originOf(SourceComposition source) {
+		return origin(definition(source.sourceCode()).origin());
 	}
 
 	@Override

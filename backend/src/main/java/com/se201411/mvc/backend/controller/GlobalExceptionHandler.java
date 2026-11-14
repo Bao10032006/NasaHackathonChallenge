@@ -7,17 +7,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.Set;
 
 @RestControllerAdvice
 public final class GlobalExceptionHandler {
@@ -52,6 +57,39 @@ public final class GlobalExceptionHandler {
 				"Invalid parameter",
 				exception.getMessage(),
 				request);
+	}
+
+	/** Unknown routes are client errors; without this the catch-all below turned them into 500s. */
+	@ExceptionHandler({NoResourceFoundException.class, NoHandlerFoundException.class})
+	ResponseEntity<ApiProblemDto> handleNotFound(
+			Exception exception,
+			HttpServletRequest request) {
+		return problem(
+				HttpStatus.NOT_FOUND,
+				"NOT_FOUND",
+				"Resource not found",
+				"No API resource exists at this path",
+				request);
+	}
+
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	ResponseEntity<ApiProblemDto> handleMethodNotAllowed(
+			HttpRequestMethodNotSupportedException exception,
+			HttpServletRequest request) {
+		ResponseEntity<ApiProblemDto> response = problem(
+				HttpStatus.METHOD_NOT_ALLOWED,
+				"METHOD_NOT_ALLOWED",
+				"Method not allowed",
+				"HTTP method " + exception.getMethod() + " is not supported for this path",
+				request);
+		Set<HttpMethod> supported = exception.getSupportedHttpMethods();
+		if (supported == null || supported.isEmpty()) {
+			return response;
+		}
+		return ResponseEntity.status(response.getStatusCode())
+				.headers(response.getHeaders())
+				.allow(supported.toArray(HttpMethod[]::new))
+				.body(response.getBody());
 	}
 
 	@ExceptionHandler(DatasetUnavailableException.class)

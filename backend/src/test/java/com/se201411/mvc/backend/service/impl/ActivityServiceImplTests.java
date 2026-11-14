@@ -191,7 +191,7 @@ class ActivityServiceImplTests {
 	}
 
 	@Test
-	void ignoresZeroValueSourcesWhenResolvingAggregateOrigin() {
+	void ignoresZeroValueSourcesWhenResolvingAggregateOriginAndTreatsATieAsMixed() {
 		ProvenanceServiceImpl provenance = new ProvenanceServiceImpl(() -> manifest);
 
 		assertThat(provenance.resolveOrigin(List.of(
@@ -202,6 +202,39 @@ class ActivityServiceImplTests {
 				new SourceComposition(3, 1, 1, 0.0, 0, 1),
 				new SourceComposition(4, 1, 1, 0.0, 0, 1))))
 				.isEqualTo(ActivityOrigin.MIXED);
+	}
+
+	@Test
+	void zeroTotalPeriodsTakeTheOriginWithMostCellDays() {
+		ProvenanceServiceImpl provenance = new ProvenanceServiceImpl(() -> manifest);
+
+		// Real case: cell 40_422 in January 2012 is all zero, Aqua 19 cell-days and S-NPP 12 cell-days.
+		assertThat(provenance.resolveOrigin(List.of(
+				new SourceComposition(2, 1, 19, 0.0, 0, 19),
+				new SourceComposition(3, 1, 12, 0.0, 0, 12))))
+				.isEqualTo(ActivityOrigin.MODEL_REDISTRIBUTED);
+		// Terra and Aqua are both MODEL_REDISTRIBUTED, so their cell-days are counted together.
+		assertThat(provenance.resolveOrigin(List.of(
+				new SourceComposition(1, 1, 3, 0.0, 0, 0),
+				new SourceComposition(2, 1, 3, 0.0, 0, 3),
+				new SourceComposition(3, 1, 5, 0.0, 0, 5))))
+				.isEqualTo(ActivityOrigin.MODEL_REDISTRIBUTED);
+		assertThat(provenance.resolveOrigin(List.of(
+				new SourceComposition(3, 2, 2, 0.0, 0, 2),
+				new SourceComposition(4, 1, 1, 0.0, 0, 1))))
+				.isEqualTo(ActivityOrigin.DIRECT_OBSERVATION);
+		assertThat(provenance.resolveOrigin(List.of(new SourceComposition(4, 1, 1, 0.0, 0, 1))))
+				.isEqualTo(ActivityOrigin.SCALED_OBSERVATION);
+	}
+
+	@Test
+	void positiveContributionsStillOverrideTheCellDayMajority() {
+		ProvenanceServiceImpl provenance = new ProvenanceServiceImpl(() -> manifest);
+
+		assertThat(provenance.resolveOrigin(List.of(
+				new SourceComposition(2, 1, 30, 0.0, 0, 30),
+				new SourceComposition(3, 1, 1, 2.0, 2, 1))))
+				.isEqualTo(ActivityOrigin.DIRECT_OBSERVATION);
 	}
 
 	private ActivityServiceImpl serviceWithValue(double valuePerCellDay) {
@@ -233,6 +266,12 @@ class ActivityServiceImplTests {
 				new DatasetManifest.Layout("row-major[date][cell]", "little-endian", "none"),
 				List.of(),
 				List.of(
+						new DatasetManifest.SourceCodeDefinition(
+								1, "TERRA", "MODEL_REDISTRIBUTED", "Terra",
+								"2000-11-01", "2002-07-31", 1, null, null),
+						new DatasetManifest.SourceCodeDefinition(
+								2, "AQUA", "MODEL_REDISTRIBUTED", "Aqua",
+								"2002-08-01", "2026-11-06", 1, null, null),
 						new DatasetManifest.SourceCodeDefinition(
 								3, "SNPP", "DIRECT_OBSERVATION", "SNPP",
 								"2012-01-20", "2026-11-01", 1, null, null),
