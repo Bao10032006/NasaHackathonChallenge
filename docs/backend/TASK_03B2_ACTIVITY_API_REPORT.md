@@ -1,8 +1,9 @@
 # TASK 03B2B — Activity Service & REST API Report
 
-**Ngày thực hiện:** 14/11/2026  
-**Nhánh:** `task03b2b/activity-api`  
-**Repository baseline:** `13a7fe6`  
+**Ngày thực hiện:** 14/11/2026<br>
+**Nhánh triển khai:** `task03b2b/activity-api`<br>
+**Merge commit:** `7a2e65c`<br>
+**Final verification baseline:** `17e8e34`<br>
 **Contract baseline:** Hỏa Lịch API/OpenAPI v0.4
 
 ## 1. Kết quả
@@ -79,14 +80,16 @@ $env:JAVA_HOME='C:\Program Files\Java\jdk-21.0.12'
 .\mvnw.cmd clean verify
 ```
 
-Kết quả thực tế:
+Kết quả thực tế sau merge và repository hardening:
 
 - `BUILD SUCCESS`;
-- 96 test;
+- 110 test;
 - 0 failure;
 - 0 error;
-- 0 skipped;
+- 1 skipped;
 - packaged JAR được tạo thành công.
+
+Test bị skip là ca tạo symbolic link trên Windows do môi trường hiện tại không cấp quyền tạo symlink; không phải failure của application hoặc dataset validation.
 
 Packaged JAR được chạy với dataset thật và smoke-test bằng bbox mẫu `west=107&south=12&east=108&north=13`. Kết quả kiểm tra:
 
@@ -101,4 +104,5 @@ Packaged JAR được chạy với dataset thật và smoke-test bằng bbox m�
 
 - `/trends`, `/seasonality` và `/cells/{cellId}/period-details` chưa thuộc TASK 03B2.
 - Anomaly/classification tiếp tục deferred và phải có decision riêng trước khi code.
-- TASK tiếp theo chỉ nên bắt đầu sau khi code TASK 03B2 được review, merge và chạy lại full verification trên `main`.
+- TASK 03B2 đã review, merge và chạy lại full verification trên `main`; đủ điều kiện đóng task.
+- TASK tiếp theo nên được lập riêng cho trends/seasonality/cell-period provenance, không tự động bao gồm anomaly.

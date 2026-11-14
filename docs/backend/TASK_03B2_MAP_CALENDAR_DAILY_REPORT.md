@@ -1,19 +1,21 @@
 # TASK 03B2 — Map, Calendar & Daily Integration Report
 
-**Ngày:** 14/11/2026  
-**Contract:** OpenAPI v0.4  
-**Data query baseline:** `bf86831`, `ad84aac`, `99d3454`, `13a7fe6`
+**Ngày:** 14/11/2026<br>
+**Contract:** OpenAPI v0.4<br>
+**Activity API merge:** `7a2e65c`<br>
+**Final verification baseline:** `17e8e34`
 
 ## 1. Trạng thái
 
-TASK 03B2 đã được tích hợp về mặt source trên nhánh `task03b2b/activity-api` dựa trên `main` commit `13a7fe6`:
+TASK 03B2 đã hoàn thành và có trên `main` tại commit `17e8e34`:
 
 - repository query engine từ TASK 03B2A đã có trên baseline;
 - service, DTO, mapper và controller của TASK 03B2B đã nối với repository thật;
 - bốn API map/calendar/daily đã chạy bằng packaged JAR và dataset thật;
+- repository đã được harden sau full review;
 - không thay đổi artifact hoặc contract v0.4.
 
-Task chưa được coi là đã merge vào `main` cho đến khi người dùng yêu cầu commit/push và nhánh được review.
+Task đã merge, review và chạy lại full verification trên `main`; đủ điều kiện đóng TASK 03B2.
 
 ## 2. Thành phần đã tích hợp
 
@@ -22,7 +24,10 @@ Repository/data commits đã có trên baseline:
 - `bf86831`: ActivityQueryRepository interface/domain handoff;
 - `ad84aac`: file-backed activity query implementation và bean wiring;
 - `0026c66`: source provenance validation;
-- `13a7fe6`: edge-case và golden regression tests.
+- `13a7fe6`: edge-case và golden regression tests;
+- `eeaa542`: báo cáo bàn giao TASK 03B2A;
+- `7a2e65c`: merge Activity API TASK 03B2B;
+- `17e8e34`: harden manifest, checksum, path/symlink và CSV validation sau full review.
 
 API layer trong thay đổi hiện tại:
 
@@ -65,17 +70,21 @@ $env:JAVA_HOME='C:\Program Files\Java\jdk-21.0.12'
 .\mvnw.cmd clean verify
 ```
 
-Kết quả thực tế ngày 14/11/2026:
+Kết quả thực tế trên `main` ngày 14/11/2026:
 
 - `BUILD SUCCESS`;
-- 96 test;
+- 110 test;
 - 0 failure;
 - 0 error;
-- 0 skipped;
+- 1 skipped;
 - compiler chạy với `release 21`;
 - packaged JAR được tạo thành công.
 
+Test bị skip là phép kiểm tạo symbolic link do Windows hiện tại không cấp quyền; các test application, repository, fixture, golden regression và API đều chạy thành công.
+
 Packaged JAR đã khởi động thành công với default dataset path và sáu truy vấn smoke map/calendar/daily đã trả HTTP 200 cùng golden values nêu trong báo cáo TASK 03B2B.
+
+Frontend scaffold cũng đã được xác minh bằng `npm ci`, `npm run typecheck` và `npm run build`. Đây mới là scaffold trình bày; chưa gọi API thật và chưa phải frontend demo hoàn chỉnh.
 
 ## 5. Scientific boundary
 
@@ -83,11 +92,8 @@ API trả **harmonized S-NPP-equivalent daytime activity**, không phải danh s
 
 TASK 03B2 không chứa thuật toán phân loại vùng đang cháy hoặc anomaly. Mọi việc thêm threshold/rank/anomaly phải được báo trước và chỉ triển khai sau khi method version, baseline, validation và UI copy được phê duyệt.
 
-## 6. Việc còn lại trước khi đóng task trên main
+## 6. Kết luận và task tiếp theo
 
-1. Kiểm tra `git diff --check`.
-2. Review diff, commit và push chỉ khi người dùng yêu cầu.
-3. Merge nhánh API vào `main`.
-4. Chạy lại full Maven verification trên `main` sau merge.
+TASK 03B2 đã đạt Definition of Done cho repository và bốn API lõi. Không còn blocker code ở phạm vi task này.
 
-Sau đó mới lập task riêng cho trends/seasonality/cell-period provenance; không tự động bắt đầu anomaly.
+Task tiếp theo cần được lập riêng cho trends/seasonality/cell-period provenance. Không tự động bắt đầu anomaly; mọi threshold/rank/anomaly vẫn cần quyết định khoa học và sản phẩm riêng.

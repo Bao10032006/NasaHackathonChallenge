@@ -71,6 +71,7 @@ Các mốc đã hoàn thành:
 - **TASK 02B/02C:** kiểm chứng daily dataset, hoàn thiện contract và đồng bộ frontend thành v0.4.
 - **TASK 03A:** xuất binary artifact, manifest, Java file repositories và regression tests.
 - **TASK 03B1:** spatial selection, metadata/areas API, N-layer foundation, CORS và Problem Details.
+- **TASK 03B2:** activity query repository, map/calendar/daily services và bốn REST API lõi.
 
 Mốc Git quan trọng:
 
@@ -78,17 +79,22 @@ Mốc Git quan trọng:
 - `d5c9537`: TASK 03B1 — spatial selection và metadata foundation.
 - `92b5f96`: kế hoạch chia việc và thực thi TASK 03B2.
 - `bf86831` → `13a7fe6`: repository query engine, provenance validation và regression tests của TASK 03B2A.
+- `7a2e65c`: merge TASK 03B2B Activity API vào `main`.
+- `17e8e34`: repository hardening sau full review và mốc hoàn tất TASK 03B2.
 
-Kết quả backend gần nhất đã xác minh trên nhánh `task03b2b/activity-api`:
+Kết quả backend gần nhất đã xác minh trên `main` tại `17e8e34`:
 
 - JDK `21.0.12 LTS`;
 - Maven Wrapper / Maven `3.10.0`;
 - Spring Boot `4.1.2`;
 - compiler `release 21`;
-- 96 test, 0 failure, 0 error, 0 skipped;
+- 110 test, 0 failure, 0 error, 1 skipped;
 - packaged JAR và application context hoạt động;
 - packaged JAR đã smoke-test bốn API TASK 03B2 với dataset thật;
+- test symlink duy nhất bị skip vì Windows hiện tại không cấp quyền tạo symbolic link;
 - không có WebFlux, JDBC Session hoặc database dependency.
+
+Frontend scaffold tại cùng mốc đã chạy thành công `npm ci`, TypeScript typecheck và production build; màn Explore hiện vẫn là scaffold, chưa tích hợp API thật.
 
 ### API đã có trong code
 
@@ -117,7 +123,7 @@ Kết quả backend gần nhất đã xác minh trên nhánh `task03b2b/activity
 
 Không được nhầm “đã có trong OpenAPI” với “đã được controller triển khai”.
 
-## 4. Task đang thực hiện: TASK 03B2 — chờ review/merge
+## 4. Task vừa hoàn thành: TASK 03B2
 
 Mục tiêu TASK 03B2 là triển khai:
 
@@ -139,7 +145,7 @@ Phụ trách TASK 03B2A:
 
 Người A phải merge A0 vào `main` trước để hai nhánh dùng cùng interface.
 
-Trạng thái: A0–A3 đã có trên `origin/main` tới commit `13a7fe6`.
+Trạng thái: A0–A3, báo cáo bàn giao và repository hardening đã merge vào `main`; review cuối ở commit `17e8e34`.
 
 ### Người B — API/Integration (chủ repository cùng Codex)
 
@@ -153,16 +159,16 @@ Phụ trách TASK 03B2B:
 
 Người B bắt đầu code sau khi A0 của Người A đã vào `main`. Hai bên tích hợp theo phần TASK 03B2C trong work-split plan.
 
-Trạng thái: source, test, report và smoke test dataset thật đã hoàn tất trên nhánh `task03b2b/activity-api`; chưa commit/push/merge thay đổi API nếu chưa có yêu cầu rõ từ người dùng.
+Trạng thái: source, test và report đã merge vào `main` qua commit `7a2e65c`; full verification sau repository hardening đạt tại `17e8e34`.
 
 Báo cáo:
 
 - [TASK 03B2B — Activity Service & REST API Report](docs/backend/TASK_03B2_ACTIVITY_API_REPORT.md)
 - [TASK 03B2 — Map, Calendar & Daily Integration Report](docs/backend/TASK_03B2_MAP_CALENDAR_DAILY_REPORT.md)
 
-### Task kế tiếp sau TASK 03B2
+### Task kế tiếp đề xuất
 
-Chỉ lập kế hoạch sau khi bốn API trên đã được tích hợp và kiểm chứng. Dự kiến tiếp theo là trends, seasonality và cell-period provenance; anomaly vẫn phải có decision riêng trước khi triển khai.
+Lập task riêng cho trends, seasonality và cell-period provenance. Anomaly vẫn phải có decision riêng trước khi triển khai; không gộp anomaly vào task kế tiếp theo mặc định.
 
 ## 5. Cấu trúc repository
 
