@@ -43,6 +43,14 @@ public final class ApiException extends RuntimeException {
 		return new ApiException(HttpStatus.BAD_REQUEST, "INVALID_BOUNDS", "Invalid bounds", detail);
 	}
 
+	public static ApiException invalidTemporalSelector(String detail) {
+		return new ApiException(
+				HttpStatus.BAD_REQUEST,
+				"INVALID_TEMPORAL_SELECTOR",
+				"Invalid temporal selector",
+				detail);
+	}
+
 	public static ApiException areaNotFound(String detail) {
 		return new ApiException(HttpStatus.NOT_FOUND, "AREA_NOT_FOUND", "Area not found", detail);
 	}
@@ -56,6 +64,22 @@ public final class ApiException extends RuntimeException {
 				HttpStatus.UNPROCESSABLE_CONTENT,
 				"NO_CELLS_IN_BOUNDS",
 				"No cells in bounds",
+				detail);
+	}
+
+	public static ApiException unsupportedQuery(String detail) {
+		return new ApiException(
+				HttpStatus.UNPROCESSABLE_CONTENT,
+				"UNSUPPORTED_QUERY",
+				"Unsupported query",
+				detail);
+	}
+
+	public static ApiException dateOutsideDatasetRange(String detail) {
+		return new ApiException(
+				HttpStatus.UNPROCESSABLE_CONTENT,
+				"DATE_OUTSIDE_DATASET_RANGE",
+				"Date outside dataset range",
 				detail);
 	}
 }
