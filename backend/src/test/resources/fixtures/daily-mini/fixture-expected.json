@@ -1,0 +1,421 @@
+{
+  "description": "Expected values for the synthetic daily-mini fixture (TASK 03A spec section 11). Values are synthetic and not realistic in time.",
+  "dateRange": {
+    "start": "2026-11-10",
+    "end": "2026-11-13"
+  },
+  "cellIds": [
+    "34_419",
+    "34_420",
+    "45_428",
+    "45_429"
+  ],
+  "cells": [
+    {
+      "date": "2026-11-10",
+      "dateIndex": 0,
+      "cellId": "34_419",
+      "cellIndex": 0,
+      "value": 0.0,
+      "bits": "0x00000000",
+      "sourceCode": 3,
+      "inputCount": 0,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-10",
+      "dateIndex": 0,
+      "cellId": "34_420",
+      "cellIndex": 1,
+      "value": 1.0,
+      "bits": "0x3F800000",
+      "sourceCode": 3,
+      "inputCount": 1,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-10",
+      "dateIndex": 0,
+      "cellId": "45_428",
+      "cellIndex": 2,
+      "value": 2.0,
+      "bits": "0x40000000",
+      "sourceCode": 3,
+      "inputCount": 2,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-10",
+      "dateIndex": 0,
+      "cellId": "45_429",
+      "cellIndex": 3,
+      "value": 154.0,
+      "bits": "0x431A0000",
+      "sourceCode": 3,
+      "inputCount": 154,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-11",
+      "dateIndex": 1,
+      "cellId": "34_419",
+      "cellIndex": 0,
+      "value": 0.0,
+      "bits": "0x00000000",
+      "sourceCode": 4,
+      "inputCount": 0,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-11",
+      "dateIndex": 1,
+      "cellId": "34_420",
+      "cellIndex": 1,
+      "value": 0.75,
+      "bits": "0x3F400000",
+      "sourceCode": 4,
+      "inputCount": 1,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-11",
+      "dateIndex": 1,
+      "cellId": "45_428",
+      "cellIndex": 2,
+      "value": 1.5,
+      "bits": "0x3FC00000",
+      "sourceCode": 4,
+      "inputCount": 2,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-11",
+      "dateIndex": 1,
+      "cellId": "45_429",
+      "cellIndex": 3,
+      "value": 255.25,
+      "bits": "0x437F4000",
+      "sourceCode": 4,
+      "inputCount": 258,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-12",
+      "dateIndex": 2,
+      "cellId": "34_419",
+      "cellIndex": 0,
+      "value": 0.5,
+      "bits": "0x3F000000",
+      "sourceCode": 2,
+      "inputCount": 0,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-12",
+      "dateIndex": 2,
+      "cellId": "34_420",
+      "cellIndex": 1,
+      "value": 1.5,
+      "bits": "0x3FC00000",
+      "sourceCode": 2,
+      "inputCount": 1,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-12",
+      "dateIndex": 2,
+      "cellId": "45_428",
+      "cellIndex": 2,
+      "value": 0.0,
+      "bits": "0x00000000",
+      "sourceCode": 4,
+      "inputCount": 0,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-12",
+      "dateIndex": 2,
+      "cellId": "45_429",
+      "cellIndex": 3,
+      "value": 3.0,
+      "bits": "0x40400000",
+      "sourceCode": 4,
+      "inputCount": 3,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-13",
+      "dateIndex": 3,
+      "cellId": "34_419",
+      "cellIndex": 0,
+      "value": 0.25,
+      "bits": "0x3E800000",
+      "sourceCode": 1,
+      "inputCount": 0,
+      "valid": 0
+    },
+    {
+      "date": "2026-11-13",
+      "dateIndex": 3,
+      "cellId": "34_420",
+      "cellIndex": 1,
+      "value": 3.75,
+      "bits": "0x40700000",
+      "sourceCode": 1,
+      "inputCount": 0,
+      "valid": 0
+    },
+    {
+      "date": "2026-11-13",
+      "dateIndex": 3,
+      "cellId": "45_428",
+      "cellIndex": 2,
+      "value": 0.0,
+      "bits": "0x00000000",
+      "sourceCode": 2,
+      "inputCount": 0,
+      "valid": 1
+    },
+    {
+      "date": "2026-11-13",
+      "dateIndex": 3,
+      "cellId": "45_429",
+      "cellIndex": 3,
+      "value": 5.0,
+      "bits": "0x40A00000",
+      "sourceCode": 3,
+      "inputCount": 5,
+      "valid": 1
+    }
+  ],
+  "areaDays": [
+    {
+      "area": "ToanQuoc",
+      "date": "2026-11-10",
+      "value": 157.0,
+      "sourceCodes": [
+        3
+      ],
+      "origin": "DIRECT_OBSERVATION",
+      "inputCount": 157,
+      "validCells": 4,
+      "cellCount": 4
+    },
+    {
+      "area": "DBSCL",
+      "date": "2026-11-10",
+      "value": 1.0,
+      "sourceCodes": [
+        3
+      ],
+      "origin": "DIRECT_OBSERVATION",
+      "inputCount": 1,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "TayNguyen",
+      "date": "2026-11-10",
+      "value": 156.0,
+      "sourceCodes": [
+        3
+      ],
+      "origin": "DIRECT_OBSERVATION",
+      "inputCount": 156,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "ToanQuoc",
+      "date": "2026-11-11",
+      "value": 257.5,
+      "sourceCodes": [
+        4
+      ],
+      "origin": "SCALED_OBSERVATION",
+      "inputCount": 261,
+      "validCells": 4,
+      "cellCount": 4
+    },
+    {
+      "area": "DBSCL",
+      "date": "2026-11-11",
+      "value": 0.75,
+      "sourceCodes": [
+        4
+      ],
+      "origin": "SCALED_OBSERVATION",
+      "inputCount": 1,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "TayNguyen",
+      "date": "2026-11-11",
+      "value": 256.75,
+      "sourceCodes": [
+        4
+      ],
+      "origin": "SCALED_OBSERVATION",
+      "inputCount": 260,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "ToanQuoc",
+      "date": "2026-11-12",
+      "value": 5.0,
+      "sourceCodes": [
+        2,
+        4
+      ],
+      "origin": "MIXED",
+      "inputCount": 4,
+      "validCells": 4,
+      "cellCount": 4
+    },
+    {
+      "area": "DBSCL",
+      "date": "2026-11-12",
+      "value": 2.0,
+      "sourceCodes": [
+        2
+      ],
+      "origin": "MODEL_REDISTRIBUTED",
+      "inputCount": 1,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "TayNguyen",
+      "date": "2026-11-12",
+      "value": 3.0,
+      "sourceCodes": [
+        4
+      ],
+      "origin": "SCALED_OBSERVATION",
+      "inputCount": 3,
+      "validCells": 2,
+      "cellCount": 2
+    },
+    {
+      "area": "ToanQuoc",
+      "date": "2026-11-13",
+      "value": 9.0,
+      "sourceCodes": [
+        1,
+        2,
+        3
+      ],
+      "origin": "MIXED",
+      "inputCount": 5,
+      "validCells": 2,
+      "cellCount": 4
+    },
+    {
+      "area": "DBSCL",
+      "date": "2026-11-13",
+      "value": 4.0,
+      "sourceCodes": [
+        1
+      ],
+      "origin": "MODEL_REDISTRIBUTED",
+      "inputCount": 0,
+      "validCells": 0,
+      "cellCount": 2
+    },
+    {
+      "area": "TayNguyen",
+      "date": "2026-11-13",
+      "value": 5.0,
+      "sourceCodes": [
+        2,
+        3
+      ],
+      "origin": "MIXED",
+      "inputCount": 5,
+      "validCells": 2,
+      "cellCount": 2
+    }
+  ],
+  "dailyTotals": [
+    157.0,
+    257.5,
+    5.0,
+    9.0
+  ],
+  "endianProbes": [
+    {
+      "file": "daily-input-count.i16",
+      "byteOffset": 14,
+      "length": 2,
+      "meaning": "2026-11-11 cell 45_429 count 258",
+      "bytes": "02 01"
+    },
+    {
+      "file": "daily-values.f32",
+      "byteOffset": 28,
+      "length": 4,
+      "meaning": "2026-11-11 cell 45_429 value 255.25",
+      "bytes": "00 40 7f 43"
+    }
+  ],
+  "manifestPeriods": {
+    "partial": [
+      {
+        "granularity": "year",
+        "year": 2026,
+        "periodStart": "2026-01-01",
+        "periodEnd": "2026-12-31",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-13"
+      },
+      {
+        "granularity": "month",
+        "year": 2026,
+        "period": 11,
+        "periodStart": "2026-11-01",
+        "periodEnd": "2026-11-30",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-13"
+      },
+      {
+        "granularity": "pentad",
+        "year": 2026,
+        "period": 63,
+        "periodStart": "2026-11-07",
+        "periodEnd": "2026-11-11",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-11"
+      },
+      {
+        "granularity": "pentad",
+        "year": 2026,
+        "period": 64,
+        "periodStart": "2026-11-12",
+        "periodEnd": "2026-11-16",
+        "coveredFrom": "2026-11-12",
+        "coveredTo": "2026-11-13"
+      }
+    ],
+    "transitions": []
+  },
+  "files": {
+    "daily-values.f32": {
+      "byteSize": 64,
+      "sha256": "ad85f1a4a6691f525963187e4fb942b2685cda57a3086c142f33cd1a4a07933e"
+    },
+    "daily-source.u8": {
+      "byteSize": 16,
+      "sha256": "392c6febc8389d87da170c82bbecc25f2b03d0e70ee2b3f0430bdd737128fff6"
+    },
+    "daily-input-count.i16": {
+      "byteSize": 32,
+      "sha256": "0b0284669008ff0348f9012018e613ca2bf8a212732d57b5340429d04745c668"
+    },
+    "daily-source-input-valid.u8": {
+      "byteSize": 16,
+      "sha256": "106343421449959baae061338df80ed926918f37bfea7617a613a460c813a1de"
+    }
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "fixture",
+  "dataVersion": "fixture-daily-mini-1",
+  "modelVersion": "fixture",
+  "pipelineVersion": "fixture",
+  "metric": "snpp_eq",
+  "unit": "S-NPP-equivalent daytime detections",
+  "timeZone": "UTC",
+  "dateRange": {
+    "start": "2026-11-10",
+    "end": "2026-11-13",
+    "dayCount": 4
+  },
+  "dataThrough": "2026-11-13",
+  "grid": {
+    "degrees": 0.25,
+    "cellCount": 4,
+    "cellOrderSource": "tables/cells_025.csv",
+    "cellIds": [
+      "34_419",
+      "34_420",
+      "45_428",
+      "45_429"
+    ]
+  },
+  "layout": {
+    "order": "row-major[date][cell]",
+    "byteOrder": "little-endian",
+    "header": "none"
+  },
+  "files": [
+    {
+      "name": "daily-values.f32",
+      "dtype": "float32",
+      "bytesPerValue": 4,
+      "shape": [
+        4,
+        4
+      ],
+      "byteSize": 64,
+      "sha256": "ad85f1a4a6691f525963187e4fb942b2685cda57a3086c142f33cd1a4a07933e",
+      "description": "harmonized snpp_eq per cell-day, bit-exact copy of the source cube"
+    },
+    {
+      "name": "daily-source.u8",
+      "dtype": "uint8",
+      "bytesPerValue": 1,
+      "shape": [
+        4,
+        4
+      ],
+      "byteSize": 16,
+      "sha256": "392c6febc8389d87da170c82bbecc25f2b03d0e70ee2b3f0430bdd737128fff6",
+      "description": "source code 1-4 per cell-day"
+    },
+    {
+      "name": "daily-input-count.i16",
+      "dtype": "int16",
+      "bytesPerValue": 2,
+      "shape": [
+        4,
+        4
+      ],
+      "byteSize": 32,
+      "sha256": "0b0284669008ff0348f9012018e613ca2bf8a212732d57b5340429d04745c668",
+      "description": "daytime non-static detection count of the satellite selected by the source code"
+    },
+    {
+      "name": "daily-source-input-valid.u8",
+      "dtype": "uint8",
+      "bytesPerValue": 1,
+      "shape": [
+        4,
+        4
+      ],
+      "byteSize": 16,
+      "sha256": "106343421449959baae061338df80ed926918f37bfea7617a613a460c813a1de",
+      "description": "validity flag (0/1) of the satellite selected by the source code"
+    }
+  ],
+  "sourceCodes": [
+    {
+      "code": 1,
+      "source": "TERRA",
+      "origin": "MODEL_REDISTRIBUTED",
+      "inputSatellite": "Terra",
+      "firstDate": "2026-11-13",
+      "lastDate": "2026-11-13",
+      "cellDays": 2
+    },
+    {
+      "code": 2,
+      "source": "AQUA",
+      "origin": "MODEL_REDISTRIBUTED",
+      "inputSatellite": "Aqua",
+      "firstDate": "2026-11-12",
+      "lastDate": "2026-11-13",
+      "cellDays": 3
+    },
+    {
+      "code": 3,
+      "source": "SNPP",
+      "origin": "DIRECT_OBSERVATION",
+      "inputSatellite": "SNPP",
+      "firstDate": "2026-11-10",
+      "lastDate": "2026-11-13",
+      "cellDays": 5
+    },
+    {
+      "code": 4,
+      "source": "NOAA20",
+      "origin": "SCALED_OBSERVATION",
+      "inputSatellite": "N20",
+      "firstDate": "2026-11-11",
+      "lastDate": "2026-11-12",
+      "cellDays": 6,
+      "scaleDivisor": 1.0105795,
+      "scaleDivisorReported": 1.0106
+    }
+  ],
+  "periods": {
+    "partial": [
+      {
+        "granularity": "year",
+        "year": 2026,
+        "periodStart": "2026-01-01",
+        "periodEnd": "2026-12-31",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-13"
+      },
+      {
+        "granularity": "month",
+        "year": 2026,
+        "period": 11,
+        "periodStart": "2026-11-01",
+        "periodEnd": "2026-11-30",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-13"
+      },
+      {
+        "granularity": "pentad",
+        "year": 2026,
+        "period": 63,
+        "periodStart": "2026-11-07",
+        "periodEnd": "2026-11-11",
+        "coveredFrom": "2026-11-10",
+        "coveredTo": "2026-11-11"
+      },
+      {
+        "granularity": "pentad",
+        "year": 2026,
+        "period": 64,
+        "periodStart": "2026-11-12",
+        "periodEnd": "2026-11-16",
+        "coveredFrom": "2026-11-12",
+        "coveredTo": "2026-11-13"
+      }
+    ],
+    "transitions": []
+  },
+  "sources": [
+    {
+      "path": "tables/cells_025.csv",
+      "byteSize": 230,
+      "sha256": "5d82f800e3bc8fe93b9c7aa9764e3115e3c0f8077c2ec41a7af2175e0de2dbc8"
+    }
+  ],
+  "capabilities": {
+    "optionalArtifacts": []
+  },
+  "warningCatalog": [
+    {
+      "code": "PARTIAL_PERIOD",
+      "trigger": "PERIOD_IN_PARTIAL",
+      "params": {},
+      "appliesTo": [
+        "/calendar",
+        "/trends",
+        "/map/cells"
+      ],
+      "description": "Kỳ được hỏi nằm trong periods.partial (chưa đủ ngày trong dataset)."
+    },
+    {
+      "code": "DATASET_EDGE_DATE",
+      "trigger": "DATE_IS_DATA_THROUGH",
+      "params": {},
+      "appliesTo": [
+        "/daily",
+        "/map/cells"
+      ],
+      "description": "Ngày được hỏi là ngày dữ liệu cuối (dataThrough)."
+    },
+    {
+      "code": "TERRA_EARLY_PERIOD_HIGHER_UNCERTAINTY",
+      "trigger": "ANY_SOURCE_CODE",
+      "params": {
+        "codes": [
+          1
+        ]
+      },
+      "appliesTo": [
+        "/calendar",
+        "/trends",
+        "/map/cells",
+        "/daily"
+      ],
+      "description": "Có cell-day đóng góp dựng từ Terra (11/2000-7/2002), độ tin cậy thấp."
+    },
+    {
+      "code": "MODEL_REDISTRIBUTED_DAILY_VALUE",
+      "trigger": "ANY_SOURCE_CODE",
+      "params": {
+        "codes": [
+          1,
+          2
+        ]
+      },
+      "appliesTo": [
+        "/daily",
+        "/map/cells"
+      ],
+      "description": "Giá trị ngày là ước lượng mô hình cấp tháng được phân bổ xuống ngày."
+    },
+    {
+      "code": "NO_DAILY_UNCERTAINTY_INTERVAL",
+      "trigger": "ALWAYS_FOR_ENDPOINT",
+      "params": {},
+      "appliesTo": [
+        "/daily",
+        "/map/cells?date"
+      ],
+      "description": "Không có khoảng bất định cấp ngày."
+    },
+    {
+      "code": "DIAGNOSTIC_REGION_NOT_ADMIN_BOUNDARY",
+      "trigger": "AREA_TYPE",
+      "params": {
+        "areaTypes": [
+          "diagnostic_region"
+        ]
+      },
+      "appliesTo": [
+        "/calendar",
+        "/trends",
+        "/map/cells",
+        "/daily",
+        "/seasonality"
+      ],
+      "description": "Vùng chẩn đoán không phải ranh giới hành chính."
+    },
+    {
+      "code": "AQUA_FALLBACK_AFTER_ORBIT_DRIFT",
+      "trigger": "ANY_SOURCE_CODE_FROM_DATE",
+      "params": {
+        "codes": [
+          2
+        ],
+        "fromDate": "2022-01-01"
+      },
+      "appliesTo": [
+        "/calendar",
+        "/trends",
+        "/map/cells",
+        "/daily"
+      ],
+      "description": "Có cell-day dùng Aqua dự phòng sau khi quỹ đạo Aqua đã trôi."
+    }
+  ],
+  "limitations": [
+    {
+      "code": "SNPP_EQ_NOT_FIRE_EVENT_COUNT",
+      "description": "snpp_eq là số phát hiện tương đương S-NPP, không phải số vụ cháy hay diện tích cháy."
+    },
+    {
+      "code": "HISTORICAL_ANALYSIS_NOT_REALTIME_ALERT",
+      "description": "Phân tích lịch sử, không phải cảnh báo thời gian thực hay dự báo."
+    },
+    {
+      "code": "DAYTIME_STATIC_SOURCES_FILTERED",
+      "description": "Chỉ phát hiện ban ngày; đã lọc nguồn nhiệt tĩnh."
+    },
+    {
+      "code": "NO_DAILY_UNCERTAINTY_INTERVAL",
+      "description": "Không có khoảng bất định cấp ngày."
+    },
+    {
+      "code": "DAILY_VALIDATION_AT_MONTH_PENTAD",
+      "description": "Kiểm định phát hành ở cấp tháng/pentad, chưa có kiểm định riêng cấp ngày."
+    },
+    {
+      "code": "TERRA_EARLY_PERIOD_HIGHER_UNCERTAINTY",
+      "description": "11/2000-7/2002 dựng từ Terra, độ tin cậy thấp."
+    },
+    {
+      "code": "AQUA_ERA_MODEL_ESTIMATED",
+      "description": "8/2002-1/2012 là ước lượng từ Aqua đã hiệu chuẩn."
+    },
+    {
+      "code": "TAY_NGUYEN_PRE_2012_POSSIBLE_OVERESTIMATE",
+      "description": "Tây Nguyên trước 2012 có thể bị ước lượng cao khoảng 6-10%."
+    },
+    {
+      "code": "BASELINE_MIXES_SENSOR_ERAS",
+      "description": "Baseline 2003-2025 gồm giai đoạn Aqua ước lượng và S-NPP/NOAA-20."
+    },
+    {
+      "code": "DIAGNOSTIC_REGION_NOT_ADMIN_BOUNDARY",
+      "description": "Vùng chẩn đoán không phải ranh giới hành chính."
+    },
+    {
+      "code": "PENTAD_73_INCLUDES_LEAP_DAY",
+      "description": "Pentad 73 có 6 ngày ở năm nhuận."
+    }
+  ],
+  "validation": {
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "E2",
+        "name": "dates contiguous",
+        "status": "PASS",
+        "observed": {
+          "dayCount": 4,
+          "start": "2026-11-10",
+          "end": "2026-11-13"
+        },
+        "expected": "contiguous"
+      },
+      {
+        "id": "E4",
+        "name": "values finite and non-negative",
+        "status": "PASS",
+        "observed": 255.25,
+        "expected": "ok"
+      },
+      {
+        "id": "E4b",
+        "name": "fixture values exactly representable in float32",
+        "status": "PASS",
+        "observed": true,
+        "expected": true
+      },
+      {
+        "id": "E12",
+        "name": "input count in int16 range",
+        "status": "PASS",
+        "observed": [
+          0,
+          258
+        ],
+        "expected": "[0, 32767]"
+      },
+      {
+        "id": "E13",
+        "name": "validity in {0,1}",
+        "status": "PASS",
+        "observed": 2,
+        "expected": "0/1"
+      },
+      {
+        "id": "E14",
+        "name": "files re-read bit-exact",
+        "status": "PASS",
+        "observed": [
+          "daily-values.f32",
+          "daily-source.u8",
+          "daily-input-count.i16",
+          "daily-source-input-valid.u8"
+        ],
+        "expected": "bit-exact"
+      },
+      {
+        "id": "FX1",
+        "name": "endian probe bytes",
+        "status": "PASS",
+        "observed": [
+          "02 01",
+          "00 40 7f 43"
+        ],
+        "expected": [
+          "02 01",
+          "00 40 7f 43"
+        ]
+      },
+      {
+        "id": "FX2",
+        "name": "daily totals",
+        "status": "PASS",
+        "observed": [
+          157.0,
+          257.5,
+          5.0,
+          9.0
+        ],
+        "expected": [
+          157.0,
+          257.5,
+          5.0,
+          9.0
+        ]
+      }
+    ],
+    "regressionSamples": []
+  },
+  "generator": {
+    "script": "tools/data/export_daily_artifacts.py",
+    "python": "3.15.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "generatedAt": "2026-11-14T00:00:00Z"
+  }
+}

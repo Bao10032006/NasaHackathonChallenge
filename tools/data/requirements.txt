@@ -1,0 +1,4 @@
+# Environment for tools/data/export_daily_artifacts.py (TASK 03A).
+# Tested with Python 3.15.0 on Windows. Requires Python >= 3.10.
+numpy==2.5.4
+pandas==3.1.1
