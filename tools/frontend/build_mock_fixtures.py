@@ -300,7 +300,8 @@ def main() -> None:
     index: list[dict] = []
 
     def save(name: str, path: str, query: dict[str, str], status: int, body: dict, provenance: str) -> dict:
-        (OUT / f"{name}.json").write_text(json.dumps(body, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        (OUT / f"{name}.json").write_text(
+            json.dumps(body, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
         index.append({"file": name, "path": path, "query": query, "status": status, "provenance": provenance})
         return body
 
@@ -331,7 +332,7 @@ def main() -> None:
     for day in demo_days:
         iso = day.isoformat()
         live(f"map-bbox-{iso}", "/map/cells", {**BBOX, "date": iso})
-        live(f"daily-bbox-{iso}", "/daily", {**BBOX, "date": iso, "includeCells": "true"})
+        live(f"daily-bbox-{iso}", "/daily", {**BBOX, "date": iso, "includeCells": "false"})
     live("calendar-bbox-2024-month", "/calendar",
          {**BBOX, "year": "2024", "granularity": "month", "includeBaseline": "true"})
     live("calendar-bbox-2024-pentad", "/calendar",
@@ -340,18 +341,28 @@ def main() -> None:
          {**BBOX, "year": "2026", "granularity": "month", "includeBaseline": "true"})
 
     # Named areas.
-    live("map-national-2024-03", "/map/cells", {**NATIONAL, "year": "2024", "month": "3"})
-    live("calendar-national-2024-month", "/calendar",
-         {**NATIONAL, "year": "2024", "granularity": "month", "includeBaseline": "true"})
-    live("days-national-2024-03", "/calendar/days", {**NATIONAL, "year": "2024", "month": "3"})
-    live("daily-national-2024-03-18", "/daily", {**NATIONAL, "date": "2024-03-18", "includeCells": "true"})
+    # The Explore flow starts at ToanQuoc: every month of 2024, the partial 2026 and its November.
+    for month in range(1, 13):
+        live(f"map-national-2024-{month:02d}", "/map/cells", {**NATIONAL, "year": "2024", "month": str(month)})
+        live(f"days-national-2024-{month:02d}", "/calendar/days", {**NATIONAL, "year": "2024", "month": str(month)})
+    live("map-national-2024-p15", "/map/cells", {**NATIONAL, "year": "2024", "pentad": "15"})
+    live("map-national-2024-03-18", "/map/cells", {**NATIONAL, "date": "2024-03-18"})
+    live("map-national-2026", "/map/cells", {**NATIONAL, "year": "2026"})
+    live("map-national-2026-11", "/map/cells", {**NATIONAL, "year": "2026", "month": "11"})
+    live("days-national-2026-11", "/calendar/days", {**NATIONAL, "year": "2026", "month": "11"})
+    for year in (2024, 2026):
+        live(f"calendar-national-{year}-month", "/calendar",
+             {**NATIONAL, "year": str(year), "granularity": "month", "includeBaseline": "true"})
+    live("calendar-national-2024-pentad", "/calendar",
+         {**NATIONAL, "year": "2024", "granularity": "pentad", "includeBaseline": "true"})
+    live("daily-national-2024-03-18", "/daily", {**NATIONAL, "date": "2024-03-18", "includeCells": "false"})
     live("map-taynguyen-2024-03", "/map/cells", {**TAY_NGUYEN, "year": "2024", "month": "3"})
     live("calendar-taynguyen-2024-month", "/calendar",
          {**TAY_NGUYEN, "year": "2024", "granularity": "month", "includeBaseline": "true"})
     live("days-taynguyen-2024-03", "/calendar/days", {**TAY_NGUYEN, "year": "2024", "month": "3"})
 
     # Real error responses.
-    live("error-date-outside-range", "/daily", {**BBOX, "date": "2026-11-14", "includeCells": "true"}, expect=422)
+    live("error-date-outside-range", "/daily", {**BBOX, "date": "2026-11-14", "includeCells": "false"}, expect=422)
     live("error-no-cells-in-bounds", "/map/cells", {**EMPTY_BBOX, "year": "2024"}, expect=422)
     live("error-invalid-temporal-selector", "/map/cells", {**BBOX, "year": "2024", "month": "3", "pentad": "2"},
          expect=400)
@@ -367,9 +378,16 @@ def main() -> None:
         save(f"trends-bbox-month-{month}", "/trends",
              {**BBOX, "startYear": "2000", "endYear": "2026", "granularity": "month", "period": str(month)}, 200,
              generated_trends(cube, bbox_selection, base_meta, "month", month, 2000, 2026), generated)
-    save("trends-national-month-3", "/trends",
-         {**NATIONAL, "startYear": "2000", "endYear": "2026", "granularity": "month", "period": "3"}, 200,
-         generated_trends(cube, named_selection, base_meta, "month", 3, 2000, 2026), generated)
+    for month in range(1, 13):
+        save(f"trends-national-month-{month}", "/trends",
+             {**NATIONAL, "startYear": "2000", "endYear": "2026", "granularity": "month", "period": str(month)}, 200,
+             generated_trends(cube, named_selection, base_meta, "month", month, 2000, 2026), generated)
+    save("trends-national-pentad-15", "/trends",
+         {**NATIONAL, "startYear": "2000", "endYear": "2026", "granularity": "pentad", "period": "15"}, 200,
+         generated_trends(cube, named_selection, base_meta, "pentad", 15, 2000, 2026), generated)
+    save("seasonality-national-pentad", "/seasonality",
+         {**NATIONAL, "granularity": "pentad", "startYear": "2003", "endYear": "2025"}, 200,
+         generated_seasonality(cube, named_selection, base_meta, "pentad"), generated)
     for selection, spatial, label in ((bbox_selection, BBOX, "bbox"), (named_selection, NATIONAL, "national")):
         save(f"trends-{label}-year", "/trends",
              {**spatial, "startYear": "2000", "endYear": "2026", "granularity": "year"}, 200,

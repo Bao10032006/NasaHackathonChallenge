@@ -40,13 +40,14 @@ export interface AppState {
   compare: CompareFilters
 }
 
-/** Document 08 golden scenario: the default view always has data in mock mode. */
+/** Document 08 golden bounding box (13 Tay Nguyen cells); fully covered by mock fixtures. */
 export const GOLDEN_BBOX = { west: 107, south: 12, east: 108, north: 13 } as const
 
+/** The Explore flow starts at the national scope, yearly view of the last complete year. */
 const DEFAULT_FILTERS: Filters = {
-  spatial: { mode: 'bbox', ...GOLDEN_BBOX },
+  spatial: { mode: 'named', areaType: 'national', areaId: 'ToanQuoc' },
   year: 2024,
-  timeMode: 'month',
+  timeMode: 'year',
   month: 3,
   pentad: 15,
   date: '2024-03-18',

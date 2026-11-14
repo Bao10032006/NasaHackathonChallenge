@@ -16,10 +16,10 @@ function Header() {
   const { screen, dataSource } = useAppState()
   const dispatch = useDispatch()
   return (
-    <header>
-      <h1>HỎA LỊCH</h1>
-      <p role="note">{METRIC_NOTICE}</p>
-      <nav aria-label="Màn hình">
+    <header className="app-header">
+      <h1>HỎA <span>LỊCH</span></h1>
+      <p role="note" className="metric-note">{METRIC_NOTICE}</p>
+      <nav aria-label="Màn hình" className="app-nav">
         {SCREENS.map(([id, label]) => (
           <button
             key={id}
@@ -31,8 +31,8 @@ function Header() {
           </button>
         ))}
       </nav>
-      <fieldset>
-        <legend>Nguồn dữ liệu cho giao diện</legend>
+      <fieldset className="source-toggle">
+        <legend>Nguồn dữ liệu:</legend>
         <label>
           <input
             type="radio"
@@ -40,7 +40,7 @@ function Header() {
             checked={dataSource === 'mock'}
             onChange={() => dispatch({ type: 'setDataSource', dataSource: 'mock' })}
           />
-          Dữ liệu mẫu (fixture từ backend {mockGeneratedFromCommit}, kịch bản demo Tây Nguyên)
+          <span title={`Fixture từ backend ${mockGeneratedFromCommit}`}>Dữ liệu mẫu</span>
         </label>
         <label>
           <input
@@ -49,7 +49,7 @@ function Header() {
             checked={dataSource === 'api'}
             onChange={() => dispatch({ type: 'setDataSource', dataSource: 'api' })}
           />
-          API thật (backend chạy ở cổng 8080)
+          <span title="Backend Spring Boot ở cổng 8080 qua proxy /api">API thật</span>
         </label>
       </fieldset>
     </header>

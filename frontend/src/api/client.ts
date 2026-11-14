@@ -71,10 +71,48 @@ export function requestKey(source: DataSource, path: string, query: Query): stri
   return `${source}:${path}?${params}`
 }
 
-async function request<T>(source: DataSource, path: string, query: Query): Promise<T> {
+/**
+ * Who answered a request:
+ * - `api`: the Spring backend;
+ * - `mock`: a committed fixture (mock mode);
+ * - `mock-fallback`: live mode, but the backend has no such route yet (TASK 03B3), so the fixture
+ *   following the same OpenAPI contract is shown and labelled;
+ * - `mock-derived`: exact-date cell details rebuilt from an exact-date map fixture (one source per cell-day).
+ */
+export type ServedBy = 'api' | 'mock' | 'mock-fallback' | 'mock-derived'
+
+export interface Served<T> {
+  data: T
+  servedBy: ServedBy
+}
+
+/** Endpoints defined by OpenAPI v0.4 that the backend does not implement yet (TASK 03B3). */
+function isPendingBackendRoute(path: string): boolean {
+  return path === '/trends' || path === '/seasonality' || path === '/harmonization/comparison'
+    || /^\/cells\/[^/]+\/period-details$/.test(path)
+}
+
+async function request<T>(source: DataSource, path: string, query: Query): Promise<Served<T>> {
   if (source === 'mock') {
     return mockRequest<T>(path, query)
   }
+  try {
+    return { data: await liveRequest<T>(path, query), servedBy: 'api' }
+  } catch (error) {
+    const routeMissing = error instanceof ApiError && error.status === 404 && error.code === 'NOT_FOUND'
+    if (!routeMissing || !isPendingBackendRoute(path)) {
+      throw error
+    }
+    try {
+      const served = await mockRequest<T>(path, query)
+      return { data: served.data, servedBy: 'mock-fallback' }
+    } catch {
+      throw error
+    }
+  }
+}
+
+async function liveRequest<T>(path: string, query: Query): Promise<T> {
   const search = new URLSearchParams(query).toString()
   let response: Response
   try {
@@ -98,7 +136,7 @@ function isProblem(body: unknown): body is Problem {
 
 export interface Endpoint<T> {
   key: string
-  load: () => Promise<T>
+  load: () => Promise<Served<T>>
 }
 
 function endpoint<T>(source: DataSource, path: string, query: Query): Endpoint<T> {
@@ -129,7 +167,8 @@ export const api = {
     }),
 
   daily: (source: DataSource, spatial: SpatialQuery, date: IsoDate) =>
-    endpoint<DailyResponse>(source, '/daily', { ...spatialParams(spatial), date, includeCells: 'true' }),
+    // Cells of the day come from the exact-date map; /daily supplies the aggregate and composition.
+    endpoint<DailyResponse>(source, '/daily', { ...spatialParams(spatial), date, includeCells: 'false' }),
 
   trends: (
     source: DataSource,

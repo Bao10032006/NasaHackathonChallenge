@@ -1,8 +1,23 @@
-# Frontend Hỏa Lịch — khung dữ liệu thô
+# Frontend Hỏa Lịch
 
-Giao diện hiện là **khung dữ liệu thô** (raw-data scaffold): mọi trường mà API v0.4 trả về đều được hiển thị dưới dạng HTML trơn (bảng, danh sách, `dl`), chưa có CSS. Mục tiêu là chốt **đủ và đúng thông tin** trước; bước làm đẹp UI chỉ thay phần trình bày, không được làm rơi dữ liệu hay ngữ nghĩa (trạng thái, origin, coverage, cảnh báo).
+- **Khám phá (Explore)**: màn tương tác hoàn chỉnh — bản đồ ô lưới trên nền NASA GIBS, khoanh vùng bằng chuột, biểu đồ 12 tháng / 73 kỳ với mức lịch sử, lịch ngày, tóm tắt, chi tiết nguồn của ô, phân tích lịch sử và hướng dẫn đọc dữ liệu.
+- **So sánh** và **Nguồn dữ liệu**: vẫn là khung dữ liệu thô (HTML trơn, đủ mọi trường), sẽ hoàn thiện ở bước sau.
 
 Nguồn sự thật: `mvp_bussinessRule/HoaLich_OpenAPI_v0.4.yaml`, `HoaLich_05_UIUX_User_Flow_Wireframe_v0.4.md`, `HoaLich_08_Frontend_Integration_Examples_v0.4.md`.
+
+## Bản đồ
+
+- Thư viện **Leaflet 1.9.4** (không dùng plugin).
+- Ảnh nền từ **NASA GIBS** (WMTS công khai, Web Mercator): `BlueMarble_ShadedRelief_Bathymetry`, `Coastlines_15m`, `Reference_Labels_15m`. GIBS **không cần API key**.
+- **Không dùng FIRMS MAP_KEY**: key đó để tải điểm cháy thô, trong khi contract cấm hiển thị điểm cháy gốc (`capabilities.rawDetectionPointsAvailable=false`), và NFR06 cấm đưa secret vào frontend. Không commit bất kỳ key nào vào repo.
+- Mỗi hình chữ nhật là một ô 0,25°; màu theo `snpp_eq` trên thang căn bậc hai từ 0 đến `summary.maxCellValue`; 0 và “ngoài phạm vi” có kiểu riêng và nhãn chữ trong chú giải.
+- “Khoanh vùng trên bản đồ”: kéo chuột để vẽ khung; khung được làm tròn theo lưới 0,25° rồi gửi `west/south/east/north`. Viền nét đứt = khung yêu cầu; viền liền = phạm vi thực tế (`selection.selectedBounds`). Khi backend trả `NO_CELLS_IN_BOUNDS`, khung được giữ để khoanh lại. Esc để hủy.
+
+## Luồng Khám phá đã kiểm
+
+Toàn quốc (năm 2024) → khung Tây Nguyên hoặc kéo khung → bản đồ năm + biểu đồ 12 tháng (tháng nổi bật từ `summary.peakPeriod`) → bấm tháng → lịch ngày (ngày nổi bật từ `summary.peakDate`) → bấm ngày → tổng và nguồn của ngày → bấm ô → chi tiết nguồn của ô → lịch sử cùng tháng và mẫu hình mùa vụ.
+
+Ca biên có dữ liệu mẫu: ngày bằng 0 (10/03/2024), ngày ngoài phạm vi (14–30/11/2026), tháng chưa đầy đủ (11/2026, chênh lệch lịch sử bị ẩn kèm lý do), ngày ước lượng (06/11/2026, Aqua dự phòng), không có ngày nổi bật (07/2024, mọi ngày bằng 0), lỗi API (khung ngoài biển → 422, mất kết nối backend).
 
 ## Chạy
 
@@ -21,16 +36,16 @@ npm run build      # ra frontend/dist/
 | Chế độ | Khi nào dùng | Ghi chú |
 |---|---|---|
 | **Dữ liệu mẫu** (mặc định) | Làm UI không cần backend | Đọc fixture trong `src/mocks/`. Bộ lọc ngoài kịch bản demo sẽ báo "Chưa có dữ liệu mẫu", không bịa số. |
-| **API thật** | Kiểm tra với backend | Vite chuyển `/api` sang `http://localhost:8080`. Chạy backend trước (`backend/`, `mvnw spring-boot:run` hoặc JAR). |
+| **API thật** | Kiểm tra với backend | Vite chuyển `/api` sang `http://localhost:8080`. Chạy backend trước (`backend/`, `mvnw spring-boot:run` hoặc JAR). Endpoint backend chưa có (TASK 03B3: trends, seasonality, chi tiết ô) tự lùi về dữ liệu mẫu cùng hợp đồng và được gắn nhãn “Dữ liệu mẫu · backend chưa có API này”. |
 
 Đặt chế độ mặc định bằng biến môi trường: `VITE_DATA_SOURCE=api npm run dev`.
 
-**Kịch bản demo có đủ dữ liệu mẫu** (Document 08): khung `west=107, south=12, east=108, north=13` (13 ô Tây Nguyên)
-- năm 2024 (cả năm, 12 tháng, pentad 15, 73 pentad), từng ngày tháng 3/2024;
-- tháng 11/2026 (thiếu dữ liệu, có đến 13/11) và từng ngày 01–13/11/2026; năm 2026;
-- so sánh cùng tháng 2005 với 2024 (12 tháng);
-- chi tiết từng ô trong 13 ô (12 tháng 2024, cả năm 2024, pentad 15, 18/03/2024, 03/2005, 11/2026, 13/11/2026);
-- toàn quốc và Tây Nguyên (vùng có sẵn) tháng 3/2024; lỗi thật: ngày ngoài phạm vi (422), khung không có ô (422), chọn cả tháng lẫn pentad (400).
+**Dữ liệu mẫu có sẵn** (441 fixture):
+- **Toàn quốc**: năm 2024, 12 tháng 2024 (bản đồ + lịch ngày), kỳ 15, ngày 18/03/2024, năm 2026 và tháng 11/2026; xu hướng 12 tháng, mẫu hình mùa vụ.
+- **Khung Tây Nguyên** `west=107, south=12, east=108, north=13` (Document 08, 13 ô): năm 2024, 12 tháng, kỳ 15, 73 kỳ, từng ngày 3/2024 và 01–13/11/2026, năm 2026; 12 tháng 2005 (So sánh); chi tiết từng ô theo tháng/năm/kỳ; xu hướng và mùa vụ.
+- Chi tiết ô **theo một ngày** được suy ra chính xác từ bản đồ ngày (mỗi ô-ngày có đúng một nguồn), nên bấm ô nào trên bản đồ ngày cũng có dữ liệu.
+- Tây Nguyên (vùng có sẵn) tháng 3/2024; lỗi thật: ngày ngoài phạm vi (422), khung không có ô (422), chọn cả tháng lẫn kỳ (400).
+- Khung kéo tay ở chế độ mẫu chỉ có dữ liệu khi trùng khung Tây Nguyên; dùng chế độ API thật để khoanh tự do.
 
 ### Dữ liệu mẫu đến từ đâu
 
@@ -63,8 +78,19 @@ src/
 │   ├── time.ts       tháng, pentad (pentad 73 có 6 ngày năm nhuận), ngày
 │   ├── compare.ts    quy tắc tương thích hai bản đồ (Contract v0.4 §7)
 │   └── useApi.ts     hook tải dữ liệu: loading / error / success, cache, thử lại
-├── components/raw.tsx  khối hiển thị thô dùng chung (coverage, origin, trạng thái, cảnh báo, nguồn, lỗi)
-├── explore/          màn Khám phá theo thứ tự mobile của wireframe
+├── components/raw.tsx  khối hiển thị thô cho màn So sánh / Nguồn dữ liệu
+├── explore/
+│   ├── ExploreScreen.tsx   bố cục: bộ lọc · bản đồ + tóm tắt · biểu đồ · lịch ngày + lịch sử · ngăn kéo
+│   ├── FilterBar.tsx       phạm vi (toàn quốc / vùng / ô / khung) và kiểu kỳ (năm / tháng / kỳ 5 ngày / ngày)
+│   ├── ExploreMap.tsx      Leaflet + NASA GIBS, ô lưới, chú giải, kéo khung
+│   ├── SummaryCard.tsx     tổng, coverage, origin, kỳ nổi bật, nguồn của ngày
+│   ├── PeriodChart.tsx     12 tháng / 73 kỳ + mức lịch sử (bấm để chọn)
+│   ├── DayCalendarGrid.tsx lịch ngày 28–31 ô
+│   ├── HistoryPanel.tsx    đối chiếu baseline, cùng kỳ qua các năm, mẫu hình mùa vụ
+│   ├── CellDetailsDrawer.tsx / DataGuideDrawer.tsx  ngăn kéo chi tiết ô và hướng dẫn đọc dữ liệu
+│   ├── LineChart.tsx       biểu đồ SVG dùng chung (hình điểm = origin, bảng số liệu thay thế)
+│   └── ui.tsx, requests.ts nhãn trạng thái/nguồn dữ liệu; request dùng chung một filter state
+├── styles.css        giao diện (bảng màu, bố cục responsive, ngăn kéo)
 ├── compare/          màn So sánh hai bản đồ
 └── datanotes/        màn Nguồn dữ liệu (Data Notes)
 ```

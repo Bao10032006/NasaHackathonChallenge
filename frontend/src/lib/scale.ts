@@ -1,0 +1,101 @@
+import type { Origin, ValueStatus } from '../api/types'
+
+/*
+ * Visual encoding shared by the map, the day calendar and the legends.
+ * Activity uses a sequential warm palette on a square-root scale (values are strongly skewed:
+ * many small cells, few very active ones). Zero and out-of-range have their own neutral styles and
+ * are always labelled in text, never by colour alone.
+ */
+
+export const ACTIVITY_COLORS = ['#fff1c1', '#fed976', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', '#6b0019'] as const
+export const ZERO_COLOR = '#e8e4dc'
+
+export interface ActivityScale {
+  max: number
+  color: (value: number) => string
+  /** Upper bounds of each colour class, for the legend. */
+  breaks: number[]
+}
+
+export function activityScale(max: number | null | undefined): ActivityScale {
+  const top = max !== null && max !== undefined && max > 0 ? max : 1
+  const classes = ACTIVITY_COLORS.length
+  const breaks = ACTIVITY_COLORS.map((_, index) => top * ((index + 1) / classes) ** 2)
+  return {
+    max: top,
+    breaks,
+    color: (value) => {
+      if (value <= 0) {
+        return ZERO_COLOR
+      }
+      const position = Math.sqrt(Math.min(value, top) / top)
+      return ACTIVITY_COLORS[Math.min(classes - 1, Math.floor(position * classes))]
+    },
+  }
+}
+
+/** Short, colour-independent origin badges. */
+export const ORIGIN_BADGE: Record<Origin, { short: string; label: string }> = {
+  DIRECT_OBSERVATION: { short: 'QS', label: 'Quan sát S-NPP trực tiếp' },
+  SCALED_OBSERVATION: { short: 'QĐ', label: 'Quan sát NOAA-20 quy đổi về S-NPP' },
+  MODEL_REDISTRIBUTED: { short: 'ƯL', label: 'Ước lượng: tổng tháng của mô hình phân bổ xuống ngày' },
+  MIXED: { short: 'HH', label: 'Tổng hợp từ nhiều loại đóng góp' },
+}
+
+/** Marker shapes for charts (shape carries the origin, not only colour). */
+export const ORIGIN_MARKER: Record<Origin, 'circle' | 'diamond' | 'ring' | 'half'> = {
+  DIRECT_OBSERVATION: 'circle',
+  SCALED_OBSERVATION: 'diamond',
+  MODEL_REDISTRIBUTED: 'ring',
+  MIXED: 'half',
+}
+
+export const STATUS_BADGE: Record<ValueStatus, { symbol: string; label: string }> = {
+  AVAILABLE: { symbol: '', label: 'Có dữ liệu' },
+  MISSING: { symbol: '∅', label: 'Không có dữ liệu cho kỳ này' },
+  OUTSIDE_DATASET_RANGE: { symbol: '—', label: 'Ngoài phạm vi dữ liệu hiện có' },
+  INSUFFICIENT_BASELINE: { symbol: '…', label: 'Không đủ dữ liệu lịch sử' },
+}
+
+/** Compact number for tight spaces (calendar cells, axes). */
+export function compactValue(value: number): string {
+  if (value === 0) {
+    return '0'
+  }
+  if (value >= 10000) {
+    return `${(value / 1000).toLocaleString('vi-VN', { maximumFractionDigits: 0 })}k`
+  }
+  if (value >= 1000) {
+    return `${(value / 1000).toLocaleString('vi-VN', { maximumFractionDigits: 1 })}k`
+  }
+  if (value >= 10) {
+    return value.toLocaleString('vi-VN', { maximumFractionDigits: 0 })
+  }
+  return value.toLocaleString('vi-VN', { maximumFractionDigits: 2 })
+}
+
+/** Readable number for cards: up to 2 decimals (exact value goes in the tooltip/details). */
+export function readableValue(value: number | null | undefined): string {
+  if (value === null || value === undefined) {
+    return '—'
+  }
+  return value.toLocaleString('vi-VN', { maximumFractionDigits: value >= 100 ? 1 : 2 })
+}
+
+/** "Nice" axis ticks from 0 to max. */
+export function axisTicks(max: number, count = 4): number[] {
+  if (max <= 0) {
+    return [0, 1]
+  }
+  const raw = max / count
+  const magnitude = 10 ** Math.floor(Math.log10(raw))
+  const step = [1, 2, 2.5, 5, 10].map((factor) => factor * magnitude).find((candidate) => candidate >= raw) ?? raw
+  const ticks: number[] = []
+  for (let value = 0; value <= max + step * 0.001; value += step) {
+    ticks.push(Number(value.toPrecision(6)))
+  }
+  if (ticks[ticks.length - 1] < max) {
+    ticks.push(Number((ticks[ticks.length - 1] + step).toPrecision(6)))
+  }
+  return ticks
+}
