@@ -1,91 +1,70 @@
 ---
 title: Hỏa Lịch — AI Documentation Index
-version: v0.2
+version: v0.4-proposed
 updated: 2026-11-14
 language: vi
 backend: Java 21 / Spring Boot 4.1.2 / Spring MVC
 frontend: React TypeScript
 data_pipeline: Python offline
-status: MVP specification; implementation in progress
+status: v0.3 implementation baseline; v0.4 frontend-aligned proposal
 ---
 
 # HỎA LỊCH — TÀI LIỆU CHO AI / ĐỘI PHÁT TRIỂN
 
-Đây là chỉ mục đặc tả MVP của dự án Hỏa Lịch. Bộ v0.2 cập nhật v0.1 sau khi đối chiếu phần giới thiệu challenge “Harmonization of MODIS and VIIRS Hotspots” và trạng thái backend sau TASK 02A.
+v0.3 là baseline đã dùng để hoàn thành TASK 03A artifact/repository. v0.4 là proposal sau review frontend ngày 14/11/2026; không tự động thay surface backend v0.3 cho đến khi Backend và Frontend duyệt OpenAPI v0.4.
 
-**v0.2 là phiên bản mặc định để triển khai.** Các file v0.1 được giữ nguyên làm lịch sử; không dùng v0.1 để ghi đè quyết định mới trong v0.2.
+# 1. Thứ tự đọc proposal v0.4
 
-# 1. Thứ tự đọc v0.2
+1. [01 — Product Vision & Scope v0.4](HoaLich_01_Product_Vision_and_Scope_v0.4.md)
+2. [02 — User Stories v0.4](HoaLich_02_User_Stories_v0.4.md)
+3. [03 — Functional & Non-functional Requirements v0.4](HoaLich_03_Functional_Nonfunctional_Requirements_v0.4.md)
+4. [04 — API & Data Contract v0.4](HoaLich_04_API_Data_Contract_v0.4.md)
+5. [05 — UI/UX & User Flow v0.4](HoaLich_05_UIUX_User_Flow_Wireframe_v0.4.md)
+6. [06 — Technical Design v0.4](HoaLich_06_Technical_Design_Implementation_Plan_v0.4.md)
+7. [07 — Decision Log v0.4](HoaLich_07_Challenge_Alignment_and_Decision_Log_v0.4.md)
+8. [08 — Frontend Integration Golden Examples v0.4](HoaLich_08_Frontend_Integration_Examples_v0.4.md)
+9. [OpenAPI v0.4](HoaLich_OpenAPI_v0.4.yaml)
 
-1. [01 — Product Vision & Scope v0.2](HoaLich_01_Product_Vision_and_Scope_v0.2.md): mục tiêu challenge, phạm vi, guardrails và success criteria.
-2. [02 — User Stories v0.2](HoaLich_02_User_Stories_v0.2.md): US01–US10, ưu tiên và acceptance criteria.
-3. [03 — Functional & Non-functional Requirements v0.2](HoaLich_03_Functional_Nonfunctional_Requirements_v0.2.md): FR01–FR13, baseline/anomaly gates, business rules và Definition of Done.
-4. [04 — API & Data Contract v0.2](HoaLich_04_API_Data_Contract_v0.2.md): nguồn dữ liệu, endpoint, baseline schema, feature gates và contract tests.
-5. [05 — UI/UX & User Flow v0.2](HoaLich_05_UIUX_User_Flow_Wireframe_v0.2.md): IA, wireframe, state, copywriting và demo scenario.
-6. [06 — Technical Design & Implementation Plan v0.2](HoaLich_06_Technical_Design_Implementation_Plan_v0.2.md): kiến trúc file-backed, modules, increments, verification và readiness gates.
+# 2. Baseline v0.3 và artifact 1.0
 
-## Đề xuất v0.3 từ TASK 02B — chờ phê duyệt
+- [API Contract v0.3](HoaLich_04_API_Data_Contract_v0.3.md)
+- [OpenAPI v0.3](HoaLich_OpenAPI_v0.3.yaml)
+- [Technical Design v0.3](HoaLich_06_Technical_Design_Implementation_Plan_v0.3.md)
+- [Decision Log v0.3](HoaLich_07_Challenge_Alignment_and_Decision_Log_v0.3.md)
+- [Artifact Spec 1.0.0](../docs/backend/TASK_03A_ARTIFACT_SPEC.md)
+- [Backend Repository Report](../docs/backend/TASK_03A_BACKEND_REPOSITORY_REPORT.md)
 
-- [API & Data Contract v0.3 proposed](HoaLich_04_API_Data_Contract_v0.3.md): thêm seasonality, daily view có provenance và error contract.
-- [OpenAPI v0.3 proposed](HoaLich_OpenAPI_v0.3.yaml): schema để backend/frontend review và sinh client sau khi approve.
-- [Technical Design v0.3 proposed](HoaLich_06_Technical_Design_Implementation_Plan_v0.3.md): n-layer controller/service interface/impl/repository file-backed.
-- [Challenge Alignment & Decision Log v0.3 proposed](HoaLich_07_Challenge_Alignment_and_Decision_Log_v0.3.md): các quyết định/gate của TASK 02B.
+Không sửa hoặc tái xuất artifact chỉ vì API v0.4 thêm use case. Repository daily hiện có đủ nền cho bbox/range aggregation; service/controller phải theo contract được duyệt.
 
-Các file v0.3 chưa tự động thay thế v0.2 cho đến khi Product/Data/Backend/Frontend duyệt các open questions trong TASK 02B.
+# 3. Delta v0.4
 
-- [Review v0.3 + kiểm chứng dữ liệu 1.0](../docs/backend/REVIEW_v0.3_TASK03A.md): sửa B1–B3, quyết định D10–D13 và phạm vi chi tiết TASK 03A (Technical Design v0.3 §6A).
+- Bounding box dùng chung trên toàn bộ 587 cell Việt Nam: center-inclusive, ordered cell IDs, no-cell error. Tây Nguyên trong Document 08 chỉ là golden example.
+- Map thêm year-only.
+- Calendar thêm `/calendar/days` với 28–31 item.
+- Selection, coverage và summary là schema chung.
+- Dual map dùng hai request; delta chỉ khi compatible.
+- Cell-period provenance tải on-demand.
+- Harmonization comparison chuyển Optional; Data Notes vẫn Must.
+- Seasonal aggregate, rank, anomaly, export, persisted custom area và raw detections deferred.
 
-# 2. Tài liệu lịch sử v0.1
+# 4. Invariants bắt buộc
 
-- [Vision & Scope v0.1](HoaLich_01_Product_Vision_and_Scope_v0.1.md)
-- [User Stories v0.1](HoaLich_02_User_Stories_v0.1.md)
-- [Requirements v0.1](HoaLich_03_Functional_Nonfunctional_Requirements_v0.1.md)
-- [API Contract v0.1](HoaLich_04_API_Data_Contract_v0.1.md)
-- [UI/UX v0.1](HoaLich_05_UIUX_User_Flow_Wireframe_v0.1.md)
-- [Technical Design v0.1](HoaLich_06_Technical_Design_Implementation_Plan_v0.1.md)
+- `snpp_eq` không phải số vụ cháy, diện tích cháy, risk hoặc forecast.
+- Grid marker là tâm cell 0,25°, không phải raw hotspot coordinate.
+- `0` là dữ liệu thật; missing/outside/error không bao giờ dùng `0`.
+- Calendar placeholder ngoài range dùng `value=null`, `OUTSIDE_DATASET_RANGE`.
+- Daily direct/scaled/model-redistributed/mixed phải được phân biệt.
+- Partial có requested/covered range và day counts.
+- Cùng bbox + dataVersion phải resolve cùng canonical cell set.
+- Không gắn anomaly label từ delta đơn giản.
 
-# 3. Quyết định sản phẩm v0.2
+# 5. Quy tắc triển khai song song
 
-- Challenge có hai phần phải được thể hiện: harmonization và burning activity calendar web application.
-- Luồng Must gồm chọn area/time, calendar, map, trends, seasonality, historical comparison và giải thích/minh chứng harmonization.
-- Historical comparison trả baseline, reference years, sample size và delta; không tự động gọi là anomaly.
-- Anomaly là Should và feature-gated cho đến khi chốt method, threshold, minimum sample size và validation.
-- Day View là Could/Discovery. Không đưa `granularity=day` vào API/UI production cho đến khi vượt D07 Day View readiness gate.
-- Không mở rộng MVP thành real-time fire alert, fire prediction, burned-area estimation hoặc số vụ cháy.
+- Backend member đang làm v0.3 có thể tiếp tục phần không xung đột: metadata, named-area resolution, daily aggregation, service interfaces, Problem Details nền.
+- Không đổi controller/service public surface sang bbox/year-map/calendar-days trước khi OpenAPI v0.4 được duyệt.
+- Frontend dùng Document 08 làm fixture sau khi field names được chốt; không hardcode golden values vào production.
+- Khi v0.3 và v0.4 khác nhau, ghi rõ baseline/proposal; không âm thầm coi proposal là code đã có.
 
-# 4. Quyết định kỹ thuật mới nhất
+# 6. Tài liệu lịch sử
 
-- **Backend:** Java 21 + Spring Boot 4.1.2 + Spring MVC; REST API chỉ đọc.
-- **Frontend:** React + TypeScript theo Document 05.
-- **Pipeline:** Python chạy offline; web request không retrain harmonization.
-- **Storage MVP:** CSV/JSON/NPZ file-backed, load/index chọn lọc. Không dùng JPA, PostgreSQL, SQLite, Redis, WebFlux, JDBC Session hoặc Spring Security trong MVP hiện tại.
-- **Dataset config:** `hoalich.dataset.root` hoặc biến môi trường `HOALICH_DATASET_ROOT`; không hardcode đường dẫn máy.
-- **Snapshot:** không sửa artifact nguồn; mỗi response quan trọng có data/model version và coverage metadata.
-
-# 5. Ràng buộc dữ liệu bắt buộc
-
-- `snpp_eq`: **số phát hiện tương đương S-NPP**, không phải số vụ cháy hoặc diện tích cháy.
-- `missing` khác `0`; lỗi API cũng không được biểu diễn như `0`.
-- Năm/kỳ chưa đủ dữ liệu phải có `partial`/warning và chỉ so với khoảng tương ứng.
-- ToanQuoc, 5 vùng chẩn đoán và cell 0,25° là phạm vi hiện tại; vùng chẩn đoán không phải địa giới hành chính.
-- Không gửi artifact detections khoảng 1,08 GB xuống frontend và không đặt hotspot giả cho giá trị tổng hợp.
-- Snapshot hiện tại dùng `k_cell=60`; đổi model phải tái xuất, đổi version và chạy regression.
-- Raw MODIS/VIIRS và harmonized series không được trình bày như cùng metric nếu định nghĩa/đơn vị khác nhau.
-
-# 6. Readiness Gates còn mở
-
-1. **D02 Baseline:** chốt median/reference years/exclusion/coverage rule và method version.
-2. **D03 Anomaly:** chốt threshold, sample size, labels và validation trước khi bật feature.
-3. **D04 Partial/Coverage:** xác nhận transition years, `dataThrough` và rule tham gia baseline.
-4. **D06 Snapshot ownership:** owner, manifest/hash và regression approval.
-5. **D07 Day View:** data definition, validation, uncertainty, API/UI contract và performance.
-
-# 7. Quy tắc cho AI khi triển khai
-
-- Đọc theo thứ tự: User Stories → Requirements → API Contract → Technical Design; Vision điều chỉnh phạm vi và ngôn ngữ sản phẩm.
-- Ưu tiên Must; không để anomaly, export hoặc Day View chặn core API/UI.
-- Không tự thêm authentication, database, microservices, realtime tracking hoặc dự báo cháy.
-- Không tự thêm `granularity=day`; chỉ thực hiện sau khi D07 được cập nhật thành Ready trong tài liệu.
-- Không gắn nhãn anomaly từ một delta đơn giản; chỉ dùng contract/method version đã được phê duyệt.
-- Khi tài liệu và code khác nhau, báo chênh lệch; không âm thầm thay đổi requirement hay artifact.
-- Mọi quyết định chưa có trong v0.2 phải được ghi là đề xuất, không trình bày như requirement đã duyệt.
+Các file v0.1 và v0.2 được giữ nguyên. Không dùng chúng để ghi đè decision v0.3/v0.4 mới hơn.

@@ -1,0 +1,913 @@
+openapi: 3.1.0
+info:
+  title: Hoa Lich Read-only API
+  version: 0.4.0-proposed
+  license:
+    name: Project repository terms
+    identifier: LicenseRef-Project-Repository-Terms
+  description: >-
+    Frontend-aligned proposal built on v0.3 and Artifact Spec 1.0.0.
+    Values use harmonized snpp_eq and are not fire-event counts, burned area,
+    forecasts, or real-time alerts. v0.4 is not the backend implementation
+    baseline until Backend and Frontend approve it.
+servers:
+  - url: /api/v1
+security: []
+tags:
+  - name: Metadata
+    description: Active snapshot capabilities, sources, versions, and limitations.
+  - name: Areas
+    description: Named national, diagnostic-region, and grid-cell metadata.
+  - name: Activity
+    description: Calendar, map, daily, trends, and seasonality queries.
+  - name: Cells
+    description: On-demand grid-cell metadata and period provenance.
+  - name: Methodology
+    description: Optional methodology evidence outside the core demo flow.
+paths:
+  /metadata:
+    get:
+      tags: [Metadata]
+      operationId: getMetadata
+      summary: Get dataset capabilities, ranges, sources, and limitations
+      responses:
+        '200':
+          description: Active immutable snapshot metadata
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MetadataResponse'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /areas:
+    get:
+      tags: [Areas]
+      operationId: listAreas
+      summary: List named national, diagnostic-region, and cell areas
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema: {$ref: '#/components/schemas/AreaType'}
+      responses:
+        '200':
+          description: Supported named areas
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AreaListResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /calendar:
+    get:
+      tags: [Activity]
+      operationId: getCalendar
+      summary: Get 12 monthly or 73 pentad values for one year
+      description: >-
+        Supply exactly one spatial selector: areaType+areaId or all four bbox
+        coordinates. Named area and bbox are mutually exclusive. A bbox is
+        evaluated against all 587 cells and may cross diagnostic regions.
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - $ref: '#/components/parameters/YearRequired'
+        - name: granularity
+          in: query
+          required: true
+          schema: {$ref: '#/components/schemas/CalendarGranularity'}
+        - name: includeBaseline
+          in: query
+          required: false
+          schema: {type: boolean, default: false}
+        - name: baselineStartYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026, default: 2003}
+        - name: baselineEndYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026, default: 2025}
+      responses:
+        '200':
+          description: Calendar, coverage, summary, and spatial selection
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/CalendarResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /calendar/days:
+    get:
+      tags: [Activity]
+      operationId: getDailyCalendar
+      summary: Get every civil day of one month in a single response
+      description: >-
+        Returns 28-31 items. Days outside the dataset remain present with
+        value=null and valueStatus=OUTSIDE_DATASET_RANGE.
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - $ref: '#/components/parameters/YearRequired'
+        - name: month
+          in: query
+          required: true
+          schema: {type: integer, minimum: 1, maximum: 12}
+      responses:
+        '200':
+          description: Daily calendar with month summary and coverage
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyCalendarResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /map/cells:
+    get:
+      tags: [Activity]
+      operationId: getMapCells
+      summary: Get grid-cell values for exactly one date, year, month, or pentad
+      description: >-
+        Temporal selector must be exactly one of: date; year only; year+month;
+        year+pentad. Spatial selector is one named area or one complete bbox.
+        For v0.3 compatibility only, omitting spatial parameters means national.
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - name: date
+          in: query
+          required: false
+          schema: {type: string, format: date}
+        - $ref: '#/components/parameters/YearOptional'
+        - name: month
+          in: query
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 12}
+        - name: pentad
+          in: query
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 73}
+      responses:
+        '200':
+          description: Ordered cell slice with selection and temporal coverage
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MapCellsResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /daily:
+    get:
+      tags: [Activity]
+      operationId: getDailyActivity
+      summary: Get harmonized activity for one exact date and spatial selection
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema: {type: string, format: date}
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - name: includeCells
+          in: query
+          required: false
+          schema: {type: boolean, default: false}
+      responses:
+        '200':
+          description: Daily aggregate and source composition
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /trends:
+    get:
+      tags: [Activity]
+      operationId: getTrends
+      summary: Get comparable yearly or same-period historical values
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - name: startYear
+          in: query
+          required: true
+          schema: {type: integer, minimum: 2000, maximum: 2026}
+        - name: endYear
+          in: query
+          required: true
+          schema: {type: integer, minimum: 2000, maximum: 2026}
+        - name: granularity
+          in: query
+          required: true
+          schema: {type: string, enum: [year, month, pentad]}
+        - name: period
+          in: query
+          required: false
+          description: Forbidden for year; required for month or pentad.
+          schema: {type: integer, minimum: 1, maximum: 73}
+      responses:
+        '200':
+          description: Historical points for the resolved selection
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/TrendsResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /seasonality:
+    get:
+      tags: [Activity]
+      operationId: getSeasonality
+      summary: Get historical month or pentad seasonal statistics
+      parameters:
+        - $ref: '#/components/parameters/AreaType'
+        - $ref: '#/components/parameters/AreaId'
+        - $ref: '#/components/parameters/West'
+        - $ref: '#/components/parameters/South'
+        - $ref: '#/components/parameters/East'
+        - $ref: '#/components/parameters/North'
+        - name: granularity
+          in: query
+          required: true
+          schema: {$ref: '#/components/schemas/CalendarGranularity'}
+        - name: startYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026, default: 2003}
+        - name: endYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026, default: 2025}
+      responses:
+        '200':
+          description: Seasonal statistics by comparable period
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/SeasonalityResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/AreaNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /cells/{cellId}/period-details:
+    get:
+      tags: [Cells]
+      operationId: getCellPeriodDetails
+      summary: Get on-demand provenance for one cell and temporal selector
+      description: >-
+        Temporal selector follows /map/cells. This endpoint does not return raw
+        detection coordinates or timestamps.
+      parameters:
+        - name: cellId
+          in: path
+          required: true
+          schema: {type: string, pattern: '^[0-9]+_[0-9]+$'}
+        - name: date
+          in: query
+          required: false
+          schema: {type: string, format: date}
+        - $ref: '#/components/parameters/YearOptional'
+        - name: month
+          in: query
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 12}
+        - name: pentad
+          in: query
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 73}
+      responses:
+        '200':
+          description: Cell value, coverage, origin, and source composition
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/CellPeriodDetailsResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '404': {$ref: '#/components/responses/CellNotFound'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+  /harmonization/comparison:
+    get:
+      tags: [Methodology]
+      operationId: getHarmonizationComparison
+      summary: Get optional verified raw-versus-harmonized national series
+      description: Optional in v0.4; not required for the core demo Definition of Done.
+      x-feature-status: optional
+      parameters:
+        - name: startYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026}
+        - name: endYear
+          in: query
+          required: false
+          schema: {type: integer, minimum: 2000, maximum: 2026}
+      responses:
+        '200':
+          description: Separately labelled raw and harmonized series
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/HarmonizationComparisonResponse'}
+        '400': {$ref: '#/components/responses/InvalidParameter'}
+        '422': {$ref: '#/components/responses/UnsupportedQuery'}
+        '503': {$ref: '#/components/responses/DatasetUnavailable'}
+        '500': {$ref: '#/components/responses/InternalError'}
+components:
+  parameters:
+    AreaType:
+      name: areaType
+      in: query
+      required: false
+      schema: {$ref: '#/components/schemas/AreaType'}
+    AreaId:
+      name: areaId
+      in: query
+      required: false
+      schema: {type: string, minLength: 1}
+    West:
+      name: west
+      in: query
+      required: false
+      schema: {type: number, format: double, minimum: -180, maximum: 180}
+    South:
+      name: south
+      in: query
+      required: false
+      schema: {type: number, format: double, minimum: -90, maximum: 90}
+    East:
+      name: east
+      in: query
+      required: false
+      schema: {type: number, format: double, minimum: -180, maximum: 180}
+    North:
+      name: north
+      in: query
+      required: false
+      schema: {type: number, format: double, minimum: -90, maximum: 90}
+    YearRequired:
+      name: year
+      in: query
+      required: true
+      schema: {type: integer, minimum: 2000, maximum: 2026}
+    YearOptional:
+      name: year
+      in: query
+      required: false
+      schema: {type: integer, minimum: 2000, maximum: 2026}
+  responses:
+    InvalidParameter:
+      description: Invalid primitive value or spatial/temporal selector combination
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+    AreaNotFound:
+      description: Named area does not exist in the active snapshot
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+    CellNotFound:
+      description: Cell ID does not exist in the active snapshot
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+    UnsupportedQuery:
+      description: Valid syntax but unsupported range, empty bbox, or date
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+    DatasetUnavailable:
+      description: Required dataset artifact is unavailable or invalid
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+    InternalError:
+      description: Unexpected server error
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}
+  schemas:
+    AreaType:
+      type: string
+      enum: [national, diagnostic_region, cell]
+    SelectionType:
+      type: string
+      enum: [NAMED_AREA, BOUNDING_BOX]
+    SelectionRule:
+      type: string
+      enum: [NAMED_AREA_MEMBERSHIP, CENTER_INCLUSIVE]
+    CalendarGranularity:
+      type: string
+      enum: [month, pentad]
+    ValueStatus:
+      type: string
+      enum: [AVAILABLE, MISSING, OUTSIDE_DATASET_RANGE, INSUFFICIENT_BASELINE]
+    Origin:
+      type: string
+      enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED, MIXED]
+    Source:
+      type: string
+      enum: [TERRA, AQUA, SNPP, NOAA20]
+    Bounds:
+      type: object
+      additionalProperties: false
+      required: [west, south, east, north]
+      properties:
+        west: {type: number, format: double}
+        south: {type: number, format: double}
+        east: {type: number, format: double}
+        north: {type: number, format: double}
+    Coordinates:
+      type: object
+      additionalProperties: false
+      required: [lat, lon]
+      properties:
+        lat: {type: number, format: double}
+        lon: {type: number, format: double}
+    AreaRef:
+      type: object
+      additionalProperties: false
+      required: [type, id]
+      properties:
+        type: {$ref: '#/components/schemas/AreaType'}
+        id: {type: string}
+    SpatialSelection:
+      type: object
+      additionalProperties: false
+      required: [type, selectionRule, selectedBounds, cellCount, cellIds]
+      properties:
+        type: {$ref: '#/components/schemas/SelectionType'}
+        selectionRule: {$ref: '#/components/schemas/SelectionRule'}
+        area: {$ref: '#/components/schemas/AreaRef'}
+        requestedBounds: {$ref: '#/components/schemas/Bounds'}
+        selectedBounds: {$ref: '#/components/schemas/Bounds'}
+        cellCount: {type: integer, minimum: 1, maximum: 587}
+        cellIds:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: {type: string}
+    Coverage:
+      type: object
+      additionalProperties: false
+      required:
+        - requestedStartDate
+        - requestedEndDate
+        - coveredStartDate
+        - coveredEndDate
+        - expectedDayCount
+        - coveredDayCount
+        - uncoveredDayCount
+        - partial
+      properties:
+        requestedStartDate: {type: string, format: date}
+        requestedEndDate: {type: string, format: date}
+        coveredStartDate: {type: [string, 'null'], format: date}
+        coveredEndDate: {type: [string, 'null'], format: date}
+        expectedDayCount: {type: integer, minimum: 1}
+        coveredDayCount: {type: integer, minimum: 0}
+        uncoveredDayCount: {type: integer, minimum: 0}
+        partial: {type: boolean}
+    ResponseMeta:
+      type: object
+      additionalProperties: false
+      required: [dataVersion, modelVersion, dataThrough, metric, unit, timeZone, warnings]
+      properties:
+        dataVersion: {type: string, example: hoalich-data-v1-2026-11-13}
+        modelVersion: {type: string, example: lai-clim-s2-k60-kappa3}
+        dataThrough: {type: string, format: date}
+        metric: {type: string, const: snpp_eq}
+        unit: {type: string, const: S-NPP-equivalent daytime detections}
+        timeZone: {type: string, const: UTC}
+        warnings:
+          type: array
+          items: {type: string}
+    TemporalSelector:
+      type: object
+      additionalProperties: false
+      required: [type, startDate, endDate, coverage]
+      properties:
+        type: {type: string, enum: [DATE, YEAR, MONTH, PENTAD]}
+        date: {type: string, format: date}
+        year: {type: integer}
+        month: {type: integer, minimum: 1, maximum: 12}
+        pentad: {type: integer, minimum: 1, maximum: 73}
+        startDate: {type: string, format: date}
+        endDate: {type: string, format: date}
+        coverage: {$ref: '#/components/schemas/Coverage'}
+    Peak:
+      type: object
+      additionalProperties: false
+      required: [value]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        date: {type: string, format: date}
+        value: {type: number, minimum: 0}
+    PeriodSummary:
+      type: object
+      additionalProperties: false
+      required: [totalValue, valueStatus, coverage, peak]
+      properties:
+        totalValue: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        coverage: {$ref: '#/components/schemas/Coverage'}
+        peak:
+          oneOf:
+            - $ref: '#/components/schemas/Peak'
+            - type: 'null'
+    SourceComposition:
+      type: object
+      additionalProperties: false
+      required:
+        - sourceCode
+        - source
+        - origin
+        - cellCount
+        - contributingCellDayCount
+        - harmonizedValue
+        - inputObservationCount
+        - sourceInputValidCellCount
+      properties:
+        sourceCode: {type: integer, minimum: 1, maximum: 4}
+        source: {$ref: '#/components/schemas/Source'}
+        origin:
+          type: string
+          enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
+        cellCount: {type: integer, minimum: 1, maximum: 587}
+        contributingCellDayCount: {type: integer, minimum: 1}
+        harmonizedValue: {type: number, minimum: 0}
+        inputObservationCount: {type: integer, minimum: 0}
+        sourceInputValidCellCount: {type: integer, minimum: 0}
+    Area:
+      type: object
+      additionalProperties: false
+      required: [type, id]
+      properties:
+        type: {$ref: '#/components/schemas/AreaType'}
+        id: {type: string}
+        name: {type: string}
+        diagnosticRegion: {type: string}
+        cellCount: {type: integer, minimum: 1}
+        center: {$ref: '#/components/schemas/Coordinates'}
+        bounds: {$ref: '#/components/schemas/Bounds'}
+    AreaListResponse:
+      type: object
+      additionalProperties: false
+      required: [items, meta]
+      properties:
+        items:
+          type: array
+          items: {$ref: '#/components/schemas/Area'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    MetadataResponse:
+      type: object
+      additionalProperties: false
+      required: [meta, dateRange, gridDegrees, capabilities, sourceCodes, limitations]
+      properties:
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+        dateRange:
+          type: object
+          additionalProperties: false
+          required: [start, end]
+          properties:
+            start: {type: string, format: date}
+            end: {type: string, format: date}
+        gridDegrees: {type: number, const: 0.25}
+        capabilities:
+          type: object
+          additionalProperties: false
+          required: [boundingBox, annualMap, dailyCalendar, rawDetectionPoints]
+          properties:
+            boundingBox: {type: boolean, const: true}
+            annualMap: {type: boolean, const: true}
+            dailyCalendar: {type: boolean, const: true}
+            rawDetectionPoints: {type: boolean, const: false}
+        sourceCodes:
+          type: array
+          items:
+            type: object
+            required: [code, source, origin]
+            properties:
+              code: {type: integer, minimum: 1, maximum: 4}
+              source: {$ref: '#/components/schemas/Source'}
+              origin: {$ref: '#/components/schemas/Origin'}
+              description: {type: string}
+        limitations:
+          type: array
+          items: {type: string}
+    CalendarValue:
+      type: object
+      additionalProperties: false
+      required: [period, startDate, endDate, value, valueStatus, partial, coverage]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        startDate: {type: string, format: date}
+        endDate: {type: string, format: date}
+        value: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        coverage: {$ref: '#/components/schemas/Coverage'}
+    BaselineValue:
+      type: object
+      additionalProperties: false
+      required: [period, value, sampleSize, valueStatus]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        value: {type: [number, 'null']}
+        sampleSize: {type: integer, minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+    Baseline:
+      type: object
+      additionalProperties: false
+      required: [method, referenceStartYear, referenceEndYear, excludesTargetYear, values]
+      properties:
+        method: {type: string, const: median}
+        referenceStartYear: {type: integer}
+        referenceEndYear: {type: integer}
+        excludesTargetYear: {type: boolean}
+        values:
+          type: array
+          items: {$ref: '#/components/schemas/BaselineValue'}
+    CalendarResponse:
+      type: object
+      additionalProperties: false
+      required: [selection, year, granularity, values, summary, meta]
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        year: {type: integer}
+        granularity: {$ref: '#/components/schemas/CalendarGranularity'}
+        values:
+          type: array
+          items: {$ref: '#/components/schemas/CalendarValue'}
+        summary: {$ref: '#/components/schemas/PeriodSummary'}
+        baseline: {$ref: '#/components/schemas/Baseline'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    DailyCalendarValue:
+      type: object
+      additionalProperties: false
+      required: [date, value, valueStatus, partial, origin]
+      properties:
+        date: {type: string, format: date}
+        value: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        warnings:
+          type: array
+          items: {type: string}
+    DailyCalendarResponse:
+      type: object
+      additionalProperties: false
+      required: [selection, year, month, values, summary, meta]
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        year: {type: integer}
+        month: {type: integer, minimum: 1, maximum: 12}
+        values:
+          type: array
+          minItems: 28
+          maxItems: 31
+          items: {$ref: '#/components/schemas/DailyCalendarValue'}
+        summary: {$ref: '#/components/schemas/PeriodSummary'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    MapCellValue:
+      type: object
+      additionalProperties: false
+      required: [cellId, center, bounds, value, valueStatus, partial, origin]
+      properties:
+        cellId: {type: string}
+        center: {$ref: '#/components/schemas/Coordinates'}
+        bounds: {$ref: '#/components/schemas/Bounds'}
+        value: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        sourceCode: {type: integer, minimum: 1, maximum: 4}
+        source: {$ref: '#/components/schemas/Source'}
+        inputObservationCount: {type: integer, minimum: 0}
+        sourceInputValid: {type: boolean}
+    MapCellsResponse:
+      type: object
+      additionalProperties: false
+      required: [selection, temporalSelector, cells, meta]
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        temporalSelector: {$ref: '#/components/schemas/TemporalSelector'}
+        cells:
+          type: array
+          items: {$ref: '#/components/schemas/MapCellValue'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    DailyResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - selection
+        - date
+        - value
+        - valueStatus
+        - origin
+        - partial
+        - sourceComposition
+        - meta
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        area: {$ref: '#/components/schemas/AreaRef'}
+        date: {type: string, format: date}
+        value: {type: number, minimum: 0}
+        valueStatus: {type: string, const: AVAILABLE}
+        origin: {$ref: '#/components/schemas/Origin'}
+        partial: {type: boolean, const: false}
+        sourceComposition:
+          type: array
+          minItems: 1
+          items: {$ref: '#/components/schemas/SourceComposition'}
+        cells:
+          type: array
+          items: {$ref: '#/components/schemas/MapCellValue'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    TrendPoint:
+      type: object
+      additionalProperties: false
+      required: [year, value, valueStatus, partial, coverage]
+      properties:
+        year: {type: integer}
+        period: {type: integer, minimum: 1, maximum: 73}
+        value: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        partial: {type: boolean}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        coverage: {$ref: '#/components/schemas/Coverage'}
+    TrendsResponse:
+      type: object
+      additionalProperties: false
+      required: [selection, granularity, points, meta]
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        granularity: {type: string, enum: [year, month, pentad]}
+        period: {type: integer, minimum: 1, maximum: 73}
+        points:
+          type: array
+          items: {$ref: '#/components/schemas/TrendPoint'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    SeasonalityPeriod:
+      type: object
+      additionalProperties: false
+      required: [period, sampleSize, mean, median, valueStatus]
+      properties:
+        period: {type: integer, minimum: 1, maximum: 73}
+        sampleSize: {type: integer, minimum: 0}
+        mean: {type: [number, 'null']}
+        median: {type: [number, 'null']}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+    SeasonalityResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - selection
+        - granularity
+        - referenceStartYear
+        - referenceEndYear
+        - minimumSampleSize
+        - periods
+        - meta
+      properties:
+        selection: {$ref: '#/components/schemas/SpatialSelection'}
+        granularity: {$ref: '#/components/schemas/CalendarGranularity'}
+        referenceStartYear: {type: integer}
+        referenceEndYear: {type: integer}
+        minimumSampleSize: {type: integer, const: 5}
+        periods:
+          type: array
+          items: {$ref: '#/components/schemas/SeasonalityPeriod'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    CellPeriodDetailsResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - cell
+        - temporalSelector
+        - value
+        - valueStatus
+        - origin
+        - sourceComposition
+        - meta
+      properties:
+        cell: {$ref: '#/components/schemas/Area'}
+        temporalSelector: {$ref: '#/components/schemas/TemporalSelector'}
+        value: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        sourceComposition:
+          type: array
+          items: {$ref: '#/components/schemas/SourceComposition'}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    ComparisonPoint:
+      type: object
+      required: [year, value]
+      properties:
+        year: {type: integer}
+        value: {type: [number, 'null']}
+    ComparisonSeries:
+      type: object
+      required: [seriesType, label, metric, unit, points]
+      properties:
+        seriesType:
+          type: string
+          enum: [RAW_MODIS, RAW_VIIRS_SNPP, RAW_MERGED_REFERENCE, HARMONIZED]
+        label: {type: string}
+        metric: {type: string}
+        unit: {type: string}
+        points:
+          type: array
+          items: {$ref: '#/components/schemas/ComparisonPoint'}
+    HarmonizationComparisonResponse:
+      type: object
+      required: [series, explanationKeys, meta]
+      properties:
+        series:
+          type: array
+          items: {$ref: '#/components/schemas/ComparisonSeries'}
+        explanationKeys:
+          type: array
+          items: {type: string}
+        meta: {$ref: '#/components/schemas/ResponseMeta'}
+    FieldError:
+      type: object
+      additionalProperties: false
+      required: [field, message]
+      properties:
+        field: {type: string}
+        rejectedValue: {}
+        message: {type: string}
+    Problem:
+      type: object
+      additionalProperties: true
+      required: [type, title, status, code, detail, instance, timestamp]
+      properties:
+        type: {type: string, format: uri}
+        title: {type: string}
+        status: {type: integer, minimum: 400, maximum: 599}
+        code:
+          type: string
+          enum:
+            - INVALID_PARAMETER
+            - INVALID_SPATIAL_SELECTOR
+            - INVALID_TEMPORAL_SELECTOR
+            - INVALID_BOUNDS
+            - AREA_NOT_FOUND
+            - CELL_NOT_FOUND
+            - NO_CELLS_IN_BOUNDS
+            - UNSUPPORTED_QUERY
+            - DATE_OUTSIDE_DATASET_RANGE
+            - DATASET_UNAVAILABLE
+            - INTERNAL_ERROR
+        detail: {type: string}
+        instance: {type: string}
+        errors:
+          type: array
+          items: {$ref: '#/components/schemas/FieldError'}
+        timestamp: {type: string, format: date-time}
