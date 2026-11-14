@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ActivityCalendars } from './ActivityCalendars'
 import { DataNotes, GridCellDetails } from './DataPanels'
 import { ExploreFilters } from './ExploreFilters'
+import type { CompareSelection } from '../compare/CompareScreen'
 import type { Filters } from './ExploreFilters'
 import { FireGridMap, nationalCamera } from './FireGridMap'
 import type { Camera } from './FireGridMap'
@@ -24,7 +25,9 @@ function initialFilters(metadata: Metadata): Filters {
   }
 }
 
-function ExploreWorkspace({ metadata, areas }: { metadata: Metadata; areas: Area[] }) {
+type OpenCompare = (selection: CompareSelection) => void
+
+function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; areas: Area[]; onCompare: OpenCompare }) {
   const [filters, setFilters] = useState(() => initialFilters(metadata))
   const [drawing, setDrawing] = useState(false)
   const [cell, setCell] = useState<string | null>(null)
@@ -106,6 +109,16 @@ function ExploreWorkspace({ metadata, areas }: { metadata: Metadata; areas: Area
     <>
       <ExploreFilters filters={filters} regional={regional} metadata={metadata} areas={areas} selection={grid.data?.selection} drawing={drawing}
         onChange={change} onDay={chooseDay} onDraw={() => setDrawing(!drawing)} onReset={reset} />
+      {mode === 'month' && metadata.yearRange.start < metadata.yearRange.end && (
+        <div className="compare-launch">
+          <button type="button" className="outline" disabled={!grid.data} onClick={() => {
+            const label = 'areaId' in spatial
+              ? areas.find((area) => area.id === spatial.areaId)?.name ?? 'Ô ' + spatial.areaId
+              : 'Khung đã khoanh'
+            onCompare({ spatial, label, year, month, yearRange: metadata.yearRange, camera: camera ?? nationalCamera })
+          }}>Đối chiếu hai năm</button>
+        </div>
+      )}
 
       <div className={regional && !noCells ? 'overview' : 'overview overview-map-only'}>
         <div className="map-column">
@@ -138,7 +151,7 @@ function ExploreWorkspace({ metadata, areas }: { metadata: Metadata; areas: Area
   )
 }
 
-export default function ExploreScreen() {
+export default function ExploreScreen({ onCompare }: { onCompare: OpenCompare }) {
   const metadata = useResource<Metadata>(endpoint('/metadata'))
   const areas = useResource<{ items: Area[] }>(endpoint('/areas'))
 
@@ -164,7 +177,7 @@ export default function ExploreScreen() {
         </header>
         <ResourceNotice resource={metadata} />
         <ResourceNotice resource={areas} />
-        {metadata.data && areas.data && <ExploreWorkspace metadata={metadata.data} areas={areas.data.items} />}
+        {metadata.data && areas.data && <ExploreWorkspace metadata={metadata.data} areas={areas.data.items} onCompare={onCompare} />}
         <DataNotes metadata={metadata.data} />
       </main>
     </>

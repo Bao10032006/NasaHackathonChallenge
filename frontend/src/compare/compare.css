@@ -1,0 +1,34 @@
+.compare-launch { display: flex; justify-content: flex-end; }
+.compare-header { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.compare-header p { margin-top: .35rem; }
+.compare-overview { display: grid; gap: .75rem; }
+.compare-overview .filter-row { align-items: center; }
+.compare-totals, .compare-maps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.compare-totals:has(.compare-delta) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.compare-delta .summary-number { color: var(--cyan); }
+.compare-legend { border: 1px solid var(--border); border-radius: 8px; }
+.compare-map { min-width: 0; }
+.compare-switch { display: none; }
+.compare-cell h3 { margin-top: 0; }
+.compare-screen .map-legend[hidden] { display: none; }
+.compare-daily .series { margin-block: .5rem; }
+.compare-daily .series svg { height: clamp(170px, 20vw, 260px); max-height: none; }
+.compare-daily > .muted { margin-top: .65rem; }
+.compare-daily-stats h3 { display: flex; align-items: center; gap: .4rem; margin: 0 0 .35rem; }
+.compare-daily-stats dl { display: grid; gap: .3rem; margin: .45rem 0 0; }
+.compare-daily-stats dd { font-size: .8rem; }
+.daily-key { width: .6rem; height: .6rem; background: var(--accent); border-radius: 50%; }
+.daily-key-b { background: var(--cyan); border-radius: 1px; }
+.chart-comparison-line { stroke: var(--cyan); stroke-dasharray: 6 4; }
+.chart-comparison-point { fill: var(--cyan); stroke: var(--inset); stroke-width: 1; }
+.compare-daily-table td { overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .compare-maps { grid-template-columns: minmax(0, 1fr); }
+  .compare-switch { display: flex; gap: .5rem; }
+  .compare-switch button { flex: 1; }
+  .compare-switch [aria-pressed=true] { border-color: var(--cyan); color: var(--cyan); }
+  .compare-map[data-active=false] { display: none; }
+  .compare-totals:has(.compare-delta) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .compare-delta { grid-column: 1 / -1; }
+}

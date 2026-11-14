@@ -20,6 +20,18 @@ const land = coastlines.map(({ vietnam, ring }) => ({
   vietnam, path: ring.map(([lon, lat], i) => `${i ? 'L' : 'M'}${x(lon).toFixed(1)},${y(lat).toFixed(1)}`).join(' ') + 'Z',
 }))
 const colors = ['#ffc078', '#fb933e', '#fb5c4e', '#ef343d']
+export type ColorDomain = { min: number; max: number }
+
+export function MapColorScale({ domain }: { domain?: ColorDomain }) {
+  if (!domain) return <span>Chưa có thang màu</span>
+  return (
+    <div className="legend-scale" aria-label="Thang màu từ thấp đến cao">
+      <span>{number(domain.min)}</span>
+      {colors.map((color) => <i key={color} style={{ background: color }} aria-hidden="true" />)}
+      <span>{number(domain.max)}</span>
+    </div>
+  )
+}
 
 function rect(bounds: Bounds) {
   return { x: x(bounds.west), y: y(bounds.north), width: x(bounds.east) - x(bounds.west), height: y(bounds.south) - y(bounds.north) }
@@ -55,8 +67,13 @@ function box(a: Coordinates, b: Coordinates): Bounds {
 }
 
 export function FireGridMap({ grid, focus, requested, drawing, activeCell, period, camera: savedCamera,
+  id = 'fire-map', title = 'Bản đồ hoạt động đốt', colorDomain, sharedLegend = false,
   onCamera, onBack, onDraw, onCell }: {
   grid?: Grid
+  id?: string
+  title?: string
+  colorDomain?: ColorDomain
+  sharedLegend?: boolean
   focus?: Bounds
   requested?: Bounds
   drawing: boolean
@@ -65,7 +82,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   camera?: Camera
   onCamera: (camera: Camera) => void
   onBack?: () => void
-  onDraw: (bounds: Bounds) => void
+  onDraw?: (bounds: Bounds) => void
   onCell: (cellId: string) => void
 }) {
   const start = useRef<{ geographic: Coordinates; clientX: number; clientY: number; camera: Camera } | null>(null)
@@ -82,6 +99,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   const left = camera.x - viewWidth / 2
   const top = camera.y - viewHeight / 2
   const max = grid?.summary.maxCellValue ?? 0
+  const domain = colorDomain ?? { min: 0, max }
   const bounds = (drawing ? preview : undefined) ?? requested
   const allZero = grid?.summary.valueStatus === 'AVAILABLE' && grid.cells.length > 0 &&
     grid.cells.every((cell) => cell.valueStatus === 'AVAILABLE' && cell.value === 0)
@@ -102,7 +120,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
     setPreview(undefined)
     if (!drawing || !begin || Math.abs(event.clientX - begin.clientX) < 4 || Math.abs(event.clientY - begin.clientY) < 4) return
     const end = location(event)
-    if (end) onDraw(box(begin.geographic, end))
+    if (end) onDraw?.(box(begin.geographic, end))
   }
 
   function zoom(factor: number) {
@@ -111,9 +129,9 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   }
 
   return (
-    <section className="panel map-panel" aria-labelledby="map-title">
+    <section className="panel map-panel" aria-labelledby={id + '-title'}>
       <div className="panel-heading">
-        <h2 id="map-title">Bản đồ hoạt động đốt</h2>
+        <h2 id={id + '-title'}>{title}</h2>
         <span className="pill">Lưới 0,25°</span>
       </div>
       {drawing && <p className="drawing-note" role="status">Kéo trên bản đồ để khoanh vùng. Tâm ô nằm trong hoặc trên biên khung sẽ được tính.</p>}
@@ -129,7 +147,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
         {onBack && <button type="button" className="map-back" aria-label="Quay lại vùng trước"
           title="Quay lại vùng trước" onClick={onBack}>×</button>}
       </div>
-      <svg id="fire-map" viewBox={`${left} ${top} ${viewWidth} ${viewHeight}`}
+      <svg id={id} viewBox={`${left} ${top} ${viewWidth} ${viewHeight}`}
         width={width} height={height}
         className={drawing ? 'map drawing' : camera.zoom > 1 ? 'map pannable' : 'map'}
         aria-label="Bản đồ Việt Nam và các ô lưới đang xem"
@@ -178,10 +196,13 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
           onImageError={() => setTilesUnavailable(true)}
         />}
         {grid?.cells.map((cell) => {
-          if (cell.valueStatus !== 'AVAILABLE' || cell.value == null || cell.value <= 0) return null
-          const ratio = max > 0 ? cell.value / max : 0
+          const selected = activeCell === cell.cellId
+          const positive = cell.valueStatus === 'AVAILABLE' && cell.value != null && cell.value > 0
+          if (!positive && !(sharedLegend && selected)) return null
+          const ratio = positive && domain.max > domain.min
+            ? Math.min(1, Math.max(0, (cell.value! - domain.min) / (domain.max - domain.min))) : 0
           const index = Math.min(colors.length - 1, Math.floor(Math.sqrt(ratio) * colors.length))
-          const label = `Ô ${cell.cellId} · ${valueLabel(cell.value, cell.valueStatus)} phát hiện tương đương S-NPP${cell.partial ? ' · Kỳ chưa đầy đủ' : ''}`
+          const label = `Ô ${cell.cellId} · ${valueLabel(cell.value, cell.valueStatus)}${cell.valueStatus === 'AVAILABLE' ? ' phát hiện tương đương S-NPP' : ''}${cell.partial ? ' · Kỳ chưa đầy đủ' : ''}`
           return (
             <g key={cell.cellId} className={drawing ? undefined : 'map-cell'}
               role={drawing ? undefined : 'button'} aria-label={label} tabIndex={drawing ? undefined : 0}
@@ -195,27 +216,26 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
               }}>
               <title>{label}{cell.origin ? ' · ' + origins[cell.origin] : ''}</title>
               <rect {...rect(cell.bounds)} className={activeCell === cell.cellId ? 'cell-outline selected' : 'cell-outline'} />
-              <circle cx={x(cell.center.lon)} cy={y(cell.center.lat)} r={activeCell === cell.cellId ? 3.5 : 2.3} fill={colors[index]}
-                className={cell.origin === 'MODEL_REDISTRIBUTED' ? 'cell-marker estimated' : 'cell-marker'} />
+              {positive && <circle cx={x(cell.center.lon)} cy={y(cell.center.lat)} r={selected ? 3.5 : 2.3} fill={colors[index]}
+                className={cell.origin === 'MODEL_REDISTRIBUTED' ? 'cell-marker estimated' : 'cell-marker'} />}
             </g>
           )
         })}
         {bounds && <rect {...rect(bounds)} className="draw-box" />}
       </svg>
       </div>
-      <div className="map-legend">
+      <div className="map-legend" hidden={sharedLegend && !allZero && (!grid || grid.summary.valueStatus === 'AVAILABLE')}>
+        {!sharedLegend && <>
         <div className="map-legend-row">
           <span>Số phát hiện tương đương S-NPP · {period}</span>
-          <div className="legend-scale" aria-label="Thang màu từ thấp đến cao">
-            <span>Thấp</span>{colors.map((color) => <i key={color} style={{ background: color }} aria-hidden="true" />)}
-            <span>Cao{max > 0 ? ' · ' + number(max) : ''}</span>
-          </div>
+          <MapColorScale domain={max > 0 ? domain : undefined} />
         </div>
+        </>}
         {allZero && <p role="status">Kỳ này có dữ liệu, tất cả ô đều có giá trị 0.</p>}
         {grid && grid.summary.valueStatus !== 'AVAILABLE' && (
           <p role="status">{valueLabel(grid.summary.totalValue, grid.summary.valueStatus)} cho kỳ này.</p>
         )}
-        <details>
+        {!sharedLegend && <details>
           <summary>Chú giải</summary>
           <p>Mỗi chấm là một ô lưới 0,25° có hoạt động được ghi nhận trong kỳ đang xem. Bản đồ chỉ vẽ chấm ở ô có giá trị lớn hơn 0.</p>
           <p>Màu đậm hơn biểu thị số phát hiện tương đương S-NPP cao hơn.</p>
@@ -225,7 +245,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
             </svg>
             Chấm có viền hổ phách biểu thị giá trị ước tính.
           </p>
-        </details>
+        </details>}
       </div>
       {satellite && <p className="map-source">
         <a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9" target="_blank" rel="noreferrer">Nền ảnh: Esri World Imagery và các nhà cung cấp</a>
