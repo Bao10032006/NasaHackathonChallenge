@@ -4,9 +4,8 @@ import com.se201411.mvc.backend.exception.DatasetUnavailableException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +27,10 @@ final class SimpleCsvTable {
 		this.rows = rows;
 	}
 
-	static SimpleCsvTable read(Path path, String label, List<String> requiredColumns) {
-		try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+	/** Parses CSV bytes that the caller has already verified against the manifest hash. */
+	static SimpleCsvTable parse(byte[] content, String label, List<String> requiredColumns) {
+		try (BufferedReader reader = new BufferedReader(new StringReader(
+				new String(content, StandardCharsets.UTF_8)))) {
 			String headerLine = reader.readLine();
 			if (headerLine == null) {
 				throw new DatasetUnavailableException("CSV table is empty: " + label);
@@ -37,7 +38,10 @@ final class SimpleCsvTable {
 			String[] headers = headerLine.replace("\uFEFF", "").split(",", -1);
 			Map<String, Integer> columns = new HashMap<>();
 			for (int index = 0; index < headers.length; index++) {
-				columns.put(headers[index].trim(), index);
+				if (columns.put(headers[index].trim(), index) != null) {
+					throw new DatasetUnavailableException(
+							"CSV table " + label + " has a duplicate column: " + headers[index].trim());
+				}
 			}
 			for (String required : requiredColumns) {
 				if (!columns.containsKey(required)) {

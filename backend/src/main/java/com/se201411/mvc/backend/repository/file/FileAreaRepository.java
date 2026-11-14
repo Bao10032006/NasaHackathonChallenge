@@ -52,11 +52,11 @@ public final class FileAreaRepository implements AreaRepository {
 		Objects.requireNonNull(datasetRoot, "datasetRoot must not be null");
 		Objects.requireNonNull(manifest, "manifest must not be null");
 		String cellSource = manifest.grid().cellOrderSource();
-		Path cellsPath = DatasetArtifactValidator.resolveDeclaredSource(datasetRoot, manifest, cellSource)
+		byte[] cellsCsv = DatasetArtifactValidator.readDeclaredSource(datasetRoot, manifest, cellSource)
 				.orElseThrow(() -> new DatasetUnavailableException(
 						"Cell order source is not declared in manifest sources: " + cellSource));
 
-		SimpleCsvTable table = SimpleCsvTable.read(cellsPath, cellSource, REQUIRED_COLUMNS);
+		SimpleCsvTable table = SimpleCsvTable.parse(cellsCsv, cellSource, REQUIRED_COLUMNS);
 		double degrees = manifest.grid().degrees();
 		if (!(degrees > 0)) {
 			throw new DatasetUnavailableException("Manifest grid.degrees must be positive");

@@ -7,7 +7,10 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,10 +37,20 @@ final class DatasetArtifactValidator {
 			"daily-input-count.i16", new ExpectedArtifact("int16", 2),
 			"daily-source-input-valid.u8", new ExpectedArtifact("uint8", 1));
 
-	/** Source and origin vocabularies of Artifact Spec 1.0.0 section 5.2; services map these to API enums. */
-	private static final Set<String> SOURCE_NAMES = Set.of("TERRA", "AQUA", "SNPP", "NOAA20");
-	private static final Set<String> SOURCE_ORIGINS =
-			Set.of("DIRECT_OBSERVATION", "SCALED_OBSERVATION", "MODEL_REDISTRIBUTED");
+	/**
+	 * Source catalog fixed by Artifact Spec 1.0.0 section 5.2. The manifest is not hash-protected and
+	 * services read source/origin labels from it, so each code must carry exactly these labels.
+	 */
+	private static final Map<Integer, ExpectedSource> SPEC_SOURCES = Map.of(
+			1, new ExpectedSource("TERRA", "MODEL_REDISTRIBUTED"),
+			2, new ExpectedSource("AQUA", "MODEL_REDISTRIBUTED"),
+			3, new ExpectedSource("SNPP", "DIRECT_OBSERVATION"),
+			4, new ExpectedSource("NOAA20", "SCALED_OBSERVATION"));
+	private static final int SCALED_SOURCE_CODE = 4;
+	private static final String METRIC = "snpp_eq";
+	private static final String TIME_ZONE = "UTC";
+	/** Largest file that can be held in one Java byte array. */
+	private static final long MAX_LOADABLE_BYTES = Integer.MAX_VALUE - 8L;
 
 	private DatasetArtifactValidator() {
 	}
@@ -58,14 +71,18 @@ final class DatasetArtifactValidator {
 		if (!Set.of("snapshot", "fixture").contains(manifest.kind())) {
 			throw unavailable("Manifest kind must be snapshot or fixture");
 		}
-		requireText(manifest.metric(), "metric");
+		if (!METRIC.equals(requireText(manifest.metric(), "metric"))) {
+			throw unavailable("Manifest metric must be " + METRIC);
+		}
 		requireText(manifest.unit(), "unit");
-		requireText(manifest.timeZone(), "timeZone");
+		if (!TIME_ZONE.equals(requireText(manifest.timeZone(), "timeZone"))) {
+			throw unavailable("Manifest timeZone must be " + TIME_ZONE);
+		}
 
 		DateBounds dateBounds = validateDates(manifest);
 		GridIndex gridIndex = validateGrid(root, manifest);
 		validateLayout(manifest.layout());
-		Map<String, Path> artifactPaths = validateArtifactFiles(
+		Map<String, byte[]> artifactBytes = validateArtifactFiles(
 				root, manifest, dateBounds.dayCount(), gridIndex.cellIds().size());
 		validateSourceCodes(manifest.sourceCodes());
 		validateMetadataCatalogs(manifest);
@@ -79,7 +96,7 @@ final class DatasetArtifactValidator {
 				manifest,
 				dateBounds.start(),
 				dateBounds.end(),
-				Map.copyOf(artifactPaths),
+				Map.copyOf(artifactBytes),
 				gridIndex.cellIds(),
 				gridIndex.cellIndexes());
 	}
@@ -102,9 +119,9 @@ final class DatasetArtifactValidator {
 			throw unavailable("Manifest dateRange is required");
 		}
 		try {
-			LocalDate start = LocalDate.parse(manifest.dateRange().start());
-			LocalDate end = LocalDate.parse(manifest.dateRange().end());
-			LocalDate dataThrough = LocalDate.parse(manifest.dataThrough());
+			LocalDate start = LocalDate.parse(requireText(manifest.dateRange().start(), "dateRange.start"));
+			LocalDate end = LocalDate.parse(requireText(manifest.dateRange().end(), "dateRange.end"));
+			LocalDate dataThrough = LocalDate.parse(requireText(manifest.dataThrough(), "dataThrough"));
 			if (end.isBefore(start)) {
 				throw unavailable("Manifest dateRange end is before start");
 			}
@@ -136,12 +153,17 @@ final class DatasetArtifactValidator {
 			throw unavailable("Manifest grid.cellIds must be unique and non-blank");
 		}
 
-		Path cellsPath = safeResolve(root, requireText(grid.cellOrderSource(), "grid.cellOrderSource"));
-		List<String> csvCellIds = readCellIds(cellsPath);
+		String cellOrderSource = requireText(grid.cellOrderSource(), "grid.cellOrderSource");
+		Path cellsPath = safeResolve(root, cellOrderSource);
+		DatasetManifest.SourceArtifact declared = manifest.sources().stream()
+				.filter(source -> cellOrderSource.equals(source.path()))
+				.findFirst()
+				.orElseThrow(() -> unavailable("Cell order source is not declared in manifest sources"));
+		byte[] cellsCsv = readVerified(cellsPath, declared.byteSize(), declared.sha256(), "cell order source");
+		List<String> csvCellIds = readCellIds(cellsCsv);
 		if (!csvCellIds.equals(grid.cellIds())) {
 			throw unavailable("Manifest grid.cellIds does not match cell order source");
 		}
-		validateDeclaredSource(manifest.sources(), root, grid.cellOrderSource(), cellsPath);
 
 		Map<String, Integer> cellIndexes = new LinkedHashMap<>();
 		for (int index = 0; index < grid.cellIds().size(); index++) {
@@ -150,11 +172,9 @@ final class DatasetArtifactValidator {
 		return new GridIndex(List.copyOf(grid.cellIds()), Map.copyOf(cellIndexes));
 	}
 
-	private static List<String> readCellIds(Path cellsPath) {
-		if (!Files.isRegularFile(cellsPath)) {
-			throw unavailable("Cell order source is missing");
-		}
-		try (BufferedReader reader = Files.newBufferedReader(cellsPath)) {
+	private static List<String> readCellIds(byte[] cellsCsv) {
+		try (BufferedReader reader = new BufferedReader(new StringReader(
+				new String(cellsCsv, StandardCharsets.UTF_8)))) {
 			String headerLine = reader.readLine();
 			if (headerLine == null) {
 				throw unavailable("Cell order source is empty");
@@ -190,28 +210,13 @@ final class DatasetArtifactValidator {
 		}
 	}
 
-	private static void validateDeclaredSource(
-			List<DatasetManifest.SourceArtifact> sources,
-			Path root,
-			String expectedPath,
-			Path actualPath) {
-		DatasetManifest.SourceArtifact declared = sources.stream()
-				.filter(source -> expectedPath.equals(source.path()))
-				.findFirst()
-				.orElseThrow(() -> unavailable("Cell order source is not declared in manifest sources"));
-		Path declaredPath = safeResolve(root, declared.path());
-		if (!declaredPath.equals(actualPath)) {
-			throw unavailable("Declared cell order source resolves to a different file");
-		}
-		validateFileIdentity(actualPath, declared.byteSize(), declared.sha256(), "cell order source");
-	}
-
 	/**
-	 * Resolves a source file declared in {@code manifest.sources} and verifies its size and SHA-256.
-	 * Returns empty when the manifest does not declare the file (for example in the fixture),
-	 * so callers can treat the artifact as unavailable instead of reading an unverified file.
+	 * Reads a source file declared in {@code manifest.sources} once and verifies the size and SHA-256
+	 * of exactly the bytes returned, so callers never parse bytes other than the ones that were hashed.
+	 * Returns empty when the manifest does not declare the file (for example in the fixture), so callers
+	 * can treat the artifact as unavailable instead of reading an unverified file.
 	 */
-	static Optional<Path> resolveDeclaredSource(Path datasetRoot, DatasetManifest manifest, String relativePath) {
+	static Optional<byte[]> readDeclaredSource(Path datasetRoot, DatasetManifest manifest, String relativePath) {
 		Path root = datasetRoot.toAbsolutePath().normalize();
 		Optional<DatasetManifest.SourceArtifact> declared = manifest.sources().stream()
 				.filter(source -> relativePath.equals(source.path()))
@@ -220,8 +225,7 @@ final class DatasetArtifactValidator {
 			return Optional.empty();
 		}
 		Path path = safeResolve(root, relativePath);
-		validateFileIdentity(path, declared.get().byteSize(), declared.get().sha256(), relativePath);
-		return Optional.of(path);
+		return Optional.of(readVerified(path, declared.get().byteSize(), declared.get().sha256(), relativePath));
 	}
 
 	private static void validateLayout(DatasetManifest.Layout layout) {
@@ -233,7 +237,7 @@ final class DatasetArtifactValidator {
 		}
 	}
 
-	private static Map<String, Path> validateArtifactFiles(
+	private static Map<String, byte[]> validateArtifactFiles(
 			Path root,
 			DatasetManifest manifest,
 			int dayCount,
@@ -242,10 +246,10 @@ final class DatasetArtifactValidator {
 			throw unavailable("Manifest files must not be empty");
 		}
 		Path derivedRoot = safeResolve(root, "derived");
-		Map<String, Path> paths = new HashMap<>();
+		Map<String, byte[]> paths = new HashMap<>();
 		for (DatasetManifest.ArtifactFile file : manifest.files()) {
 			String name = requireText(file.name(), "files.name");
-			Path relativeName = Path.of(name);
+			Path relativeName = parsePath(name);
 			if (relativeName.isAbsolute() || relativeName.getNameCount() != 1) {
 				throw unavailable("Artifact file name must not contain a path: " + name);
 			}
@@ -282,8 +286,7 @@ final class DatasetArtifactValidator {
 			}
 
 			Path artifactPath = safeResolve(derivedRoot, name);
-			validateFileIdentity(artifactPath, file.byteSize(), file.sha256(), name);
-			paths.put(name, artifactPath);
+			paths.put(name, readVerified(artifactPath, file.byteSize(), file.sha256(), name));
 		}
 
 		for (String requiredName : REQUIRED_DAILY_ARTIFACTS.keySet()) {
@@ -296,7 +299,6 @@ final class DatasetArtifactValidator {
 
 	private static void validateSourceCodes(List<DatasetManifest.SourceCodeDefinition> sourceCodes) {
 		Set<Integer> codes = new HashSet<>();
-		Set<String> sourceNames = new HashSet<>();
 		for (DatasetManifest.SourceCodeDefinition definition : sourceCodes) {
 			if (definition.code() < 1 || definition.code() > 4 || !codes.add(definition.code())) {
 				throw unavailable("Manifest sourceCodes must contain unique codes 1 through 4");
@@ -304,16 +306,27 @@ final class DatasetArtifactValidator {
 			String source = requireText(definition.source(), "sourceCodes.source");
 			String origin = requireText(definition.origin(), "sourceCodes.origin");
 			requireText(definition.inputSatellite(), "sourceCodes.inputSatellite");
-			if (!SOURCE_NAMES.contains(source) || !sourceNames.add(source)) {
-				throw unavailable("Manifest sourceCodes.source must be a unique value of " + SOURCE_NAMES);
+			ExpectedSource expected = SPEC_SOURCES.get(definition.code());
+			if (!expected.source().equals(source) || !expected.origin().equals(origin)) {
+				throw unavailable("Manifest sourceCodes code " + definition.code() + " must be "
+						+ expected.source() + "/" + expected.origin() + " (sourceCodes.source/sourceCodes.origin)");
 			}
-			if (!SOURCE_ORIGINS.contains(origin)) {
-				throw unavailable("Manifest sourceCodes.origin must be one of " + SOURCE_ORIGINS);
+			if (definition.code() == SCALED_SOURCE_CODE) {
+				requirePositive(definition.scaleDivisor(), "sourceCodes.scaleDivisor");
+				if (definition.scaleDivisorReported() != null) {
+					requirePositive(definition.scaleDivisorReported(), "sourceCodes.scaleDivisorReported");
+				}
 			}
 			validateSourceCodeDates(definition);
 		}
 		if (!codes.equals(Set.of(1, 2, 3, 4))) {
 			throw unavailable("Manifest sourceCodes must define codes 1 through 4");
+		}
+	}
+
+	private static void requirePositive(Double value, String field) {
+		if (value == null || !Double.isFinite(value) || value <= 0) {
+			throw unavailable("Manifest field must be a positive number: " + field);
 		}
 	}
 
@@ -398,14 +411,51 @@ final class DatasetArtifactValidator {
 		}
 	}
 
-	private static String sha256(Path path) throws IOException {
-		MessageDigest digest;
+	/**
+	 * Reads a dataset file exactly once and checks size and SHA-256 on the returned bytes, so the bytes
+	 * that are served are always the bytes that were hashed (no check-then-reread window).
+	 */
+	static byte[] readVerified(Path path, long expectedSize, String expectedHash, String label) {
+		if (!Files.isRegularFile(path)) {
+			throw unavailable("Required dataset file is missing: " + label);
+		}
+		if (expectedSize < 0 || expectedSize > MAX_LOADABLE_BYTES) {
+			throw unavailable("Manifest byteSize is out of range: " + label);
+		}
+		if (expectedHash == null || !SHA_256.matcher(expectedHash).matches()) {
+			throw unavailable("Manifest SHA-256 is invalid: " + label);
+		}
+		byte[] bytes;
 		try {
-			digest = MessageDigest.getInstance("SHA-256");
+			bytes = Files.readAllBytes(path);
+		}
+		catch (IOException exception) {
+			throw new DatasetUnavailableException("Cannot read dataset file: " + label, exception);
+		}
+		if (bytes.length != expectedSize) {
+			throw unavailable("Dataset file size does not match manifest: " + label);
+		}
+		if (!sha256(bytes).equals(expectedHash)) {
+			throw unavailable("Dataset file SHA-256 does not match manifest: " + label);
+		}
+		return bytes;
+	}
+
+	private static String sha256(byte[] bytes) {
+		return HexFormat.of().formatHex(sha256Digest().digest(bytes));
+	}
+
+	private static MessageDigest sha256Digest() {
+		try {
+			return MessageDigest.getInstance("SHA-256");
 		}
 		catch (NoSuchAlgorithmException exception) {
 			throw new IllegalStateException("SHA-256 is not available", exception);
 		}
+	}
+
+	private static String sha256(Path path) throws IOException {
+		MessageDigest digest = sha256Digest();
 		try (InputStream input = new BufferedInputStream(Files.newInputStream(path))) {
 			byte[] buffer = new byte[8192];
 			int read;
@@ -419,7 +469,7 @@ final class DatasetArtifactValidator {
 	}
 
 	private static Path safeResolve(Path root, String relativePath) {
-		Path candidatePath = Path.of(relativePath);
+		Path candidatePath = parsePath(relativePath);
 		if (candidatePath.isAbsolute()) {
 			throw unavailable("Dataset manifest contains an absolute path");
 		}
@@ -427,7 +477,27 @@ final class DatasetArtifactValidator {
 		if (!candidate.startsWith(root)) {
 			throw unavailable("Dataset manifest path escapes the dataset root");
 		}
+		if (Files.exists(candidate)) {
+			try {
+				// The lexical check above does not see symbolic links; compare the resolved locations too.
+				if (!candidate.toRealPath().startsWith(root.toRealPath())) {
+					throw unavailable("Dataset manifest path escapes the dataset root through a link");
+				}
+			}
+			catch (IOException exception) {
+				throw new DatasetUnavailableException("Cannot resolve dataset path: " + relativePath, exception);
+			}
+		}
 		return candidate;
+	}
+
+	private static Path parsePath(String value) {
+		try {
+			return Path.of(value);
+		}
+		catch (InvalidPathException exception) {
+			throw new DatasetUnavailableException("Dataset manifest contains an invalid path", exception);
+		}
 	}
 
 	private static String requireText(String value, String field) {
@@ -445,12 +515,15 @@ final class DatasetArtifactValidator {
 			DatasetManifest manifest,
 			LocalDate startDate,
 			LocalDate endDate,
-			Map<String, Path> artifactPaths,
+			Map<String, byte[]> artifactBytes,
 			List<String> cellIds,
 			Map<String, Integer> cellIndexes) {
 	}
 
 	private record ExpectedArtifact(String dtype, int bytesPerValue) {
+	}
+
+	private record ExpectedSource(String source, String origin) {
 	}
 
 	private record DateBounds(LocalDate start, LocalDate end, int dayCount) {

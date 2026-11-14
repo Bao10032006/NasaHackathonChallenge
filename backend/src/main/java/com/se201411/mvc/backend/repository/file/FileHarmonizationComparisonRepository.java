@@ -36,12 +36,12 @@ public final class FileHarmonizationComparisonRepository implements Harmonizatio
 	public static FileHarmonizationComparisonRepository open(Path datasetRoot, DatasetManifest manifest) {
 		Objects.requireNonNull(datasetRoot, "datasetRoot must not be null");
 		Objects.requireNonNull(manifest, "manifest must not be null");
-		Optional<Path> table = DatasetArtifactValidator.resolveDeclaredSource(datasetRoot, manifest, TABLE_PATH);
+		Optional<byte[]> table = DatasetArtifactValidator.readDeclaredSource(datasetRoot, manifest, TABLE_PATH);
 		if (table.isEmpty()) {
 			return new FileHarmonizationComparisonRepository(false, List.of());
 		}
 
-		SimpleCsvTable csv = SimpleCsvTable.read(
+		SimpleCsvTable csv = SimpleCsvTable.parse(
 				table.get(), TABLE_PATH, List.of("year", HARMONIZED, AQUA_RAW, TERRA_RAW, SNPP_RAW, RAW_MERGED));
 		List<NationalYearComparison> rows = new ArrayList<>(csv.rows().size());
 		for (String[] row : csv.rows()) {

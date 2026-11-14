@@ -1,5 +1,8 @@
 package com.se201411.mvc.backend.domain.dataset;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -124,7 +127,7 @@ public record DatasetManifest(
 			String description) {
 
 		public WarningDefinition {
-			params = params == null ? Map.of() : Map.copyOf(params);
+			params = params == null ? Map.of() : deepImmutableMap(params);
 			appliesTo = immutableList(appliesTo);
 		}
 	}
@@ -138,8 +141,8 @@ public record DatasetManifest(
 			List<Map<String, Object>> regressionSamples) {
 
 		public Validation {
-			checks = immutableList(checks);
-			regressionSamples = immutableList(regressionSamples);
+			checks = deepImmutableMaps(checks);
+			regressionSamples = deepImmutableMaps(regressionSamples);
 		}
 	}
 
@@ -153,5 +156,43 @@ public record DatasetManifest(
 
 	private static <T> List<T> immutableList(List<T> values) {
 		return values == null ? List.of() : List.copyOf(values);
+	}
+
+	/*
+	 * Free-form JSON objects (warning params, validation checks) are deep-copied into unmodifiable
+	 * collections so the singleton manifest cannot be mutated through nested lists or maps. JSON null
+	 * values are preserved, which rules out Map.copyOf/List.copyOf at the nested levels.
+	 */
+	private static List<Map<String, Object>> deepImmutableMaps(List<Map<String, Object>> values) {
+		if (values == null) {
+			return List.of();
+		}
+		List<Map<String, Object>> copy = new ArrayList<>(values.size());
+		for (Map<String, Object> value : values) {
+			copy.add(value == null ? null : deepImmutableMap(value));
+		}
+		return Collections.unmodifiableList(copy);
+	}
+
+	private static Map<String, Object> deepImmutableMap(Map<String, Object> value) {
+		Map<String, Object> copy = new LinkedHashMap<>();
+		value.forEach((key, nested) -> copy.put(key, deepImmutable(nested)));
+		return Collections.unmodifiableMap(copy);
+	}
+
+	private static Object deepImmutable(Object value) {
+		if (value instanceof Map<?, ?> map) {
+			Map<String, Object> copy = new LinkedHashMap<>();
+			map.forEach((key, nested) -> copy.put(String.valueOf(key), deepImmutable(nested)));
+			return Collections.unmodifiableMap(copy);
+		}
+		if (value instanceof List<?> list) {
+			List<Object> copy = new ArrayList<>(list.size());
+			for (Object nested : list) {
+				copy.add(deepImmutable(nested));
+			}
+			return Collections.unmodifiableList(copy);
+		}
+		return value;
 	}
 }

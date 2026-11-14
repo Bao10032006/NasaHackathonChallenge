@@ -3,6 +3,7 @@ package com.se201411.mvc.backend.repository.file;
 import com.se201411.mvc.backend.domain.activity.DailyActivityDay;
 import com.se201411.mvc.backend.domain.activity.DailyCellActivity;
 import com.se201411.mvc.backend.exception.DatasetUnavailableException;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -33,6 +34,9 @@ class FileDailyActivityRepositoryTests {
 
 	@TempDir
 	private Path temporaryDirectory;
+
+	@TempDir
+	private Path outsideDirectory;
 
 	private final ObjectMapper objectMapper = JsonMapper.builder().findAndAddModules().build();
 	private MiniDataset miniDataset;
@@ -163,6 +167,95 @@ class FileDailyActivityRepositoryTests {
 		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
 				.isInstanceOf(DatasetUnavailableException.class)
 				.hasMessageContaining("do not match daily-source.u8");
+	}
+
+	@Test
+	void rejectsASourceCodeCarryingAnotherSourcesLabels() throws IOException {
+		rewriteManifest(
+				"\"source\":\"SNPP\",\"origin\":\"DIRECT_OBSERVATION\"",
+				"\"source\":\"TERRA\",\"origin\":\"MODEL_REDISTRIBUTED\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("code 3 must be SNPP/DIRECT_OBSERVATION");
+	}
+
+	@Test
+	void requiresThePositiveNoaa20ScaleDivisor() throws IOException {
+		rewriteManifest("\"scaleDivisor\":1.0105795,", "");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("sourceCodes.scaleDivisor");
+	}
+
+	@Test
+	void rejectsATimeZoneOtherThanUtc() throws IOException {
+		rewriteManifest("\"timeZone\":\"UTC\"", "\"timeZone\":\"Asia/Ho_Chi_Minh\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("timeZone must be UTC");
+	}
+
+	@Test
+	void namesAMissingDateFieldInsteadOfFailingWithANullPointer() throws IOException {
+		rewriteManifest("\"dataThrough\":\"2026-11-13\"", "\"dataThrough\":null");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("dataThrough");
+	}
+
+	@Test
+	void rejectsACellOrderSourceOutsideTheDatasetRoot() throws IOException {
+		rewriteManifest(
+				"\"cellOrderSource\":\"tables/cells_025.csv\"",
+				"\"cellOrderSource\":\"../cells_025.csv\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("escapes the dataset root");
+	}
+
+	@Test
+	void rejectsAnOptionalArtifactOutsideTheDatasetRoot() throws IOException {
+		rewriteManifest(
+				"\"optionalArtifacts\":[]",
+				"\"optionalArtifacts\":[{\"name\":\"outside\",\"path\":\"../outside.bin\",\"byteSize\":1,"
+						+ "\"sha256\":\"" + "0".repeat(64) + "\",\"description\":\"x\"}]");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("escapes the dataset root");
+	}
+
+	@Test
+	void reportsAnInvalidPathAsDatasetUnavailable() throws IOException {
+		rewriteManifest(
+				"\"cellOrderSource\":\"tables/cells_025.csv\"",
+				"\"cellOrderSource\":\"tables/\\u0000.csv\"");
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("invalid path");
+	}
+
+	@Test
+	void rejectsASymbolicLinkThatLeavesTheDatasetRoot() throws IOException {
+		Path artifact = miniDataset.root().resolve("derived/daily-values.f32");
+		Path outsideCopy = outsideDirectory.resolve("daily-values.f32");
+		Files.move(artifact, outsideCopy);
+		try {
+			Files.createSymbolicLink(artifact, outsideCopy);
+		}
+		catch (IOException | UnsupportedOperationException exception) {
+			Assumptions.abort("Symbolic links are not permitted on this machine: " + exception.getMessage());
+		}
+
+		assertThatThrownBy(() -> FileDailyActivityRepository.open(miniDataset.root(), objectMapper))
+				.isInstanceOf(DatasetUnavailableException.class)
+				.hasMessageContaining("through a link");
 	}
 
 	private void rewriteManifest(String target, String replacement) throws IOException {
@@ -322,7 +415,7 @@ class FileDailyActivityRepositoryTests {
 				String firstDate,
 				String lastDate,
 				int cellDays) {
-			return linkedMap(
+			Map<String, Object> definition = linkedMap(
 					"code", code,
 					"source", source,
 					"origin", origin,
@@ -330,6 +423,11 @@ class FileDailyActivityRepositoryTests {
 					"firstDate", firstDate,
 					"lastDate", lastDate,
 					"cellDays", cellDays);
+			if (code == 4) {
+				definition.put("scaleDivisor", 1.0105795);
+				definition.put("scaleDivisorReported", 1.0106);
+			}
+			return definition;
 		}
 
 		private static byte[] floats(float[] values) {

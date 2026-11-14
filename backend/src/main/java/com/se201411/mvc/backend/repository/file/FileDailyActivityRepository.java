@@ -8,8 +8,6 @@ import com.se201411.mvc.backend.repository.DailyActivityRepository;
 import com.se201411.mvc.backend.repository.DatasetMetadataRepository;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -64,17 +62,13 @@ public final class FileDailyActivityRepository
 		DatasetManifest manifest = DatasetManifestLoader.load(datasetRoot, objectMapper);
 		DatasetArtifactValidator.ValidatedDataset dataset =
 				DatasetArtifactValidator.validate(datasetRoot, manifest);
-		try {
-			return new FileDailyActivityRepository(
-					dataset,
-					Files.readAllBytes(dataset.artifactPaths().get(VALUES_FILE)),
-					Files.readAllBytes(dataset.artifactPaths().get(SOURCE_FILE)),
-					Files.readAllBytes(dataset.artifactPaths().get(INPUT_COUNT_FILE)),
-					Files.readAllBytes(dataset.artifactPaths().get(SOURCE_VALID_FILE)));
-		}
-		catch (IOException exception) {
-			throw new DatasetUnavailableException("Cannot load validated daily dataset artifacts", exception);
-		}
+		// The validator read each artifact once and hashed exactly these bytes; never re-read the files.
+		return new FileDailyActivityRepository(
+				dataset,
+				dataset.artifactBytes().get(VALUES_FILE),
+				dataset.artifactBytes().get(SOURCE_FILE),
+				dataset.artifactBytes().get(INPUT_COUNT_FILE),
+				dataset.artifactBytes().get(SOURCE_VALID_FILE));
 	}
 
 	@Override

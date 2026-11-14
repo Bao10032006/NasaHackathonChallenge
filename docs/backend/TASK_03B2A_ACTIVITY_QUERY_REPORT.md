@@ -178,7 +178,27 @@ OpenAPI v0.4 đặt tên `sourceInputValidCellCount` nhưng chưa mô tả. Vớ
 - `AreaActivityRepository` được giữ để tương thích TASK 03A; có thể bỏ sau khi service chỉ dùng `ActivityQueryRepository`.
 - Benchmark đo trên một máy; chưa có đo tải đồng thời 5 request như NFR01 mô tả.
 
-## 8. Việc tiếp theo
+## 8. A6 — Gia cố sau review toàn backend (15/11/2026)
+
+Review toàn backend sau TASK 03B2B không thấy lỗi mức cao/trung bình ở tầng repository; các điểm mức thấp đã sửa trên nhánh `task03b2a/a6-repository-hardening`:
+
+| Điểm | Thay đổi |
+|---|---|
+| Byte phục vụ khác byte đã hash (hash bằng stream rồi `readAllBytes` lần hai) | `DatasetArtifactValidator.readVerified` đọc mỗi file **một lần** và kiểm size + SHA-256 trên chính mảng byte trả về; 4 artifact ngày, `cells_025.csv` và `harmonized_national_year.csv` đều dùng byte đã kiểm. `ValidatedDataset.artifactPaths` → `artifactBytes`; `resolveDeclaredSource` → `readDeclaredSource`; `SimpleCsvTable.read(Path)` → `parse(byte[])`. |
+| Nhãn nguồn không bị ràng theo spec | Mã 1..4 phải đúng `TERRA/AQUA/SNPP/NOAA20` với origin tương ứng của Artifact Spec §5.2; mã 4 bắt buộc `scaleDivisor` dương (`scaleDivisorReported` nếu có cũng phải dương); `metric` phải là `snpp_eq`, `timeZone` phải là `UTC`. |
+| Thiếu ngày trong manifest gây `NullPointerException` | Báo rõ tên trường (`dateRange.start`, `dateRange.end`, `dataThrough`). |
+| Kiểm đường dẫn chỉ theo chuỗi | Thêm so sánh `toRealPath()` để chặn symlink trỏ ra ngoài dataset root; chuỗi đường dẫn không hợp lệ báo `DatasetUnavailableException` thay vì `InvalidPathException`. |
+| Manifest singleton còn collection lồng có thể sửa | `WarningDefinition.params`, `Validation.checks/regressionSamples` được copy sâu thành collection không sửa được (giữ giá trị JSON `null`). |
+| CSV trùng tên cột lấy cột cuối | `SimpleCsvTable` báo lỗi khi header trùng tên. |
+
+Test mới: 8 test trong `FileDailyActivityRepositoryTests` (nhãn sai mã, thiếu `scaleDivisor`, `timeZone` khác UTC, thiếu `dataThrough`, thoát root qua `cellOrderSource` và `optionalArtifacts.path`, đường dẫn không hợp lệ, symlink) và 6 test trong `RepositoryHardeningTests`. Kết quả JDK 21.0.12: **110 tests, 0 failures, 0 errors, 1 skipped**. Test bị bỏ qua là test symlink: Windows chặn tạo symlink khi không có quyền ("A required privilege is not held by the client"); test chạy trên Linux/macOS/CI hoặc Windows bật Developer Mode.
+
+Hai lỗi mức trung bình do review tìm thấy nằm ở phạm vi Người B và **không** sửa trong nhánh này:
+
+1. `ProvenanceServiceImpl.resolveOrigin`: kỳ có tổng `0` trả `MIXED` thay vì origin của đa số cell-day (Technical Design v0.4 §6, Contract §3.5). Ví dụ: cell `40_422` tháng 01/2012 (Aqua 19, S-NPP 12 cell-day, tổng 0) phải là `MODEL_REDISTRIBUTED`.
+2. `GlobalExceptionHandler`: URL không tồn tại và method không hỗ trợ trả `500 INTERNAL_ERROR` thay vì 404/405 (đã thử trên JAR: `GET /api/v1/does-not-exist`, `POST /api/v1/metadata`).
+
+## 9. Việc tiếp theo
 
 - Người B tích hợp `ActivityQueryRepository` vào service 03B2B và chốt câu hỏi 7.1.
 - Khi tích hợp 03B2C, Người A review kết quả repository và đối chiếu response với Document 08.
