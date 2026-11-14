@@ -43,9 +43,11 @@ export interface AppState {
 /** Document 08 golden bounding box (13 Tay Nguyen cells); fully covered by mock fixtures. */
 export const GOLDEN_BBOX = { west: 107, south: 12, east: 108, north: 13 } as const
 
+export const NATIONAL_SPATIAL: SpatialFilter = { mode: 'named', areaType: 'national', areaId: 'ToanQuoc' }
+
 /** The Explore flow starts at the national scope, yearly view of the last complete year. */
 const DEFAULT_FILTERS: Filters = {
-  spatial: { mode: 'named', areaType: 'national', areaId: 'ToanQuoc' },
+  spatial: NATIONAL_SPATIAL,
   year: 2024,
   timeMode: 'year',
   month: 3,

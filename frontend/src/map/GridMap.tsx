@@ -12,7 +12,14 @@ export interface MapFit {
   /** Changes whenever the view should be refitted (e.g. a new spatial selection). */
   key: string
   bounds: Bounds | 'vietnam'
+  /** Keep the current view (e.g. the user just drew this box in view). */
+  skip?: boolean
 }
+
+/** Minimum pointer travel (px) for a press to count as a drawn box rather than a click. */
+const MIN_DRAG_PX = 8
+/** Clicks right after a drawing gesture are ignored so the gesture never selects a cell. */
+const CLICK_GUARD_MS = 500
 
 function toLatLngBounds(bounds: Bounds): L.LatLngBoundsExpression {
   return [[bounds.south, bounds.west], [bounds.north, bounds.east]]
@@ -75,9 +82,11 @@ export function GridMap({
   onSelectCell,
   requestedBounds,
   selectedBounds,
+  previewBounds,
   fit,
   basemap,
   drawing = false,
+  locked = false,
   onDrawEnd,
   onDrawCancel,
   onReady,
@@ -91,9 +100,13 @@ export function GridMap({
   onSelectCell: (cellId: string) => void
   requestedBounds?: Bounds | null
   selectedBounds?: Bounds | null
+  /** Box waiting for confirmation (drawn but not applied yet). */
+  previewBounds?: Bounds | null
   fit: MapFit | null
   basemap: BasemapId
   drawing?: boolean
+  /** Ignore cell clicks (drawing or confirming a box). */
+  locked?: boolean
   onDrawEnd?: (bounds: Bounds) => void
   onDrawCancel?: () => void
   onReady?: (map: L.Map) => void
@@ -111,6 +124,9 @@ export function GridMap({
   callbacks.current = { onSelectCell, onDrawEnd, onDrawCancel }
   const renderState = useRef({ scale, stale })
   renderState.current = { scale, stale }
+  const lockedRef = useRef(false)
+  lockedRef.current = drawing || locked
+  const clickGuardUntil = useRef(0)
 
   // Create Leaflet once.
   useEffect(() => {
@@ -181,7 +197,12 @@ export function GridMap({
         ...cellStyle(cell, scale, cell.cellId === selectedRef.current, stale),
       })
       layer.bindTooltip(cellTooltip(cell), { sticky: true, className: 'cell-tooltip' })
-      layer.on('click', () => callbacks.current.onSelectCell(cell.cellId))
+      layer.on('click', () => {
+        if (lockedRef.current || performance.now() < clickGuardUntil.current) {
+          return
+        }
+        callbacks.current.onSelectCell(cell.cellId)
+      })
       layer.addTo(group)
       layersRef.current.set(cell.cellId, { layer, cell })
     }
@@ -237,13 +258,18 @@ export function GridMap({
         .bindTooltip('Phạm vi thực tế của các ô được chọn', { className: 'cell-tooltip' })
         .addTo(group)
     }
-  }, [requestedBounds, selectedBounds])
+    if (previewBounds) {
+      L.rectangle(toLatLngBounds(previewBounds), {
+        color: '#67E8F9', weight: 2, fillColor: '#67E8F9', fillOpacity: 0.12, interactive: false, className: 'bbox-preview',
+      }).addTo(group)
+    }
+  }, [requestedBounds, selectedBounds, previewBounds])
 
   // Fit when the fit key changes (new spatial selection), not on period or cell changes.
   const fitKey = fit?.key
   useEffect(() => {
     const leaflet = mapRef.current
-    if (!leaflet || !fit) {
+    if (!leaflet || !fit || fit.skip) {
       return
     }
     if (fit.bounds === 'vietnam') {
@@ -253,54 +279,88 @@ export function GridMap({
     }
   }, [fitKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Box drawing with the mouse (the bbox form is the keyboard alternative).
+  // Box drawing with mouse, pen or touch (the coordinate form is the keyboard alternative).
+  // Pointer events are captured on the container so the gesture never reaches the cell layers.
   useEffect(() => {
     const leaflet = mapRef.current
     if (!leaflet || !drawing) {
       return
     }
+    const container = leaflet.getContainer()
     leaflet.dragging.disable()
-    leaflet.getContainer().style.cursor = 'crosshair'
-    let start: L.LatLng | null = null
-    let preview: L.Rectangle | null = null
-    const onDown = (event: L.LeafletMouseEvent) => {
-      start = event.latlng
-      preview = L.rectangle(L.latLngBounds(event.latlng, event.latlng), {
-        color: '#67E8F9', weight: 2, dashArray: '6 5', fillColor: '#67E8F9', fillOpacity: 0.08,
-      }).addTo(leaflet)
+    leaflet.boxZoom.disable()
+    leaflet.doubleClickZoom.disable()
+    container.classList.add('is-drawing')
+    let start: { latlng: L.LatLng; point: L.Point; pointerId: number } | null = null
+    let live: L.Rectangle | null = null
+
+    const clear = () => {
+      live?.remove()
+      live = null
+      start = null
     }
-    const onMove = (event: L.LeafletMouseEvent) => {
-      if (start && preview) {
-        preview.setBounds(L.latLngBounds(start, event.latlng))
-      }
-    }
-    const onUp = (event: L.LeafletMouseEvent) => {
-      if (!start) {
+    const onDown = (event: PointerEvent) => {
+      if (event.button !== 0 || (event.target as Element).closest('.leaflet-control')) {
         return
       }
-      const bounds = snapBounds(start, event.latlng)
-      preview?.remove()
-      start = null
-      callbacks.current.onDrawEnd?.(bounds)
+      event.preventDefault()
+      event.stopPropagation()
+      try {
+        container.setPointerCapture(event.pointerId) // keep receiving moves if the pointer leaves the map
+      } catch {
+        // Pointer no longer active: drawing still works while it stays over the map.
+      }
+      const latlng = leaflet.mouseEventToLatLng(event)
+      clear()
+      start = { latlng, point: leaflet.mouseEventToContainerPoint(event), pointerId: event.pointerId }
+      live = L.rectangle(L.latLngBounds(latlng, latlng), {
+        color: '#67E8F9', weight: 2, dashArray: '6 5', fillColor: '#67E8F9', fillOpacity: 0.08, interactive: false,
+      }).addTo(leaflet)
+    }
+    const onMove = (event: PointerEvent) => {
+      if (!start || event.pointerId !== start.pointerId) {
+        return
+      }
+      event.stopPropagation()
+      live?.setBounds(toLatLngBounds(snapBounds(start.latlng, leaflet.mouseEventToLatLng(event))))
+    }
+    const onUp = (event: PointerEvent) => {
+      if (!start || event.pointerId !== start.pointerId) {
+        return
+      }
+      event.stopPropagation()
+      clickGuardUntil.current = performance.now() + CLICK_GUARD_MS
+      const from = start
+      clear()
+      if (leaflet.mouseEventToContainerPoint(event).distanceTo(from.point) < MIN_DRAG_PX) {
+        return // a click, not a drag: stay in drawing mode
+      }
+      callbacks.current.onDrawEnd?.(snapBounds(from.latlng, leaflet.mouseEventToLatLng(event)))
     }
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        preview?.remove()
+        event.preventDefault()
+        event.stopPropagation()
+        clear()
         callbacks.current.onDrawCancel?.()
       }
     }
-    leaflet.on('mousedown', onDown)
-    leaflet.on('mousemove', onMove)
-    leaflet.on('mouseup', onUp)
-    window.addEventListener('keydown', onKey)
+    container.addEventListener('pointerdown', onDown, true)
+    container.addEventListener('pointermove', onMove, true)
+    container.addEventListener('pointerup', onUp, true)
+    container.addEventListener('pointercancel', clear, true)
+    document.addEventListener('keydown', onKey, true)
     return () => {
-      leaflet.off('mousedown', onDown)
-      leaflet.off('mousemove', onMove)
-      leaflet.off('mouseup', onUp)
-      window.removeEventListener('keydown', onKey)
-      preview?.remove()
+      container.removeEventListener('pointerdown', onDown, true)
+      container.removeEventListener('pointermove', onMove, true)
+      container.removeEventListener('pointerup', onUp, true)
+      container.removeEventListener('pointercancel', clear, true)
+      document.removeEventListener('keydown', onKey, true)
+      clear()
+      container.classList.remove('is-drawing')
       leaflet.dragging.enable()
-      leaflet.getContainer().style.cursor = ''
+      leaflet.boxZoom.enable()
+      leaflet.doubleClickZoom.enable()
     }
   }, [drawing])
 

@@ -1,12 +1,12 @@
-import { useEffect, useId, useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent, type RefObject } from 'react'
 import type { AreaType } from '../api/types'
 import { Icon } from '../components/Icon'
 import { SegmentedControl } from '../components/SegmentedControl'
 import { DIAGNOSTIC_REGION_NOTE, formatDate } from '../lib/format'
-import { MONTH_NAMES, periodLabel } from '../lib/labels'
+import { MONTH_NAMES, boundsLabel, periodLabel } from '../lib/labels'
 import { PENTADS, pentadRange } from '../lib/time'
 import { NARROW_QUERY, useMediaQuery } from '../lib/useMediaQuery'
-import { GOLDEN_BBOX, useAppState, useDispatch, type SpatialFilter, type TimeMode } from '../state/AppState'
+import { GOLDEN_BBOX, NATIONAL_SPATIAL, useAppState, useDispatch, type SpatialFilter, type TimeMode } from '../state/AppState'
 import { useMetadata, useSnapshot } from '../state/Metadata'
 
 type Scope = AreaType | 'bbox'
@@ -62,10 +62,11 @@ function validateBbox(draft: BboxDraft): { errors: Partial<Record<keyof BboxDraf
   return { errors, bounds: { mode: 'bbox', west: values.west!, south: values.south!, east: values.east!, north: values.north! } }
 }
 
-/** Keyboard/form alternative to drawing a box on the map. */
-function BboxForm({ current }: { current: BboxFilter }) {
+/** Keyboard/form alternative to drawing a box on the map. Opened only on request ("Chỉnh tọa độ"). */
+function BboxForm({ id, current, onDone }: { id: string; current: BboxFilter; onDone: () => void }) {
   const dispatch = useDispatch()
   const formId = useId()
+  const firstInput = useRef<HTMLInputElement | null>(null)
   const toDraft = (bounds: BboxFilter): BboxDraft => ({
     west: String(bounds.west), south: String(bounds.south), east: String(bounds.east), north: String(bounds.north),
   })
@@ -77,22 +78,28 @@ function BboxForm({ current }: { current: BboxFilter }) {
     setErrors({})
   }, [current.west, current.south, current.east, current.north]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    firstInput.current?.focus()
+  }, [])
+
   function submit(event: FormEvent) {
     event.preventDefault()
     const result = validateBbox(draft)
     setErrors(result.errors)
     if (result.bounds) {
       dispatch({ type: 'setSpatial', spatial: result.bounds })
+      onDone()
     }
   }
 
   return (
-    <form className="bbox-form" onSubmit={submit} noValidate aria-describedby={errors.form ? `${formId}-form` : undefined}>
+    <form id={id} className="bbox-form" aria-label="Chỉnh tọa độ khung" onSubmit={submit} noValidate aria-describedby={errors.form ? `${formId}-form` : undefined}>
       <div className="bbox-grid">
-        {SIDES.map(([side, name, unit]) => (
+        {SIDES.map(([side, name, unit], index) => (
           <label key={side} className="field">
             <span>{name} <span className="muted">({unit})</span></span>
             <input
+              ref={index === 0 ? firstInput : undefined}
               inputMode="decimal"
               value={draft[side]}
               aria-invalid={errors[side] ? true : undefined}
@@ -106,29 +113,76 @@ function BboxForm({ current }: { current: BboxFilter }) {
       {errors.form && <p id={`${formId}-form`} className="field-error" role="alert">{errors.form}</p>}
       <div className="bbox-actions">
         <button type="submit" className="button primary">Áp dụng khung</button>
-        <button type="button" className="button" onClick={() => dispatch({ type: 'setSpatial', spatial: { mode: 'bbox', ...GOLDEN_BBOX } })}>
-          Khung ví dụ Tây Nguyên
+        <button type="button" className="button" onClick={() => setDraft(toDraft({ mode: 'bbox', ...GOLDEN_BBOX }))}>
+          Điền khung ví dụ Tây Nguyên
         </button>
+        <button type="button" className="button" onClick={onDone}>Đóng</button>
       </div>
       <p className="muted small">Ô được tính khi tâm ô nằm trong hoặc trên biên khung; khung có thể đi qua nhiều vùng.</p>
     </form>
   )
 }
 
-export function FilterBar({ onOpenGuide, showTime = true }: { onOpenGuide?: () => void; showTime?: boolean }) {
+/** Compact summary of the confirmed box, with the follow-up actions. */
+function BboxSummary({ bounds, editorId, editorOpen, onToggleEditor, onRedraw, onClear, editButtonRef }: {
+  bounds: BboxFilter
+  editorId: string
+  editorOpen: boolean
+  onToggleEditor: () => void
+  onRedraw?: () => void
+  onClear: () => void
+  editButtonRef: RefObject<HTMLButtonElement | null>
+}) {
+  return (
+    <div className="bbox-summary">
+      <span className="bbox-summary-text">
+        <Icon name="select" size={16} />
+        <span className="num">{boundsLabel(bounds)}</span>
+      </span>
+      <span className="bbox-summary-actions">
+        <button ref={editButtonRef} type="button" className="button button-small" aria-expanded={editorOpen} aria-controls={editorId} onClick={onToggleEditor}>
+          Chỉnh tọa độ
+        </button>
+        {onRedraw && <button type="button" className="button button-small" onClick={onRedraw}>Vẽ lại</button>}
+        <button type="button" className="button button-small" onClick={onClear}>Xóa</button>
+      </span>
+    </div>
+  )
+}
+
+export function FilterBar({ onOpenGuide, onStartDraw, showTime = true }: {
+  onOpenGuide?: () => void
+  /** Starts box drawing on the map (Explore only). */
+  onStartDraw?: () => void
+  showTime?: boolean
+}) {
   const { filters } = useAppState()
   const dispatch = useDispatch()
   const metadata = useMetadata()
   const { areas } = useSnapshot()
   const narrow = useMediaQuery(NARROW_QUERY)
   const [expanded, setExpanded] = useState(false)
+  const [editorOpen, setEditorOpen] = useState(false)
   const panelId = useId()
+  const editorId = useId()
+  const editButtonRef = useRef<HTMLButtonElement | null>(null)
   const items = areas.status === 'success' ? areas.data.items : []
   const spatial = filters.spatial
   const scope: Scope = spatial.mode === 'bbox' ? 'bbox' : spatial.areaType
   const yearStart = metadata?.yearRange.start ?? 2000
   const yearEnd = metadata?.yearRange.end ?? 2026
   const years = Array.from({ length: yearEnd - yearStart + 1 }, (_, index) => yearEnd - index)
+
+  useEffect(() => {
+    if (spatial.mode !== 'bbox') {
+      setEditorOpen(false)
+    }
+  }, [spatial.mode])
+
+  function closeEditor() {
+    setEditorOpen(false)
+    editButtonRef.current?.focus({ preventScroll: true })
+  }
 
   function chooseScope(next: Scope) {
     if (next === 'bbox') {
@@ -142,14 +196,14 @@ export function FilterBar({ onOpenGuide, showTime = true }: { onOpenGuide?: () =
   }
 
   const areaSummary = spatial.mode === 'bbox'
-    ? `Khung ${spatial.south}–${spatial.north}°B, ${spatial.west}–${spatial.east}°Đ`
+    ? `Khung ${boundsLabel(spatial)}`
     : spatial.areaType === 'national'
       ? 'Toàn quốc'
       : items.find((item) => item.type === spatial.areaType && item.id === spatial.areaId)?.name ?? `Ô ${spatial.areaId}`
   const showPanel = !narrow || expanded
 
   return (
-    <section className="filter-bar" aria-label="Bộ lọc khu vực và thời gian">
+    <section className={`filter-bar${editorOpen ? ' is-expanded' : ''}`} aria-label="Bộ lọc khu vực và thời gian">
       {narrow && (
         <button
           type="button"
@@ -169,8 +223,12 @@ export function FilterBar({ onOpenGuide, showTime = true }: { onOpenGuide?: () =
       <div id={panelId} className="filter-panel" hidden={!showPanel}>
         <fieldset className="filter-group">
           <legend className="filter-label">Khu vực</legend>
-          <div className="filter-row">
-            <SegmentedControl label="Phạm vi" options={SCOPES} value={scope} onChange={chooseScope} />
+          <SegmentedControl label="Phạm vi" options={SCOPES} value={scope} onChange={chooseScope} />
+          {/* One detail line for every scope, so switching scope does not change the bar height. */}
+          <div className="area-detail">
+            {spatial.mode === 'named' && spatial.areaType === 'national' && (
+              <span className="muted small">Tất cả ô lưới của Việt Nam trong dữ liệu</span>
+            )}
             {spatial.mode === 'named' && spatial.areaType !== 'national' && (
               <label className="inline-field">
                 <span className="visually-hidden">{spatial.areaType === 'cell' ? 'Chọn ô lưới' : 'Chọn vùng phân tích'}</span>
@@ -189,11 +247,22 @@ export function FilterBar({ onOpenGuide, showTime = true }: { onOpenGuide?: () =
                 </select>
               </label>
             )}
+            {spatial.mode === 'bbox' && (
+              <BboxSummary
+                bounds={spatial}
+                editorId={editorId}
+                editorOpen={editorOpen}
+                editButtonRef={editButtonRef}
+                onToggleEditor={() => (editorOpen ? closeEditor() : setEditorOpen(true))}
+                onRedraw={onStartDraw ? () => { setEditorOpen(false); onStartDraw() } : undefined}
+                onClear={() => dispatch({ type: 'setSpatial', spatial: NATIONAL_SPATIAL })}
+              />
+            )}
           </div>
           {spatial.mode === 'named' && spatial.areaType === 'diagnostic_region' && (
             <p className="muted small">{DIAGNOSTIC_REGION_NOTE}</p>
           )}
-          {spatial.mode === 'bbox' && <BboxForm current={spatial} />}
+          {spatial.mode === 'bbox' && editorOpen && <BboxForm id={editorId} current={spatial} onDone={closeEditor} />}
         </fieldset>
 
         {showTime && (

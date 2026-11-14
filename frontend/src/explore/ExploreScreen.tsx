@@ -19,6 +19,8 @@ export default function ExploreScreen() {
   const { filters } = useAppState()
   const dispatch = useDispatch()
   const [guideOpen, setGuideOpen] = useState(false)
+  // Map drawing mode is shared so the filter bar's "Vẽ lại" can start it.
+  const [drawing, setDrawing] = useState(false)
 
   useEffect(() => {
     if (filters.selectedCellId !== null) {
@@ -36,9 +38,9 @@ export default function ExploreScreen() {
   return (
     <div className="explore" data-screen="explore">
       <h1 className="visually-hidden">Khám phá hoạt động cháy</h1>
-      <FilterBar onOpenGuide={openGuide} />
+      <FilterBar onOpenGuide={openGuide} onStartDraw={() => setDrawing(true)} />
       <div className="explore-grid">
-        <div className="area-map"><ExploreMap /></div>
+        <div className="area-map"><ExploreMap drawing={drawing} onDrawingChange={setDrawing} /></div>
         <div className="area-summary"><SummaryCard /></div>
         <div className="area-calendar"><DayCalendarGrid /></div>
         <div className="area-chart"><PeriodChart /></div>
