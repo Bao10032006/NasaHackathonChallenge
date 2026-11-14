@@ -1,5 +1,6 @@
 package com.se201411.mvc.backend.config;
 
+import com.se201411.mvc.backend.repository.file.FileActivityQueryRepository;
 import com.se201411.mvc.backend.repository.file.FileAreaActivityRepository;
 import com.se201411.mvc.backend.repository.file.FileAreaRepository;
 import com.se201411.mvc.backend.repository.file.FileDailyActivityRepository;
@@ -26,10 +27,15 @@ public class DatasetConfiguration {
 	}
 
 	@Bean
-	FileAreaActivityRepository fileAreaActivityRepository(
+	FileActivityQueryRepository fileActivityQueryRepository(
 			FileDailyActivityRepository dailyActivityRepository,
 			FileAreaRepository areaRepository) {
-		return new FileAreaActivityRepository(dailyActivityRepository, areaRepository);
+		return new FileActivityQueryRepository(dailyActivityRepository, areaRepository);
+	}
+
+	@Bean
+	FileAreaActivityRepository fileAreaActivityRepository(FileActivityQueryRepository activityQueryRepository) {
+		return new FileAreaActivityRepository(activityQueryRepository);
 	}
 
 	@Bean
