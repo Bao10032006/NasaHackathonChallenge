@@ -48,6 +48,8 @@ Expected selection:
 
 Tất cả 13 cell có diagnostic region `TayNguyen` nhưng selection type vẫn là bounding box, không đổi thành named area.
 
+`selectedBounds` ở trên là envelope hình học đầy đủ của 13 cell. Envelope chỉ bao tâm cell là `west=107.125,south=12.125,east=107.875,north=12.875` và không được dùng làm `selectedBounds`.
+
 # 3. Annual map và đường 12 tháng — 2024
 
 Request map:
@@ -60,9 +62,11 @@ Expected annual aggregate:
 
 ```json
 {
-  "value":2182.780156,
+  "totalValue":2182.780156,
   "valueStatus":"AVAILABLE",
   "origin":"MIXED",
+  "minCellValue":0.0,
+  "maxCellValue":770.822031,
   "coverage":{
     "requestedStartDate":"2024-01-01",
     "requestedEndDate":"2024-12-31",
@@ -80,18 +84,18 @@ Expected 12-month series:
 
 ```json
 [
-  {"period":1,"value":494.790625},
-  {"period":2,"value":893.0},
-  {"period":3,"value":450.0},
-  {"period":4,"value":266.0},
-  {"period":5,"value":31.0},
-  {"period":6,"value":19.0},
-  {"period":7,"value":0.0},
-  {"period":8,"value":14.0},
-  {"period":9,"value":1.0},
-  {"period":10,"value":0.0},
-  {"period":11,"value":6.989531},
-  {"period":12,"value":7.0}
+  {"period":1,"value":494.790625,"origin":"MIXED"},
+  {"period":2,"value":893.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":3,"value":450.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":4,"value":266.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":5,"value":31.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":6,"value":19.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":7,"value":0.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":8,"value":14.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":9,"value":1.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":10,"value":0.0,"origin":"DIRECT_OBSERVATION"},
+  {"period":11,"value":6.989531,"origin":"MIXED"},
+  {"period":12,"value":7.0,"origin":"DIRECT_OBSERVATION"}
 ]
 ```
 
@@ -101,7 +105,8 @@ Year summary:
 {
   "totalValue":2182.780156,
   "peakPeriod":{"period":2,"value":893.0},
-  "partial":false
+  "valueStatus":"AVAILABLE",
+  "coverage":{"expectedDayCount":366,"coveredDayCount":366,"uncoveredDayCount":0,"partial":false}
 }
 ```
 
@@ -158,6 +163,7 @@ Tất cả item: `valueStatus=AVAILABLE`, `origin=DIRECT_OBSERVATION`, `partial=
 ```json
 {
   "totalValue":450.0,
+  "valueStatus":"AVAILABLE",
   "peakDate":{"date":"2024-03-18","value":53.0},
   "coverage":{"expectedDayCount":31,"coveredDayCount":31,"uncoveredDayCount":0,"partial":false}
 }
@@ -199,13 +205,13 @@ Expected aggregate:
 Aggregate A:
 
 ```json
-{"year":2005,"month":3,"value":3039.161190,"origin":"MODEL_REDISTRIBUTED","partial":false}
+{"year":2005,"month":3,"totalValue":3039.161190,"origin":"MODEL_REDISTRIBUTED","coverage":{"expectedDayCount":31,"coveredDayCount":31,"uncoveredDayCount":0,"partial":false}}
 ```
 
 Aggregate B:
 
 ```json
-{"year":2024,"month":3,"value":450.0,"origin":"DIRECT_OBSERVATION","partial":false}
+{"year":2024,"month":3,"totalValue":450.0,"origin":"DIRECT_OBSERVATION","coverage":{"expectedDayCount":31,"coveredDayCount":31,"uncoveredDayCount":0,"partial":false}}
 ```
 
 Per-cell expected values:
@@ -241,7 +247,8 @@ Expected covered aggregate:
 
 ```json
 {
-  "value":3.185015,
+  "totalValue":3.185015,
+  "valueStatus":"AVAILABLE",
   "origin":"MIXED",
   "coverage":{
     "requestedStartDate":"2026-11-01",
@@ -276,3 +283,11 @@ Fixture này chỉ kiểm state rendering, không phải regression khoa học. 
 - Repository cell float probes vẫn bit-exact theo TASK 03A.
 - Status/null/partial/origin so sánh exact.
 - Frontend không hardcode values này cho production; chỉ dùng fixture/test/demo verification.
+
+# 10. OpenAPI mock và local integration
+
+- Golden calendar, daily calendar và exact-date map examples của tài liệu này được nhúng vào `HoaLich_OpenAPI_v0.4.yaml` sau khi schema được chốt.
+- FE có thể dùng Prism hoặc mock tool tương thích OpenAPI để dựng UI trước khi controller hoàn thành; generated type phải lấy từ OpenAPI, không suy từ prose.
+- Local development mặc định cấu hình Vite proxy `/api` đến `http://localhost:8080`. Nếu deployment cần gọi khác origin không qua proxy, backend cấu hình allow-list CORS bằng environment/application properties.
+- `/areas` trả `name` tiếng Việt cho `ToanQuoc`, `DBSCL`, `DBSH`, `TayBac`, `TayNguyen`, `Khac`; cell vẫn dùng stable ID làm định danh.
+- Hai map comparison lấy `minCellValue`/`maxCellValue` từ mỗi response rồi frontend hợp nhất domain; không tự cộng cell để suy total.

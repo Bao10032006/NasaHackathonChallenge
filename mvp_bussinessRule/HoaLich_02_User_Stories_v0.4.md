@@ -59,6 +59,7 @@ Là người dùng, tôi muốn mọi visual dùng đúng cùng một phạm vi 
 - Năm trả tổng năm, coverage và tháng peak.
 - Tháng trả tổng tháng, coverage và ngày peak.
 - Ngày trả tổng ngày và source composition.
+- Summary calendar dùng field typed `peakPeriod`; summary lịch ngày dùng `peakDate`; không dùng field `peak` đa hình và không lặp `partial` ngoài coverage.
 - Peak chỉ xét item `AVAILABLE`; tie lấy mốc sớm nhất.
 - Nếu không có item hợp lệ hoặc mọi item hợp lệ bằng 0, peak là `null`.
 - Item con partial bị loại khỏi peak. Nếu kỳ cha partial nhưng có item con đầy đủ, peak được phép trả và UI phải ghi “trong khoảng đã có dữ liệu”.
@@ -68,6 +69,7 @@ Là người dùng, tôi muốn mọi visual dùng đúng cùng một phạm vi 
 **Acceptance Criteria**
 
 - Mỗi cell có stable `cellId`, bounds, value/status, partial và origin khi available.
+- Map response có summary toàn selection: total/origin/coverage và min/max cell available để frontend dựng thẻ tổng hợp và shared color scale.
 - Date có source code/input fields; period aggregate không giả là raw observation.
 - Marker ở tâm cell chỉ là ký hiệu lưới; không gọi là tọa độ phát hiện gốc.
 - Năm 2000/2026 và tháng 11/2026 thể hiện coverage partial.
@@ -89,6 +91,7 @@ Là người dùng, tôi muốn mọi visual dùng đúng cùng một phạm vi 
 - Trends hỗ trợ named area và bbox; cùng tháng/pentad qua nhiều năm.
 - Seasonality trả mean, median, sample size và reference years.
 - Median 2003–2025 là baseline mặc định; loại missing/partial.
+- Khi so với target year nằm trong reference range, loại target year khỏi baseline và công bố `excludesTargetYear=true`; zero hợp lệ vẫn tham gia.
 - Chưa yêu cầu seasonal aggregate hoặc percentile/rank.
 
 ## US07. Đối chiếu hai bản đồ | Must

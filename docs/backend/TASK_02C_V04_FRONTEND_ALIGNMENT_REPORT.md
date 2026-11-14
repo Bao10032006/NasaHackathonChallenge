@@ -66,3 +66,19 @@ Các số được đọc trực tiếp từ derived daily binary; aggregate con
 ## 7. Coordination
 
 Backend đang triển khai v0.3 có thể tiếp tục phần không xung đột. Bbox, year-only map, calendar days, summary và cell-period-details chỉ nên đưa vào public controller/service surface sau khi Backend và Frontend duyệt field names của OpenAPI v0.4.
+
+## 8. Contract review follow-up
+
+Review chéo sau proposal ban đầu yêu cầu chuẩn hóa trước khi ký duyệt:
+
+- Summary tách `peakPeriod`/`peakDate`; `partial` chỉ nằm trong coverage.
+- Map response có summary total/origin/coverage/min/max.
+- Metadata giữ field v0.3, thống nhất capability names và thêm warning catalog.
+- `OUTSIDE_DATASET_RANGE` áp dụng nhất quán cho series item không giao dataset.
+- Error-code matrix, target-year baseline exclusion và selected geometry bounds được ghi rõ.
+- Golden examples được nhúng vào OpenAPI để FE sinh type/mock.
+- Vite proxy/CORS, tên vùng tiếng Việt và cache/ETag guidance được bổ sung.
+
+Điểm repository cần xử lý trước bbox: arbitrary resolved cell set, cache key theo exact canonical cell IDs và distinct source cell count. Bbox filtering vẫn thuộc `SpatialSelectionService`; không cần query database/repository riêng cho 587 cell.
+
+Follow-up verification: Redocly xác nhận OpenAPI hợp lệ và không có `$ref` gãy; còn đúng một style warning vì `/metadata` không có 4xx tự nhiên. Bundle examples có 12 calendar item tổng `2182.780156`, 31 daily item tổng `450`, 13 map cell tổng `53`, min/max `0/13`; cell IDs được parse là string.

@@ -64,6 +64,8 @@ Không dùng zero cho missing/outside/error. `OUTSIDE_DATASET_RANGE` luôn `valu
 
 Backend trả total/coverage. Peak chỉ xét available non-partial child item; tie earliest; all-zero/no-valid → null. Parent partial có thể có peak trong covered range và phải mang coverage label.
 
+Field được chốt theo type: calendar dùng `peakPeriod`, lịch ngày dùng `peakDate`; không dùng object `peak` chung. `partial` chỉ nằm trong coverage. Map có `MapSummary` gồm total/status/origin/coverage/minCellValue/maxCellValue.
+
 ## D20 — Dual-map comparison
 
 **Status:** frontend approved; backend approval pending.
@@ -88,10 +90,31 @@ Composition tải on-demand qua `/cells/{cellId}/period-details`; map mặc đ�
 
 Chưa định nghĩa tháng của mùa/mùa vắt năm; percentile/rank chưa cần cho MVP vì median đủ cho historical context.
 
+## D24 — Baseline target exclusion
+
+**Status:** proposed for joint approval.
+
+Baseline median loại target year nếu target nằm trong reference range; loại missing/partial, giữ zero, minimum sample size 5 và công bố `excludesTargetYear`.
+
+## D25 — Selected bounds semantics
+
+**Status:** proposed for joint approval.
+
+`selectedBounds` là envelope của toàn bộ hình học cell được chọn, không phải envelope của center. Fixture 13 cell có center envelope `107.125..107.875 × 12.125..12.875` nhưng selected geometry bounds `107..108 × 12..13`.
+
+## D26 — Contract revision and mocking
+
+**Status:** proposed for joint approval.
+
+v0.4 giữ request tương thích nơi có cùng semantics nhưng response có controlled revision so với draft v0.3; không gọi hoàn toàn additive. Golden examples Document 08 được nhúng vào OpenAPI để FE sinh type và mock trước khi controller hoàn thành.
+
+Map v0.4 luôn trả cell geometry để response có một shape ổn định. `includeGeometry=false` deferred đến khi có đo lường payload chứng minh cần tối ưu. Cache ưu tiên ETag/conditional request; không gắn immutable dài hạn vào URL không chứa dataVersion.
+
 # 4. Approval gates
 
 - Backend xác nhận spatial/temporal cross-field schema và error codes.
 - Frontend xác nhận selection/coverage/summary field names trong OpenAPI.
 - Product xác nhận peak loại partial và all-zero behavior.
 - Data owner xác nhận examples Document 08 trong tolerance 0,01.
-- Chỉ sau bốn mục trên, v0.4 mới thay v0.3 cho TASK 03B/03C surface.
+- Backend/Frontend xác nhận error matrix, metadata capability names và target-year exclusion.
+- Chỉ sau khi toàn bộ gate trên được xác nhận, v0.4 mới thay v0.3 cho TASK 03B/03C surface.

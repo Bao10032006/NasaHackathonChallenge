@@ -34,7 +34,7 @@ v0.3 là baseline đã dùng để hoàn thành TASK 03A artifact/repository. v0
 - [Artifact Spec 1.0.0](../docs/backend/TASK_03A_ARTIFACT_SPEC.md)
 - [Backend Repository Report](../docs/backend/TASK_03A_BACKEND_REPOSITORY_REPORT.md)
 
-Không sửa hoặc tái xuất artifact chỉ vì API v0.4 thêm use case. Repository daily hiện có đủ nền cho bbox/range aggregation; service/controller phải theo contract được duyệt.
+Không sửa hoặc tái xuất binary artifact chỉ vì API v0.4 thêm use case. Daily repository hiện có đủ dữ liệu nền; area aggregation cần enhancement nhỏ cho arbitrary cell set, exact cache key và distinct source-cell count trước khi bbox service dùng production.
 
 # 3. Delta v0.4
 
@@ -55,6 +55,8 @@ Không sửa hoặc tái xuất artifact chỉ vì API v0.4 thêm use case. Repo
 - Calendar placeholder ngoài range dùng `value=null`, `OUTSIDE_DATASET_RANGE`.
 - Daily direct/scaled/model-redistributed/mixed phải được phân biệt.
 - Partial có requested/covered range và day counts.
+- Summary typed: calendar dùng `peakPeriod`, lịch ngày dùng `peakDate`, map có aggregate/min/max.
+- Baseline loại target year khi target nằm trong reference range.
 - Cùng bbox + dataVersion phải resolve cùng canonical cell set.
 - Không gắn anomaly label từ delta đơn giản.
 
@@ -63,6 +65,7 @@ Không sửa hoặc tái xuất artifact chỉ vì API v0.4 thêm use case. Repo
 - Backend member đang làm v0.3 có thể tiếp tục phần không xung đột: metadata, named-area resolution, daily aggregation, service interfaces, Problem Details nền.
 - Không đổi controller/service public surface sang bbox/year-map/calendar-days trước khi OpenAPI v0.4 được duyệt.
 - Frontend dùng Document 08 làm fixture sau khi field names được chốt; không hardcode golden values vào production.
+- Frontend có thể chạy OpenAPI examples bằng mock server; local ưu tiên Vite proxy `/api` đến backend 8080.
 - Khi v0.3 và v0.4 khác nhau, ghi rõ baseline/proposal; không âm thầm coi proposal là code đã có.
 
 # 6. Tài liệu lịch sử

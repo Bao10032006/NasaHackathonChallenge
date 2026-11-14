@@ -9,7 +9,9 @@ info:
     Frontend-aligned proposal built on v0.3 and Artifact Spec 1.0.0.
     Values use harmonized snpp_eq and are not fire-event counts, burned area,
     forecasts, or real-time alerts. v0.4 is not the backend implementation
-    baseline until Backend and Frontend approve it.
+    baseline until Backend and Frontend approve it. Requests remain compatible
+    where semantics match; response envelopes are a controlled revision of the
+    v0.3 draft and are not described as fully additive.
 servers:
   - url: /api/v1
 security: []
@@ -36,6 +38,8 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/MetadataResponse'}
+              examples:
+                activeSnapshot: {$ref: '#/components/examples/GoldenMetadata'}
         '503': {$ref: '#/components/responses/DatasetUnavailable'}
         '500': {$ref: '#/components/responses/InternalError'}
   /areas:
@@ -54,6 +58,8 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/AreaListResponse'}
+              examples:
+                namedAreas: {$ref: '#/components/examples/GoldenNamedAreas'}
         '400': {$ref: '#/components/responses/InvalidParameter'}
         '503': {$ref: '#/components/responses/DatasetUnavailable'}
         '500': {$ref: '#/components/responses/InternalError'}
@@ -96,6 +102,8 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/CalendarResponse'}
+              examples:
+                golden2024: {$ref: '#/components/examples/GoldenCalendar2024'}
         '400': {$ref: '#/components/responses/InvalidParameter'}
         '404': {$ref: '#/components/responses/AreaNotFound'}
         '422': {$ref: '#/components/responses/UnsupportedQuery'}
@@ -127,6 +135,8 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/DailyCalendarResponse'}
+              examples:
+                goldenMarch2024: {$ref: '#/components/examples/GoldenDailyCalendarMarch2024'}
         '400': {$ref: '#/components/responses/InvalidParameter'}
         '404': {$ref: '#/components/responses/AreaNotFound'}
         '422': {$ref: '#/components/responses/UnsupportedQuery'}
@@ -167,6 +177,8 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/MapCellsResponse'}
+              examples:
+                goldenExactDate: {$ref: '#/components/examples/GoldenMapExactDate'}
         '400': {$ref: '#/components/responses/InvalidParameter'}
         '404': {$ref: '#/components/responses/AreaNotFound'}
         '422': {$ref: '#/components/responses/UnsupportedQuery'}
@@ -383,12 +395,182 @@ components:
       in: query
       required: false
       schema: {type: integer, minimum: 2000, maximum: 2026}
+  examples:
+    GoldenMetadata:
+      summary: Active snapshot metadata and frontend capability catalog
+      value:
+        meta: &goldenMeta
+          dataVersion: hoalich-data-v1-2026-11-13
+          modelVersion: lai-clim-s2-k60-kappa3
+          dataThrough: '2026-11-13'
+          metric: snpp_eq
+          unit: S-NPP-equivalent daytime detections
+          timeZone: UTC
+          warnings: []
+        dateRange: {start: '2000-11-01', end: '2026-11-13'}
+        yearRange: {start: 2000, end: 2026}
+        gridDegrees: 0.25
+        supportedGranularities:
+          calendar: [month, pentad]
+          map: [day, year, month, pentad]
+          trends: [year, month, pentad]
+          seasonality: [month, pentad]
+        capabilities:
+          spatialSelectors: [NAMED_AREA, BOUNDING_BOX]
+          mapGranularities: [day, year, month, pentad]
+          calendarDaysAvailable: true
+          rawDetectionPointsAvailable: false
+          harmonizationComparisonAvailable: true
+          anomalyAvailable: false
+        sourceCodes:
+          - {code: 1, source: TERRA, origin: MODEL_REDISTRIBUTED, description: Terra monthly estimate redistributed to days}
+          - {code: 2, source: AQUA, origin: MODEL_REDISTRIBUTED, description: Calibrated Aqua monthly estimate redistributed to days}
+          - {code: 3, source: SNPP, origin: DIRECT_OBSERVATION, description: Direct S-NPP daytime detections}
+          - {code: 4, source: NOAA20, origin: SCALED_OBSERVATION, description: NOAA-20 detections scaled to S-NPP equivalent}
+        limitations:
+          - snpp_eq is not a fire-event count or burned area.
+          - Daily uncertainty intervals are unavailable.
+        warningCatalog:
+          - {code: PARTIAL_PERIOD, message: Kỳ được hỏi chưa đủ ngày trong dataset., appliesTo: [/calendar, /trends, /map/cells]}
+          - {code: MODEL_REDISTRIBUTED_DAILY_VALUE, message: Giá trị ngày là ước lượng cấp tháng được phân bổ xuống ngày., appliesTo: [/daily, /map/cells]}
+          - {code: NO_DAILY_UNCERTAINTY_INTERVAL, message: Không có khoảng bất định cấp ngày., appliesTo: [/daily, /map/cells]}
+        daily:
+          available: true
+          uncertaintyIntervalAvailable: false
+          qualification: Daily values are verified for use with published scientific limitations.
+    GoldenNamedAreas:
+      summary: Vietnamese display names for national and diagnostic regions
+      value:
+        items:
+          - {type: national, id: ToanQuoc, name: Toàn quốc, cellCount: 587}
+          - {type: diagnostic_region, id: DBSCL, name: Đồng bằng sông Cửu Long, cellCount: 71}
+          - {type: diagnostic_region, id: DBSH, name: Đồng bằng sông Hồng, cellCount: 33}
+          - {type: diagnostic_region, id: Khac, name: Khu vực khác, cellCount: 262}
+          - {type: diagnostic_region, id: TayBac, name: Tây Bắc, cellCount: 99}
+          - {type: diagnostic_region, id: TayNguyen, name: Tây Nguyên, cellCount: 122}
+        meta: *goldenMeta
+    GoldenCalendar2024:
+      summary: Golden 12-month calendar for the 13-cell bbox in Document 08
+      value:
+        selection: &goldenSelection
+          type: BOUNDING_BOX
+          selectionRule: CENTER_INCLUSIVE
+          requestedBounds: {west: 107.0, south: 12.0, east: 108.0, north: 13.0}
+          selectedBounds: {west: 107.0, south: 12.0, east: 108.0, north: 13.0}
+          cellCount: 13
+          cellIds: ['48_428', '48_429', '48_430', '48_431', '49_428', '49_429', '49_430', '49_431', '50_430', '50_431', '51_429', '51_430', '51_431']
+        year: 2024
+        granularity: month
+        values:
+          - {period: 1, startDate: '2024-01-01', endDate: '2024-01-31', value: 494.790625, valueStatus: AVAILABLE, partial: false, origin: MIXED, coverage: {requestedStartDate: '2024-01-01', requestedEndDate: '2024-01-31', coveredStartDate: '2024-01-01', coveredEndDate: '2024-01-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 2, startDate: '2024-02-01', endDate: '2024-02-29', value: 893.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-02-01', requestedEndDate: '2024-02-29', coveredStartDate: '2024-02-01', coveredEndDate: '2024-02-29', expectedDayCount: 29, coveredDayCount: 29, uncoveredDayCount: 0, partial: false}}
+          - {period: 3, startDate: '2024-03-01', endDate: '2024-03-31', value: 450.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-03-01', requestedEndDate: '2024-03-31', coveredStartDate: '2024-03-01', coveredEndDate: '2024-03-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 4, startDate: '2024-04-01', endDate: '2024-04-30', value: 266.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-04-01', requestedEndDate: '2024-04-30', coveredStartDate: '2024-04-01', coveredEndDate: '2024-04-30', expectedDayCount: 30, coveredDayCount: 30, uncoveredDayCount: 0, partial: false}}
+          - {period: 5, startDate: '2024-05-01', endDate: '2024-05-31', value: 31.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-05-01', requestedEndDate: '2024-05-31', coveredStartDate: '2024-05-01', coveredEndDate: '2024-05-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 6, startDate: '2024-06-01', endDate: '2024-06-30', value: 19.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-06-01', requestedEndDate: '2024-06-30', coveredStartDate: '2024-06-01', coveredEndDate: '2024-06-30', expectedDayCount: 30, coveredDayCount: 30, uncoveredDayCount: 0, partial: false}}
+          - {period: 7, startDate: '2024-07-01', endDate: '2024-07-31', value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-07-01', requestedEndDate: '2024-07-31', coveredStartDate: '2024-07-01', coveredEndDate: '2024-07-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 8, startDate: '2024-08-01', endDate: '2024-08-31', value: 14.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-08-01', requestedEndDate: '2024-08-31', coveredStartDate: '2024-08-01', coveredEndDate: '2024-08-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 9, startDate: '2024-09-01', endDate: '2024-09-30', value: 1.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-09-01', requestedEndDate: '2024-09-30', coveredStartDate: '2024-09-01', coveredEndDate: '2024-09-30', expectedDayCount: 30, coveredDayCount: 30, uncoveredDayCount: 0, partial: false}}
+          - {period: 10, startDate: '2024-10-01', endDate: '2024-10-31', value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-10-01', requestedEndDate: '2024-10-31', coveredStartDate: '2024-10-01', coveredEndDate: '2024-10-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+          - {period: 11, startDate: '2024-11-01', endDate: '2024-11-30', value: 6.989531, valueStatus: AVAILABLE, partial: false, origin: MIXED, coverage: {requestedStartDate: '2024-11-01', requestedEndDate: '2024-11-30', coveredStartDate: '2024-11-01', coveredEndDate: '2024-11-30', expectedDayCount: 30, coveredDayCount: 30, uncoveredDayCount: 0, partial: false}}
+          - {period: 12, startDate: '2024-12-01', endDate: '2024-12-31', value: 7.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, coverage: {requestedStartDate: '2024-12-01', requestedEndDate: '2024-12-31', coveredStartDate: '2024-12-01', coveredEndDate: '2024-12-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}}
+        summary:
+          totalValue: 2182.780156
+          valueStatus: AVAILABLE
+          coverage: {requestedStartDate: '2024-01-01', requestedEndDate: '2024-12-31', coveredStartDate: '2024-01-01', coveredEndDate: '2024-12-31', expectedDayCount: 366, coveredDayCount: 366, uncoveredDayCount: 0, partial: false}
+          peakPeriod: {period: 2, value: 893.0}
+        meta: *goldenMeta
+    GoldenDailyCalendarMarch2024:
+      summary: Golden 31-day calendar for March 2024
+      value:
+        selection: *goldenSelection
+        year: 2024
+        month: 3
+        values:
+          - {date: '2024-03-01', value: 9.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-02', value: 21.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-03', value: 9.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-04', value: 16.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-05', value: 13.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-06', value: 4.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-07', value: 10.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-08', value: 27.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-09', value: 11.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-10', value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-11', value: 4.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-12', value: 21.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-13', value: 26.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-14', value: 6.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-15', value: 16.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-16', value: 18.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-17', value: 25.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-18', value: 53.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-19', value: 31.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-20', value: 18.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-21', value: 4.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-22', value: 30.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-23', value: 23.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-24', value: 6.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-25', value: 8.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-26', value: 23.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-27', value: 5.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-28', value: 1.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-29', value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-30', value: 9.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+          - {date: '2024-03-31', value: 3.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION}
+        summary:
+          totalValue: 450.0
+          valueStatus: AVAILABLE
+          coverage: {requestedStartDate: '2024-03-01', requestedEndDate: '2024-03-31', coveredStartDate: '2024-03-01', coveredEndDate: '2024-03-31', expectedDayCount: 31, coveredDayCount: 31, uncoveredDayCount: 0, partial: false}
+          peakDate: {date: '2024-03-18', value: 53.0}
+        meta: *goldenMeta
+    GoldenMapExactDate:
+      summary: Golden exact-date map for 18 March 2024
+      value:
+        selection: *goldenSelection
+        temporalSelector:
+          type: DATE
+          date: '2024-03-18'
+          startDate: '2024-03-18'
+          endDate: '2024-03-18'
+          coverage: &oneDayCoverage {requestedStartDate: '2024-03-18', requestedEndDate: '2024-03-18', coveredStartDate: '2024-03-18', coveredEndDate: '2024-03-18', expectedDayCount: 1, coveredDayCount: 1, uncoveredDayCount: 0, partial: false}
+        summary:
+          totalValue: 53.0
+          valueStatus: AVAILABLE
+          origin: DIRECT_OBSERVATION
+          coverage: *oneDayCoverage
+          minCellValue: 0.0
+          maxCellValue: 13.0
+        cells:
+          - {cellId: 48_428, center: {lat: 12.125, lon: 107.125}, bounds: {west: 107.0, south: 12.0, east: 107.25, north: 12.25}, value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 0, sourceInputValid: true}
+          - {cellId: 48_429, center: {lat: 12.125, lon: 107.375}, bounds: {west: 107.25, south: 12.0, east: 107.5, north: 12.25}, value: 5.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 5, sourceInputValid: true}
+          - {cellId: 48_430, center: {lat: 12.125, lon: 107.625}, bounds: {west: 107.5, south: 12.0, east: 107.75, north: 12.25}, value: 6.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 6, sourceInputValid: true}
+          - {cellId: 48_431, center: {lat: 12.125, lon: 107.875}, bounds: {west: 107.75, south: 12.0, east: 108.0, north: 12.25}, value: 1.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 1, sourceInputValid: true}
+          - {cellId: 49_428, center: {lat: 12.375, lon: 107.125}, bounds: {west: 107.0, south: 12.25, east: 107.25, north: 12.5}, value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 0, sourceInputValid: true}
+          - {cellId: 49_429, center: {lat: 12.375, lon: 107.375}, bounds: {west: 107.25, south: 12.25, east: 107.5, north: 12.5}, value: 2.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 2, sourceInputValid: true}
+          - {cellId: 49_430, center: {lat: 12.375, lon: 107.625}, bounds: {west: 107.5, south: 12.25, east: 107.75, north: 12.5}, value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 0, sourceInputValid: true}
+          - {cellId: 49_431, center: {lat: 12.375, lon: 107.875}, bounds: {west: 107.75, south: 12.25, east: 108.0, north: 12.5}, value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 0, sourceInputValid: true}
+          - {cellId: 50_430, center: {lat: 12.625, lon: 107.625}, bounds: {west: 107.5, south: 12.5, east: 107.75, north: 12.75}, value: 13.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 13, sourceInputValid: true}
+          - {cellId: 50_431, center: {lat: 12.625, lon: 107.875}, bounds: {west: 107.75, south: 12.5, east: 108.0, north: 12.75}, value: 9.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 9, sourceInputValid: true}
+          - {cellId: 51_429, center: {lat: 12.875, lon: 107.375}, bounds: {west: 107.25, south: 12.75, east: 107.5, north: 13.0}, value: 0.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 0, sourceInputValid: true}
+          - {cellId: 51_430, center: {lat: 12.875, lon: 107.625}, bounds: {west: 107.5, south: 12.75, east: 107.75, north: 13.0}, value: 5.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 5, sourceInputValid: true}
+          - {cellId: 51_431, center: {lat: 12.875, lon: 107.875}, bounds: {west: 107.75, south: 12.75, east: 108.0, north: 13.0}, value: 12.0, valueStatus: AVAILABLE, partial: false, origin: DIRECT_OBSERVATION, sourceCode: 3, source: SNPP, inputObservationCount: 12, sourceInputValid: true}
+        meta: *goldenMeta
   responses:
     InvalidParameter:
-      description: Invalid primitive value or spatial/temporal selector combination
+      description: Invalid primitive value, bounds, or spatial/temporal selector combination
       content:
         application/problem+json:
           schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            invalidParameter:
+              value: {type: 'https://hoalich.local/problems/invalid-parameter', title: Invalid parameter, status: 400, code: INVALID_PARAMETER, detail: month must be between 1 and 12, instance: /api/v1/calendar/days, timestamp: '2026-11-14T10:00:00Z'}
+            invalidSpatialSelector:
+              value: {type: 'https://hoalich.local/problems/invalid-spatial-selector', title: Invalid spatial selector, status: 400, code: INVALID_SPATIAL_SELECTOR, detail: Supply areaType and areaId or all four bbox coordinates, instance: /api/v1/map/cells, timestamp: '2026-11-14T10:00:00Z'}
+            invalidBounds:
+              value: {type: 'https://hoalich.local/problems/invalid-bounds', title: Invalid bounds, status: 400, code: INVALID_BOUNDS, detail: west must be less than east, instance: /api/v1/map/cells, timestamp: '2026-11-14T10:00:00Z'}
+            invalidTemporalSelector:
+              value: {type: 'https://hoalich.local/problems/invalid-temporal-selector', title: Invalid temporal selector, status: 400, code: INVALID_TEMPORAL_SELECTOR, detail: Select exactly one of date, year, year plus month, or year plus pentad, instance: /api/v1/map/cells, timestamp: '2026-11-14T10:00:00Z'}
     AreaNotFound:
       description: Named area does not exist in the active snapshot
       content:
@@ -400,10 +582,17 @@ components:
         application/problem+json:
           schema: {$ref: '#/components/schemas/Problem'}
     UnsupportedQuery:
-      description: Valid syntax but unsupported range, empty bbox, or date
+      description: Valid syntax but unsupported query, empty bbox, or exact date outside the dataset
       content:
         application/problem+json:
           schema: {$ref: '#/components/schemas/Problem'}
+          examples:
+            noCellsInBounds:
+              value: {type: 'https://hoalich.local/problems/no-cells-in-bounds', title: No cells in bounds, status: 422, code: NO_CELLS_IN_BOUNDS, detail: The bounding box contains no dataset cell centers, instance: /api/v1/map/cells, timestamp: '2026-11-14T10:00:00Z'}
+            unsupportedQuery:
+              value: {type: 'https://hoalich.local/problems/unsupported-query', title: Unsupported query, status: 422, code: UNSUPPORTED_QUERY, detail: This valid query is not supported by the active capability set, instance: /api/v1/trends, timestamp: '2026-11-14T10:00:00Z'}
+            dateOutsideDatasetRange:
+              value: {type: 'https://hoalich.local/problems/date-outside-dataset-range', title: Date outside dataset range, status: 422, code: DATE_OUTSIDE_DATASET_RANGE, detail: date must be between 2000-11-01 and 2026-11-13, instance: /api/v1/daily, timestamp: '2026-11-14T10:00:00Z'}
     DatasetUnavailable:
       description: Required dataset artifact is unavailable or invalid
       content:
@@ -430,6 +619,10 @@ components:
     ValueStatus:
       type: string
       enum: [AVAILABLE, MISSING, OUTSIDE_DATASET_RANGE, INSUFFICIENT_BASELINE]
+      description: >-
+        OUTSIDE_DATASET_RANGE applies to series items whose requested period has
+        zero overlap with the dataset. Partial overlap remains AVAILABLE with
+        coverage.partial=true. Exact-date endpoints return a 422 problem instead.
     Origin:
       type: string
       enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED, MIXED]
@@ -468,7 +661,12 @@ components:
         selectionRule: {$ref: '#/components/schemas/SelectionRule'}
         area: {$ref: '#/components/schemas/AreaRef'}
         requestedBounds: {$ref: '#/components/schemas/Bounds'}
-        selectedBounds: {$ref: '#/components/schemas/Bounds'}
+        selectedBounds:
+          allOf:
+            - $ref: '#/components/schemas/Bounds'
+          description: >-
+            Smallest bbox covering the complete geometry of selected cells
+            (min cell west/south, max cell east/north), not the center envelope.
         cellCount: {type: integer, minimum: 1, maximum: 587}
         cellIds:
           type: array
@@ -523,26 +721,64 @@ components:
         startDate: {type: string, format: date}
         endDate: {type: string, format: date}
         coverage: {$ref: '#/components/schemas/Coverage'}
-    Peak:
+    PeriodPeak:
       type: object
       additionalProperties: false
-      required: [value]
+      required: [period, value]
       properties:
         period: {type: integer, minimum: 1, maximum: 73}
-        date: {type: string, format: date}
         value: {type: number, minimum: 0}
-    PeriodSummary:
+    DatePeak:
       type: object
       additionalProperties: false
-      required: [totalValue, valueStatus, coverage, peak]
+      required: [date, value]
+      properties:
+        date: {type: string, format: date}
+        value: {type: number, minimum: 0}
+    CalendarSummary:
+      type: object
+      additionalProperties: false
+      required: [totalValue, valueStatus, coverage, peakPeriod]
       properties:
         totalValue: {type: [number, 'null'], minimum: 0}
         valueStatus: {$ref: '#/components/schemas/ValueStatus'}
         coverage: {$ref: '#/components/schemas/Coverage'}
-        peak:
+        peakPeriod:
           oneOf:
-            - $ref: '#/components/schemas/Peak'
+            - $ref: '#/components/schemas/PeriodPeak'
             - type: 'null'
+    DailyCalendarSummary:
+      type: object
+      additionalProperties: false
+      required: [totalValue, valueStatus, coverage, peakDate]
+      properties:
+        totalValue: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        coverage: {$ref: '#/components/schemas/Coverage'}
+        peakDate:
+          oneOf:
+            - $ref: '#/components/schemas/DatePeak'
+            - type: 'null'
+    MapSummary:
+      type: object
+      additionalProperties: false
+      required: [totalValue, valueStatus, origin, coverage, minCellValue, maxCellValue]
+      properties:
+        totalValue: {type: [number, 'null'], minimum: 0}
+        valueStatus: {$ref: '#/components/schemas/ValueStatus'}
+        origin:
+          oneOf:
+            - $ref: '#/components/schemas/Origin'
+            - type: 'null'
+        coverage: {$ref: '#/components/schemas/Coverage'}
+        minCellValue:
+          description: Minimum value among AVAILABLE cells; null when none are available.
+          type: [number, 'null']
+          minimum: 0
+        maxCellValue:
+          description: Maximum value among AVAILABLE cells; null when none are available.
+          type: [number, 'null']
+          minimum: 0
     SourceComposition:
       type: object
       additionalProperties: false
@@ -561,8 +797,15 @@ components:
         origin:
           type: string
           enum: [DIRECT_OBSERVATION, SCALED_OBSERVATION, MODEL_REDISTRIBUTED]
-        cellCount: {type: integer, minimum: 1, maximum: 587}
-        contributingCellDayCount: {type: integer, minimum: 1}
+        cellCount:
+          type: integer
+          minimum: 1
+          maximum: 587
+          description: Distinct selected cells using this source at least once in the period.
+        contributingCellDayCount:
+          type: integer
+          minimum: 1
+          description: Number of cell-day contributions using this source.
         harmonizedValue: {type: number, minimum: 0}
         inputObservationCount: {type: integer, minimum: 0}
         sourceInputValidCellCount: {type: integer, minimum: 0}
@@ -573,7 +816,11 @@ components:
       properties:
         type: {$ref: '#/components/schemas/AreaType'}
         id: {type: string}
-        name: {type: string}
+        name:
+          type: string
+          description: >-
+            Vietnamese display name for national and diagnostic-region areas;
+            cell IDs remain the stable identifier for cells.
         diagnosticRegion: {type: string}
         cellCount: {type: integer, minimum: 1}
         center: {$ref: '#/components/schemas/Coordinates'}
@@ -590,7 +837,7 @@ components:
     MetadataResponse:
       type: object
       additionalProperties: false
-      required: [meta, dateRange, gridDegrees, capabilities, sourceCodes, limitations]
+      required: [meta, dateRange, yearRange, gridDegrees, supportedGranularities, capabilities, sourceCodes, limitations, warningCatalog, daily]
       properties:
         meta: {$ref: '#/components/schemas/ResponseMeta'}
         dateRange:
@@ -600,16 +847,46 @@ components:
           properties:
             start: {type: string, format: date}
             end: {type: string, format: date}
+        yearRange:
+          type: object
+          additionalProperties: false
+          required: [start, end]
+          properties:
+            start: {type: integer, const: 2000}
+            end: {type: integer, const: 2026}
         gridDegrees: {type: number, const: 0.25}
+        supportedGranularities:
+          type: object
+          additionalProperties: false
+          required: [calendar, map, trends, seasonality]
+          properties:
+            calendar:
+              type: array
+              items: {type: string, enum: [month, pentad]}
+            map:
+              type: array
+              items: {type: string, enum: [day, year, month, pentad]}
+            trends:
+              type: array
+              items: {type: string, enum: [year, month, pentad]}
+            seasonality:
+              type: array
+              items: {type: string, enum: [month, pentad]}
         capabilities:
           type: object
           additionalProperties: false
-          required: [boundingBox, annualMap, dailyCalendar, rawDetectionPoints]
+          required: [spatialSelectors, mapGranularities, calendarDaysAvailable, rawDetectionPointsAvailable, harmonizationComparisonAvailable, anomalyAvailable]
           properties:
-            boundingBox: {type: boolean, const: true}
-            annualMap: {type: boolean, const: true}
-            dailyCalendar: {type: boolean, const: true}
-            rawDetectionPoints: {type: boolean, const: false}
+            spatialSelectors:
+              type: array
+              items: {$ref: '#/components/schemas/SelectionType'}
+            mapGranularities:
+              type: array
+              items: {type: string, enum: [day, year, month, pentad]}
+            calendarDaysAvailable: {type: boolean, const: true}
+            rawDetectionPointsAvailable: {type: boolean, const: false}
+            harmonizationComparisonAvailable: {type: boolean}
+            anomalyAvailable: {type: boolean, const: false}
         sourceCodes:
           type: array
           items:
@@ -623,10 +900,30 @@ components:
         limitations:
           type: array
           items: {type: string}
+        warningCatalog:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [code, message]
+            properties:
+              code: {type: string}
+              message: {type: string}
+              appliesTo:
+                type: array
+                items: {type: string}
+        daily:
+          type: object
+          additionalProperties: false
+          required: [available, uncertaintyIntervalAvailable, qualification]
+          properties:
+            available: {type: boolean, const: true}
+            uncertaintyIntervalAvailable: {type: boolean, const: false}
+            qualification: {type: string}
     CalendarValue:
       type: object
       additionalProperties: false
-      required: [period, startDate, endDate, value, valueStatus, partial, coverage]
+      required: [period, startDate, endDate, value, valueStatus, partial, origin, coverage]
       properties:
         period: {type: integer, minimum: 1, maximum: 73}
         startDate: {type: string, format: date}
@@ -656,7 +953,11 @@ components:
         method: {type: string, const: median}
         referenceStartYear: {type: integer}
         referenceEndYear: {type: integer}
-        excludesTargetYear: {type: boolean}
+        excludesTargetYear:
+          type: boolean
+          description: >-
+            True when the target year falls inside the reference range; that
+            year is always excluded to avoid self-comparison.
         values:
           type: array
           items: {$ref: '#/components/schemas/BaselineValue'}
@@ -671,7 +972,7 @@ components:
         values:
           type: array
           items: {$ref: '#/components/schemas/CalendarValue'}
-        summary: {$ref: '#/components/schemas/PeriodSummary'}
+        summary: {$ref: '#/components/schemas/CalendarSummary'}
         baseline: {$ref: '#/components/schemas/Baseline'}
         meta: {$ref: '#/components/schemas/ResponseMeta'}
     DailyCalendarValue:
@@ -703,7 +1004,7 @@ components:
           minItems: 28
           maxItems: 31
           items: {$ref: '#/components/schemas/DailyCalendarValue'}
-        summary: {$ref: '#/components/schemas/PeriodSummary'}
+        summary: {$ref: '#/components/schemas/DailyCalendarSummary'}
         meta: {$ref: '#/components/schemas/ResponseMeta'}
     MapCellValue:
       type: object
@@ -727,10 +1028,11 @@ components:
     MapCellsResponse:
       type: object
       additionalProperties: false
-      required: [selection, temporalSelector, cells, meta]
+      required: [selection, temporalSelector, summary, cells, meta]
       properties:
         selection: {$ref: '#/components/schemas/SpatialSelection'}
         temporalSelector: {$ref: '#/components/schemas/TemporalSelector'}
+        summary: {$ref: '#/components/schemas/MapSummary'}
         cells:
           type: array
           items: {$ref: '#/components/schemas/MapCellValue'}
@@ -766,7 +1068,7 @@ components:
     TrendPoint:
       type: object
       additionalProperties: false
-      required: [year, value, valueStatus, partial, coverage]
+      required: [year, value, valueStatus, partial, origin, coverage]
       properties:
         year: {type: integer}
         period: {type: integer, minimum: 1, maximum: 73}

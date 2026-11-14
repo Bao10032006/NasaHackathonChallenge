@@ -11,9 +11,11 @@ status: frontend-aligned proposal; backend approval pending
 
 # 1. Trạng thái và compatibility
 
-v0.4 mở rộng v0.3; không ghi đè tài liệu hay code TASK 03A. API vẫn read-only tại `/api/v1`, Spring MVC, không chạy harmonization trong request và không trả raw detection points.
+v0.4 mở rộng use case từ v0.3; không ghi đè Artifact Spec 1.0.0 hoặc kết quả TASK 03A. API vẫn read-only tại `/api/v1`, Spring MVC, không chạy harmonization trong request và không trả raw detection points.
 
-Thay đổi additive chính:
+Request v0.3 tiếp tục được hỗ trợ nơi có cùng semantics. Response v0.4 có thay đổi có chủ đích (`selection`, `coverage`, typed summary) so với draft v0.3, nên v0.4 là baseline mới sau khi được ký duyệt, không được mô tả là hoàn toàn additive.
+
+Thay đổi chính:
 
 - Bounding-box spatial selector dùng chung.
 - Year-only selector cho `/map/cells`.
@@ -73,16 +75,18 @@ Mọi analytical response có:
 
 Named area dùng `type=NAMED_AREA`, thêm `area`, không có `requestedBounds`. `cellIds` luôn theo canonical grid order.
 
+`selectedBounds` là bounding box nhỏ nhất bao phủ **toàn bộ hình học** của các cell được chọn: `west=min(cell.west)`, `south=min(cell.south)`, `east=max(cell.east)`, `north=max(cell.north)`. Đây không phải envelope chỉ bao các tâm cell. Với fixture trên, center envelope là `107.125..107.875 × 12.125..12.875`, còn `selectedBounds` là `107..108 × 12..13`.
+
 # 4. Value, coverage và summary
 
 ## 4.1. Value status
 
 - `AVAILABLE`: numeric value, kể cả `0`.
 - `MISSING`: thiếu bất thường bên trong supported range; `value=null`.
-- `OUTSIDE_DATASET_RANGE`: calendar placeholder ngoài range; `value=null`.
+- `OUTSIDE_DATASET_RANGE`: item của response dạng series có requested period không giao với dataset range; `value=null`.
 - `INSUFFICIENT_BASELINE`: không đủ mẫu; statistic value null.
 
-`/daily` và `/map/cells?date=` không trả placeholder outside-range; trả `422 DATE_OUTSIDE_DATASET_RANGE`.
+Quy tắc áp dụng cho item của `/calendar`, `/calendar/days` và `/trends`. Nếu period giao dataset nhưng chưa đủ ngày thì item là `AVAILABLE`, mang coverage `partial=true`; nếu không giao ngày nào thì là `OUTSIDE_DATASET_RANGE`. `/daily` và `/map/cells?date=` không trả placeholder outside-range; trả `422 DATE_OUTSIDE_DATASET_RANGE`.
 
 ## 4.2. Coverage
 
@@ -103,11 +107,14 @@ Nếu không có ngày covered, `coveredStartDate` và `coveredEndDate` là null
 
 ## 4.3. Summary
 
-- Calendar month/pentad của năm: `totalValue`, coverage, `peakPeriod`.
-- Calendar days: `totalValue`, coverage, `peakDate`.
+- Calendar month/pentad của năm dùng `CalendarSummary`: `totalValue`, `valueStatus`, `coverage`, `peakPeriod`.
+- Calendar days dùng `DailyCalendarSummary`: `totalValue`, `valueStatus`, `coverage`, `peakDate`.
+- Map dùng `MapSummary`: `totalValue`, `valueStatus`, `origin`, `coverage`, `minCellValue`, `maxCellValue`.
 - Daily: chính value + source composition là summary của ngày.
 
-Peak chỉ xét child item `AVAILABLE` và không partial. Tie lấy thời điểm sớm nhất. Nếu không có item hợp lệ hoặc mọi item hợp lệ bằng zero, peak null. Parent period partial vẫn có thể trả peak trong covered range; UI phải hiển thị coverage cùng peak.
+Không dùng field chung `peak`. `peakPeriod` và `peakDate` là hai schema riêng để client sinh type không phải suy luận field tùy chọn. `partial` chỉ nằm trong `coverage`, không lặp ở summary.
+
+Peak chỉ xét child item `AVAILABLE` và không partial. Tie lấy thời điểm sớm nhất. Nếu không có item hợp lệ hoặc mọi item hợp lệ bằng zero, peak null. Parent period partial vẫn có thể trả peak trong covered range; UI phải hiển thị coverage cùng peak. `minCellValue`/`maxCellValue` chỉ xét cell `AVAILABLE`; frontend lấy min/max của hai map response để dựng shared color scale.
 
 # 5. Metadata và lỗi
 
@@ -127,11 +134,34 @@ Problem Details dùng `application/problem+json`. Codes:
 - `503 DATASET_UNAVAILABLE`
 - `500 INTERNAL_ERROR`
 
+## 5.1. Error mapping bắt buộc
+
+| Trường hợp | HTTP | `code` |
+|---|---:|---|
+| Sai kiểu/format/range primitive, ví dụ month=13 | 400 | `INVALID_PARAMETER` |
+| Thiếu `areaType` hoặc `areaId`; bbox thiếu một hay nhiều cạnh; vừa named area vừa bbox | 400 | `INVALID_SPATIAL_SELECTOR` |
+| `west >= east`, `south >= north` hoặc tọa độ ngoài domain | 400 | `INVALID_BOUNDS` |
+| Không có hoặc trộn temporal selector; gửi cả month và pentad; date cùng year | 400 | `INVALID_TEMPORAL_SELECTOR` |
+| Named area không tồn tại | 404 | `AREA_NOT_FOUND` |
+| Cell ID không tồn tại | 404 | `CELL_NOT_FOUND` |
+| Bbox hợp lệ nhưng không chọn được cell | 422 | `NO_CELLS_IN_BOUNDS` |
+| Query hợp lệ về cú pháp nhưng feature/range chưa được hỗ trợ | 422 | `UNSUPPORTED_QUERY` |
+| Exact date nằm ngoài dataset range | 422 | `DATE_OUTSIDE_DATASET_RANGE` |
+| Artifact/manifest bắt buộc thiếu hoặc không hợp lệ | 503 | `DATASET_UNAVAILABLE` |
+| Lỗi không dự kiến | 500 | `INTERNAL_ERROR` |
+
+Frontend điều khiển state theo `code`, không parse `detail`.
+
 # 6. Endpoints
 
 ## 6.1. `GET /metadata`
 
-Giữ v0.3, bổ sung capabilities:
+Giữ các field v0.3 và bổ sung capabilities. Response bắt buộc có:
+
+- `dateRange`, `yearRange`, `gridDegrees`;
+- `supportedGranularities` theo endpoint;
+- `daily.available=true`, `daily.uncertaintyIntervalAvailable=false`, qualification;
+- source-code dictionary, limitations và `warningCatalog` ánh xạ warning code sang câu hiển thị;
 
 - spatial selectors `NAMED_AREA|BOUNDING_BOX`;
 - map granularities `day|year|month|pentad`;
@@ -141,7 +171,7 @@ Giữ v0.3, bổ sung capabilities:
 
 ## 6.2. `GET /areas`
 
-Giữ v0.3. Cell trả `id`, center, bounds, region. Endpoint này không resolve bbox; analytical endpoint tự trả `selection`.
+Giữ v0.3. Cell trả `id`, center, bounds, region. National và 5 diagnostic regions có `name` tiếng Việt ổn định: `Toàn quốc`, `Đồng bằng sông Cửu Long`, `Đồng bằng sông Hồng`, `Khu vực khác`, `Tây Bắc`, `Tây Nguyên`. Endpoint này không resolve bbox; analytical endpoint tự trả `selection`.
 
 ## 6.3. `GET /calendar`
 
@@ -152,7 +182,9 @@ Query:
 - `granularity=month|pentad`;
 - baseline params tương thích v0.3.
 
-Response có 12 hoặc 73 values, selection, summary, baseline tùy chọn và meta. Mỗi value có period/start/end/value/status/partial/origin/coverage.
+Response có 12 hoặc 73 values, selection, summary, baseline tùy chọn và meta. Mỗi value có period/start/end/value/status/partial/origin/coverage. Item có zero overlap với dataset dùng `OUTSIDE_DATASET_RANGE`; item có overlap chưa đủ dùng `AVAILABLE` + `coverage.partial=true`.
+
+Khi `includeBaseline=true`, median dùng các năm trong `[baselineStartYear,baselineEndYear]` có period đầy đủ. Nếu target `year` nằm trong khoảng này thì luôn loại target year để tránh tự so sánh; response đặt `excludesTargetYear=true`. Missing/partial bị loại, zero hợp lệ được giữ, minimum sample size là 5.
 
 ## 6.4. `GET /calendar/days` — mới
 
@@ -161,7 +193,7 @@ Query:
 - một spatial selector;
 - `year`, `month`.
 
-Response luôn có đúng số ngày dân lịch của tháng:
+Response luôn có đúng số ngày dân lịch của tháng. Ví dụ dưới đây là excerpt rút gọn của `values`; response thật vẫn có đủ 30 item:
 
 ```json
 {
@@ -171,7 +203,12 @@ Response luôn có đúng số ngày dân lịch của tháng:
     {"date":"2026-11-13","value":3.0,"valueStatus":"AVAILABLE","origin":"MIXED"},
     {"date":"2026-11-14","value":null,"valueStatus":"OUTSIDE_DATASET_RANGE","origin":null}
   ],
-  "summary": {"totalValue":3.0,"peakDate":null,"coverage":{}},
+  "summary": {
+    "totalValue":3.185015,
+    "valueStatus":"AVAILABLE",
+    "peakDate":{"date":"2026-11-09","value":1.979063},
+    "coverage":{"requestedStartDate":"2026-11-01","requestedEndDate":"2026-11-30","coveredStartDate":"2026-11-01","coveredEndDate":"2026-11-13","expectedDayCount":30,"coveredDayCount":13,"uncoveredDayCount":17,"partial":true}
+  },
   "selection":{},
   "meta":{}
 }
@@ -196,6 +233,7 @@ Response:
 
 - typed `temporalSelector` với requested/effective range và coverage;
 - selection;
+- `summary` gồm aggregate toàn selection, origin, coverage và min/max cell value;
 - ordered cells `{cellId,center,bounds,value,valueStatus,partial,origin,...}`;
 - meta.
 
@@ -217,7 +255,7 @@ Giữ v0.3 và thêm selection. Month/pentad yêu cầu period; year cấm perio
 
 Query: spatial selector, `granularity=month|pentad`, reference range mặc định 2003–2025.
 
-Giữ mean/median/sample size, loại missing/partial, minimum sample size 5. Tổng theo mùa chưa thuộc v0.4.
+Giữ mean/median/sample size, loại missing/partial, minimum sample size 5. Khi statistic dùng để so với một target year nằm trong reference range, loại target year và công bố quy tắc; seasonality thuần không có target year thì dùng toàn bộ reference range. Tổng theo mùa chưa thuộc v0.4.
 
 ## 6.9. `GET /cells/{cellId}/period-details` — mới
 
@@ -259,9 +297,13 @@ Nếu không tương thích, vẫn hiển thị hai map và đặt `differenceAv
 - Cache key gồm endpoint, mọi spatial/temporal param và version.
 - Cell source details tải on-demand.
 - Daily model/scaled/direct copy giữ đúng v0.3.
+- OpenAPI examples là mock fixture chuẩn; frontend không lấy golden value làm production constant.
+- Dev mặc định dùng Vite proxy `/api` → backend `http://localhost:8080`; nếu chạy khác origin không qua proxy, backend dùng allow-list CORS externalized, không dùng wildcard credentials.
+- Snapshot response có thể dùng `ETag` theo normalized query + data/model version. Không đặt cache immutable dài hạn trên URL không mang version vì deployment có thể đổi snapshot.
+- v0.4 luôn trả `center` và `bounds` trong map cell. Tùy chọn `includeGeometry=false` chỉ xem xét sau khi đo payload; không thêm biến thể response trước khi có nhu cầu thực tế.
 
 # 9. Compatibility và phê duyệt
 
-v0.3 requests vẫn hợp lệ. Trường mới là additive; `/calendar/days` và cell-period details là route mới. Spatial selector cross-field và year-only map phải có contract tests trước frontend integration.
+Các request v0.3 có cùng semantics vẫn hợp lệ. Response v0.4 thay `area` bắt buộc bằng `selection` ở một số endpoint và chuẩn hóa summary, nên đây là controlled contract revision trước khi có client production, không phải thay đổi hoàn toàn additive. `/calendar/days` và cell-period details là route mới. Spatial selector cross-field và year-only map phải có contract tests trước frontend integration.
 
-v0.4 chưa được xem là implementation baseline cho đến khi Backend và Frontend ký duyệt OpenAPI v0.4. TASK 03A repository/artifact không cần thay đổi.
+v0.4 chưa được xem là implementation baseline cho đến khi Backend và Frontend ký duyệt OpenAPI v0.4. Binary artifact TASK 03A không đổi; repository chỉ cần enhancement có kiểm soát cho arbitrary cell set, exact cache key và distinct source-cell count.

@@ -18,7 +18,7 @@ status: frontend-aligned proposal; backend approval pending
 - **FR01 Must — Named spatial selection:** national, 5 diagnostic regions hoặc một cell hợp lệ.
 - **FR02 Must — Bounding-box selection:** nhận đủ bốn biên, chọn center-inclusive, trả selection metadata; empty → `NO_CELLS_IN_BOUNDS`.
 - **FR03 Must — Temporal selection:** exact date, year, year+month hoặc year+pentad theo endpoint contract.
-- **FR04 Must — Grid map:** trả stable cell ID/bounds/value/status/origin/coverage cho date, year, month hoặc pentad.
+- **FR04 Must — Grid map:** trả stable cell ID/bounds/value/status/origin/coverage cho date, year, month hoặc pentad; kèm summary tổng selection và min/max cell available.
 - **FR05 Must — Calendars:** `/calendar` trả 12/73 period; `/calendar/days` trả đủ ngày lịch của một tháng.
 - **FR06 Must — Summary:** year total + peak month; month total + peak day; date total + source composition.
 - **FR07 Must — Trends:** cùng month/pentad qua nhiều năm với status/partial/origin/coverage.
@@ -36,7 +36,7 @@ status: frontend-aligned proposal; backend approval pending
 - **BR13:** Cell được chọn khi center thỏa `west <= lon <= east` và `south <= lat <= north`.
 - **BR13a:** Quy tắc trên áp dụng cho toàn bộ catalog 587 cell Việt Nam; không áp thêm diagnostic-region filter ngầm. Bbox có thể chọn cell thuộc nhiều vùng.
 - **BR14:** Ordered cell list theo canonical order của `cells_025.csv`; cùng bbox và dataVersion phải deterministic.
-- **BR15:** Response trả `requestedBounds` và `selectedBounds` riêng. `selectedBounds` là union bounds của cell được chọn.
+- **BR15:** Response trả `requestedBounds` và `selectedBounds` riêng. `selectedBounds` là bounding box nhỏ nhất bao toàn bộ hình học cell được chọn (`min west/south`, `max east/north`), không phải envelope của tâm cell.
 
 # 4. Time, Coverage và Summary Rules
 
@@ -44,9 +44,11 @@ status: frontend-aligned proposal; backend approval pending
 - **BR17:** Coverage gồm requested range, covered range, expected/covered/uncovered day count và `partial`.
 - **BR18:** Aggregate partial chỉ cộng ngày giao với dataset range; không nội suy ngày ngoài range.
 - **BR19:** Calendar days luôn có đủ số ngày dân lịch, kể cả 29/2.
-- **BR20:** Ngày ngoài range trong calendar có `value=null`, `valueStatus=OUTSIDE_DATASET_RANGE`; `/daily` và map date vẫn trả 422 cho ngày đó.
+- **BR20:** Item `/calendar`, `/calendar/days`, `/trends` có requested period không giao dataset dùng `value=null`, `valueStatus=OUTSIDE_DATASET_RANGE`; period giao chưa đủ dùng `AVAILABLE` + partial. `/daily` và map date ngoài range trả 422.
 - **BR21:** Summary total do backend tính trên covered available values. Peak chỉ xét available, non-partial child item; tie lấy mốc sớm nhất; tất cả bằng 0 → peak null. Kỳ cha partial vẫn có thể có peak trong covered range và phải giữ coverage label.
 - **BR22:** `sourceInputValid=false` là provenance/quality flag, không phải missing.
+- **BR22a:** Summary calendar dùng `peakPeriod`, summary lịch ngày dùng `peakDate`; `partial` chỉ lấy từ coverage.
+- **BR22b:** Baseline loại target year nếu target nằm trong reference range; loại missing/partial, giữ zero và công bố `excludesTargetYear` cùng sample size.
 
 # 5. Comparison Rules
 
@@ -86,7 +88,7 @@ Chỉ `AVAILABLE` có numeric value; các status còn lại có `value=null`.
 - **NFR05 Resilience:** schema/hash/file lỗi fail rõ, không trả payload zero giả.
 - **NFR06 Security:** public read-only, validate bbox/time/limits, không lộ path/stack trace.
 - **NFR07 Accessibility:** không truyền đạt status/scale chỉ bằng màu.
-- **NFR08 Compatibility:** v0.4 additive với v0.3 nơi có thể; breaking/deferred decision phải ghi trong Document 07.
+- **NFR08 Compatibility:** giữ request v0.3 nơi có cùng semantics; response revision có chủ đích phải ghi trong Document 07, không mô tả v0.4 là hoàn toàn additive.
 - **NFR09 Payload:** map mặc định không mang full source composition của mọi cell; dùng details endpoint on-demand.
 
 # 9. Definition of Done
@@ -95,5 +97,6 @@ Chỉ `AVAILABLE` có numeric value; các status còn lại có `value=null`.
 - Named area và bbox chạy cùng service use cases.
 - Year map, calendar days, summary, daily và cell details có unit/integration/contract tests.
 - Full/partial/outside-range/zero/no-cell được test riêng.
+- Error-code matrix, target-year exclusion và typed summary được contract-test.
 - Bộ sample Tây Nguyên v0.4 dùng số thật và được backend/frontend cùng xác nhận như một regression fixture; coverage chức năng phải test thêm national/full-grid và bbox cắt nhiều vùng.
 - Không cần anomaly, export, season aggregate hoặc raw comparison để hoàn thành core demo.

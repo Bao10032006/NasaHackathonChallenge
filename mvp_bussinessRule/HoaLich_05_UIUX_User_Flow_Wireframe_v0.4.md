@@ -47,7 +47,7 @@ Explore là một luồng liên tục từ phạm vi không gian → tổng quan
 ├──────────────────────────────────┬────────────────────────────────────┤
 │ GRID MAP                         │ SUMMARY                            │
 │ cell markers + selected outlines │ total · coverage · peak            │
-│ year/month/day                   │ origin/source when date            │
+│ year/month/day · API min/max     │ origin/source when date            │
 ├──────────────────────────────────┴────────────────────────────────────┤
 │ 12-MONTH ACTIVITY + HISTORICAL BASELINE                              │
 ├──────────────────────────────────┬────────────────────────────────────┤
@@ -76,6 +76,7 @@ Explore là một luồng liên tục từ phạm vi không gian → tổng quan
 Metric notice → spatial filter → time filter → selection/coverage → summary → map → 12-month chart → day calendar → historical trend → cell details → Data Notes.
 
 Compare có thể chuyển A/B bằng tabs nhưng phải giữ shared scale và compatibility label.
+Shared color domain lấy từ `minCellValue`/`maxCellValue` của hai map summary; frontend không cộng lại cell để suy total.
 
 # 7. Component Specification
 
@@ -114,6 +115,7 @@ Optional/deferred:
 - All-zero: hide peak row.
 - Parent period partial: show actual covered range and uncovered count; nếu có peak từ child item đầy đủ thì ghi “trong khoảng đã có dữ liệu”.
 - `sourceInputValid=false` không dùng copy “thiếu ngày”.
+- Calendar summary đọc `peakPeriod`; day-calendar summary đọc `peakDate`; không suy luận object `peak` đa hình.
 
 # 10. State and Copy
 
@@ -125,6 +127,8 @@ Optional/deferred:
 - Model redistributed: “Ước lượng hài hòa theo ngày.”
 - Scaled observation: “Quan sát NOAA-20 đã quy đổi về S-NPP.”
 - Direct observation: “Quan sát S-NPP trực tiếp trong snapshot đã lọc.”
+
+Warning copy lấy từ `/metadata.warningCatalog`; UI dùng stable warning code làm khóa và không hardcode/parse `detail`. Area selector hiển thị `name` tiếng Việt nhưng gửi stable `id`.
 
 # 11. Demo Scenario
 
