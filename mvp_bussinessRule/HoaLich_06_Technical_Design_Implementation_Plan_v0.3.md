@@ -159,8 +159,8 @@ TASK 03 nên tạo derived artifact bất biến từ snapshot đã hash, không
 - `daily-manifest.json`: version, SHA-256 nguồn, dates, cells, row-major layout, source dictionary.
 - `daily-values.f32`: `9509 × 587` float32 little-endian.
 - `daily-source.u8`: source code 1–4.
-- `daily-input-count.i16`: raw count của source được chọn.
-- `daily-source-valid.bitset` hoặc byte array.
+- `daily-input-count.i16`: raw count của đúng vệ tinh ứng với source code (1→Terra, 2→Aqua, 3→S-NPP, 4→NOAA-20).
+- `daily-source-input-valid.bitset` hoặc byte array: cờ hợp lệ của đúng vệ tinh đó (`valid_Terra|valid_Aqua|valid_SNPP|valid_N20` trong NPZ).
 
 Kích thước logic hiện tại cho value + source khoảng 27,9 MB trước compression; thêm input count/validity vẫn phù hợp memory-map hoặc immutable in-memory primitive arrays. Không chuyển daily cube thành CSV 5,58 triệu dòng hoặc JSON lớn.
 
@@ -172,6 +172,53 @@ Derived export phải có script/test riêng, hash input/output và đối chi�
 - NOAA-20 ratio.
 - Daily → month aggregation.
 - Ba sample regression được TASK 02B ghi nhận.
+
+# 6A. TASK 03A — phạm vi chi tiết (cập nhật sau review 14/11/2026)
+
+Bổ sung cho §6, áp dụng cho snapshot **pipeline 1.0** (dữ liệu MVP) và phải dùng lại được khi đổi sang pipeline hoàn chỉnh sau MVP mà không sửa code Java.
+
+## 6A.1. Đọc artifact an toàn
+
+- Script xuất đọc NPZ với `allow_pickle=False`. Trong snapshot 1.0, `cell` là mảng object (pickle) nên **không đọc mảng này**; thứ tự cell lấy từ `cells_025.csv` và đối chiếu bằng `lat`/`lon` của NPZ (đã kiểm: khớp toàn bộ 587 cell). Cách này cũng chạy được với các bản sau, nơi `cell` là chuỗi.
+- Mảng input count và cờ hợp lệ chọn theo source code của từng cell-day (§6), không lấy cố định một vệ tinh.
+
+## 6A.2. Manifest là nguồn duy nhất cho phiên bản và phạm vi
+
+`daily-manifest.json` (hoặc `dataset-manifest.json` chung) chứa:
+
+- `dataVersion`, `modelVersion`, `dataThrough`, SHA-256 của mọi file nguồn và file xuất.
+- `limitations` và các warning mặc định; Java đọc từ manifest, **không viết cứng**.
+- **Ma trận partial/transition**: dataset `2000-11-01..2026-11-13`; tháng 11/2026 và pentad 64/2026 là partial; mốc nguồn 2002-08-01 (Terra→Aqua), 2012-01-20 (→S-NPP), 2026-11-02 (S-NPP dừng → NOAA-20).
+- `capabilities`: danh sách artifact tùy chọn phát hiện được (ví dụ `calendar_regions_pentad.csv`, `anomaly_regions_pentad.csv` ở các bản pipeline sau). Thiếu artifact tùy chọn không làm startup lỗi.
+
+## 6A.3. Kiểm schema theo cột bắt buộc, không theo số phiên bản
+
+- Bắt buộc: `cells_025.csv`, `harmonized_025_month.csv`, `harmonized_regions_pentad.csv`, `harmonized_national_year.csv`, `uncertainty_table.csv`, `web_cells_pentad.json`, `summary.json`, daily cube (hoặc file xuất của nó).
+- Kiểm theo tên cột/khóa cần dùng; cột thừa được bỏ qua.
+- Script xuất chạy được trên mọi bản pipeline có cùng tên mảng NPZ (`dates, lat, lon, Terra, Aqua, SNPP, N20, N21, valid_*, harmonized, src_code`).
+
+## 6A.4. Kiểm định của script xuất (bổ sung danh sách §6)
+
+- Ngày liên tục, không NaN, không âm; thứ tự cell khớp `lat`/`lon`.
+- Source code đúng theo thời gian: `1` chỉ trước 2002-08, `3|4` chỉ từ 2012-01-20.
+- Tổng ngày khớp **cả** bảng tháng **và** bảng pentad — calendar pentad đọc bảng pentad còn map theo ngày đọc cube nên hai đường phải nhất quán. Sai số cho phép theo độ làm tròn của artifact: `harmonized_025_month.csv` và `harmonized_regions_pentad.csv` 0,01; `web_cells_pentad.json` 0,05 (lưu 1 chữ số thập phân). Đã kiểm trên snapshot 1.0: lệch lớn nhất lần lượt 0,005, 0,005 và 0,05.
+- `null` trong `web_cells_pentad.json` chỉ nằm ngoài dataset range (snapshot 1.0: 0 null trong range, 41.090 null ngoài range); giá trị `0` trong cube là thật (snapshot 1.0: 3.172.368 / 5.581.783 cell-day).
+- Đếm cell-day `src_code=2` từ 2022 (snapshot 1.0: 328 cell-day, 1 ngày năm 2026) để sinh warning `AQUA_FALLBACK_AFTER_ORBIT_DRIFT`.
+- Sample regression dùng số thật:
+  - `/daily` TayNguyen 2005-03-25: `171.635599`, 122 cell, source AQUA, input 21.
+  - `/seasonality` TayNguyen pentad 15, 2003–2025: `sampleSize=23`, `mean=1672.6`, `median=1373.0`.
+
+## 6A.5. Repository phục vụ 03B
+
+- `DailyActivityRepository` thêm truy vấn theo **khoảng ngày** × tập cell (lát cắt liên tục theo layout row-major) để service tính `origin` cho month/pentad (Contract v0.3 §3.5).
+- Khi khởi động, dựng sẵn chuỗi tổng hợp cho 6 đơn vị (ToanQuoc + 5 vùng): năm × 73 pentad và năm × 12 tháng. Chi phí nhỏ; giúp 03B làm trends nhiều kỳ, seasonality và các thống kê phân vị mà không cần file mới.
+- Không làm anomaly/export; không đổi sang dữ liệu pipeline khác trong 03A.
+
+## 6A.6. Môi trường, lưu trữ và Git
+
+- Script xuất chạy offline bằng Python có ghim phiên bản (`numpy`, `pandas`) do owner snapshot (D06) thực hiện; backend Java không cần Python. Đã kiểm trên Windows với Python 3.15, numpy 2.5.4, pandas 3.1.1.
+- File xuất đặt cạnh snapshot dưới `HOALICH_DATASET_ROOT` (tổng khoảng 40 MB, mỗi file < 100 MB) hoặc phát hành kèm hash.
+- `.gitattributes` ở gốc repo đánh dấu file nhị phân (`*.npz *.f32 *.u8 *.i16 *.bitset`) là `binary` và `*.csv *.json *.yaml *.md` là `text eol=lf`, để hash không đổi khi checkout trên Windows.
 
 # 7. Loading lifecycle
 
@@ -217,7 +264,7 @@ Controller có thể nhóm endpoint cùng resource trong một class; không c�
 
 # 11. Delivery sequence đề xuất
 
-1. **TASK 03A — Dataset manifest and file repositories:** manifest, derived daily export, schema/hash validation, immutable indexes và repository contract tests.
+1. **TASK 03A — Dataset manifest and file repositories:** manifest, derived daily export, schema/hash validation, immutable indexes và repository contract tests; phạm vi chi tiết ở §6A.
 2. **TASK 03B — Core services:** metadata/area/calendar/map/trends/seasonality/daily services và mappers.
 3. **TASK 03C — Controllers and API conformance:** controllers, Problem Details, integration/OpenAPI tests.
 4. Frontend integration chỉ dùng contract đã được duyệt và backend conformance tests đã pass.

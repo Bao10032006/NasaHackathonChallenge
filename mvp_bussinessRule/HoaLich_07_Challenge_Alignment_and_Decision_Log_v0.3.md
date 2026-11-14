@@ -85,10 +85,35 @@ Hai ID này phản ánh đúng summary/pipeline v1 và không ngụ ý đã áp 
 
 Cell detail có data dependency nhưng là Should. CSV export thiếu column/limit contract. Cả hai không chặn core. Anomaly bị gate riêng theo D03.
 
+## D10 — Tên trường source composition
+
+**Status:** đề xuất phê duyệt (review 14/11/2026).
+
+Thống nhất `sourceInputValidCellCount` ở cả Contract v0.3 và OpenAPI v0.3 (trước đây OpenAPI dùng `sourceValidCellCount`, Markdown dùng `sourceInputValidCellCount`; schema có `additionalProperties: false` nên lệch tên sẽ làm client/server không tương thích).
+
+## D11 — Origin cho month/pentad
+
+**Status:** đề xuất phê duyệt (review 14/11/2026).
+
+Calendar, trends và map month/pentad trả `origin` khi `valueStatus=AVAILABLE`, tính từ thành phần source của daily cube trong period (Contract v0.3 §3.5). Lý do: Vision v0.2 §6.1 (Must) yêu cầu phân biệt dữ liệu ước lượng; `ValueStatus` v0.3 không còn `observed/estimated` như v0.2. Thay đổi là additive.
+
+## D12 — Warning Aqua dự phòng sau quỹ đạo trôi
+
+**Status:** đề xuất phê duyệt (review 14/11/2026).
+
+Thêm mã `AQUA_FALLBACK_AFTER_ORBIT_DRIFT` khi có cell-day `src_code=2` từ năm 2022. Snapshot 1.0: 328 cell-day, 1 ngày năm 2026.
+
+## D13 — Dữ liệu MVP và đường chuyển pipeline
+
+**Status:** ghi nhận quyết định của đội.
+
+MVP dùng snapshot **pipeline 1.0**. Sau MVP sẽ chuyển sang pipeline hoàn chỉnh; TASK 03A thiết kế manifest/schema/export theo hướng thay snapshot không cần sửa code Java (Technical Design v0.3 §6A).
+
 # 4. Approval checklist
 
 - Product/Data xác nhận wording daily model estimate.
 - Backend/Frontend xác nhận field names và Problem Details schema trong OpenAPI v0.3.
 - Data owner xác nhận canonical version strings và default baseline years.
+- Backend/Frontend xác nhận D10–D12 (tên trường, `origin` theo period, warning mới).
 - Sau khi ba mục trên được duyệt, TASK 03A có thể bắt đầu mà không thay endpoint surface.
 
