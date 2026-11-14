@@ -21,6 +21,7 @@ import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -198,6 +199,24 @@ final class DatasetArtifactValidator {
 			throw unavailable("Declared cell order source resolves to a different file");
 		}
 		validateFileIdentity(actualPath, declared.byteSize(), declared.sha256(), "cell order source");
+	}
+
+	/**
+	 * Resolves a source file declared in {@code manifest.sources} and verifies its size and SHA-256.
+	 * Returns empty when the manifest does not declare the file (for example in the fixture),
+	 * so callers can treat the artifact as unavailable instead of reading an unverified file.
+	 */
+	static Optional<Path> resolveDeclaredSource(Path datasetRoot, DatasetManifest manifest, String relativePath) {
+		Path root = datasetRoot.toAbsolutePath().normalize();
+		Optional<DatasetManifest.SourceArtifact> declared = manifest.sources().stream()
+				.filter(source -> relativePath.equals(source.path()))
+				.findFirst();
+		if (declared.isEmpty()) {
+			return Optional.empty();
+		}
+		Path path = safeResolve(root, relativePath);
+		validateFileIdentity(path, declared.get().byteSize(), declared.get().sha256(), relativePath);
+		return Optional.of(path);
 	}
 
 	private static void validateLayout(DatasetManifest.Layout layout) {

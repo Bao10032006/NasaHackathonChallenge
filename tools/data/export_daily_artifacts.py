@@ -100,7 +100,8 @@ OPTIONAL_ARTIFACTS = {
     "anomaly_regions_pentad": ("tables/anomaly_regions_pentad.csv", "Ngưỡng và cờ bất thường theo vùng (pipeline >= 1.3)"),
 }
 SNAPSHOT_SOURCES = ["tables/cube_daily_day_veg.npz", "tables/cells_025.csv", "tables/harmonized_025_month.csv",
-                    "tables/harmonized_regions_pentad.csv", "web_cells_pentad.json", "summary.json"]
+                    "tables/harmonized_regions_pentad.csv", "web_cells_pentad.json", "summary.json",
+                    "tables/harmonized_national_year.csv", "tables/uncertainty_table.csv"]
 
 # Spec section 8.3: real regression samples of the v1.0 snapshot (keyed by NPZ hash).
 REGRESSION = {

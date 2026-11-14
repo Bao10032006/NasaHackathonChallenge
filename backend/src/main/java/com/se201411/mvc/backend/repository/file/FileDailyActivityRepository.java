@@ -108,6 +108,54 @@ public final class FileDailyActivityRepository
 		return List.copyOf(result);
 	}
 
+	// Package-private primitive accessors for area-level aggregation (FileAreaActivityRepository).
+	// They avoid creating one object per cell-day when summing long date ranges.
+
+	int dayCount() {
+		return Math.toIntExact(ChronoUnit.DAYS.between(startDate, endDate) + 1);
+	}
+
+	int cellCount() {
+		return cellCount;
+	}
+
+	LocalDate firstDate() {
+		return startDate;
+	}
+
+	int dateIndexOf(LocalDate date) {
+		validateDate(date);
+		return Math.toIntExact(ChronoUnit.DAYS.between(startDate, date));
+	}
+
+	int cellIndexOf(String cellId) {
+		Integer index = cellId == null ? null : cellIndexes.get(cellId);
+		if (index == null) {
+			throw new IllegalArgumentException("Unknown cellId: " + cellId);
+		}
+		return index;
+	}
+
+	float valueAt(int dateIndex, int cellIndex) {
+		return readFloat32LittleEndian(values, Math.multiplyExact(elementIndex(dateIndex, cellIndex), Float.BYTES));
+	}
+
+	int sourceCodeAt(int dateIndex, int cellIndex) {
+		return Byte.toUnsignedInt(sources[elementIndex(dateIndex, cellIndex)]);
+	}
+
+	int inputObservationCountAt(int dateIndex, int cellIndex) {
+		return readInt16LittleEndian(inputCounts, Math.multiplyExact(elementIndex(dateIndex, cellIndex), Short.BYTES));
+	}
+
+	boolean sourceInputValidAt(int dateIndex, int cellIndex) {
+		return sourceValidity[elementIndex(dateIndex, cellIndex)] == 1;
+	}
+
+	private int elementIndex(int dateIndex, int cellIndex) {
+		return Math.addExact(Math.multiplyExact(dateIndex, cellCount), cellIndex);
+	}
+
 	private DailyActivityDay readDay(LocalDate date, int[] selectedCellIndexes) {
 		int dateIndex = Math.toIntExact(ChronoUnit.DAYS.between(startDate, date));
 		List<DailyCellActivity> result = new ArrayList<>(selectedCellIndexes.length);

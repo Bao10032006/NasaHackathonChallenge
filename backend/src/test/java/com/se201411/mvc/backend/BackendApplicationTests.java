@@ -5,8 +5,11 @@ import java.nio.file.Path;
 import javax.sql.DataSource;
 
 import com.se201411.mvc.backend.config.DatasetProperties;
+import com.se201411.mvc.backend.repository.AreaActivityRepository;
+import com.se201411.mvc.backend.repository.AreaRepository;
 import com.se201411.mvc.backend.repository.DailyActivityRepository;
 import com.se201411.mvc.backend.repository.DatasetMetadataRepository;
+import com.se201411.mvc.backend.repository.HarmonizationComparisonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,6 +45,9 @@ class BackendApplicationTests {
 	void exposesValidatedDatasetRepositories() {
 		assertThat(applicationContext.getBean(DailyActivityRepository.class)).isNotNull();
 		assertThat(applicationContext.getBean(DatasetMetadataRepository.class)).isNotNull();
+		assertThat(applicationContext.getBean(AreaRepository.class)).isNotNull();
+		assertThat(applicationContext.getBean(AreaActivityRepository.class)).isNotNull();
+		assertThat(applicationContext.getBean(HarmonizationComparisonRepository.class).isAvailable()).isTrue();
 	}
 
 }

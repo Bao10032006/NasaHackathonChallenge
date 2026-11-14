@@ -784,6 +784,16 @@
       "path": "summary.json",
       "byteSize": 29330,
       "sha256": "8493c9c8ed03bff94302967950c479ec3dcbd04fd1b5dca8633b09f793e9e3a0"
+    },
+    {
+      "path": "tables/harmonized_national_year.csv",
+      "byteSize": 1231,
+      "sha256": "01173ab52342bdf8c68b4f43aa0405cc42092ed1057712e0617b0456a5f1e3b6"
+    },
+    {
+      "path": "tables/uncertainty_table.csv",
+      "byteSize": 2276,
+      "sha256": "1ffd314eb97295f58e68246de622a635d08bf64df6b44621570b872b000c9a34"
     }
   ],
   "capabilities": {
@@ -1235,6 +1245,6 @@
     "python": "3.15.0",
     "numpy": "2.5.4",
     "pandas": "3.1.1",
-    "generatedAt": "2026-11-14T09:46:33Z"
+    "generatedAt": "2026-11-14T10:14:39Z"
   }
 }
