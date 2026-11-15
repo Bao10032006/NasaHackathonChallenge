@@ -18,7 +18,7 @@ public interface AreaRepository {
 	List<String> findDiagnosticRegionIds();
 
 	/**
-	 * Resolves {@code ToanQuoc}, a diagnostic region id or a cell id to its member cells.
+	 * Resolves {@code ToanQuoc}, a region id or a cell id to its member cells.
 	 * Returns empty when the id is not supported for the given type.
 	 */
 	Optional<AreaDefinition> findArea(AreaType type, String areaId);

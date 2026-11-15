@@ -4,6 +4,7 @@ public enum AreaType {
 
 	NATIONAL("national"),
 	DIAGNOSTIC_REGION("diagnostic_region"),
+	SOCIOECONOMIC_REGION("socioeconomic_region"),
 	CELL("cell");
 
 	private final String apiValue;

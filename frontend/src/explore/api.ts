@@ -1,5 +1,5 @@
 export type Bounds = { west: number; south: number; east: number; north: number }
-export type AreaType = 'national' | 'diagnostic_region' | 'cell'
+export type AreaType = 'national' | 'diagnostic_region' | 'socioeconomic_region' | 'cell'
 export type SpatialQuery = Bounds | { areaType: AreaType; areaId: string }
 export type TimeQuery = { year: number; month?: number; pentad?: number } | { date: string }
 export type Area = { type: AreaType; id: string; name?: string; center?: { lat: number; lon: number }; bounds?: Bounds }

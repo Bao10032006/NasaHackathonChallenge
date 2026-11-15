@@ -24,7 +24,7 @@ import java.util.Set;
  * <p>Every selection is normalised to dataset (canonical) cell order before aggregation, so a
  * bounding box and a named area that resolve to the same cells produce bit-identical results, and
  * the input order never changes a sum. Per-day totals and per-source composition are precomputed
- * once for ToanQuoc and the diagnostic regions; any other selection is aggregated on demand with
+ * once for ToanQuoc and the predefined regions; any other selection is aggregated on demand with
  * the same per-day arithmetic. Range sums add per-day values in double precision (no prefix-sum
  * subtraction), and no object is created per cell-day.
  */

@@ -46,6 +46,8 @@ h3 { font-size: .85rem; margin: .65rem 0 .4rem; }
 .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(145deg, #ad2432, #d9362a 65%, #e89130); color: white; font-size: 1.2rem; flex: none; }
 .masthead a { color: var(--amber); font-weight: 650; font-size: .76rem; background: #f59e0b15; border: 1px solid #f59e0b50; border-radius: 7px; padding: .48rem .65rem; text-decoration: none; }
 .masthead a:hover { background: #f59e0b29; }
+.language-switch { white-space: nowrap; font-size: .76rem; color: var(--muted); }
+.language-switch .current-language { color: var(--cyan); }
 .data-through { color: var(--muted); font-size: .75rem; }
 .data-through strong { font-family: var(--mono); color: var(--ink); }
 main { width: min(1600px, calc(100% - 2rem)); margin: auto; padding: .85rem 0 2rem; display: grid; gap: .75rem; }
@@ -99,6 +101,8 @@ main { width: min(1600px, calc(100% - 2rem)); margin: auto; padding: .85rem 0 2r
 .map-cell:hover .cell-outline, .map-cell:focus-visible .cell-outline, .cell-outline.selected { fill: #67e8f955; stroke: #9df6ff; stroke-width: 1.4; }
 .map-legend { color: var(--muted); font-size: .78rem; line-height: 1.5; padding: .65rem .75rem; display: grid; gap: .45rem; background: var(--inset); border-block: 1px solid var(--border); }
 .map-legend-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .3rem .8rem; }
+.map-legend-row strong { color: var(--ink); }
+.map-marker-toggle { min-height: 32px; }
 .map-legend details p { margin-top: .35rem; }
 .legend-symbol { display: flex; align-items: center; gap: .3rem; }
 .legend-symbol svg { flex: none; }
