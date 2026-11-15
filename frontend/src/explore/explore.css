@@ -109,9 +109,10 @@ main { width: min(1600px, calc(100% - 2rem)); margin: auto; padding: .85rem 0 2r
 .draw-box { fill: #06b6d42a; stroke: #67e8f9; stroke-width: 1.5; stroke-dasharray: 5 3; pointer-events: none; }
 .cell-outline { fill: transparent; stroke: none; }
 /* Fire points: additive glow + hot core; glow and pulse never take clicks, the cell stays the hit target. */
-.cell-glow { mix-blend-mode: screen; pointer-events: none; }
-.cell-marker { pointer-events: none; filter: drop-shadow(0 0 1.2px #ffb02099); }
-.cell-marker.estimated { stroke: #ffce66; stroke-width: .8; stroke-dasharray: 1.4 .9; }
+.cell-halo { pointer-events: none; }
+/* Thin dark rim keeps each dot crisp on bright land, cloud and neighbouring dots. */
+.cell-marker { pointer-events: none; stroke: #1a0c06; stroke-opacity: .7; stroke-width: .55; }
+.cell-marker.estimated { stroke: #ffffff; stroke-opacity: 1; stroke-width: .7; stroke-dasharray: 1.3 .9; }
 .cell-pulse { fill: none; stroke: #ffd27a; stroke-width: .9; pointer-events: none; transform-box: fill-box; transform-origin: center;
   animation: cell-pulse 1.6s ease-out infinite; }
 @keyframes cell-pulse {
@@ -131,7 +132,7 @@ main { width: min(1600px, calc(100% - 2rem)); margin: auto; padding: .85rem 0 2r
 .legend-symbol { display: flex; align-items: center; gap: .3rem; }
 .legend-symbol svg { flex: none; }
 .legend-scale { display: flex; align-items: center; gap: 4px; font-family: var(--mono); }
-.legend-scale i { width: 9px; height: 9px; border-radius: 50%; }
+.legend-scale i { width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 0 1px #1a0c06b3; }
 .drawing-note { padding: .5rem .8rem; font-size: .76rem; color: var(--cyan); background: #0c2939; }
 
 .summary-metrics { display: flex; flex-wrap: wrap; gap: .55rem; }
