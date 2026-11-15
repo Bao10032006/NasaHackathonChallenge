@@ -9,4 +9,4 @@ services:
     healthCheckPath: /api/v1/metadata
     envVars:
       - key: HOALICH_ALLOWED_ORIGINS
-        sync: false
+        value: https://hoa-lich.vercel.app
