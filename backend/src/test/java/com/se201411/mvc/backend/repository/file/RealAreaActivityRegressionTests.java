@@ -5,6 +5,7 @@ import com.se201411.mvc.backend.domain.activity.AreaDailySeries;
 import com.se201411.mvc.backend.domain.activity.SourceComposition;
 import com.se201411.mvc.backend.domain.area.AreaDefinition;
 import com.se201411.mvc.backend.domain.area.AreaType;
+import com.se201411.mvc.backend.domain.area.SocioeconomicRegion;
 import com.se201411.mvc.backend.domain.methodology.NationalYearComparison;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,6 +16,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -47,6 +49,26 @@ class RealAreaActivityRegressionTests {
 		assertThat(cellCount("Khac")).isEqualTo(262);
 		assertThat(cellCount("TayBac")).isEqualTo(99);
 		assertThat(cellCount("TayNguyen")).isEqualTo(122);
+	}
+
+	@Test
+	void resolvesSevenSocioeconomicRegionsWithoutDoubleCounting() {
+		List<AreaDefinition> regions = Arrays.stream(SocioeconomicRegion.values())
+				.map(region -> areas.findArea(AreaType.SOCIOECONOMIC_REGION, region.id()).orElseThrow())
+				.toList();
+		assertThat(regions).extracting(region -> region.cellIds().size())
+				.containsExactly(161, 41, 103, 82, 84, 40, 72);
+
+		List<String> assignedCells = regions.stream().flatMap(region -> region.cellIds().stream()).toList();
+		assertThat(assignedCells).doesNotHaveDuplicates();
+		Set<String> assignedIds = Set.copyOf(assignedCells);
+		List<String> nationalIds = national().cellIds();
+		assertThat(nationalIds.stream().filter(id -> !assignedIds.contains(id)).toList())
+				.containsExactly("54_429", "58_429", "78_415", "82_413");
+		for (AreaDefinition region : regions) {
+			Set<String> ids = Set.copyOf(region.cellIds());
+			assertThat(region.cellIds()).containsExactlyElementsOf(nationalIds.stream().filter(ids::contains).toList());
+		}
 	}
 
 	@Test

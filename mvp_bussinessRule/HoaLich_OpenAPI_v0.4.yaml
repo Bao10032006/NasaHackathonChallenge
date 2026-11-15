@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Hoa Lich Read-only API
-  version: 0.4.0-proposed
+  version: 0.4.1
   license:
     name: Project repository terms
     identifier: LicenseRef-Project-Repository-Terms
@@ -19,7 +19,7 @@ tags:
   - name: Metadata
     description: Active snapshot capabilities, sources, versions, and limitations.
   - name: Areas
-    description: Named national, diagnostic-region, and grid-cell metadata.
+    description: Named national, diagnostic-region, socioeconomic-region, and grid-cell metadata.
   - name: Activity
     description: Calendar, map, daily, trends, and seasonality queries.
   - name: Cells
@@ -46,7 +46,8 @@ paths:
     get:
       tags: [Areas]
       operationId: listAreas
-      summary: List named national, diagnostic-region, and cell areas
+      summary: List named national, diagnostic-region, socioeconomic-region, and cell areas
+      description: Socioeconomic regions are available for datasets using the supported grid snapshot.
       parameters:
         - name: type
           in: query
@@ -656,7 +657,7 @@ components:
   schemas:
     AreaType:
       type: string
-      enum: [national, diagnostic_region, cell]
+      enum: [national, diagnostic_region, socioeconomic_region, cell]
     SelectionType:
       type: string
       enum: [NAMED_AREA, BOUNDING_BOX]

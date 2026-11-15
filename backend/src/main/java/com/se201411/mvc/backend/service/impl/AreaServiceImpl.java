@@ -2,6 +2,7 @@ package com.se201411.mvc.backend.service.impl;
 
 import com.se201411.mvc.backend.domain.area.AreaDefinition;
 import com.se201411.mvc.backend.domain.area.AreaType;
+import com.se201411.mvc.backend.domain.area.SocioeconomicRegion;
 import com.se201411.mvc.backend.exception.ApiException;
 import com.se201411.mvc.backend.repository.AreaRepository;
 import com.se201411.mvc.backend.service.AreaService;
@@ -56,6 +57,12 @@ public final class AreaServiceImpl implements AreaService {
 					.map(AreaCatalogEntry::cell)
 					.forEach(result::add);
 		}
+		if (filter == null || filter == AreaType.SOCIOECONOMIC_REGION) {
+			for (SocioeconomicRegion region : SocioeconomicRegion.values()) {
+				areaRepository.findArea(AreaType.SOCIOECONOMIC_REGION, region.id())
+						.ifPresent(area -> result.add(AreaCatalogEntry.area(area, region.displayName())));
+			}
+		}
 		return List.copyOf(result);
 	}
 
@@ -63,16 +70,12 @@ public final class AreaServiceImpl implements AreaService {
 		if (areaTypeValue == null) {
 			return null;
 		}
-		if (areaTypeValue.isBlank()) {
-			throw ApiException.invalidParameter(
-					"type must be one of national, diagnostic_region or cell");
-		}
 		try {
 			return AreaType.fromApiValue(areaTypeValue);
 		}
 		catch (IllegalArgumentException exception) {
 			throw ApiException.invalidParameter(
-					"type must be one of national, diagnostic_region or cell");
+					"type must be one of national, diagnostic_region, socioeconomic_region or cell");
 		}
 	}
 }

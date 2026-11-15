@@ -3,17 +3,22 @@ package com.se201411.mvc.backend.repository.file;
 import com.se201411.mvc.backend.domain.area.AreaDefinition;
 import com.se201411.mvc.backend.domain.area.AreaType;
 import com.se201411.mvc.backend.domain.area.CellArea;
+import com.se201411.mvc.backend.domain.area.SocioeconomicRegion;
 import com.se201411.mvc.backend.domain.dataset.DatasetManifest;
 import com.se201411.mvc.backend.exception.DatasetUnavailableException;
 import com.se201411.mvc.backend.repository.AreaRepository;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * File-backed area index built from the manifest's cell order source ({@code tables/cells_025.csv}).
@@ -23,13 +28,17 @@ public final class FileAreaRepository implements AreaRepository {
 
 	private static final List<String> REQUIRED_COLUMNS =
 			List.of("cell", "cy", "cx", "lat", "lon", "lat_s", "lon_w", "region");
+	private static final String REGION_MEMBERSHIP = "/socioeconomic-regions-v1.csv";
+	private static final String REGION_GRID_SOURCE_SHA256 =
+			"f10c77b7defa784f5204e6489744b8f354fa92380f5c62acb994b1d31d953420";
 
 	private final List<CellArea> cells;
 	private final Map<String, CellArea> cellsById;
 	private final AreaDefinition national;
 	private final Map<String, AreaDefinition> regions;
+	private final Map<String, AreaDefinition> socioeconomicRegions;
 
-	private FileAreaRepository(List<CellArea> cells) {
+	private FileAreaRepository(List<CellArea> cells, Map<String, String> socioeconomicMembership) {
 		Map<String, CellArea> byId = new LinkedHashMap<>();
 		Map<String, List<String>> regionCells = new LinkedHashMap<>();
 		List<String> allIds = new ArrayList<>(cells.size());
@@ -46,6 +55,18 @@ public final class FileAreaRepository implements AreaRepository {
 		this.cellsById = byId;
 		this.national = new AreaDefinition(AreaType.NATIONAL, AreaDefinition.NATIONAL_ID, allIds);
 		this.regions = regionAreas;
+		this.socioeconomicRegions = new LinkedHashMap<>();
+		if (!socioeconomicMembership.isEmpty()) {
+			for (SocioeconomicRegion region : SocioeconomicRegion.values()) {
+				List<String> ids = allIds.stream()
+						.filter(id -> region.id().equals(socioeconomicMembership.get(id)))
+						.toList();
+				if (ids.isEmpty()) {
+					throw new DatasetUnavailableException("Region has no member cells: " + region.id());
+				}
+				socioeconomicRegions.put(region.id(), new AreaDefinition(AreaType.SOCIOECONOMIC_REGION, region.id(), ids));
+			}
+		}
 	}
 
 	public static FileAreaRepository open(Path datasetRoot, DatasetManifest manifest) {
@@ -81,7 +102,34 @@ public final class FileAreaRepository implements AreaRepository {
 		if (!ids.equals(manifest.grid().cellIds())) {
 			throw new DatasetUnavailableException("Cell source order does not match manifest grid.cellIds");
 		}
-		return new FileAreaRepository(cells);
+		boolean matchingGrid = manifest.sources().stream().anyMatch(source -> cellSource.equals(source.path())
+				&& REGION_GRID_SOURCE_SHA256.equalsIgnoreCase(source.sha256()));
+		return new FileAreaRepository(cells, matchingGrid ? readSocioeconomicMembership(Set.copyOf(ids)) : Map.of());
+	}
+
+	private static Map<String, String> readSocioeconomicMembership(Set<String> cellIds) {
+		Map<String, String> membership = new LinkedHashMap<>();
+		List<String> regionIds = Arrays.stream(SocioeconomicRegion.values()).map(SocioeconomicRegion::id).toList();
+		try (InputStream input = FileAreaRepository.class.getResourceAsStream(REGION_MEMBERSHIP)) {
+			if (input == null) {
+				throw new DatasetUnavailableException("Missing resource " + REGION_MEMBERSHIP);
+			}
+			SimpleCsvTable table = SimpleCsvTable.parse(input.readAllBytes(), REGION_MEMBERSHIP, List.of("cellId", "regionId"));
+			for (String[] row : table.rows()) {
+				String cellId = table.text(row, "cellId");
+				String regionId = table.text(row, "regionId");
+				if (!cellIds.contains(cellId) || !regionIds.contains(regionId) || membership.putIfAbsent(cellId, regionId) != null) {
+					throw new DatasetUnavailableException("Invalid region membership for cell " + cellId);
+				}
+			}
+		}
+		catch (IOException exception) {
+			throw new DatasetUnavailableException("Cannot read resource " + REGION_MEMBERSHIP, exception);
+		}
+		if (membership.isEmpty()) {
+			throw new DatasetUnavailableException("Empty resource " + REGION_MEMBERSHIP);
+		}
+		return membership;
 	}
 
 	@Override
@@ -107,6 +155,7 @@ public final class FileAreaRepository implements AreaRepository {
 		return switch (type) {
 			case NATIONAL -> AreaDefinition.NATIONAL_ID.equals(areaId) ? Optional.of(national) : Optional.empty();
 			case DIAGNOSTIC_REGION -> Optional.ofNullable(regions.get(areaId));
+			case SOCIOECONOMIC_REGION -> Optional.ofNullable(socioeconomicRegions.get(areaId));
 			case CELL -> cellsById.containsKey(areaId)
 					? Optional.of(new AreaDefinition(AreaType.CELL, areaId, List.of(areaId)))
 					: Optional.empty();
@@ -114,9 +163,10 @@ public final class FileAreaRepository implements AreaRepository {
 	}
 
 	List<AreaDefinition> precomputedAreas() {
-		List<AreaDefinition> areas = new ArrayList<>(regions.size() + 1);
+		List<AreaDefinition> areas = new ArrayList<>(regions.size() + socioeconomicRegions.size() + 1);
 		areas.add(national);
 		areas.addAll(regions.values());
+		areas.addAll(socioeconomicRegions.values());
 		return areas;
 	}
 }

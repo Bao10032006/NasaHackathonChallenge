@@ -63,7 +63,7 @@ public final class SpatialSelectionServiceImpl implements SpatialSelectionServic
 		}
 		catch (IllegalArgumentException exception) {
 			throw ApiException.invalidParameter(
-					"areaType must be one of national, diagnostic_region or cell");
+					"areaType must be one of national, diagnostic_region, socioeconomic_region or cell");
 		}
 		AreaDefinition area = areaRepository.findArea(areaType, areaId)
 				.orElseThrow(() -> areaType == AreaType.CELL

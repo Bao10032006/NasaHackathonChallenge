@@ -41,7 +41,7 @@ Daily origin/code giữ nguyên Artifact Spec 1.0.0: Terra/Aqua model-redistribu
 
 ## 3.1. Named area
 
-`areaType=national|diagnostic_region|cell` cùng `areaId` hợp lệ.
+`areaType=national|diagnostic_region|cell` cùng `areaId` hợp lệ. Bản bổ sung v0.4.1 hỗ trợ thêm `areaType=socioeconomic_region` với các ID từ danh mục `GET /areas?type=socioeconomic_region`. Tập ô của các vùng chẩn đoán hiện có được giữ theo snapshot.
 
 ## 3.2. Bounding box
 
@@ -172,6 +172,22 @@ Giữ các field v0.3 và bổ sung capabilities. Response bắt buộc có:
 ## 6.2. `GET /areas`
 
 Giữ v0.3. Cell trả `id`, center, bounds, region. National và 5 diagnostic regions có `name` tiếng Việt ổn định: `Toàn quốc`, `Đồng bằng sông Cửu Long`, `Đồng bằng sông Hồng`, `Khu vực khác`, `Tây Bắc`, `Tây Nguyên`. Endpoint này không resolve bbox; analytical endpoint tự trả `selection`.
+
+Với lưới của snapshot hiện tại, `type=socioeconomic_region` trả bảy vùng phân tích theo thứ tự dưới đây. Địa giới cố định từ dữ liệu cấp tỉnh trước năm 2025 và cùng một tập ô được dùng qua mọi kỳ.
+
+| ID | Vùng | Số ô |
+|---|---|---:|
+| `TrungDuMienNuiPhiaBac` | Trung du và miền núi phía Bắc | 161 |
+| `DongBangSongHong` | Đồng bằng sông Hồng | 41 |
+| `BacTrungBo` | Bắc Trung Bộ | 103 |
+| `DuyenHaiNamTrungBo` | Duyên hải Nam Trung Bộ | 82 |
+| `TayNguyenKTXH` | Tây Nguyên | 84 |
+| `DongNamBo` | Đông Nam Bộ | 40 |
+| `DongBangSongCuuLong` | Đồng bằng sông Cửu Long | 72 |
+
+Nguồn hình học là [Viet Nam COD-AB của Government of Viet Nam, phát hành qua OCHA HDX](https://data.humdata.org/dataset/cod-ab-vnm), bộ 63 tỉnh/thành hiệu lực 03/01/2020, giấy phép CC BY-IGO. [Bản lưu shapefile FieldMaps](https://data.fieldmaps.io/cod/originals/vnm.shp.zip) được đọc bởi [script tạo bảng](../tools/data/build_socioeconomic_regions.py). Nhóm tỉnh theo [Nghị quyết 138/NQ-CP](https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-138-nq-cp-quy-hoach-tong-the-quoc-gia-thoi-ky-2021-2030-tam-nhin-den-nam-2050-119221027170949219.htm), với Bắc Trung Bộ và Duyên hải Nam Trung Bộ là hai lựa chọn.
+
+Ưu tiên vùng chứa tâm ô. Với tâm trên biên hoặc ở ngoài ranh giới, chọn vùng có phần giao lớn nhất với ô trong lưới 0,25°. Bốn ô không giao với bộ hình học (`54_429`, `58_429`, `78_415`, `82_413`) vẫn được tính ở Toàn quốc và có thể được chọn qua bbox. Danh mục kinh tế - xã hội trả danh sách rỗng với lưới chưa có bảng gán tương ứng.
 
 ## 6.3. `GET /calendar`
 

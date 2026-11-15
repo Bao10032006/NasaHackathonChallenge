@@ -10,6 +10,8 @@
 
 **API/Product baseline đã chốt:** v0.4
 
+**Bổ sung v0.4.1:** Khám phá sử dụng bảy vùng kinh tế - xã hội từ ranh giới cấp tỉnh trước sắp xếp năm 2025. Xem [API & Data Contract](mvp_bussinessRule/HoaLich_04_API_Data_Contract_v0.4.md#62-get-areas) để biết mã vùng và cách gán ô.
+
 **Backend:** Java 21, Spring Boot 4.1.2, Spring MVC
 
 **Dataset snapshot:** `hoalich-data-v1-2026-11-13`
@@ -20,7 +22,7 @@ Hỏa Lịch là ứng dụng web trực quan hóa và phân tích lịch sử h
 
 Luồng sản phẩm mục tiêu:
 
-1. Chọn toàn quốc, một vùng chẩn đoán, một cell hoặc khoanh bounding box.
+1. Chọn toàn quốc, một trong bảy vùng kinh tế - xã hội hoặc khoanh vùng trên bản đồ.
 2. Xem bản đồ theo năm, tháng, pentad hoặc ngày.
 3. Xem chuỗi 12 tháng, thẻ tóm tắt và lịch từng ngày.
 4. Bấm một ngày để đồng bộ bản đồ và dữ liệu nguồn.
