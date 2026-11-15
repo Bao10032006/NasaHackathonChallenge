@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ActivityCalendars } from './ActivityCalendars'
 import { DataNotes, GridCellDetails } from './DataPanels'
 import { ExploreFilters } from './ExploreFilters'
+import { CalendarStrip, FireCalendar } from './FireCalendar'
 import type { CompareSelection } from '../compare/CompareScreen'
 import type { Filters } from './ExploreFilters'
 import { FireGridMap, nationalCamera } from './FireGridMap'
@@ -40,8 +41,29 @@ function initialFilters(metadata: Metadata): Filters {
 
 type OpenCompare = (selection: CompareSelection) => void
 
+/** Dataset facts read from /metadata, shown as an instrument read-out under the title. */
+function Telemetry({ metadata }: { metadata: Metadata }) {
+  const { t, number } = useI18n()
+  const [now, setNow] = useState(() => new Date())
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+  return (
+    <dl className="telemetry" aria-label={t('datasetFacts')}>
+      <div><dt>{t('source')}</dt><dd>NASA FIRMS</dd></div>
+      <div><dt>{t('sensors')}</dt><dd>MODIS · VIIRS</dd></div>
+      <div><dt>{t('satellites')}</dt><dd>Terra · Aqua · S-NPP · NOAA-20</dd></div>
+      <div><dt>{t('record')}</dt><dd>{metadata.dateRange.start} → {metadata.dateRange.end}</dd></div>
+      <div><dt>{t('gridCell')}</dt><dd>{number(0.25)}°</dd></div>
+      <div><dt>{t('dataset')}</dt><dd>{metadata.meta.dataVersion}</dd></div>
+      <div className="telemetry-clock"><dt>UTC</dt><dd>{now.toISOString().slice(11, 19)}</dd></div>
+    </dl>
+  )
+}
+
 function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; areas: Area[]; onCompare: OpenCompare }) {
-  const { t, dateLabel, monthLabel } = useI18n()
+  const { t, dateLabel, monthLabel, areaLabel } = useI18n()
   const [filters, setFilters] = useState(() => initialFilters(metadata))
   const [drawing, setDrawing] = useState(false)
   const [cell, setCell] = useState<string | null>(null)
@@ -56,6 +78,7 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
   }
   const grid = useResource<Grid>(endpoint('/map/cells', { ...spatial, ...time }))
   const calendar = useResource<Calendar>(regional ? endpoint('/calendar', { ...spatial, year, granularity: 'month', includeBaseline: true }) : null)
+  const pentads = useResource<Calendar>(endpoint('/calendar', { ...spatial, year, granularity: 'pentad', includeBaseline: true }))
   const days = useResource<Days>(hasMonth ? endpoint('/calendar/days', { ...spatial, year, month }) : null)
   const daily = useResource<Daily>(regional && mode === 'day' ? endpoint('/daily', { ...spatial, date }) : null)
   const trends = useResource<Trends>(regional ? endpoint('/trends', {
@@ -126,6 +149,8 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
 
   return (
     <>
+      <CalendarStrip year={year} label={areaLabel('areaId' in spatial ? areas.find((item) => item.id === spatial.areaId) : undefined)}
+        active={mode === 'pentad' ? pentad : undefined} calendar={pentads} onSelect={(selected) => change({ pentad: selected, mode: 'pentad' })} />
       <ExploreFilters filters={filters} regional={regional} metadata={metadata} areas={areas} selection={grid.data?.selection} drawing={drawing}
         onChange={change} onDay={chooseDay} onDraw={() => setDrawing(!drawing)} onReset={reset} />
       <div className="csv-export-bar">
@@ -151,7 +176,11 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
             period={mode === 'year' ? `${t('year')} ${year}` : period}
             markerFilter={{ thresholds: markerThresholds[mode], showAll: showAllMarkers, onToggle: () => setShowAllMarkers((showAll) => !showAll) }}
             requested={'west' in spatial ? spatial : undefined} drawing={drawing}
-            activeCell={cell} onDraw={draw} onCell={setCell} />
+            regionLayer={regional ? undefined : {
+              areas: areas.filter((item) => item.type === 'socioeconomic_region'), time,
+              onSelect: (area) => change({ spatial: { areaId: area.id, areaType: area.type } }),
+            }}
+            activeCell={cell} onDraw={draw} onDrawToggle={() => setDrawing((on) => !on)} onCell={setCell} />
           <ResourceNotice resource={grid} />
           {metadata.warningCatalog.filter(({ code }) => warnings.has(code)).map(({ code, message }) => (
             <DatasetWarning key={code} code={code} message={message} />
@@ -166,6 +195,9 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
             calendar={calendar} days={days} onMonth={(selected) => change({ month: selected, mode: 'month' })} onDay={chooseDay} />}
         </div>}
       </div>
+
+      {!noCells && <FireCalendar year={year} active={mode === 'pentad' ? pentad : undefined} calendar={pentads}
+        onSelect={(selected) => change({ pentad: selected, mode: 'pentad' })} />}
 
       {showRegion && <HistoricalAnalysis month={month} calendar={calendar} trends={trends} seasonality={seasonality} />}
     </>
@@ -198,11 +230,13 @@ export default function ExploreScreen({ onCompare }: { onCompare: OpenCompare })
           <h1>{t('exploreTitle')}</h1>
           <p>{t('daytimeMetric')}</p>
         </header>
+        {metadata.data && <Telemetry metadata={metadata.data} />}
         <ResourceNotice resource={metadata} />
         <ResourceNotice resource={regions} />
         {metadata.data && <ExploreWorkspace metadata={metadata.data} areas={[nationalArea, ...(regions.data?.items ?? [])]} onCompare={onCompare} />}
         <DataNotes metadata={metadata.data} />
       </main>
+      <footer className="colophon">{t('colophon')}</footer>
     </>
   )
 }

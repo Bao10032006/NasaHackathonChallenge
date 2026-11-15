@@ -1,5 +1,5 @@
 import type { Origin, SourceContribution, Summary } from './api'
-import { CoverageNotice, sources } from './display'
+import { CountUp, CoverageNotice, sources } from './display'
 import { useI18n } from '../i18n'
 
 export function SourceList({ items }: { items: SourceContribution[] }) {
@@ -26,7 +26,9 @@ export function PeriodSummary({ period, summary, peak, origin, contributions, so
         <div className="summary-metrics">
           <div className="metric">
             <span>{t('periodTotal')}</span>
-            <strong className="summary-number">{valueLabel(summary.totalValue, summary.valueStatus)}</strong>
+            <strong className="summary-number">{summary.totalValue != null && summary.valueStatus === 'AVAILABLE'
+              ? <CountUp value={summary.totalValue} format={(value) => valueLabel(value, 'AVAILABLE')} />
+              : valueLabel(summary.totalValue, summary.valueStatus)}</strong>
             <small>{t('metric')}</small>
           </div>
           {peak && <div className="metric peak">
