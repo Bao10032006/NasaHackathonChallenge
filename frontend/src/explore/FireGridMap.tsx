@@ -27,6 +27,7 @@ const radii = [1.7, 2.1, 2.5, 2.9]
 const halos = [0, 0, 0.26, 0.4]
 export type ColorDomain = { min: number; max: number }
 export type MarkerThresholds = { national: number; regional: number; close: number }
+const softLimits = { national: 140, regional: 75 }
 
 export function MapColorScale({ domain }: { domain?: ColorDomain }) {
   const { t, detectionCount } = useI18n()
@@ -113,17 +114,28 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   const allZero = grid?.summary.valueStatus === 'AVAILABLE' && grid.cells.length > 0 &&
     grid.cells.every((cell) => cell.valueStatus === 'AVAILABLE' && cell.value === 0)
   const zoomLevel = camera.zoom >= 3 ? 'close' : focus || camera.zoom >= 1.5 ? 'regional' : 'national'
-  const threshold = markerFilter?.thresholds[zoomLevel]
-  const markers = (grid?.cells ?? []).map((cell) => {
+  const baseThreshold = markerFilter?.thresholds[zoomLevel]
+  const softLimit = zoomLevel === 'close' ? undefined : softLimits[zoomLevel]
+  const cells = (grid?.cells ?? []).map((cell) => {
     const cx = x(cell.center.lon)
     const cy = y(cell.center.lat)
     const inView = cx >= left && cx <= left + viewWidth && cy >= top && cy <= top + viewHeight
-    const value = cell.valueStatus === 'AVAILABLE' ? cell.value : null
-    const hasActivity = value != null && value > 0
-    const showMarker = hasActivity && (threshold === undefined || (inView && (markerFilter?.showAll || value >= threshold)))
-    return { cell, cx, cy, inView, hasActivity, showMarker }
+    const activity = cell.valueStatus === 'AVAILABLE' ? cell.value ?? 0 : 0
+    return { cell, cx, cy, inView, activity }
   })
-  const visibleActivity = markers.filter(({ inView, hasActivity }) => inView && hasActivity).length
+  const visibleValues = cells.filter(({ inView, activity }) => inView && activity > 0).map(({ activity }) => activity)
+  let threshold = baseThreshold
+  if (threshold !== undefined && !markerFilter?.showAll && softLimit && visibleValues.length > softLimit) {
+    // Keep every cell at the cutoff so ties are rendered consistently.
+    const cutoff = visibleValues.sort((a, b) => b - a)[softLimit - 1]
+    threshold = Math.max(threshold, cutoff)
+  }
+  const markers = cells.map((entry) => ({
+    ...entry,
+    showMarker: entry.activity > 0 && (threshold === undefined
+      || (entry.inView && (markerFilter?.showAll || entry.activity >= threshold))),
+  }))
+  const visibleActivity = visibleValues.length
   const markerCount = markers.filter(({ showMarker }) => showMarker).length
 
   function location(event: PointerEvent<SVGSVGElement>) {
@@ -258,7 +270,10 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
             <div className="map-legend-row">
               <p>
                 {t('markerCount', { count: `${number(markerCount)}/${number(visibleActivity)}` })}
-                {' · '}{markerFilter.showAll ? t('positiveMarkers') : t('threshold', { value: number(threshold) })}
+                {' · '}{markerFilter.showAll ? t('positiveMarkers') : t(
+                  threshold === Number(threshold.toFixed(2)) ? 'threshold' : 'approximateThreshold',
+                  { value: number(threshold) },
+                )}
               </p>
               <button className="map-marker-toggle quiet" type="button" onClick={markerFilter.onToggle}>
                 {markerFilter.showAll ? t('restoreThreshold') : t('showAllMarkers')}
