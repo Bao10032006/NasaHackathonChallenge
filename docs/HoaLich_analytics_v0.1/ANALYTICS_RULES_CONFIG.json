@@ -1,0 +1,920 @@
+{
+  "configVersion": "analytics_rules_v0.2-draft",
+  "createdDate": "2026-11-15",
+  "scope": "Cấu hình đề xuất cho tài liệu; chưa được nạp vào backend/frontend.",
+  "documents": {
+    "rules": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md",
+    "contract": "DATA_CONTRACT_ANALYTICS.md",
+    "plan": "PRODUCT_PLAN_THEO_DOI_CHAY.md",
+    "eventRules": "../QUY_TAC_NHAN_DIEN_SU_KIEN_CHAY.md"
+  },
+  "statusLegend": {
+    "from_contract": "Đã có trong Contract/Decision Log v0.4.",
+    "mathematical": "Hằng số hoặc hệ quả toán học.",
+    "literature": "Lấy từ tài liệu khoa học đã dẫn, đúng cảm biến và đại lượng; không tái hiện toàn bộ thuật toán gốc.",
+    "project_choice": "Lựa chọn vận hành của dự án; chưa kiểm định là tối ưu.",
+    "derived_from_data": "Đo từ dữ liệu hiện có (scripts/); mô tả, chưa kiểm định độc lập.",
+    "proposed_default": "Đề xuất mặc định để sản phẩm chạy; cần đội chốt.",
+    "pending_decision": "Chưa có giá trị; chờ quyết định (PRODUCT_PLAN §6).",
+    "uncalibrated": "Chưa có căn cứ; để null, không thay bằng số giả.",
+    "requires_confirmation": "Có giá trị nhưng cần chủ pipeline xác nhận.",
+    "engineering_to_measure": "Giới hạn kỹ thuật; đặt sau khi đo."
+  },
+  "versions": {
+    "pipelineVersion": {
+      "value": "1.0",
+      "status": "from_contract",
+      "note": "Bản đang chạy của backend MVP; không lấy 1.3/1.4/1.6 làm bản đang chạy."
+    },
+    "dataVersion": {
+      "value": "hoalich-data-v1-2026-11-13",
+      "status": "from_contract"
+    },
+    "modelVersion": {
+      "value": "lai-clim-s2-k60-kappa3",
+      "status": "from_contract"
+    },
+    "pointsVersion": {
+      "value": "hoalich-points-v1.6-2026-11-13",
+      "status": "derived_from_data",
+      "note": "Mã pipeline 1.6 không có trong workspace."
+    },
+    "filterVersion": {
+      "value": "event-filter-v1",
+      "status": "project_choice"
+    },
+    "eventRuleVersion": {
+      "value": "experimental_v1",
+      "status": "project_choice"
+    },
+    "baselineVersion": {
+      "value": "bl-v0.2",
+      "status": "proposed_default"
+    },
+    "anomalyMethodVersion": {
+      "value": "rank_a10_v0",
+      "status": "proposed_default",
+      "decision": "Q4"
+    }
+  },
+  "time": {
+    "storageTimeZone": {
+      "value": "UTC",
+      "status": "from_contract"
+    },
+    "displayTimeZone": {
+      "value": "Asia/Ho_Chi_Minh",
+      "utcOffsetHours": 7,
+      "dst": false,
+      "status": "project_choice"
+    },
+    "localDateRule": {
+      "value": "date(acq_date + zero_padded(acq_time, 4) [UTC] + 7h)",
+      "status": "project_choice",
+      "evidence": "Ban ngày: ngày UTC = ngày địa phương ở 100% detection (giờ UTC 01-09). Ban đêm: 89.5% khác ngày (giờ UTC 12-21)."
+    },
+    "pentadCount": {
+      "value": 73,
+      "status": "from_contract",
+      "leapYearNote": "Pentad 73 có 6 ngày ở năm nhuận; so bằng trung bình mỗi ngày."
+    },
+    "leapDayMapping": {
+      "value": "FEB29_TO_FEB28_IN_NON_LEAP_YEARS",
+      "status": "project_choice"
+    },
+    "partialPeriodPolicy": {
+      "value": "SAME_DAY_SPAN_ONLY",
+      "status": "project_choice"
+    },
+    "seasons": {
+      "method": "SEASON_YEAR_STARTS_MONTH_AFTER_CLIMATOLOGICAL_MINIMUM",
+      "startMonthByArea": {
+        "ToanQuoc": 11,
+        "TayNguyen": 12,
+        "TayBac": 9,
+        "DBSCL": 11,
+        "DBSH": 9,
+        "Khac": 11
+      },
+      "basis": "Tháng có trung vị snpp_eq thấp nhất 2003-2025 của từng vùng (analytics_v02.py)",
+      "status": "derived_from_data",
+      "decision": "Q10",
+      "note": "Giả định dữ liệu, không phải mùa khí hậu; cho phép cấu hình theo vùng."
+    }
+  },
+  "spatial": {
+    "cellSelectionRule": {
+      "value": "CENTER_INCLUSIVE",
+      "status": "from_contract"
+    },
+    "pointRadiusAndPolygon": {
+      "branchA": "EXACT_BY_PIXEL_CENTER",
+      "branchB": "APPROXIMATE_CELLS_WITH_CENTER_INSIDE",
+      "areaFractionScaling": false,
+      "nearBoundaryFlag": "distance_to_edge < max(scan, track)/2",
+      "status": "project_choice"
+    },
+    "adminUnits": {
+      "value": null,
+      "status": "pending_decision",
+      "note": "Cần ranh giới chính thức; vùng chẩn đoán không phải hành chính."
+    },
+    "cellAreaKm2Range": {
+      "min": 709.3,
+      "max": 764.0,
+      "status": "mathematical"
+    },
+    "areaNormalizationDefault": {
+      "value": "PER_1000_KM2",
+      "status": "pending_decision",
+      "decision": "Q8"
+    }
+  },
+  "branches": {
+    "A_detections": {
+      "type": [
+        0
+      ],
+      "modisConfidenceMin": 30,
+      "viirsConfidence": [
+        "n",
+        "h"
+      ],
+      "frpMinMw": 5,
+      "dayNight": [
+        "D",
+        "N"
+      ],
+      "staticMask": "pending_decision"
+    },
+    "B_snpp_eq": {
+      "type": "static_mask_0.01deg_from_type_2_3",
+      "confidence": "all_including_low",
+      "frpMinMw": null,
+      "dayNight": [
+        "D"
+      ]
+    },
+    "mixingAllowed": false,
+    "status": "from_contract",
+    "evidence": "Tây Bắc 05/03/2024: 1484 detection lõi B so với 889 đạt bộ lọc A; 14,703 detection đạt A nằm trong mặt nạ tĩnh của B."
+  },
+  "baselines": {
+    "modes": {
+      "value": [
+        "RETROSPECTIVE",
+        "OPERATIONAL"
+      ],
+      "defaultForAttention": "OPERATIONAL",
+      "status": "proposed_default",
+      "decision": "Q11"
+    },
+    "minYearsForMedian": {
+      "value": 5,
+      "status": "from_contract",
+      "source": "D02/D24"
+    },
+    "excludeFromReference": {
+      "value": [
+        "MISSING",
+        "PARTIAL",
+        "SOURCE_CODE_1"
+      ],
+      "keepZeros": true,
+      "status": "from_contract"
+    },
+    "levels": {
+      "BL-DAY7": {
+        "halfWidthDays": 3,
+        "firstYear": 2012,
+        "sourceCodesAllowed": [
+          3,
+          4
+        ],
+        "status": "project_choice",
+        "reason": "Giá trị ngày mã 1/2 là phân bổ từ tháng; 97.2% ô-ngày mã 2 có giá trị > 0 nhưng 0 detection đầu vào.",
+        "minValidObservations": "7/7 ngày AVAILABLE mã 3 hoặc 4 ở kỳ đích và mỗi năm tham chiếu"
+      },
+      "BL-PENTAD": {
+        "window": "2003-2025",
+        "status": "from_contract",
+        "minValidObservations": "5/5 ngày (6/6 pentad 73 năm nhuận, so trung bình ngày)"
+      },
+      "BL-MONTH": {
+        "windows": {
+          "FULL": [
+            2003,
+            2025
+          ],
+          "RECENT": [
+            2017,
+            2025
+          ]
+        },
+        "status": "proposed_default",
+        "decision": "Q3",
+        "evidence": "Pettitt năm 2003-2025: toàn quốc gãy từ 2017 (p~0.001), Tây Nguyên 2017 (p~0.001), Tây Bắc 2016 (p~0.002), Khác 2017 (p~0.015), ĐBSH 2019 (p~0.06), ĐBSCL 2012 (p~0.08).",
+        "minValidObservations": "Đủ mọi ngày của tháng (coverage.partial = false)"
+      },
+      "BL-SEASON": {
+        "firstSeason": "2003-2004",
+        "status": "proposed_default",
+        "minValidObservations": "Đủ mọi ngày của năm-mùa"
+      },
+      "BL-YEAR": {
+        "window": "2003-2025",
+        "completeYearsOnly": true,
+        "status": "from_contract",
+        "minValidObservations": "Đủ 365/366 ngày"
+      },
+      "BL-PARTIAL": {
+        "minValidObservations": "Đủ mọi ngày của cùng khoảng ngày",
+        "status": "project_choice"
+      },
+      "BL-A": {
+        "scope": "Chỉ số nhánh A, một vệ tinh",
+        "minValidObservations": "Không có ngày OUTAGE của vệ tinh trong dải vĩ độ của vùng",
+        "status": "project_choice",
+        "note": "Điều kiện cần, không phải đủ (không có dữ liệu mây)."
+      }
+    }
+  },
+  "anomaly": {
+    "method": {
+      "value": "RANK_EXCEEDANCE",
+      "rule": "j = floor(alpha*(n+1)); HIGH if X > j-th largest; LOW if X < j-th smallest; INSUFFICIENT_BASELINE if j < 1",
+      "status": "proposed_default",
+      "decision": "Q4",
+      "evidence": "Mô phỏng: p90 nội suy gắn HIGH 23.3% (n=5) / 13.4% (n=22) năm bình thường; thứ hạng: 10.1% (n=9) / 8.6% (n=22). Dữ liệu thật với p90: 13.5% HIGH."
+    },
+    "alpha": {
+      "value": 0.1,
+      "status": "proposed_default",
+      "note": "Chưa hiệu chỉnh theo người dùng."
+    },
+    "minYearsForLabel": {
+      "value": 9,
+      "status": "mathematical",
+      "formula": "ceil(1/alpha) - 1"
+    },
+    "granularities": {
+      "allowed": [
+        "pentad",
+        "month",
+        "season",
+        "year",
+        "ytd",
+        "day7"
+      ],
+      "disallowed": [
+        "day"
+      ],
+      "status": "project_choice"
+    },
+    "classificationScope": {
+      "value": [
+        "national",
+        "diagnostic_region"
+      ],
+      "status": "proposed_default"
+    },
+    "minActivityMedian": {
+      "value": null,
+      "status": "uncalibrated",
+      "evidence": "Cấp ô: median = 0 ở 24.0%, p90 < 1 ở 31.6%; 301/587 ô có median năm < 50. Ví dụ ĐBSCL 04/10/2024: tổng 7 ngày 11.0 vượt ngưỡng 9.0 với median 1.5.",
+      "candidates": [
+        {
+          "value": 200,
+          "unit": "detections/year",
+          "source": "pipeline 1.3",
+          "status": "precedent_not_transferred"
+        }
+      ],
+      "candidate": {
+        "value": 5,
+        "unit": "snpp_eq per cell-month",
+        "status": "derived_from_data",
+        "evidence": "Tách hiệu chỉnh 2012-2016: median (0,1] HIGH/LOW 10.0/21.2%, (1,5] 15.8/18.5%, (5,20] 8.8/10.1% so với danh nghĩa 8.5%. Đánh giá 2017-2025 lệch do điểm gãy 2017 (median >100: LOW 21.8%).",
+        "script": "scripts/calib_split.py",
+        "adopted": false,
+        "reason": "Cần xử lý cửa sổ tham chiếu (Q3) rồi chạy lại."
+      }
+    },
+    "intervalGate": {
+      "enabled": true,
+      "sourceCodes": [
+        2
+      ],
+      "formula": "lo = X*q05, hi = X*q95 (uncertainty_table)",
+      "intervalName": "khoảng 90% thực nghiệm",
+      "status": "requires_confirmation",
+      "evidence": "Pipeline 1.0, vùng-tháng giai đoạn Aqua: 74 kỳ HIGH theo p90, 15 kỳ có cận dưới vẫn vượt."
+    },
+    "robustZ": {
+      "scale": 1.4826,
+      "useForLabel": false,
+      "nullWhenMadZero": true,
+      "status": "mathematical"
+    },
+    "relativeChange": {
+      "epsilon": null,
+      "nullWhenMedianBelow": "minActivityMedian",
+      "status": "project_choice",
+      "note": "Không thêm epsilon."
+    },
+    "multipleComparisons": {
+      "cellLevelDailyAlerts": false,
+      "method": "BENJAMINI_HOCHBERG",
+      "q": null,
+      "status": "derived_from_data",
+      "evidence": "p xếp hạng nhỏ nhất = 1/(n+1) = 0.043 với n=22; BH q=0.10 trên 587 ô cần >= 255 ô cùng p nhỏ nhất."
+    },
+    "countModel": {
+      "poissonAllowed": false,
+      "negativeBinomial": "candidate_branch_A_single_satellite",
+      "status": "derived_from_data",
+      "evidence": "Phương sai/trung bình detection S-NPP/ngày tháng 3: Tây Nguyên 123.7, Tây Bắc 262.3, ĐBSCL 75.6."
+    },
+    "statisticalThresholdNote": "Ngưỡng thứ hạng/p95/p99 là quy tắc dự án; vượt p95 không có nghĩa xác suất cháy 95%."
+  },
+  "attentionLevels": {
+    "0": "TYPICAL",
+    "1": "HIGH hoặc LOW ở một cửa sổ, vận hành, cấp vùng",
+    "1prime": "POSSIBLY_HIGH/POSSIBLY_LOW",
+    "2": "HIGH hoặc LOW ở cả FULL và RECENT",
+    "3": {
+      "rule": "Mức 2 ở >= k trên m kỳ liên tiếp",
+      "k": null,
+      "m": null,
+      "status": "uncalibrated"
+    },
+    "colorPolicy": "Trung tính có chữ; không dùng đỏ báo động; chất lượng dữ liệu dùng biểu tượng riêng",
+    "status": "proposed_default"
+  },
+  "rules": [
+    {
+      "id": "EV-01",
+      "name": "Bộ lọc detection lớp sự kiện",
+      "status": "usable_now",
+      "params": "branches.A_detections",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ev-01"
+    },
+    {
+      "id": "EV-02",
+      "name": "Nhóm quan sát",
+      "status": "usable_now",
+      "params": {
+        "windowMinutes": {
+          "value": 10,
+          "status": "project_choice",
+          "sensitivity2024Events": {
+            "5": 53781,
+            "10": 52749,
+            "20": 51302
+          }
+        }
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ev-02"
+    },
+    {
+      "id": "EV-03",
+      "name": "Cụm phát hiện",
+      "status": "usable_now",
+      "params": {
+        "epsKm": {
+          "value": 1.0,
+          "status": "project_choice",
+          "sensitivity2024Events": {
+            "0.5": 64807,
+            "1.0": 52749,
+            "2.0": 43307
+          }
+        },
+        "minSamples": 1,
+        "metric": "haversine"
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ev-03"
+    },
+    {
+      "id": "EV-04",
+      "name": "Liên kết sự kiện",
+      "status": "usable_now",
+      "params": {
+        "maxGapHours": {
+          "value": 24,
+          "status": "project_choice",
+          "sensitivity2024Events": {
+            "12": 53777,
+            "24": 52749,
+            "48": 50860
+          }
+        },
+        "maxDistanceKm": 1.0,
+        "crossSatellite": true,
+        "ambiguousPolicy": "SEPARATE_EVENT_FLAGGED",
+        "longChainMaxHours": {
+          "value": null,
+          "status": "uncalibrated",
+          "evidence": "616 sự kiện > 168 giờ"
+        }
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ev-04"
+    },
+    {
+      "id": "EV-05",
+      "name": "Chuỗi sự kiện một vệ tinh",
+      "status": "usable_now",
+      "params": {
+        "satellites": [
+          "SNPP",
+          "N20",
+          "Aqua"
+        ],
+        "dayNight": "D",
+        "snppEventsPer1000SnppEq": [
+          274,
+          316
+        ],
+        "n20ToSnppRatio": {
+          "observedMedian": 1.054,
+          "range": [
+            1.021,
+            1.083
+          ],
+          "applied": false,
+          "status": "derived_from_data"
+        },
+        "aquaUsableThroughYear": 2021
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ev-05"
+    },
+    {
+      "id": "AC-01",
+      "name": "Đếm detection theo nguồn và bộ lọc",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ac-01"
+    },
+    {
+      "id": "AC-02",
+      "name": "Số ngày có phát hiện (một vệ tinh)",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ac-02"
+    },
+    {
+      "id": "AC-03",
+      "name": "Số nhóm quan sát có phát hiện",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#ac-03"
+    },
+    {
+      "id": "FRP-01",
+      "name": "FRP lớn nhất kèm thời điểm, confidence",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#frp-01"
+    },
+    {
+      "id": "FRP-02",
+      "name": "Phân vị FRP theo vệ tinh x D/N",
+      "status": "usable_now",
+      "poolSensors": false,
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#frp-02"
+    },
+    {
+      "id": "FRP-03",
+      "name": "Tổng FRP một nhóm quan sát",
+      "status": "needs_computation",
+      "params": {
+        "dedupRule": null
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#frp-03"
+    },
+    {
+      "id": "FRP-04",
+      "name": "FRE",
+      "status": "needs_data",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#frp-04"
+    },
+    {
+      "id": "FRP-05",
+      "name": "Tỉ lệ đạt FRP >= 5",
+      "status": "usable_now",
+      "observed": {
+        "Aqua": 0.981,
+        "Terra": 0.955,
+        "SNPP": 0.488,
+        "N20": 0.469,
+        "N21": 0.565
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#frp-05"
+    },
+    {
+      "id": "BT-01",
+      "name": "Phân bố brightness",
+      "status": "usable_now",
+      "params": {
+        "invalidBelowK": {
+          "value": 250,
+          "status": "derived_from_data"
+        },
+        "sensorCeilingK": {
+          "value": 367,
+          "status": "derived_from_data"
+        }
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#bt-01"
+    },
+    {
+      "id": "BT-02",
+      "name": "Cờ vượt ngưỡng brightness",
+      "status": "usable_now",
+      "params": {
+        "modisDayK": {
+          "value": 360,
+          "status": "literature"
+        },
+        "modisNightK": {
+          "value": 320,
+          "status": "literature"
+        },
+        "viirsNightK": {
+          "value": 320,
+          "status": "literature"
+        },
+        "viirsDayK": {
+          "value": null,
+          "status": "literature"
+        }
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#bt-02"
+    },
+    {
+      "id": "SPC-01",
+      "name": "Số ô có hoạt động (nhánh A, một vệ tinh)",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#spc-01"
+    },
+    {
+      "id": "SPC-02",
+      "name": "Tỉ phần top 10% ô",
+      "status": "usable_now",
+      "observed": {
+        "2005": 0.439,
+        "2015": 0.414,
+        "2024": 0.434,
+        "2025": 0.433
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#spc-02"
+    },
+    {
+      "id": "SPC-03",
+      "name": "Khoảng cách biến thiên toàn phần giữa hai kỳ",
+      "status": "usable_now",
+      "params": {
+        "threshold": null
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#spc-03"
+    },
+    {
+      "id": "AN-01",
+      "name": "Cao hơn hầu hết các năm",
+      "status": "usable_now_region_level",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-01"
+    },
+    {
+      "id": "AN-02",
+      "name": "Thấp hơn hầu hết các năm",
+      "status": "usable_now_region_level",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-02"
+    },
+    {
+      "id": "AN-03",
+      "name": "FRP cao bất thường trong nhóm tương đồng",
+      "status": "needs_computation",
+      "params": {
+        "quantile": {
+          "value": null,
+          "status": "uncalibrated"
+        },
+        "group": [
+          "satellite",
+          "dayNight",
+          "region",
+          "month"
+        ]
+      },
+      "evidence": "S-NPP D Tây Nguyên tháng 3, 2012-2023: p99 93.6 MW, p99.9 223.6 MW",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-03"
+    },
+    {
+      "id": "AN-04",
+      "name": "Khu vực hiếm có lịch sử",
+      "status": "needs_computation",
+      "params": {
+        "gridDeg": {
+          "value": null,
+          "status": "uncalibrated"
+        }
+      },
+      "evidence": "S-NPP 2024: 8.2% detection ở ô 0.01 độ mới, 0.1% ở ô 0.05 độ mới",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-04"
+    },
+    {
+      "id": "AN-05",
+      "name": "Thời điểm và độ dài mùa",
+      "status": "usable_now",
+      "params": {
+        "onsetShare": {
+          "value": 0.1,
+          "status": "project_choice"
+        },
+        "centerShare": {
+          "value": 0.5,
+          "status": "project_choice"
+        },
+        "endShare": {
+          "value": 0.9,
+          "status": "project_choice"
+        },
+        "maxWindowDays": {
+          "value": 30,
+          "status": "project_choice"
+        }
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-05"
+    },
+    {
+      "id": "AN-06",
+      "name": "Chuyển chế độ / xu hướng",
+      "status": "usable_now_retrospective",
+      "params": {
+        "changePointTest": "PETTITT",
+        "slope": "THEIL_SEN",
+        "trendTest": "MANN_KENDALL_AUTOCORR_ADJUSTED"
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-06"
+    },
+    {
+      "id": "AN-07",
+      "name": "Duy trì",
+      "status": "needs_computation",
+      "params": {
+        "k": null,
+        "m": null
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#an-07"
+    },
+    {
+      "id": "DQ-01",
+      "name": "Mất quan sát",
+      "status": "usable_now",
+      "source": "data_gaps.csv",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#dq-01"
+    },
+    {
+      "id": "DQ-02",
+      "name": "Đổi nguồn vệ tinh / phiên bản",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#dq-02"
+    },
+    {
+      "id": "DQ-03",
+      "name": "Thiếu trường",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#dq-03"
+    },
+    {
+      "id": "DQ-04",
+      "name": "Giảm detection bất thường giữa các vệ tinh",
+      "status": "needs_computation",
+      "params": {
+        "threshold": null
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#dq-04"
+    },
+    {
+      "id": "CMP-01",
+      "name": "Tháng trước",
+      "status": "usable_now",
+      "method": "rank of month-over-month ratio vs same transition history",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-01"
+    },
+    {
+      "id": "CMP-02",
+      "name": "Cùng tháng năm trước",
+      "status": "usable_now",
+      "context": {
+        "absLog2": {
+          "p50": 0.55,
+          "p75": 0.97,
+          "p90": 1.44
+        },
+        "n": 606,
+        "status": "derived_from_data",
+        "use": "bối cảnh, không phải ngưỡng ý nghĩa"
+      },
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-02"
+    },
+    {
+      "id": "CMP-03",
+      "name": "Phân bố nhiều năm",
+      "status": "usable_now",
+      "alias": "AN-01/AN-02",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-03"
+    },
+    {
+      "id": "CMP-04",
+      "name": "Kỳ đang diễn ra",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-04"
+    },
+    {
+      "id": "CMP-05",
+      "name": "Cùng mùa giữa các năm",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-05"
+    },
+    {
+      "id": "CMP-06",
+      "name": "Thời điểm, độ dài mùa",
+      "status": "usable_now",
+      "alias": "AN-05",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-06"
+    },
+    {
+      "id": "CMP-07",
+      "name": "Tập trung trong mùa",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-07"
+    },
+    {
+      "id": "CMP-08",
+      "name": "So sánh năm",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-08"
+    },
+    {
+      "id": "CMP-09",
+      "name": "So sánh khu vực",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-09"
+    },
+    {
+      "id": "CMP-10",
+      "name": "Hai bản đồ",
+      "status": "existing",
+      "source": "D20",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-10"
+    },
+    {
+      "id": "CMP-11",
+      "name": "Phân bố không gian giữa hai kỳ",
+      "status": "usable_now",
+      "contract": "QUY_TAC_PHAN_TICH_BAT_THUONG_VA_SO_SANH.md#cmp-11"
+    }
+  ],
+  "comparison": {
+    "requiredChecks": [
+      "VERSION_MATCH",
+      "CELL_SET_MATCH_OR_NORMALIZED",
+      "SAME_EFFECTIVE_DURATION_NOT_PARTIAL",
+      "BOTH_AVAILABLE",
+      "NO_SOURCE_CODE_1",
+      "SAME_BRANCH_AND_FILTER"
+    ],
+    "crossSensorEraWarning": {
+      "value": true,
+      "status": "from_contract"
+    },
+    "status": "from_contract"
+  },
+  "events": {
+    "typeMissingPolicy": {
+      "value": null,
+      "options": [
+        "EXCLUDE",
+        "INFER_FROM_STATIC_MASK"
+      ],
+      "proposedForMvp": "EXCLUDE",
+      "status": "pending_decision",
+      "decision": "Q1",
+      "evidence": "22157/22157 NRT có type = -1; suy từ mặt nạ: 10469 đạt bộ lọc."
+    },
+    "staticMaskPolicy": {
+      "value": null,
+      "proposed": "EXCLUDE_IN_MASK",
+      "status": "pending_decision",
+      "decision": "Q2",
+      "evidence": "14703 detection type = 0 đạt bộ lọc nằm trong mặt nạ tĩnh."
+    },
+    "eventDataThrough": {
+      "value": {
+        "Terra": "2026-08-30",
+        "Aqua": "2026-08-29",
+        "SNPP": "2026-07-31",
+        "N20": "2026-07-31",
+        "N21": "2026-07-31"
+      },
+      "status": "derived_from_data"
+    },
+    "nrtReplacement": {
+      "expectedLagMonths": 3,
+      "source": "https://firms.modaps.eosdis.nasa.gov/download/Readme.txt",
+      "matchToleranceRule": "same satellite + observedUtc + distance <= half pixel size",
+      "status": "literature"
+    }
+  },
+  "engineering": {
+    "detectionLayerMaxDays": {
+      "value": null,
+      "status": "engineering_to_measure"
+    },
+    "eventsMaxRangeDays": {
+      "value": null,
+      "status": "engineering_to_measure"
+    },
+    "pageLimit": {
+      "value": null,
+      "status": "engineering_to_measure"
+    },
+    "goldenValueTolerance": {
+      "value": null,
+      "status": "pending_decision"
+    }
+  },
+  "revisionNote": "2026-11-15: thêm hợp đồng đủ trường cho 40 quy tắc, số quan sát hợp lệ tối thiểu, ứng viên M_min từ tách hiệu chỉnh/đánh giá, nguồn NOAA/ESA.",
+  "sources": {
+    "nasa": [
+      "https://firms.modaps.eosdis.nasa.gov/download/Readme.txt",
+      "https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs",
+      "https://modis-fire.umd.edu/files/MODIS_C6_C6.1_Fire_User_Guide_1.0.pdf",
+      "https://www.earthdata.nasa.gov/s3fs-public/2025-06/VIIRS_C2_AF-375m_User_Guide_1.2.pdf"
+    ],
+    "noaa": [
+      "https://star.nesdis.noaa.gov/jpss/fires.php",
+      "https://star.nesdis.noaa.gov/jpss/documents/ATBD/ATBD_Iband_ActiveFires_v1.0.pdf"
+    ],
+    "esa": [
+      {
+        "url": "https://esa-worldcover.org/en",
+        "use": "U-5 lớp phủ đất; CMP-09"
+      },
+      {
+        "url": "https://climate.esa.int/en/projects/fire/",
+        "use": "U-7 đối chiếu diện tích cháy (lưới 0.25 độ trùng lưới ô)"
+      }
+    ]
+  },
+  "rawDataRanges": {
+    "Terra": {
+      "archive": [
+        "2000-11-01T03:23Z",
+        "2026-08-30T01:34Z"
+      ],
+      "nrt": [
+        "2026-09-02T01:49Z",
+        "2026-11-11T01:34Z"
+      ]
+    },
+    "Aqua": {
+      "archive": [
+        "2002-07-04T06:04Z",
+        "2026-08-29T08:04Z"
+      ],
+      "nrt": [
+        "2026-09-01T08:22Z",
+        "2026-11-13T08:39Z"
+      ]
+    },
+    "SNPP": {
+      "archive": [
+        "2012-01-20T05:42Z",
+        "2026-07-31T18:39Z"
+      ],
+      "nrt": [
+        "2026-08-01T05:48Z",
+        "2026-11-01T19:38Z"
+      ]
+    },
+    "N20": {
+      "archive": [
+        "2018-04-01T06:02Z",
+        "2026-07-31T18:58Z"
+      ],
+      "nrt": [
+        "2026-08-01T06:08Z",
+        "2026-11-13T07:01Z"
+      ]
+    },
+    "N21": {
+      "archive": [
+        "2023-03-01T05:30Z",
+        "2026-07-31T18:04Z"
+      ],
+      "nrt": [
+        "2026-08-01T06:54Z",
+        "2026-11-13T06:03Z"
+      ]
+    },
+    "status": "derived_from_data"
+  }
+}

@@ -1,0 +1,142 @@
+dt range 2000-11-01 03:23:00 2026-11-13 08:39:00
+sat x src
+ src    archive   nrt
+sat                 
+Aqua    301262  1251
+N20     484432  7200
+N21     189324  6878
+SNPP   1012704  6287
+Terra   140283   541
+type counts
+ type
+-1      22157
+ 0    2069779
+ 2      57294
+ 3        932
+Name: count, dtype: int64
+type by src
+ src   archive    nrt
+type                
+-1          0  22157
+ 0    2069779      0
+ 2      57294      0
+ 3        932      0
+conf by sat
+ conf       h      l       n
+sat                        
+Aqua   63685  14316  224512
+N20    15210  38713  437709
+N21     7299  16401  172502
+SNPP   36000  82973  900018
+Terra  21981   8456  110387
+nulls
+ lat                 0
+lon                 0
+dt                  0
+sat                 0
+dn                  0
+frp                 0
+conf                0
+conf_modis    1706825
+type                0
+src                 0
+version             0
+scan                0
+track               0
+bright              0
+bright31            0
+static              0
+lst                 0
+year                0
+month               0
+pentad              0
+cell                0
+dn x static
+ static    False  True 
+dn                    
+D       1839788  48728
+N        203717  57929
+seconds nonzero share 0.0
+modis conf_modis null 0 viirs conf null 0
+frp<=0 16 frp null 0
+frp quantiles by sat
+         0.25   0.50   0.75   0.90
+sat                              
+Aqua   10.00  16.60  31.60  60.70
+N20     2.92   4.73   7.86  13.70
+N21     3.46   5.62   9.34  15.76
+SNPP    2.98   4.89   8.26  15.16
+Terra   7.80  11.70  20.30  37.00
+share frp>=5 by sat
+ sat
+Aqua     0.980721
+N20      0.468798
+N21      0.565361
+SNPP     0.487914
+Terra    0.955135
+Name: f, dtype: float64
+PASS rule1 total 1161304
+pass by sat
+ sat
+Aqua     277129
+N20      209963
+N21       98156
+SNPP     457123
+Terra    118933
+dtype: int64
+pass by src
+ src
+archive    1161304
+nrt              0
+dtype: int64
+reason counts
+ type_missing_nrt     22157
+type_1                   0
+type_2               57294
+type_3                 932
+low_conf            160859
+frp_lt5             880394
+dtype: int64
+NRT would pass if type proxy=static mask: 10469 of NRT 22157
+NRT date range 2026-08-01 05:48:00 2026-11-13 08:39:00
+pass & static==True 14703
+pass & dn dn           D       N
+row_0                 
+False   768502  220356
+True   1120014   41290
+bright flag among passed
+ no_fixed_threshold    753369
+not_above             388045
+above                  10277
+above_temp_only         9613
+Name: count, dtype: int64
+viirs bright==367 share among passed viirs 0.07453981877628253
+bright<250 among passed 0
+year
+2000      156
+2001     2669
+2002     4443
+2003    18130
+2004    20194
+2005    21303
+2006    14682
+2007    21915
+2008    13696
+2009    15788
+2010    23591
+2011    14236
+2012    56742
+2013    54831
+2014    69715
+2015    68172
+2016    61830
+2017    31738
+2018    51669
+2019    80927
+2020    78059
+2021    62624
+2022    43359
+2023    88766
+2024    98694
+2025    72912
+2026    70463

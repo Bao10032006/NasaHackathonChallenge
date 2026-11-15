@@ -1,0 +1,17 @@
+C:\Users\Lecoo\AppData\Local\Temp\claude\dfb3eb117d7a0a96\bb41637b-8d56-49ea-9011-57c269c77693\scratchpad\analytics\contract_examples.py:28: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  print('SNPP 2024-03-05 groups', s5.groupby(g).agg(start=('dt','min'),n=('frp','size'),frp_sum=('frp','sum'),frp_max=('frp','max'),dn=('dn','first')).round(1).to_string())
+TN 03/2025 operational FULL 2003-2024 n 22 j 2 x 3034.0 lo 3880.0 hi 15252.0 median 8950.785679726163 cls LOW
+TV 2015 2016 0.115
+TV 2016 2017 0.178
+TV 2023 2024 0.159
+TV 2024 2025 0.183
+TV 2005 2024 0.339
+TV consecutive 2012-2025 p50/max 0.167 0.217
+SPC-01 cells with SNPP det {2015: 538, 2016: 541, 2017: 525, 2024: 547, 2025: 538}
+DQ-04 daily N20/SNPP (both>=100) n 730 p05/p50/p95 0.48 1.02 2.06 min/max 0.29 3.81
+SNPP 2024-03-05 groups                  start    n  frp_sum  frp_max dn
+dt                                              
+0  2024-03-05 05:19:00  311   4050.2    197.7  D
+1  2024-03-05 06:59:00  568   6173.2    152.1  D
+2  2024-03-05 17:50:00   55    101.1      7.0  N
+3  2024-03-05 19:30:00   29     94.4      9.1  N

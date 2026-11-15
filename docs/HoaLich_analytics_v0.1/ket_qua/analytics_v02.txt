@@ -1,0 +1,137 @@
+check: national 2024 total 51758.9
+
+[1] OPERATIONAL expanding prior-years baseline (2003..y-1), n>=9 -> first labelled year 2012
+ cls          HIGH   LOW  TYPICAL
+era                             
+B_2012_2016  14.7   9.7     75.6
+C_2017_2025   5.4  14.0     80.6
+D_2026       16.7  13.3     70.0
+    first year with label: 2012
+
+[2] local(UTC+7) date != UTC date share by day/night: {'D': 0.0, 'N': 0.895}
+    UTC hour range by dn: {'D': (np.int32(1), np.int32(9)), 'N': (np.int32(12), np.int32(21))}
+[3] TayNguyen March daily S-NPP detections: mean 241.6 var 29887.5 var/mean 123.7 zero-days 0.5%
+[3] TayBac March daily S-NPP detections: mean 153.3 var 40214.2 var/mean 262.3 zero-days 13.9%
+[3] DBSCL March daily S-NPP detections: mean 117.4 var 8877.8 var/mean 75.6 zero-days 1.2%
+
+[4] Expected chance flags per day at alpha=0.10 one side over 587 cells: 58.7 ; with j/(n+1)=2/23: 51.0
+
+[5] climatological minimum month -> season-year start month: {'TayNguyen': (11, 12), 'TayBac': (8, 9), 'DBSCL': (10, 11), 'DBSH': (8, 9), 'Khac': (10, 11), 'ToanQuoc': (10, 11)}
+          onset_doy       center_doy       end_doy       duration       max30_share     
+             median   std     median   std  median   std   median   std      median  std
+area                                                                                    
+DBSCL         106.0  16.1      145.0   8.3   193.0  21.0    103.0  26.5         0.5  0.1
+DBSH           68.0  20.7      170.0  30.0   287.0  24.2    214.0  34.0         0.2  0.1
+Khac           68.0  18.0      159.0  11.6   289.0  24.6    216.0  31.0         0.2  0.0
+TayBac        133.0  22.1      198.0  10.6   234.0   5.9     98.0  23.9         0.4  0.1
+TayNguyen      58.5   8.6      106.0   4.5   170.5  33.2    117.5  32.0         0.3  0.0
+ToanQuoc       82.0  10.7      140.0   7.0   215.0  28.9    132.0  34.9         0.3  0.0
+       season       onset      center         end  duration  max30_share    total
+17  2020-2021  2021-02-07  2021-03-20  2021-07-04       148        0.353  19780.8
+18  2021-2022  2022-02-04  2022-03-19  2022-08-19       197        0.338  11689.9
+19  2022-2023  2023-02-06  2023-03-22  2023-07-15       160        0.348  14733.5
+20  2023-2024  2024-01-25  2024-03-16  2024-07-15       173        0.271  17020.7
+21  2024-2025  2025-01-24  2025-03-19  2025-08-02       191        0.282  11669.9
+
+[6] Pettitt on annual totals 2003-2025 (last year of first segment, p approx):
+   TayNguyen: change after 2016 (first year of new regime 2017), K=126.0, p~0.0011
+   TayBac: change after 2015 (first year of new regime 2016), K=120.0, p~0.0022
+   DBSCL: change after 2011 (first year of new regime 2012), K=82.0, p~0.0834
+   DBSH: change after 2018 (first year of new regime 2019), K=86.0, p~0.0607
+   Khac: change after 2016 (first year of new regime 2017), K=102.0, p~0.0146
+   ToanQuoc: change after 2016 (first year of new regime 2017), K=126.0, p~0.0011
+
+[7] SCENARIOS
+S1 big day but TYPICAL:
+        area        date    day      x7   n     lo      hi    med      cls
+421  TayBac  2024-03-05  513.0  1335.0  12  103.0  4938.0  850.0  TYPICAL
+S2 small but HIGH:
+        area        date  day    x7   n   lo    hi  med   cls
+994   DBSCL  2024-10-04  0.0  11.0  12  0.0   9.0  1.5  HIGH
+1683   DBSH  2024-09-03  0.0  16.0  12  0.0  13.0  3.5  HIGH
+1737   DBSH  2024-10-27  0.0  18.0  12  0.0  11.0  6.5  HIGH
+S3 S-NPP national gaps:
+      sat    pham_vi       start         end  days  log10_p
+9   SNPP  toan_quoc  2022-07-27  2022-08-10    15    -27.2
+10  SNPP  toan_quoc  2024-05-30  2024-06-03     5     -9.3
+11  SNPP  toan_quoc  2024-07-10  2024-07-15     6    -10.9
+12  SNPP  toan_quoc  2024-07-24  2024-07-29     6    -11.3
+13  SNPP  toan_quoc  2024-11-03  2024-11-05     3     -6.2
+14  SNPP  toan_quoc  2026-03-10  2026-03-12     3     -6.3
+15  SNPP  toan_quoc  2026-04-28  2026-04-30     3     -6.3
+16  SNPP  toan_quoc  2026-07-11  2026-07-16     6    -12.2
+    2026-07-11 national value 18.8 source codes (array([4], dtype=uint8), array([587])) raw SNPP day detections that date 0
+S4 national 1-13/11/2026 = 398.5; same span 2003-2025 median 493.0 n=23 cuts 138.0/1088.0 -> TYPICAL; full Nov median 1398.0; 2025 same span 59.0
+    recent 2017-2025 same span: TYPICAL median 493.0
+S5 cell-month with zero median and X>3 in 2024: 4 cases; example ('54_430', np.int64(8)) 2024 = 5.0 baseline years >0: 9 of 22
+S6 2011: raw day non-static detections all sats 13,803; snpp_eq 66,128
+S6 2012: raw day non-static detections all sats 86,644; snpp_eq 75,241
+S6 2017: raw day non-static detections all sats 52,103; snpp_eq 41,814
+S6 2018: raw day non-static detections all sats 87,753; snpp_eq 49,752
+S6 2022: raw day non-static detections all sats 77,630; snpp_eq 34,142
+S6 2023: raw day non-static detections all sats 151,279; snpp_eq 50,231
+S7 low-confidence points with FRP>=100 MW: 1334 of 150865 ; VIIRS bright<250K count 468 median FRP 95.4
+   example {'lat': 14.23226, 'lon': 107.7728, 'dt': Timestamp('2013-03-11 05:43:00'), 'sat': 'SNPP', 'dn': 'D', 'frp': 952.91, 'conf': 'l', 'bright': 367.0, 'cell': '56_431'}
+S9 cell-days source=AQUA with value>0: 1813500 ; of which input count 0: 1762149 (97.2%) ; snpp_eq carried by those: 154762.8 of 750831.1
+   example 2010-03-15 cell 53_433 value 1.159 input count 0 source 2
+S11 region-years with detections +>20% but detection-days not up:
+                   det  days  det_chg  days_chg
+region    dt                                  
+DBSCL     2018   6337   222     24.2      -0.4
+          2026  10171   193     72.9     -16.8
+DBSH      2019    613   121     21.6      -0.8
+TayNguyen 2013  31505   288     27.2       0.0
+          2026  14632   255     25.2     -11.5
+S12 S-NPP day non-static: all vs FRP>=5 by year
+         all     f5  share_f5
+dt                          
+2012  69051  39849     0.577
+2013  71482  40603     0.568
+2014  89569  51124     0.571
+2015  88898  51172     0.576
+2016  76199  44844     0.589
+2017  41758  22858     0.547
+2018  49727  27037     0.544
+2019  60905  33444     0.549
+2020  58827  32684     0.556
+2021  48320  25919     0.536
+2022  33528  17310     0.516
+2023  50040  26749     0.535
+2024  50991  27259     0.535
+2025  37633  19278     0.512
+2026  42169  22213     0.527
+
+FRP quantiles by sat x dn (non-static)
+           0.50  0.90   0.99
+sat   dn                   
+Aqua  D   17.1  62.2  221.0
+      N   10.0  31.4   93.2
+N20   D    5.3  15.0   51.8
+      N    1.2   4.0   13.8
+N21   D    6.3  17.1   54.4
+      N    1.6   5.2   17.0
+SNPP  D    5.5  16.7   64.7
+      N    1.2   3.7   12.9
+Terra D   12.5  40.0  127.6
+      N   10.0  30.9  101.2
+brightness quantiles
+            0.05   0.50   0.95
+sat   dn                     
+Aqua  D   308.7  321.3  347.5
+      N   300.8  306.1  326.7
+N20   D   329.1  336.8  355.0
+      N   298.5  307.3  335.4
+N21   D   329.3  336.6  355.2
+      N   298.6  308.1  336.6
+SNPP  D   329.4  337.3  356.2
+      N   298.3  306.8  334.5
+Terra D   306.6  317.5  336.4
+      N   301.1  306.8  326.6
+new-location share 2024 at 0.01 deg: 8.2% of detections; grid cells 3303 new of 31620
+new-location share 2024 at 0.05 deg: 0.1% of detections; grid cells 61 new of 7167
+concentration 2005: top 59 cells share 43.9%, cells with snpp_eq>=1: 530
+concentration 2010: top 59 cells share 45.7%, cells with snpp_eq>=1: 530
+concentration 2015: top 59 cells share 41.4%, cells with snpp_eq>=1: 538
+concentration 2020: top 59 cells share 43.8%, cells with snpp_eq>=1: 546
+concentration 2024: top 59 cells share 43.4%, cells with snpp_eq>=1: 547
+concentration 2025: top 59 cells share 43.3%, cells with snpp_eq>=1: 538

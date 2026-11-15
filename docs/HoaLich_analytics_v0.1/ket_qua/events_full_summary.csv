@@ -1,0 +1,2 @@
+label,detections,clusters,single_point_clusters_pct,events_total,ambiguous_clusters,events_clear,single_detection_events_pct,single_cluster_events_pct,multi_sat_events_pct,multi_cell_events_pct,detections_per_event_p50,detections_per_event_p90,detections_per_event_max,obs_span_h_p50,obs_span_h_p90,obs_span_h_max,events_span_gt_7d,secs
+all years default,1161304,800554,75.3,706206,8298,697908,70.0,88.9,11.0,1.1,1.0,3.0,197,0.0,0.8,217.0,616,82.6

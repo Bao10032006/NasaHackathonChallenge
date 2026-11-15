@@ -1,0 +1,60 @@
+pentad region lo/hi ratio (aqua era) quantiles {'r_lo': {0.1: 0.0, 0.5: 0.088, 0.9: 0.544}, 'r_hi': {0.1: 1.6, 0.5: 2.099, 0.9: 4.247}}
+
+[1] class share % by baseline window and era (6 areas x 12 months)
+ cls                                   HIGH   LOW  TYPICAL
+window              era                                  
+fixed_2016_2025_loo A_2003_2011_aqua  31.3  16.4     52.3
+                    B_2012_2016_snpp  36.9  12.5     50.6
+                    C_2017_2025_snpp  15.1  18.7     66.2
+full_2003_2025_loo  A_2003_2011_aqua  14.4  11.3     74.4
+                    B_2012_2016_snpp  17.8   8.9     73.3
+                    C_2017_2025_snpp  10.3  18.2     71.5
+trailing_10y        A_2003_2011_aqua  16.7  22.6     60.8
+                    B_2012_2016_snpp  23.6  16.9     59.4
+                    C_2017_2025_snpp  10.5  25.3     64.2
+
+insufficient share by window {'fixed_2016_2025_loo': 0.0, 'full_2003_2025_loo': 0.0, 'trailing_10y': 21.7}
+
+[2] median annual snpp_eq by era
+ era        A_2003_2011_aqua  B_2012_2016_snpp  C_2017_2025_snpp  C_vs_A_pct  C_vs_B_pct
+region                                                                                 
+DBSCL                4940.0           10277.0            6337.0        28.3       -38.3
+DBSH                  503.0             545.0             613.0        21.9        12.5
+Khac                15681.0           15337.0           12074.0       -23.0       -21.3
+TayBac              27317.0           18954.0           10093.0       -63.1       -46.8
+TayNguyen           35995.0           31965.0           16810.0       -53.3       -47.4
+ToanQuoc            85687.0           76199.0           49752.0       -41.9       -34.7
+
+[3] cell x month x year targets (LOO 2003-2025): 162012
+  median==0 % 24.0 | p90==0 % 5.6 | MAD==0 % 24.0 | p90<1 % 31.6
+  HIGH rate % 9.44 | HIGH where p90<1 (share of HIGH) % 9.3
+  deltaPct undefined (median==0) among x>0 % 13.6
+  cell median annual snpp_eq 2012-2025 quantiles {0.1: 1.3, 0.25: 12.6, 0.5: 47.5, 0.75: 119.5, 0.9: 265.1}
+  cells with median annual < 50: 301 of 587
+  cells with median annual < 100: 414 of 587
+  cells with median annual < 200: 500 of 587
+
+[4] Aqua-era region-month HIGH: 74 | lower-90 bound still > p90: 15
+    Aqua-era region-month LOW: 60
+
+[5] |log2 ratio| consecutive years, region-month both >=100 (n=606): p50 0.55 p75 0.97 p90 1.44
+    => typical change x 1.46 ; p90 change x 2.71
+
+[6] 2017-2025 median annual, cells, per-cell
+            median_annual  cells  per_cell
+region                                   
+DBSCL             6337.0     71      89.3
+DBSH               613.0     33      18.6
+Khac             12074.0    262      46.1
+TayBac           10093.0     99     102.0
+TayNguyen        16810.0    122     137.8
+ToanQuoc         49752.0    587      84.8
+[7] TayNguyen 03/2024 full_2003_2025_loo: x=3880.0 median=8950.8 p90=14816.3 n=22 -> LOW
+[7] TayNguyen 03/2024 trailing_10y: x=3880.0 median=6663.0 p90=12224.4 n=10 -> LOW
+[7] TayNguyen 03/2024 fixed_2016_2025_loo: x=3880.0 median=5775.0 p90=8363.4 n=9 -> TYPICAL
+[7] ToanQuoc 03/2024 full_2003_2025_loo: x=14277.0 median=22301.1 p90=33377.2 n=22 -> TYPICAL
+[7] ToanQuoc 03/2024 trailing_10y: x=14277.0 median=15649.5 p90=26444.4 n=10 -> TYPICAL
+[7] ToanQuoc 03/2024 fixed_2016_2025_loo: x=14277.0 median=14143.0 p90=20013.0 n=9 -> TYPICAL
+[7] TayBac 03/2024 full_2003_2025_loo: x=3283.0 median=5856.3 p90=11576.2 n=22 -> TYPICAL
+[7] TayBac 03/2024 trailing_10y: x=3283.0 median=4231.0 p90=7214.0 n=10 -> TYPICAL
+[7] TayBac 03/2024 fixed_2016_2025_loo: x=3283.0 median=3416.0 p90=5306.2 n=9 -> TYPICAL
