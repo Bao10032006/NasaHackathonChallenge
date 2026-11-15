@@ -1,5 +1,6 @@
 .compare-launch { display: flex; justify-content: flex-end; }
 .compare-header { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.compare-header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
 .compare-header p { margin-top: .35rem; }
 .compare-overview { display: grid; gap: .75rem; }
 .compare-overview .filter-row { align-items: center; }

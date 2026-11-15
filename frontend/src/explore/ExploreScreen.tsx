@@ -5,18 +5,29 @@ import { ExploreFilters } from './ExploreFilters'
 import type { CompareSelection } from '../compare/CompareScreen'
 import type { Filters } from './ExploreFilters'
 import { FireGridMap, nationalCamera } from './FireGridMap'
-import type { Camera } from './FireGridMap'
+import type { Camera, MarkerThresholds } from './FireGridMap'
 import { HistoricalAnalysis } from './HistoricalAnalysis'
 import { PeriodSummary } from './PeriodSummary'
-import { dateLabel, ResourceNotice } from './display'
+import { ResourceNotice } from './display'
+import { LanguageSwitch, useI18n } from '../i18n'
+import { DatasetWarning } from './DatasetNotes'
 import { endpoint } from './api'
 import type { Area, Bounds, Calendar, Daily, Days, Details, Grid, Metadata, Seasonality, TimeQuery, Trends } from './api'
 import { useResource } from './useResource'
 import './explore.css'
 
+const markerThresholds: Record<Filters['mode'], MarkerThresholds> = {
+  year: { national: 150, regional: 50, close: 10 },
+  month: { national: 8, regional: 4, close: 1 },
+  pentad: { national: 5, regional: 2, close: 0.5 },
+  day: { national: 2, regional: 1, close: 0.25 },
+}
+
+const nationalArea = { type: 'national', id: 'ToanQuoc' } satisfies Area
+
 function initialFilters(metadata: Metadata): Filters {
   return {
-    spatial: { areaType: 'national', areaId: 'ToanQuoc' },
+    spatial: { areaType: nationalArea.type, areaId: nationalArea.id },
     year: metadata.yearRange.end,
     month: Number(metadata.dateRange.end.slice(5, 7)),
     date: metadata.dateRange.end,
@@ -28,11 +39,13 @@ function initialFilters(metadata: Metadata): Filters {
 type OpenCompare = (selection: CompareSelection) => void
 
 function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; areas: Area[]; onCompare: OpenCompare }) {
+  const { t, dateLabel, monthLabel } = useI18n()
   const [filters, setFilters] = useState(() => initialFilters(metadata))
   const [drawing, setDrawing] = useState(false)
   const [cell, setCell] = useState<string | null>(null)
   const [camera, setCamera] = useState<Camera>()
   const [history, setHistory] = useState<{ spatial: Filters['spatial']; camera: Camera }[]>([])
+  const [showAllMarkers, setShowAllMarkers] = useState(false)
   const { spatial, year, month, mode, date, pentad } = filters
   const regional = 'west' in spatial || spatial.areaType !== 'national'
   const hasMonth = regional && (mode === 'month' || mode === 'day')
@@ -79,6 +92,7 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
     setCamera(nationalCamera)
     setCell(null)
     setDrawing(false)
+    setShowAllMarkers(false)
   }
 
   function chooseDay(day: string) {
@@ -92,18 +106,20 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
 
   const yearPeak = calendar.data?.summary.peakPeriod
   const monthPeak = days.data?.summary.peakDate
-  const peak = mode === 'year' && yearPeak ? { label: 'Tháng ' + yearPeak.period, value: yearPeak.value }
+  const peak = mode === 'year' && yearPeak ? { label: monthLabel(yearPeak.period), value: yearPeak.value }
     : mode === 'month' && monthPeak ? { label: dateLabel(monthPeak.date), value: monthPeak.value } : undefined
   const baseSummary = mode === 'year' ? calendar.data?.summary : mode === 'month' ? days.data?.summary : grid.data?.summary
   const summary = mode === 'day' && daily.data && baseSummary
     ? { ...baseSummary, totalValue: daily.data.value, valueStatus: daily.data.valueStatus }
     : baseSummary
-  const period = mode === 'day' ? dateLabel(date) : mode === 'month' ? `Tháng ${month}/${year}` : mode === 'pentad' ? `Kỳ ${pentad}/${year}` : String(year)
+  const period = mode === 'day' ? dateLabel(date) : mode === 'month' ? monthLabel(month, year) : mode === 'pentad' ? `${t('pentadNumber', { period: pentad })} · ${year}` : String(year)
   const noCells = grid.error === 'NO_CELLS_IN_BOUNDS'
   const showRegion = regional && !noCells && Boolean(grid.data || calendar.data)
   const mapKey = 'west' in spatial ? JSON.stringify(spatial) : spatial.areaId
   const focus = regional ? grid.data?.selection.selectedBounds : undefined
   const warnings = new Set([...(grid.data?.meta.warnings ?? []), ...(daily.data?.meta.warnings ?? [])])
+  const cellDetails = cell && <GridCellDetails cellId={cell} resource={details}
+    mapCell={selectedCell} period={grid.data?.temporalSelector} daily={cellDaily} onClose={() => setCell(null)} />
 
   return (
     <>
@@ -112,11 +128,9 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
       {mode === 'month' && metadata.yearRange.start < metadata.yearRange.end && (
         <div className="compare-launch">
           <button type="button" className="outline" disabled={!grid.data} onClick={() => {
-            const label = 'areaId' in spatial
-              ? areas.find((area) => area.id === spatial.areaId)?.name ?? 'Ô ' + spatial.areaId
-              : 'Khung đã khoanh'
-            onCompare({ spatial, label, year, month, yearRange: metadata.yearRange, camera: camera ?? nationalCamera })
-          }}>Đối chiếu hai năm</button>
+            const area = 'areaId' in spatial ? areas.find((item) => item.id === spatial.areaId) : undefined
+            onCompare({ spatial, area, year, month, yearRange: metadata.yearRange, camera: camera ?? nationalCamera })
+          }}>{t('compareYears')}</button>
         </div>
       )}
 
@@ -124,23 +138,21 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
         <div className="map-column">
           <FireGridMap key={mapKey} grid={grid.data} focus={regional ? focus : undefined}
             camera={camera} onCamera={setCamera} onBack={history.length ? back : undefined}
-            period={mode === 'year' ? `Năm ${year}` : period}
+            period={mode === 'year' ? `${t('year')} ${year}` : period}
+            markerFilter={{ thresholds: markerThresholds[mode], showAll: showAllMarkers, onToggle: () => setShowAllMarkers((showAll) => !showAll) }}
             requested={'west' in spatial ? spatial : undefined} drawing={drawing}
-            activeCell={cell} onDraw={draw} onCell={(id) => {
-              if (!regional) change({ spatial: { areaType: 'cell', areaId: id } })
-              setCell(id)
-            }} />
+            activeCell={cell} onDraw={draw} onCell={setCell} />
           <ResourceNotice resource={grid} />
           {metadata.warningCatalog.filter(({ code }) => warnings.has(code)).map(({ code, message }) => (
-            <p className="notice" key={code}>{message}</p>
+            <DatasetWarning key={code} code={code} message={message} />
           ))}
+          {!regional && cellDetails}
         </div>
         {showRegion && <div className="overview-side">
           <PeriodSummary period={period} summary={summary} peak={peak}
             origin={mode === 'day' ? daily.data?.origin : grid.data?.summary.origin} contributions={daily.data?.sourceComposition}
             sourceNotice={mode === 'day' ? <ResourceNotice resource={daily} /> : undefined} />
-          {cell && <GridCellDetails cellId={cell} resource={details}
-            mapCell={selectedCell} period={grid.data?.temporalSelector} daily={cellDaily} onClose={() => setCell(null)} />}
+          {cellDetails}
           <ActivityCalendars year={year} month={hasMonth ? month : undefined} date={mode === 'day' ? date : undefined}
             calendar={calendar} days={days} onMonth={(selected) => change({ month: selected, mode: 'month' })} onDay={chooseDay} />
         </div>}
@@ -152,32 +164,34 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
 }
 
 export default function ExploreScreen({ onCompare }: { onCompare: OpenCompare }) {
+  const { t, dateLabel } = useI18n()
   const metadata = useResource<Metadata>(endpoint('/metadata'))
-  const areas = useResource<{ items: Area[] }>(endpoint('/areas'))
+  const regions = useResource<{ items: Area[] }>(endpoint('/areas', { type: 'socioeconomic_region' }))
 
   return (
     <>
       <header className="masthead">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">♨</span>
-          <div><strong>Hỏa Lịch</strong><small>NASA FIRMS · Chuẩn S-NPP</small></div>
+          <div><strong>Hỏa Lịch</strong><small>{t('satelliteData')} · NASA FIRMS</small></div>
         </div>
         <div className="header-actions">
-          {metadata.data && <span className="data-through">Dữ liệu đến <strong>{dateLabel(metadata.data.meta.dataThrough)}</strong></span>}
+          {metadata.data && <span className="data-through">{t('dataThrough')} <strong>{dateLabel(metadata.data.meta.dataThrough)}</strong></span>}
           <a href="#data-notes" onClick={() => {
             const notes = document.getElementById('data-notes')
             if (notes instanceof HTMLDetailsElement) notes.open = true
-          }}>Nguồn và cách đọc dữ liệu</a>
+          }}>{t('dataNotes')}</a>
+          <LanguageSwitch />
         </div>
       </header>
       <main>
         <header className="intro">
-          <h1>Khám phá hoạt động đốt</h1>
-          <p>Số phát hiện ban ngày tương đương S-NPP</p>
+          <h1>{t('exploreTitle')}</h1>
+          <p>{t('daytimeMetric')}</p>
         </header>
         <ResourceNotice resource={metadata} />
-        <ResourceNotice resource={areas} />
-        {metadata.data && areas.data && <ExploreWorkspace metadata={metadata.data} areas={areas.data.items} onCompare={onCompare} />}
+        <ResourceNotice resource={regions} />
+        {metadata.data && <ExploreWorkspace metadata={metadata.data} areas={[nationalArea, ...(regions.data?.items ?? [])]} onCompare={onCompare} />}
         <DataNotes metadata={metadata.data} />
       </main>
     </>

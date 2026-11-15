@@ -1,10 +1,12 @@
 import type { Origin, SourceContribution, Summary } from './api'
-import { CoverageNotice, number, origins, sources, valueLabel } from './display'
+import { CoverageNotice, sources } from './display'
+import { useI18n } from '../i18n'
 
 export function SourceList({ items }: { items: SourceContribution[] }) {
+  const { t, number, detectionCount } = useI18n()
   return <ul className="sources">{items.map((entry) => <li key={entry.source}>
-    <div><strong>{sources[entry.source]}</strong><small>{origins[entry.origin]} · {number(entry.contributingCellDayCount)} ô-ngày đóng góp</small></div>
-    <span>{number(entry.harmonizedValue)}</span>
+    <div><strong>{sources[entry.source]}</strong><small>{t(entry.origin)} · {t('cellDays', { count: number(entry.contributingCellDayCount) })}</small></div>
+    <span>{detectionCount(entry.harmonizedValue)}</span>
   </li>)}</ul>
 }
 
@@ -16,29 +18,33 @@ export function PeriodSummary({ period, summary, peak, origin, contributions, so
   contributions?: SourceContribution[]
   sourceNotice?: React.ReactNode
 }) {
+  const { t, valueLabel, detectionCount } = useI18n()
   return (
     <section className="panel period-summary" aria-labelledby="period-summary-title">
-      <div className="panel-heading"><h2 id="period-summary-title">Tóm tắt vùng</h2><span className="pill">{period}</span></div>
+      <div className="panel-heading"><h2 id="period-summary-title">{t('areaSummary')}</h2><span className="pill">{period}</span></div>
       {summary && <>
         <div className="summary-metrics">
           <div className="metric">
-            <span>Tổng kỳ đang xem</span>
+            <span>{t('periodTotal')}</span>
             <strong className="summary-number">{valueLabel(summary.totalValue, summary.valueStatus)}</strong>
-            <small>Số phát hiện tương đương S-NPP</small>
+            <small>{t('metric')}</small>
           </div>
           {peak && <div className="metric peak">
-            <span>Thời điểm nổi bật{summary.coverage.partial ? ' trong khoảng đã có dữ liệu' : ''}</span>
-            <strong>{peak.label} · {number(peak.value)}</strong>
+            <span>{t(summary.coverage.partial ? 'partialPeak' : 'peak')}</span>
+            <strong>{peak.label} · {detectionCount(peak.value)}</strong>
           </div>}
           <div className="metric">
-            <span>Phạm vi dữ liệu</span>
+            <span>{t('coverage')}</span>
             <CoverageNotice coverage={summary.coverage} />
-            {origin && <small className="origin">{origins[origin]}</small>}
+            {origin && <small className="origin">{t(origin)}</small>}
           </div>
         </div>
       </>}
       {sourceNotice}
-      {contributions?.length ? <><h3>Nguồn đóng góp</h3><SourceList items={contributions} /></> : null}
+      {contributions?.length ? <details>
+        <summary>{t('satelliteSources')}</summary>
+        <SourceList items={contributions} />
+      </details> : null}
     </section>
   )
 }

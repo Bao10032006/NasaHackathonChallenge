@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent } from 'react'
 import type { Bounds, Grid } from './api'
-import { number, origins, valueLabel } from './display'
+import { useI18n } from '../i18n'
 import { SatelliteTiles, worldX, worldY, longitude, latitude } from './SatelliteTiles'
 import coastlines from './southeast-asia.json'
 
@@ -21,14 +21,16 @@ const land = coastlines.map(({ vietnam, ring }) => ({
 }))
 const colors = ['#ffc078', '#fb933e', '#fb5c4e', '#ef343d']
 export type ColorDomain = { min: number; max: number }
+export type MarkerThresholds = { national: number; regional: number; close: number }
 
 export function MapColorScale({ domain }: { domain?: ColorDomain }) {
-  if (!domain) return <span>Chưa có thang màu</span>
+  const { t, detectionCount } = useI18n()
+  if (!domain) return <span>{t('colorScaleUnavailable')}</span>
   return (
-    <div className="legend-scale" aria-label="Thang màu từ thấp đến cao">
-      <span>{number(domain.min)}</span>
+    <div className="legend-scale" aria-label={t('colorScaleRange')}>
+      <span>{detectionCount(domain.min)}</span>
       {colors.map((color) => <i key={color} style={{ background: color }} aria-hidden="true" />)}
-      <span>{number(domain.max)}</span>
+      <span>{detectionCount(domain.max)}</span>
     </div>
   )
 }
@@ -67,13 +69,14 @@ function box(a: Coordinates, b: Coordinates): Bounds {
 }
 
 export function FireGridMap({ grid, focus, requested, drawing, activeCell, period, camera: savedCamera,
-  id = 'fire-map', title = 'Bản đồ hoạt động đốt', colorDomain, sharedLegend = false,
+  id = 'fire-map', title, colorDomain, sharedLegend = false, markerFilter,
   onCamera, onBack, onDraw, onCell }: {
   grid?: Grid
   id?: string
   title?: string
   colorDomain?: ColorDomain
   sharedLegend?: boolean
+  markerFilter?: { thresholds: MarkerThresholds; showAll: boolean; onToggle: () => void }
   focus?: Bounds
   requested?: Bounds
   drawing: boolean
@@ -85,6 +88,7 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   onDraw?: (bounds: Bounds) => void
   onCell: (cellId: string) => void
 }) {
+  const { t, number, detectionLabel } = useI18n()
   const start = useRef<{ geographic: Coordinates; clientX: number; clientY: number; camera: Camera } | null>(null)
   const moved = useRef(false)
   const [preview, setPreview] = useState<Bounds>()
@@ -103,6 +107,19 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   const bounds = (drawing ? preview : undefined) ?? requested
   const allZero = grid?.summary.valueStatus === 'AVAILABLE' && grid.cells.length > 0 &&
     grid.cells.every((cell) => cell.valueStatus === 'AVAILABLE' && cell.value === 0)
+  const zoomLevel = camera.zoom >= 3 ? 'close' : focus || camera.zoom >= 1.5 ? 'regional' : 'national'
+  const threshold = markerFilter?.thresholds[zoomLevel]
+  const markers = (grid?.cells ?? []).map((cell) => {
+    const cx = x(cell.center.lon)
+    const cy = y(cell.center.lat)
+    const inView = cx >= left && cx <= left + viewWidth && cy >= top && cy <= top + viewHeight
+    const value = cell.valueStatus === 'AVAILABLE' ? cell.value : null
+    const hasActivity = value != null && value > 0
+    const showMarker = hasActivity && (threshold === undefined || (inView && (markerFilter?.showAll || value >= threshold)))
+    return { cell, cx, cy, inView, hasActivity, showMarker }
+  })
+  const visibleActivity = markers.filter(({ inView, hasActivity }) => inView && hasActivity).length
+  const markerCount = markers.filter(({ showMarker }) => showMarker).length
 
   function location(event: PointerEvent<SVGSVGElement>) {
     const screen = event.currentTarget.getScreenCTM()
@@ -131,26 +148,25 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
   return (
     <section className="panel map-panel" aria-labelledby={id + '-title'}>
       <div className="panel-heading">
-        <h2 id={id + '-title'}>{title}</h2>
-        <span className="pill">Lưới 0,25°</span>
+        <h2 id={id + '-title'}>{title ?? t('mapTitle')}</h2>
       </div>
-      {drawing && <p className="drawing-note" role="status">Kéo trên bản đồ để khoanh vùng. Tâm ô nằm trong hoặc trên biên khung sẽ được tính.</p>}
+      {drawing && <p className="drawing-note" role="status">{t('drawHint')}</p>}
       <div className="map-frame">
-      <div className="map-tools" role="group" aria-label="Điều khiển bản đồ">
+      <div className="map-tools" role="group" aria-label={t('mapControls')}>
         <button type="button" aria-pressed={satellite} onClick={() => {
           if (!satellite) setTilesUnavailable(false)
           setSatellite(!satellite)
-        }}>Ảnh vệ tinh</button>
-        <button type="button" aria-label="Phóng to" disabled={camera.zoom >= maxZoom || drawing} onClick={() => zoom(1.5)}>+</button>
-        <button type="button" aria-label="Thu nhỏ" disabled={camera.zoom <= 1 || drawing} onClick={() => zoom(1 / 1.5)}>−</button>
-        <button type="button" disabled={drawing} onClick={() => onCamera(nationalCamera)}>Thu camera về toàn quốc</button>
-        {onBack && <button type="button" className="map-back" aria-label="Quay lại vùng trước"
-          title="Quay lại vùng trước" onClick={onBack}>×</button>}
+        }}>{t('satellite')}</button>
+        <button type="button" aria-label={t('zoomIn')} disabled={camera.zoom >= maxZoom || drawing} onClick={() => zoom(1.5)}>+</button>
+        <button type="button" aria-label={t('zoomOut')} disabled={camera.zoom <= 1 || drawing} onClick={() => zoom(1 / 1.5)}>−</button>
+        <button type="button" disabled={drawing} onClick={() => onCamera(nationalCamera)}>{t('resetCamera')}</button>
+        {onBack && <button type="button" className="map-back" aria-label={t('backToArea')}
+          title={t('backToArea')} onClick={onBack}>×</button>}
       </div>
       <svg id={id} viewBox={`${left} ${top} ${viewWidth} ${viewHeight}`}
         width={width} height={height}
         className={drawing ? 'map drawing' : camera.zoom > 1 ? 'map pannable' : 'map'}
-        aria-label="Bản đồ Việt Nam và các ô lưới đang xem"
+        aria-label={t('mapDescription')}
         onPointerDown={(event) => {
           moved.current = false
           if (event.button !== 0 || (!drawing && camera.zoom <= 1)) return
@@ -186,8 +202,8 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
           {[100, 105, 110, 115].map((lon) => <line key={lon} x1={x(lon)} x2={x(lon)} y1={0} y2={height} className="map-grid" />)}
           {[10, 15, 20].map((lat) => <line key={lat} x1={0} x2={width} y1={y(lat)} y2={y(lat)} className="map-grid" />)}
           {land.map((item, i) => <path key={i} d={item.path} className={item.vietnam ? 'vietnam' : 'land'} />)}
-          <text x={x(111.4)} y={y(16.6)} className="sea-label">BIỂN ĐÔNG</text>
-          <text x={x(101)} y={y(19)} className="land-label">ĐÔNG NAM Á</text>
+          <text x={x(111.4)} y={y(16.6)} className="sea-label">{t('sea')}</text>
+          <text x={x(101)} y={y(19)} className="land-label">{t('southeastAsia')}</text>
         </g>
         {satellite && <SatelliteTiles
           viewport={{ west: west + left / width * spanX, north: north + top / height * spanY, width: viewWidth / width * spanX, height: viewHeight / height * spanY }}
@@ -195,14 +211,13 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
           projectX={projectX} projectY={projectY}
           onImageError={() => setTilesUnavailable(true)}
         />}
-        {grid?.cells.map((cell) => {
+        {markers.map(({ cell, cx, cy, inView, showMarker }) => {
           const selected = activeCell === cell.cellId
-          const positive = cell.valueStatus === 'AVAILABLE' && cell.value != null && cell.value > 0
-          if (!positive && !(sharedLegend && selected)) return null
-          const ratio = positive && domain.max > domain.min
-            ? Math.min(1, Math.max(0, (cell.value! - domain.min) / (domain.max - domain.min))) : 0
+          if (!showMarker && !(selected && (sharedLegend || (markerFilter && inView)))) return null
+          const ratio = showMarker && cell.value != null && domain.max > domain.min
+            ? Math.min(1, Math.max(0, (cell.value - domain.min) / (domain.max - domain.min))) : 0
           const index = Math.min(colors.length - 1, Math.floor(Math.sqrt(ratio) * colors.length))
-          const label = `Ô ${cell.cellId} · ${valueLabel(cell.value, cell.valueStatus)}${cell.valueStatus === 'AVAILABLE' ? ' phát hiện tương đương S-NPP' : ''}${cell.partial ? ' · Kỳ chưa đầy đủ' : ''}`
+          const label = `${t('cell', { id: cell.cellId })} · ${detectionLabel(cell.value, cell.valueStatus)}${cell.partial ? ' · ' + t('partialPeriod') : ''}`
           return (
             <g key={cell.cellId} className={drawing ? undefined : 'map-cell'}
               role={drawing ? undefined : 'button'} aria-label={label} tabIndex={drawing ? undefined : 0}
@@ -214,9 +229,9 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
                   onCell(cell.cellId)
                 }
               }}>
-              <title>{label}{cell.origin ? ' · ' + origins[cell.origin] : ''}</title>
+              <title>{label + (cell.origin ? ' · ' + t(cell.origin) : '')}</title>
               <rect {...rect(cell.bounds)} className={activeCell === cell.cellId ? 'cell-outline selected' : 'cell-outline'} />
-              {positive && <circle cx={x(cell.center.lon)} cy={y(cell.center.lat)} r={selected ? 3.5 : 2.3} fill={colors[index]}
+              {showMarker && <circle cx={cx} cy={cy} r={selected ? 3.5 : 2.3} fill={colors[index]}
                 className={cell.origin === 'MODEL_REDISTRIBUTED' ? 'cell-marker estimated' : 'cell-marker'} />}
             </g>
           )
@@ -227,30 +242,45 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
       <div className="map-legend" hidden={sharedLegend && !allZero && (!grid || grid.summary.valueStatus === 'AVAILABLE')}>
         {!sharedLegend && <>
         <div className="map-legend-row">
-          <span>Số phát hiện tương đương S-NPP · {period}</span>
+          <span>{t('metric')} · {period}</span>
           <MapColorScale domain={max > 0 ? domain : undefined} />
         </div>
         </>}
-        {allZero && <p role="status">Kỳ này có dữ liệu, tất cả ô đều có giá trị 0.</p>}
+        {markerFilter && threshold !== undefined && grid?.summary.valueStatus === 'AVAILABLE' && (
+          <>
+            <div className="map-legend-row">
+              <p>
+                {t('markerCount', { count: `${number(markerCount)}/${number(visibleActivity)}` })}
+                {' · '}{markerFilter.showAll ? t('positiveMarkers') : t('threshold', { value: number(threshold) })}
+              </p>
+              <button className="map-marker-toggle quiet" type="button" onClick={markerFilter.onToggle}>
+                {markerFilter.showAll ? t('restoreThreshold') : t('showAllMarkers')}
+              </button>
+            </div>
+            {visibleActivity > 0 && markerCount === 0 && <p role="status">{t('belowThreshold')}</p>}
+          </>
+        )}
+        {allZero && <p role="status">{t('zeroPeriod')}</p>}
         {grid && grid.summary.valueStatus !== 'AVAILABLE' && (
-          <p role="status">{valueLabel(grid.summary.totalValue, grid.summary.valueStatus)} cho kỳ này.</p>
+          <p role="status">{t('periodStatus', { status: t(grid.summary.valueStatus) })}</p>
         )}
         {!sharedLegend && <details>
-          <summary>Chú giải</summary>
-          <p>Mỗi chấm là một ô lưới 0,25° có hoạt động được ghi nhận trong kỳ đang xem. Bản đồ chỉ vẽ chấm ở ô có giá trị lớn hơn 0.</p>
-          <p>Màu đậm hơn biểu thị số phát hiện tương đương S-NPP cao hơn.</p>
+          <summary>{t('legend')}</summary>
+          <p>{t('markerMeaning')}</p>
+          {markerFilter && <p>{t('thresholdMeaning')}</p>}
+          <p>{t('mapColorMeaning')}</p>
           <p className="legend-symbol">
             <svg width="16" height="16" viewBox="0 0 8 8" aria-hidden="true">
               <circle cx="4" cy="4" r="2.3" fill={colors[1]} className="cell-marker estimated" />
             </svg>
-            Chấm có viền hổ phách biểu thị giá trị ước tính.
+            {t('estimatedMarker')}
           </p>
         </details>}
       </div>
       {satellite && <p className="map-source">
-        <a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9" target="_blank" rel="noreferrer">Nền ảnh: Esri World Imagery và các nhà cung cấp</a>
-        {' · '}Tên địa danh: Esri
-        {tilesUnavailable && <span role="status"> · Nền tối hiển thị ở nơi ảnh chưa tải được.</span>}
+        <a href="https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9" target="_blank" rel="noreferrer">{t('imageryCredit')}</a>
+        {' · '}{t('labelCredit')}
+        {tilesUnavailable && <span role="status"> · {t('imageryUnavailable')}</span>}
       </p>}
     </section>
   )
