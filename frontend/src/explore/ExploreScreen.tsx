@@ -18,10 +18,10 @@ import { useResource } from './useResource'
 import './explore.css'
 
 const markerThresholds: Record<Filters['mode'], MarkerThresholds> = {
-  year: { national: 150, regional: 50, close: 10 },
-  month: { national: 8, regional: 4, close: 1 },
-  pentad: { national: 5, regional: 2, close: 0.5 },
-  day: { national: 2, regional: 1, close: 0.25 },
+  year: { national: 125, regional: 40, close: 5 },
+  month: { national: 15, regional: 4, close: 1 },
+  pentad: { national: 4, regional: 1, close: 0.5 },
+  day: { national: 2, regional: 0.5, close: 0.25 },
 }
 
 const nationalArea = { type: 'national', id: 'ToanQuoc' } satisfies Area
@@ -116,6 +116,7 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
   const period = mode === 'day' ? dateLabel(date) : mode === 'month' ? monthLabel(month, year) : mode === 'pentad' ? `${t('pentadNumber', { period: pentad })} · ${year}` : String(year)
   const noCells = grid.error === 'NO_CELLS_IN_BOUNDS'
   const showRegion = regional && !noCells && Boolean(grid.data || calendar.data)
+  const splitOverview = (regional && !noCells) || cell !== null
   const mapKey = 'west' in spatial ? JSON.stringify(spatial) : spatial.areaId
   const focus = regional ? grid.data?.selection.selectedBounds : undefined
   const warnings = new Set([...(grid.data?.meta.warnings ?? []), ...(daily.data?.meta.warnings ?? [])])
@@ -135,7 +136,7 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
         </div>
       )}
 
-      <div className={regional && !noCells ? 'overview' : 'overview overview-map-only'}>
+      <div className={splitOverview ? 'overview' : 'overview overview-map-only'}>
         <div className="map-column">
           <FireGridMap key={mapKey} grid={grid.data} focus={regional ? focus : undefined}
             camera={camera} onCamera={setCamera} onBack={history.length ? back : undefined}
@@ -147,15 +148,14 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
           {metadata.warningCatalog.filter(({ code }) => warnings.has(code)).map(({ code, message }) => (
             <DatasetWarning key={code} code={code} message={message} />
           ))}
-          {!regional && cellDetails}
         </div>
-        {showRegion && <div className="overview-side">
-          <PeriodSummary period={period} summary={summary} peak={peak}
+        {(showRegion || cellDetails) && <div className="overview-side">
+          {showRegion && <PeriodSummary period={period} summary={summary} peak={peak}
             origin={mode === 'day' ? daily.data?.origin : grid.data?.summary.origin} contributions={daily.data?.sourceComposition}
-            sourceNotice={mode === 'day' ? <ResourceNotice resource={daily} /> : undefined} />
+            sourceNotice={mode === 'day' ? <ResourceNotice resource={daily} /> : undefined} />}
           {cellDetails}
-          <ActivityCalendars year={year} month={hasMonth ? month : undefined} date={mode === 'day' ? date : undefined}
-            calendar={calendar} days={days} onMonth={(selected) => change({ month: selected, mode: 'month' })} onDay={chooseDay} />
+          {showRegion && <ActivityCalendars year={year} month={hasMonth ? month : undefined} date={mode === 'day' ? date : undefined}
+            calendar={calendar} days={days} onMonth={(selected) => change({ month: selected, mode: 'month' })} onDay={chooseDay} />}
         </div>}
       </div>
 
