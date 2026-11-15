@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -90,6 +91,22 @@ public final class GlobalExceptionHandler {
 				.headers(response.getHeaders())
 				.allow(supported.toArray(HttpMethod[]::new))
 				.body(response.getBody());
+	}
+
+	/**
+	 * The API only produces JSON. A client that accepts neither JSON nor problem+json (for example
+	 * {@code Accept: text/html}) gets 406 instead of being reported as a server failure.
+	 */
+	@ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
+	ResponseEntity<ApiProblemDto> handleNotAcceptable(
+			HttpMediaTypeNotAcceptableException exception,
+			HttpServletRequest request) {
+		return problem(
+				HttpStatus.NOT_ACCEPTABLE,
+				"NOT_ACCEPTABLE",
+				"Not acceptable",
+				"This API only produces application/json and application/problem+json",
+				request);
 	}
 
 	@ExceptionHandler(DatasetUnavailableException.class)
