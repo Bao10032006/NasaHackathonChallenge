@@ -20,6 +20,13 @@ const land = coastlines.map(({ vietnam, ring }) => ({
   vietnam, path: ring.map(([lon, lat], i) => `${i ? 'L' : 'M'}${x(lon).toFixed(1)},${y(lat).toFixed(1)}`).join(' ') + 'Z',
 }))
 const colors = ['#ffc078', '#fb933e', '#fb5c4e', '#ef343d']
+/** Hot core at the centre of each glow, one per colour class (low → high). */
+const cores = ['#fff1cf', '#ffe2a8', '#ffd08a', '#ffc27a']
+
+/** Glow radius grows with activity so dense, active areas read as heat; the hit target stays the cell. */
+function glowRadius(ratio: number) {
+  return 3.4 + 3.4 * Math.sqrt(ratio)
+}
 export type ColorDomain = { min: number; max: number }
 export type MarkerThresholds = { national: number; regional: number; close: number }
 
@@ -29,7 +36,7 @@ export function MapColorScale({ domain }: { domain?: ColorDomain }) {
   return (
     <div className="legend-scale" aria-label={t('colorScaleRange')}>
       <span>{detectionCount(domain.min)}</span>
-      {colors.map((color) => <i key={color} style={{ background: color }} aria-hidden="true" />)}
+      {colors.map((color) => <i key={color} style={{ background: color, boxShadow: `0 0 6px ${color}` }} aria-hidden="true" />)}
       <span>{detectionCount(domain.max)}</span>
     </div>
   )
@@ -205,6 +212,16 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
           <text x={x(111.4)} y={y(16.6)} className="sea-label">{t('sea')}</text>
           <text x={x(101)} y={y(19)} className="land-label">{t('southeastAsia')}</text>
         </g>
+        <defs>
+          {colors.map((color, index) => (
+            <radialGradient key={color} id={`${id}-fire-${index}`}>
+              <stop offset="0" stopColor={cores[index]} stopOpacity=".95" />
+              <stop offset=".28" stopColor={color} stopOpacity=".9" />
+              <stop offset=".62" stopColor={color} stopOpacity=".32" />
+              <stop offset="1" stopColor={color} stopOpacity="0" />
+            </radialGradient>
+          ))}
+        </defs>
         {satellite && <SatelliteTiles
           viewport={{ west: west + left / width * spanX, north: north + top / height * spanY, width: viewWidth / width * spanX, height: viewHeight / height * spanY }}
           pixels={width}
@@ -231,8 +248,10 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
               }}>
               <title>{label + (cell.origin ? ' · ' + t(cell.origin) : '')}</title>
               <rect {...rect(cell.bounds)} className={activeCell === cell.cellId ? 'cell-outline selected' : 'cell-outline'} />
-              {showMarker && <circle cx={cx} cy={cy} r={selected ? 3.5 : 2.3} fill={colors[index]}
+              {showMarker && <circle cx={cx} cy={cy} r={glowRadius(ratio)} fill={`url(#${id}-fire-${index})`} className="cell-glow" />}
+              {showMarker && <circle cx={cx} cy={cy} r={selected ? 3.2 : 1.9 + 0.7 * Math.sqrt(ratio)} fill={cores[index]}
                 className={cell.origin === 'MODEL_REDISTRIBUTED' ? 'cell-marker estimated' : 'cell-marker'} />}
+              {selected && showMarker && <circle cx={cx} cy={cy} r="4.6" className="cell-pulse" />}
             </g>
           )
         })}
@@ -271,7 +290,8 @@ export function FireGridMap({ grid, focus, requested, drawing, activeCell, perio
           <p>{t('mapColorMeaning')}</p>
           <p className="legend-symbol">
             <svg width="16" height="16" viewBox="0 0 8 8" aria-hidden="true">
-              <circle cx="4" cy="4" r="2.3" fill={colors[1]} className="cell-marker estimated" />
+              <circle cx="4" cy="4" r="3.6" fill={colors[1]} opacity=".35" />
+              <circle cx="4" cy="4" r="2" fill={cores[1]} className="cell-marker estimated" />
             </svg>
             {t('estimatedMarker')}
           </p>

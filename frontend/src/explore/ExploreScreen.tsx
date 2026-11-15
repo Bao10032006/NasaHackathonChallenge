@@ -10,6 +10,7 @@ import { HistoricalAnalysis } from './HistoricalAnalysis'
 import { PeriodSummary } from './PeriodSummary'
 import { ResourceNotice } from './display'
 import { LanguageSwitch, useI18n } from '../i18n'
+import { BrandMark } from '../BrandMark'
 import { DatasetWarning } from './DatasetNotes'
 import { endpoint } from './api'
 import type { Area, Bounds, Calendar, Daily, Days, Details, Grid, Metadata, Seasonality, TimeQuery, Trends } from './api'
@@ -172,7 +173,7 @@ export default function ExploreScreen({ onCompare }: { onCompare: OpenCompare })
     <>
       <header className="masthead">
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">♨</span>
+          <BrandMark />
           <div><strong>Hỏa Lịch</strong><small>{t('satelliteData')} · NASA FIRMS</small></div>
         </div>
         <div className="header-actions">

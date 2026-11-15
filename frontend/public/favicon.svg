@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2234"/><stop offset="1" stop-color="#0b101c"/></linearGradient>
+    <linearGradient id="o" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff3b1f"/><stop offset="1" stop-color="#ff7a2a"/></linearGradient>
+    <linearGradient id="m" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff6a1a"/><stop offset="1" stop-color="#ffb020"/></linearGradient>
+    <linearGradient id="i" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffd25a"/><stop offset="1" stop-color="#fff3c4"/></linearGradient>
+  </defs>
+  <rect x="3" y="5" width="34" height="32" rx="8" fill="url(#t)" stroke="#2a3650"/>
+  <path d="M3 13 V12.5 A7.5 7.5 0 0 1 10.5 5 H29.5 A7.5 7.5 0 0 1 37 12.5 V13 Z" fill="#ff5a1a"/>
+  <rect x="11.5" y="2.5" width="3" height="6" rx="1.5" fill="#e8eefb" stroke="#0b101c"/>
+  <rect x="25.5" y="2.5" width="3" height="6" rx="1.5" fill="#e8eefb" stroke="#0b101c"/>
+  <path fill="url(#o)" d="M20 13.5c3.6 4.1 6.8 7.2 6.8 11.4 0 4.3-3 7.6-6.8 7.6s-6.8-3.3-6.8-7.6c0-2.6 1.3-4.6 2.7-6.3.2 2 1.1 3.2 2.2 3.6-.4-3.2.3-5.9 1.9-8.7z"/>
+  <path fill="url(#m)" d="M20 18.5c2.3 2.7 4.4 4.8 4.4 7.6 0 2.9-2 5.1-4.4 5.1s-4.4-2.2-4.4-5.1c0-1.6.8-2.9 1.7-4 .2 1.2.7 1.9 1.4 2.2-.2-2 .2-3.9 1.3-5.8z"/>
+  <path fill="url(#i)" d="M20 23.2c1.3 1.5 2.4 2.7 2.4 4.2 0 1.6-1.1 2.8-2.4 2.8s-2.4-1.2-2.4-2.8c0-1.5 1.1-2.7 2.4-4.2z"/>
+</svg>
