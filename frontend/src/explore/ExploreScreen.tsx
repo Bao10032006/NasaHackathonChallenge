@@ -13,6 +13,7 @@ import { LanguageSwitch, useI18n } from '../i18n'
 import { BrandMark } from '../BrandMark'
 import { DatasetWarning } from './DatasetNotes'
 import { endpoint } from './api'
+import { downloadGridCsv } from './csvExport'
 import type { Area, Bounds, Calendar, Daily, Days, Details, Grid, Metadata, Seasonality, TimeQuery, Trends } from './api'
 import { useResource } from './useResource'
 import './explore.css'
@@ -127,6 +128,13 @@ function ExploreWorkspace({ metadata, areas, onCompare }: { metadata: Metadata; 
     <>
       <ExploreFilters filters={filters} regional={regional} metadata={metadata} areas={areas} selection={grid.data?.selection} drawing={drawing}
         onChange={change} onDay={chooseDay} onDraw={() => setDrawing(!drawing)} onReset={reset} />
+      <div className="csv-export-bar">
+        <button type="button" className="outline" disabled={!grid.data || grid.loading || drawing}
+          onClick={() => { if (grid.data) downloadGridCsv(grid.data, spatial) }}>
+          {t('exportCsv')}
+        </button>
+        <small>{t('exportCsvHint')}</small>
+      </div>
       {mode === 'month' && metadata.yearRange.start < metadata.yearRange.end && (
         <div className="compare-launch">
           <button type="button" className="outline" disabled={!grid.data} onClick={() => {

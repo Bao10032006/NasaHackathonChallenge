@@ -1,6 +1,8 @@
 // NASA FIRMS terminology: https://firms.modaps.eosdis.nasa.gov/map/
 // S-NPP-equivalent detections are Hỏa Lịch's harmonized measure.
 export const messages = {
+  exportCsv: ['Tải Tài Liệu', 'Download Data'],
+  exportCsvHint: ['Tải tất cả ô của vùng và kỳ đang chọn, kể cả ô bị ẩn trên bản đồ.', 'Download all cells in the selected area and period, including hidden map cells.'],
   language: ["Chuyển sang tiếng Anh", "Switch to Vietnamese"],
   calculation: ["Cách tính", "How values are calculated"],
   satelliteData: ["Dữ liệu vệ tinh", "Satellite data"],

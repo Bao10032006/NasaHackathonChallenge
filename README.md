@@ -446,7 +446,6 @@ Không tự động triển khai các mục sau chỉ vì chúng xuất hiện t
 
 - anomaly/rank classification;
 - seasonal aggregate khi chưa chốt định nghĩa mùa;
-- CSV export;
 - persisted custom area;
 - raw detection points;
 - real-time alerts hoặc forecast;
@@ -468,3 +467,9 @@ README là source of truth về **trạng thái và điều phối**, nên task/
 - quyết định khoa học hoặc kiến trúc có ảnh hưởng toàn dự án.
 
 Không chép toàn bộ contract vào README. README phải trỏ đến tài liệu chi tiết và chỉ giữ các invariant, trạng thái cùng hướng dẫn bắt đầu cần thiết.
+
+## CSV export (frontend)
+
+Explore now includes an Export CSV button. Select a month or year and a national, regional or drawn-bounds selection, then download all cell values for that period. Day and pentad selections also work. Export uses the existing /map/cells response, including cells hidden by marker thresholds or zoom. Each row includes unrounded snpp_eq, status, origin when supplied, period/selection coverage, bounds and dataset/model versions. Missing values remain blank; zero remains zero.
+
+Output uses UTF-8 BOM, comma separators and CRLF. This is browser-side export of aggregated cells, not raw detections or a new CSV API. Coordinates represent cell centers. Coverage columns describe the selected period/selection, not cloud-free pixel coverage. Backend and artifacts are unchanged.

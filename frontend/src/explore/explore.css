@@ -206,3 +206,6 @@ summary { cursor: pointer; color: var(--cyan); font-weight: 650; }
   .day { padding: .28rem .2rem; }
   .day strong, .day small { overflow-wrap: anywhere; font-size: .63rem; }
 }
+
+.csv-export-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+.csv-export-bar small { max-width: 70ch; opacity: .8; }
