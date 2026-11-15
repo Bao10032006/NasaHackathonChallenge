@@ -7,6 +7,6 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/v1/metadata
-    envVars:
-      - key: HOALICH_ALLOWED_ORIGINS
-        value: https://hoa-lich.vercel.app
+      envVars:
+        - key: HOALICH_ALLOWED_ORIGINS
+          value: https://hoa-lich.vercel.app,https://hoalichvn.me,https://www.hoalichvn.me

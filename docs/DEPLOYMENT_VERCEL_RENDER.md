@@ -29,10 +29,10 @@ Vercel và Render đều build từ repository Git. Các file deploy phải đư
 2. Chọn **New → Blueprint**.
 3. Kết nối repository GitHub của Hỏa Lịch.
 4. Render đọc `render.yaml` ở repository root.
-5. Blueprint cấu hình sẵn `HOALICH_ALLOWED_ORIGINS` bằng production origin hiện tại:
+5. Blueprint cấu hình sẵn `HOALICH_ALLOWED_ORIGINS` cho production origins hiện tại:
 
    ```text
-   https://hoa-lich.vercel.app
+   https://hoa-lich.vercel.app,https://hoalichvn.me,https://www.hoalichvn.me
    ```
 
    Nếu đổi project hoặc custom domain, cập nhật giá trị này trong Render Environment hoặc `render.yaml`. Không thêm dấu `/` ở cuối.
