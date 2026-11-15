@@ -28,7 +28,7 @@ export type SourceContribution = { source: Source; origin: Origin; harmonizedVal
 export type Summary = { totalValue: number | null; valueStatus: Status; coverage: Coverage }
 export type Baseline = { referenceStartYear: number; referenceEndYear: number; excludesTargetYear: boolean; values: (Value & { period: number; sampleSize: number })[] }
 export type Calendar = {
-  values: (Value & { period: number; coverage: Coverage })[]
+  values: (Value & { period: number; startDate?: string; endDate?: string; coverage: Coverage })[]
   summary: Summary & { peakPeriod: { period: number; value: number } | null }
   baseline?: Baseline
 }

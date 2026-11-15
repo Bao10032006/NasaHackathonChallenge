@@ -16,6 +16,9 @@ export function HistoricalAnalysis({ month, calendar, trends, seasonality }: {
   const target = calendar.data?.values.find((item) => item.period === month)
   const delta = target?.value != null && target.valueStatus === 'AVAILABLE' && !target.coverage.partial &&
     reference?.valueStatus === 'AVAILABLE' && reference.value != null ? target.value - reference.value : null
+  const estimated = trends.data?.points.some((point) => point.origin === 'MODEL_REDISTRIBUTED') ?? false
+  const observedFrom = estimated ? trends.data?.points.find((point) =>
+    point.valueStatus === 'AVAILABLE' && point.origin != null && point.origin !== 'MODEL_REDISTRIBUTED') : undefined
   return (
     <section className="panel historical" aria-labelledby="historical-analysis-title">
       <div className="panel-heading"><h2 id="historical-analysis-title">{t('history')}</h2><span className="pill">{monthLabel(month)}</span></div>
@@ -34,10 +37,19 @@ export function HistoricalAnalysis({ month, calendar, trends, seasonality }: {
       <div className="history-grid">
         <div><h3>{t('monthAcrossYears', { month: monthLabel(month) })}</h3>
           <ResourceNotice resource={trends} />
-          {trends.data && <SeriesChart title={t('sameMonthAcrossYears')} points={trends.data.points.map((point) => ({
-            key: point.year, label: String(point.year), value: point.valueStatus === 'AVAILABLE' ? point.value : null,
-            partial: point.coverage.partial, note: point.coverage.partial ? t('partialPeriod') : t(point.valueStatus),
-          }))} />}
+          {trends.data && <SeriesChart title={t('sameMonthAcrossYears')}
+            divider={observedFrom ? { key: observedFrom.year, label: t('viirsFrom', { year: observedFrom.year }) } : undefined}
+            points={trends.data.points.map((point) => ({
+              key: point.year, label: String(point.year), value: point.valueStatus === 'AVAILABLE' ? point.value : null,
+              partial: point.coverage.partial, estimated: point.origin === 'MODEL_REDISTRIBUTED',
+              note: point.coverage.partial ? t('partialPeriod') : point.origin ? t(point.origin) : t(point.valueStatus),
+            }))} />}
+          {estimated && <p className="muted estimated-note">
+            <svg width="26" height="10" viewBox="0 0 26 10" aria-hidden="true">
+              <circle cx="6" cy="5" r="3.4" className="chart-point estimated-point" /><circle cx="20" cy="5" r="3.4" className="chart-point" />
+            </svg>
+            {t('estimatedPointNote')}
+          </p>}
         </div>
         <div><h3>{t('seasonality')}</h3>
           <ResourceNotice resource={seasonality} />

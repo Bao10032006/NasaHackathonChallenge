@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import type { Coverage, Source, Value } from './api'
 import { useI18n } from '../i18n'
 import type { MessageKey } from '../messages'
@@ -8,6 +9,32 @@ export const sources: Record<Source, string> = {
   AQUA: 'Aqua / MODIS',
   SNPP: 'Suomi NPP / VIIRS',
   NOAA20: 'NOAA-20 / VIIRS',
+}
+
+/** Rolls a figure from its previous value to the new one. Jumps straight there under prefers-reduced-motion. */
+export function CountUp({ value, format }: { value: number; format: (value: number) => string }) {
+  const [shown, setShown] = useState(0)
+  const current = useRef(0)
+  useEffect(() => {
+    const start = current.current
+    const still = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (still || start === value) {
+      current.current = value
+      setShown(value)
+      return
+    }
+    const began = performance.now()
+    let frame = 0
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - began) / 750)
+      current.current = progress === 1 ? value : start + (value - start) * (1 - Math.pow(1 - progress, 3))
+      setShown(current.current)
+      if (progress < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [value])
+  return <>{format(shown)}</>
 }
 
 export function cellActivityStatus({ value, valueStatus }: Value): MessageKey {

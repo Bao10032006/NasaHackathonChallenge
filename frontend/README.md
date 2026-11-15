@@ -24,6 +24,14 @@ Trên backend TASK 03B2, phân tích lịch sử hiển thị mức tham chiếu
 
 Nền bản đồ dùng [Natural Earth Admin 0 Countries](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) v5.1.2. Các ô và giá trị đến từ API đang được chọn.
 
+## Lịch đốt, nền địa hình và dấu mốc cảm biến
+
+- **Lịch đốt 73 kỳ 5 ngày** (`src/explore/FireCalendar.tsx`): gọi `/calendar?granularity=pentad&includeBaseline=true` cho vùng đang chọn, kể cả toàn quốc. Cột là năm đang xem, vạch ngang là mức điển hình (trung vị của baseline). Bấm một kỳ để bản đồ chuyển sang kỳ đó. Thành phần này chỉ mô tả giá trị và chênh lệch cùng kỳ, không phân loại bất thường.
+- **Lớp nền bản đồ**: ba lựa chọn. `Ảnh vệ tinh` (Esri World Imagery kèm tên địa danh, như trước; cũng là ảnh nền mặc định trên NASA FIRMS). `Địa hình` dùng Esri World Topographic Map bản raster; NASA FIRMS cũng ghi nguồn lớp Topographic của họ là Esri. `Nền tối` không tải ảnh nào. Cả hai lớp ảnh đều của Esri, không phải dữ liệu NASA. Nếu ảnh không tải được, bản đồ giữ nền tối và hiện ghi chú. Các ô ảnh chồng nhau 0,75 điểm ảnh để không lộ đường nối.
+- **Phóng to, thu nhỏ**: cuộn chuột (giữ nguyên điểm dưới con trỏ), chụm hai ngón trên màn hình cảm ứng, chụm trên bàn rê (Ctrl + cuộn), và hai nút `+` `−` như trước. Ở mức phóng nhỏ nhất hoặc lớn nhất, cú cuộn trả về cho trang; cú cuộn bắt đầu ngoài bản đồ tiếp tục cuộn trang trong 0,4 giây để bản đồ không giữ chân người đọc.
+- **Khoanh vùng trên bản đồ**: nút `Khoanh vùng` nay có ngay trên thanh công cụ của bản đồ (cùng chức năng với nút ở thanh lọc): kéo một khung chữ nhật, các ô có tâm nằm trong khung thành vùng phân tích.
+- **Dấu mốc cảm biến** trong biểu đồ "cùng tháng qua các năm": điểm có `origin = MODEL_REDISTRIBUTED` vẽ rỗng, và một vạch đứng đánh dấu năm đầu tiên có quan sát VIIRS.
+
 Chạy kiểm tra và build trong thư mục `frontend`.
 
 ```sh
