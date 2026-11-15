@@ -4,7 +4,7 @@
 >
 > Đọc toàn bộ README trước khi phân tích, đề xuất hoặc sửa code. Sau đó đọc đúng tài liệu được chỉ định cho task đang thực hiện. Không suy luận trạng thái dự án chỉ từ tên file hoặc một phiên bản tài liệu cũ.
 
-**Cập nhật:** 14/11/2026
+**Cập nhật:** 15/11/2026
 
 **Ngôn ngữ làm việc:** tiếng Việt
 
@@ -72,6 +72,7 @@ Các mốc đã hoàn thành:
 - **TASK 03A:** xuất binary artifact, manifest, Java file repositories và regression tests.
 - **TASK 03B1:** spatial selection, metadata/areas API, N-layer foundation, CORS và Problem Details.
 - **TASK 03B2:** activity query repository, map/calendar/daily services và bốn REST API lõi.
+- **TASK 03B3:** trends, seasonality, cell-period provenance và hai bản sửa lỗi phản hồi từ review backend 15/11/2026.
 
 Mốc Git quan trọng:
 
@@ -81,16 +82,17 @@ Mốc Git quan trọng:
 - `bf86831` → `13a7fe6`: repository query engine, provenance validation và regression tests của TASK 03B2A.
 - `7a2e65c`: merge TASK 03B2B Activity API vào `main`.
 - `17e8e34`: repository hardening sau full review và mốc hoàn tất TASK 03B2.
+- `5fe142d`, `c1dbb6d`, `f495d41`: sửa 406/capability, TASK 03B3B và TASK 03B3A; tích hợp trên nhánh `task03b3c/integration`.
 
-Kết quả backend gần nhất đã xác minh trên `main` tại `17e8e34`:
+Kết quả backend gần nhất đã xác minh trên nhánh tích hợp `task03b3c/integration` (15/11/2026):
 
 - JDK `21.0.12 LTS`;
 - Maven Wrapper / Maven `3.10.0`;
 - Spring Boot `4.1.2`;
 - compiler `release 21`;
-- 110 test, 0 failure, 0 error, 1 skipped;
+- 152 test, 0 failure, 0 error, 1 skipped (`clean verify`);
 - packaged JAR và application context hoạt động;
-- packaged JAR đã smoke-test bốn API TASK 03B2 với dataset thật;
+- packaged JAR đã smoke-test ba API TASK 03B3, 406 và capability với dataset thật;
 - test symlink duy nhất bị skip vì Windows hiện tại không cấp quyền tạo symbolic link;
 - không có WebFlux, JDBC Session hoặc database dependency.
 
@@ -104,6 +106,9 @@ Frontend scaffold tại cùng mốc đã chạy thành công `npm ci`, TypeScrip
 - `GET /api/v1/calendar`
 - `GET /api/v1/calendar/days`
 - `GET /api/v1/daily`
+- `GET /api/v1/trends`
+- `GET /api/v1/seasonality`
+- `GET /api/v1/cells/{cellId}/period-details`
 
 ### Repository/data capability đã có
 
@@ -116,10 +121,9 @@ Frontend scaffold tại cùng mốc đã chạy thành công `npm ci`, TypeScrip
 
 ### Chưa có trong code
 
-- `/api/v1/trends`
-- `/api/v1/seasonality`
-- cell-period details controller
+- `/api/v1/harmonization/comparison` (Optional; `/metadata` báo `harmonizationComparisonAvailable: false` cho tới khi triển khai)
 - anomaly và CSV export
+- backlog analytics trong `docs/HoaLich_analytics_v0.1/` (đề xuất v0.2-draft, chưa thuộc MVP v0.4)
 
 Không được nhầm “đã có trong OpenAPI” với “đã được controller triển khai”.
 
@@ -166,9 +170,15 @@ Báo cáo:
 - [TASK 03B2B — Activity Service & REST API Report](docs/backend/TASK_03B2_ACTIVITY_API_REPORT.md)
 - [TASK 03B2 — Map, Calendar & Daily Integration Report](docs/backend/TASK_03B2_MAP_CALENDAR_DAILY_REPORT.md)
 
+### TASK 03B3 — Trends, seasonality, cell provenance
+
+Hoàn tất trên các nhánh `fix/backend-http-406-and-capability`, `task03b3b/historical-analysis`, `task03b3a/cell-period-provenance`; tích hợp và kiểm chứng trên `task03b3c/integration`.
+
+Báo cáo: [TASK 03B3 — Historical Analysis & Cell Provenance Report](docs/backend/TASK_03B3_HISTORICAL_AND_PROVENANCE_REPORT.md)
+
 ### Task kế tiếp đề xuất
 
-Lập task riêng cho trends, seasonality và cell-period provenance. Anomaly vẫn phải có decision riêng trước khi triển khai; không gộp anomaly vào task kế tiếp theo mặc định.
+Anomaly vẫn phải có decision riêng (D03) trước khi triển khai; đầu vào đề xuất nằm ở `docs/HoaLich_analytics_v0.1/`. `/harmonization/comparison` là Optional, làm khi đội cần.
 
 ## 5. Cấu trúc repository
 
