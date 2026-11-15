@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Embers } from './Embers'
 import ExploreScreen from './explore/ExploreScreen'
 import { CompareScreen } from './compare/CompareScreen'
 import type { CompareSelection } from './compare/CompareScreen'
@@ -13,6 +14,7 @@ export default function App() {
 
   return (
     <>
+      <Embers />
       <div hidden={Boolean(comparison)}>
         <ExploreScreen onCompare={(selection) => {
           entry.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
