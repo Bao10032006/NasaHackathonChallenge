@@ -50,6 +50,8 @@ export type Seasonality = {
 
 export type Query = Record<string, string | number | boolean | undefined>
 
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? '').trim().replace(/\/+$/, '')
+
 export class ApiError extends Error {
   readonly code: string
   constructor(code: string) {
@@ -63,7 +65,7 @@ export function endpoint(path: string, query: Query = {}) {
   for (const [key, value] of Object.entries(query)) {
     if (value !== undefined) params.set(key, String(value))
   }
-  return '/api/v1' + path + (params.size ? '?' + params : '')
+  return apiBaseUrl + '/api/v1' + path + (params.size ? '?' + params : '')
 }
 
 export async function request<T>(url: string, signal: AbortSignal): Promise<T> {

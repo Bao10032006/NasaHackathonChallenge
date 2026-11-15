@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: hoalich-backend
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/v1/metadata
+    envVars:
+      - key: HOALICH_ALLOWED_ORIGINS
+        sync: false

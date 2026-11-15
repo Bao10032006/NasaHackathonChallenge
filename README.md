@@ -57,6 +57,7 @@ Nguồn chính:
 - [Frontend Golden Examples v0.4](mvp_bussinessRule/HoaLich_08_Frontend_Integration_Examples_v0.4.md)
 - [OpenAPI v0.4](mvp_bussinessRule/HoaLich_OpenAPI_v0.4.yaml)
 - [Artifact Spec 1.0.0](docs/backend/TASK_03A_ARTIFACT_SPEC.md)
+- [Hướng dẫn deploy Vercel + Render](docs/DEPLOYMENT_VERCEL_RENDER.md)
 
 ### Lưu ý về chữ “proposed” trong tài liệu v0.4
 
@@ -92,13 +93,13 @@ Kết quả backend gần nhất đã xác minh trên nhánh tích hợp `task03
 - Maven Wrapper / Maven `3.10.0`;
 - Spring Boot `4.1.2`;
 - compiler `release 21`;
-- 152 test, 0 failure, 0 error, 1 skipped (`clean verify`);
+- 153 test, 0 failure, 0 error, 1 skipped (`clean verify`);
 - packaged JAR và application context hoạt động;
 - packaged JAR đã smoke-test ba API TASK 03B3, 406 và capability với dataset thật;
 - test symlink duy nhất bị skip vì Windows hiện tại không cấp quyền tạo symbolic link;
 - không có WebFlux, JDBC Session hoặc database dependency.
 
-Frontend scaffold tại cùng mốc đã chạy thành công `npm ci`, TypeScript typecheck và production build; màn Explore hiện vẫn là scaffold, chưa tích hợp API thật.
+Frontend React/Vite hiện đã tích hợp API thật và các luồng Explore/Compare. Lần xác minh deploy gần nhất đã chạy thành công `npm ci`, TypeScript typecheck và production build.
 
 ### API đã có trong code
 
@@ -200,7 +201,7 @@ Anomaly vẫn phải có decision riêng (D03) trước khi triển khai; đầu
 │   │   └── domain/                  Domain/data models
 │   └── src/test/                    Unit, fixture, regression, MockMvc tests
 ├── docs/backend/                    Task plan, report và artifact spec
-├── frontend/                        React/Vite scaffold của frontend
+├── frontend/                        React/Vite frontend tích hợp API
 ├── mvp_bussinessRule/               Product/API/UX/technical documents
 └── tools/data/                      Offline artifact exporter và Python requirements
 ```
